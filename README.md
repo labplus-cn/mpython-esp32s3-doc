@@ -1,7 +1,7 @@
 # 掌控板pro 在线文档仓库
 https://aicamera-4-documentation.readthedocs.io/zh-cn/latest/
 
-## AI摄像头在线文档
+## 掌控板pro 在线文档
 
 git remote add origin https://github.com/labplus-cn/AICamera-4-documentation.git
 ## 编译步骤

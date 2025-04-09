@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'AI摄像头4.0'
-copyright = '2024, 深圳盛思科教文化有限公司 www.labplus.cn'
+project = '掌控板pro'
+copyright = '2025, 深圳盛思科教文化有限公司 www.labplus.cn'
 author = '深圳盛思科教文化有限公司'
 
 
