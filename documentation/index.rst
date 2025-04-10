@@ -1,19 +1,23 @@
 .. 
 .. 这一页是目录树
 
-掌控板pro 帮助文档
+掌控板pro帮助文档
 ======================================================
-
 
 欢迎您，使用掌控板pro！
 
-掌控板pro是一块MicroPython微控制器板，它集成ESP32高性能双核芯片，使用当下最流行的Python编程语言，以便您轻松地将代码从电脑传输到掌控板中，从而体验程序创作的无穷乐趣
+掌控板pro是一块MicroPython微控制器板，它集成ESP32-S3高性能双核芯片，使用当下最流行的Python编程语言，以便您轻松地将代码从电脑传输到掌控板中，从而体验程序创作的无穷乐趣
 
 .. figure:: /_static/image/mpython_pro.png
     :align: center
     :width: 2160
 
 
+| **掌控板官网**: https://www.mpython.cn
+| **mPython下载链接**: https://labplus.cn/software
+| **GitHub开源**: https://github.com/labplus-cn
+
+  
 .. .. toctree::
 
 .. toctree::
@@ -33,7 +37,7 @@
     :caption: 二、编程方式
    
     programming_mode/index
-    programming_mode/hardware_connection
+    .. programming_mode/hardware_connection
 
 .. toctree::
     :maxdepth: 4
