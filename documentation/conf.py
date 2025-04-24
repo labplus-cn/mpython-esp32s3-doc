@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = '掌控板pro'
+project = '掌控板3.0'
 copyright = '2025, 深圳盛思科教文化有限公司 www.labplus.cn'
 author = '深圳盛思科教文化有限公司'
 
