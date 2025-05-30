@@ -102,7 +102,7 @@
 计算掌控板倾斜的角度
 ++++++++++++++++++++++++++++
 
-.. literalinclude:: /examples/accelerometer/degrees.py
+.. literalinclude:: /_static/examples/accelerometer/degrees.py
     :caption: 通过测量由于重力引起的加速度，可以计算出设备相对于水平面的倾斜角
     :linenos:
 

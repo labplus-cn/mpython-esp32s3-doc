@@ -37,7 +37,7 @@
 - 采用Noto Sans CJK 16像素等高,不等宽字体。不同字符,宽度会有所不一样,如上图所示。
 
 
-.. literalinclude:: /examples/display/helloworld.py
+.. literalinclude:: /_static/examples/display/helloworld.py
     :caption: 在OLED显示屏上显示hello world的中文或其他语言文本:
     :linenos:
 
@@ -74,7 +74,7 @@ OLED显示屏还支持设置屏幕的亮度::
 基本形状绘制
 -------
 
-.. literalinclude:: /examples/display/drawline.py
+.. literalinclude:: /_static/examples/display/drawline.py
     :caption: 例：绘制线条。
     :linenos:
 
@@ -153,7 +153,7 @@ OLED可绘制一些点、直线、矩形等形状。
 
 将取模数据赋值给bmp数组中，然后显示在OLED显示屏上。
 
-.. literalinclude:: /examples/display/chinamap.py
+.. literalinclude:: /_static/examples/display/chinamap.py
     :linenos:
 
 .. image:: /_static/image/tutorials/earth.png
@@ -191,7 +191,7 @@ pbm数据格式的前三行定于为图像标注。然后才是图像数据。�
 
 首先将预先准备好的每帧的pbm图片上传至掌控板的文件系统的根目录下。
 
-.. literalinclude:: /examples/display/scatman.py
+.. literalinclude:: /_static/examples/display/scatman.py
     :caption: 逐帧读取图像数据流并在OLED显示屏上显示出来:
     :linenos:
 
