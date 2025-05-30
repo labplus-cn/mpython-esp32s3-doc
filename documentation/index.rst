@@ -27,7 +27,7 @@
     2_software/1_index.rst
     3_examples/1_index.rst
     4_api/1_index.rst
-    5_arduino/1_index.rst
+    5_C_program/index.rst
     6_xiaozhi/1_index.rst
     7_faq/1_index.rst
     8_license/1_index.rst

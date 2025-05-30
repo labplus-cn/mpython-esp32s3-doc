@@ -4,6 +4,10 @@
 1.2.1. 板载功能及技术参数
 --------------------------------
 
+.. image:: /_static/image/hardware/板载器件图.png
+    :align: center
+    :width: 1000
+
 .. csv-table:: 硬件参数
     :header: "序号", "硬件", "型号规格"
     :widths: 5, 6, 10
