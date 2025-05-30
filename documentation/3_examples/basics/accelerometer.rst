@@ -15,20 +15,18 @@
 
 例：通过OLED显示屏来观察3个轴加速度值的变化
 ::
+    from lv_gui import *
     from mpython import *
-    
+
+    gui = GUI()
+
     while True:
-        oled.fill(0)     
-        x1 = accelerometer.get_x()
-        y1 = accelerometer.get_y()
-        z1 = accelerometer.get_z()
-        oled.DispChar("加速度x:", 0, 0)
-        oled.DispChar(str(x1), 48, 0)
-        oled.DispChar("加速度y:", 0, 16)
-        oled.DispChar(str(y1), 48, 16)
-        oled.DispChar("加速度z:", 0, 32)
-        oled.DispChar(str(z1), 48, 32)
-        oled.show()
+        gui.fill(type=0)
+        gui.draw_label(text=str('加速度x：' + str(accelerometer.get_x())), row=1, color=0xffffff, wrap=False)
+        gui.draw_label(text=str('加速度x：' + str(accelerometer.get_y())), row=2, color=0xffffff, wrap=False)
+        gui.draw_label(text=str('加速度z：' + str(accelerometer.get_z())), row=3, color=0xffffff, wrap=False)
+        gui.update()
+
 
 
 使用前，导入mpython模块::

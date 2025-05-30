@@ -6,12 +6,14 @@
 例：显示声音值
 ::
     from mpython import *
-    
+    from lv_gui import *
+
+    gui = GUI()
     while True:
-        oled.fill(0) 
-        oled.DispChar('声音：',0,16)
-        oled.DispChar("%d" % (sound.read()),40,20)
-        oled.show()
+        gui.fill(type=0)
+        gui.draw_label(text=str('声音：'), row=1, color=0xffffff, wrap=False)
+        gui.draw_label(text="%d" % (sound.read()), row=2, color=0xffffff, wrap=False)
+        gui.update()
 
 
 使用前，导入mpython模块
