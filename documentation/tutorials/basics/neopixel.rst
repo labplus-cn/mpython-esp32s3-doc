@@ -43,7 +43,7 @@ mPython掌控板载3颗WS2812灯珠，WS2812是一种集成了电流控制芯片
 ----------
 
 
-.. image:: /../images/tutorials/glamour.jpg
+.. image:: /_static/image/tutorials/glamour.jpg
     :width: 600
     :align: center
 
@@ -118,17 +118,17 @@ mPython掌控板载3颗WS2812灯珠，WS2812是一种集成了电流控制芯片
         rainbow_cycle(np,20)
 
 
-.. figure:: /../images/tutorials/neopixel_control_leds_cycle.png
+.. figure:: /_static/image/tutorials/neopixel_control_leds_cycle.png
     :align: center
 
     cycle循环效果
 
-.. figure:: /../images/tutorials/neopixel_control_leds_bounce.png
+.. figure:: /_static/image/tutorials/neopixel_control_leds_bounce.png
     :align: center
 
     bounce弹跳效果
 
-.. figure:: /../images/tutorials/neopixel_control_leds_rainbow.png
+.. figure:: /_static/image/tutorials/neopixel_control_leds_rainbow.png
     :align: center
 
     rainbow彩虹效果

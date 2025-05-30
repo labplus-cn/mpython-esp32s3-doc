@@ -16,7 +16,7 @@ http协议采用的是请求/响应模型，浏览器或客户端发出请求，
 
 例如，想从 http://ip-api.com/json/ 这个开放的接口中获取IP地址等信息，我们将地址直接在浏览器输入，可以看到：
 
-.. image:: /../images/tutorials/httpjson.png
+.. image:: /_static/image/tutorials/httpjson.png
     :align: center
     :scale: 100 %
 
@@ -28,7 +28,7 @@ http协议采用的是请求/响应模型，浏览器或客户端发出请求，
     :linenos:
 
 
-.. image:: /../images/tutorials/json.jpg
+.. image:: /_static/image/tutorials/json.jpg
     :align: center
     :scale: 70 %
 

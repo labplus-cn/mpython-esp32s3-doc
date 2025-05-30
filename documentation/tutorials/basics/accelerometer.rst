@@ -9,7 +9,7 @@
 * Y - 向左和向右倾斜。
 * Z - 上下翻转。
 
-.. image:: /../images/tutorials/xyz.png
+.. image:: /_static/image/tutorials/xyz.png
     :align: center
 
 
@@ -67,7 +67,7 @@
 ..     :caption: 我们用加速度计制作一个上下左右各滚动的水平球
 ..     :linenos:
 
-.. .. image:: /../images/tutorials/gravity.gif
+.. .. image:: /_static/image/tutorials/gravity.gif
 ..     :align: center
 ..     :scale: 100 %
    
@@ -118,7 +118,7 @@
 
 假设掌控板参考水平面为桌面，掌控板倾斜过程中，Y轴与桌面是平行，其夹角不变（一直是0度），发生变化的是X轴与桌面的夹角以及Z轴与桌面的夹角，而且桌面与X轴Z轴夹角变化度数是一样的。为了方便分析，我们从Y轴的方向俯看下去，那么这个问题就会简化成只有X轴和Z轴的二维关系。假设某一时刻掌控板处于如下状态：
 
-.. image:: /../images/tutorials/xgraph.png
+.. image:: /_static/image/tutorials/xgraph.png
     :align: center
 
 

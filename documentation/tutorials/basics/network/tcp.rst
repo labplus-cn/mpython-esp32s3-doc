@@ -16,7 +16,7 @@ TCP通信需要经过创建连接、数据传送、终止连接三个步骤。TC
 
 套接字在工作时将连接的双方分为服务器端和客户端,即C/S模式,TCP通讯原理如下图:
 
-.. figure:: /../images/tutorials/tcp原理.png
+.. figure:: /_static/image/tutorials/tcp原理.png
     :scale: 90 %
     :align: center
 
@@ -69,7 +69,7 @@ TCP Server IP选择手机在该网内的IP地址 ，端口号可设范围0~65535
 接收到文本并将文本显示至oled屏上。
 
 
-.. image:: /../images/tutorials/socket_1.gif
+.. image:: /_static/image/tutorials/socket_1.gif
    
 
 TCP服务端
@@ -101,7 +101,7 @@ tcpServer示例:
 的IP地址和端口。Connect连接成功后，发送文本，掌控板接收到文本显示至oled屏并将返回至TCP Client端。您可在手机接收界面看到文本从Client->Server，Server->Client的过程。
 
 
-.. image:: /../images/tutorials/socket_2.gif
+.. image:: /_static/image/tutorials/socket_2.gif
     :scale: 60 %
     :align: center
 

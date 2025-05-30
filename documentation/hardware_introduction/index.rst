@@ -1,4 +1,4 @@
-掌控板3.0 
+硬件介绍 
 ======================================================
    hardware_introduction/1_introduce.rst
    hardware_introduction/2_characteristic.rst

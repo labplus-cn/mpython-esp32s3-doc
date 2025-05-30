@@ -13,7 +13,7 @@ Yeelight 支持Google Assistant 和 Amazon Alexa 智能语音控制。还支持�
 
 Yeelight第三方控制协议：https://www.yeelight.com/download/Yeelight_Inter-Operation_Spec.pdf
 
-.. figure:: /../images/tutorials/yeelight/yeelight_lan.png
+.. figure:: /_static/image/tutorials/yeelight/yeelight_lan.png
   :target: https://www.yeelight.com/zh_CN/developer
   :align: center
 
@@ -25,7 +25,7 @@ Yeelight第三方控制协议：https://www.yeelight.com/download/Yeelight_Inter
 
 - 首先我们要有个Yeelight智能照明设备,按Yeelight官方声明,市面上在售的所有WiFi照明设备以及后续推出的WiFi产品都会支持局域网控制协议。本人较为推荐Yeelight LED灯泡(彩光版),即经济实惠又能控制颜色。
 
-.. figure:: /../images/tutorials/yeelight/yeelight_led.png
+.. figure:: /_static/image/tutorials/yeelight/yeelight_led.png
   :align: center
   :scale: 30 %
 
@@ -33,7 +33,7 @@ Yeelight第三方控制协议：https://www.yeelight.com/download/Yeelight_Inter
 
 - YeeLight智能灯泡在使用前，须使用YeeLight APP先配置连接好wifi，并将 "局域网控制" 功能打开。
 
-.. figure:: /../images/tutorials/yeelight/yeelight_app.gif
+.. figure:: /_static/image/tutorials/yeelight/yeelight_app.gif
   :align: center
   :width: 400
 
@@ -111,7 +111,7 @@ Value亮度参数,未提供支持。只需设置 ``hue`` 、``saturation`` 参�
 
 还可以使用 ``set_color_temp(degrees)`` 函数设置灯泡色温, ``degrees`` 色温参数,范围1700~6500。
 
-.. figure:: /../images/tutorials/yeelight/hsv.png
+.. figure:: /_static/image/tutorials/yeelight/hsv.png
   :align: center
   :scale: 70 %
 
@@ -120,7 +120,7 @@ Value亮度参数,未提供支持。只需设置 ``hue`` 、``saturation`` 参�
 
 ------------------------
 
-.. figure:: /../images/tutorials/yeelight/yeelight_show.gif
+.. figure:: /_static/image/tutorials/yeelight/yeelight_show.gif
   :align: center
   :scale: 100 %
 

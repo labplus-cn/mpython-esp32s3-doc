@@ -30,6 +30,7 @@
     hardware_introduction/2_characteristic.rst
     hardware_introduction/3_function.rst
     hardware_introduction/5_hardware_parameters.rst
+    hardware_introduction/6_pin_function.rst
     hardware_introduction/8_firmware.rst
 
 .. toctree::
@@ -42,7 +43,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: 教程
+   :caption: 三、教程
 
    tutorials/basics/index.rst
 ..    tutorials/advance/index.rst

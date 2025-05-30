@@ -25,7 +25,7 @@
   oled.DispChar('hello,world!',0,16,mode=TextMode.normal)
   oled.show()
 
-.. figure:: /../images/tutorials/display_char_pixel.png
+.. figure:: /_static/image/tutorials/display_char_pixel.png
    :width: 500px
    :align: center
 
@@ -42,7 +42,7 @@
     :linenos:
 
 
-.. figure:: /../images/掌控-正面.png
+.. figure:: /_static/image/掌控-正面.png
     :align: center
 
     多语言 hello,world 显示
@@ -79,7 +79,7 @@ OLED显示屏还支持设置屏幕的亮度::
     :linenos:
 
 
-.. image:: /../images/tutorials/drawline.gif
+.. image:: /_static/image/tutorials/drawline.gif
    :scale: 100 %
    :align: center
 
@@ -148,7 +148,7 @@ OLED可绘制一些点、直线、矩形等形状。
 * 步骤2.选择参数，输出数据类型[C语言数组]、  扫描模式[水平扫描]、输出灰度[单色]、宽高[128*64]
 * 步骤3.点击保存，自动生成取模数据。
 
-.. image:: /../images/tutorials/image2lcd.png
+.. image:: /_static/image/tutorials/image2lcd.png
 
 
 将取模数据赋值给bmp数组中，然后显示在OLED显示屏上。
@@ -156,7 +156,7 @@ OLED可绘制一些点、直线、矩形等形状。
 .. literalinclude:: /../../examples/display/chinamap.py
     :linenos:
 
-.. image:: /../images/tutorials/earth.png
+.. image:: /_static/image/tutorials/earth.png
   :scale: 50 %
   :align: center
 
@@ -195,7 +195,7 @@ pbm数据格式的前三行定于为图像标注。然后才是图像数据。�
     :caption: 逐帧读取图像数据流并在OLED显示屏上显示出来:
     :linenos:
 
-.. image:: /../images/tutorials/scatman.gif
+.. image:: /_static/image/tutorials/scatman.gif
   :align: center
 
 

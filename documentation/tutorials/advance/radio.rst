@@ -5,7 +5,7 @@
 
 掌控板提供2.4G的无线射频通讯,共 13 Channel。可实现一定区域内的简易组网通讯。在相同通道下,成员可接收广播消息。就类似,对讲机一样。在相同频道下,实现通话。
 
-.. figure:: /../images/tutorials/radio/radio.png
+.. figure:: /_static/image/tutorials/radio/radio.png
     :align: center
     :width: 200
 
@@ -14,7 +14,7 @@
 radio
 --------
 
-.. literalinclude:: /../../examples/radio/radio.py
+.. literalinclude:: /_static/image/examples/radio/radio.py
     :caption: 你可以用两块掌控板上传该程序,在REPL下,发送和接收广播消息
     :linenos:
 
@@ -36,14 +36,14 @@ mac为网络设备的MAC地址,地址均唯一。如,想做单播应用,可过�
 
 基于上面的radio学习,我们可以用掌控板制作个有趣的电报机！两个掌控板之间通过无线电和摩斯密码传播,是不是有谍战片的既视感咧！赶紧尝试下吧！
 
-.. figure:: /../images/tutorials/radio/telegraph.jpg
+.. figure:: /_static/image/tutorials/radio/telegraph.jpg
     :align: center
     :width: 400
 
     电报机
 
 
-.. literalinclude:: /../../examples/radio/telegraph.py
+.. literalinclude:: /_static/image/examples/radio/telegraph.py
     :caption: 电报机示例
     :linenos:
 

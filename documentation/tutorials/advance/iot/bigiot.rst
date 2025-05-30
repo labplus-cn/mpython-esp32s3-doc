@@ -46,12 +46,12 @@
 贝壳物联支持多种客户端与设备间通讯,如浏览器、微信小程序公众号、APP(Android)。
 
 
-.. figure:: /../images/tutorials/IoT/bigiot_1.gif
+.. figure:: /_static/image/tutorials/IoT/bigiot_1.gif
   :align: center
 
   浏览器端
 
-.. figure:: /../images/tutorials/IoT/bigiot_2.gif
+.. figure:: /_static/image/tutorials/IoT/bigiot_2.gif
   :align: center
   :width: 500
 

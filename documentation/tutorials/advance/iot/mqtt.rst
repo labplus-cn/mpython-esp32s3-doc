@@ -9,7 +9,7 @@ MQTT（Message Queue Telemetry Transport）,遥测传输协议，提供订阅/�
 MQTT是一种基于发布 - 订阅的“轻量级”消息传递协议，用于在TCP / IP协议之上使用，它适用于需要“小代码占用”或网络带宽有限的远程位置的连接。
 能实现一对多通信（人们称之为发布或订阅型）的协议。它由3 种功能构成，分别是中介（broker）、发布者（publisher）和订阅者（subscriber）
 
-.. figure:: /../images/tutorials/IoT/mqtt.png
+.. figure:: /_static/image/tutorials/IoT/mqtt.png
   :align: center
   :width: 600
 
@@ -19,7 +19,7 @@ MQTT是一种基于发布 - 订阅的“轻量级”消息传递协议，用于�
 者是负责接收消息的客户端。MQTT 交换的消息都附带“主题”地址，各个客户端把这个“主题”视为收信地址，对其执行传输消息的操作。
 形象地比喻一下，中介就是接收邮件的邮箱。
 
-.. figure:: /../images/tutorials/IoT/iot_publish.png
+.. figure:: /_static/image/tutorials/IoT/iot_publish.png
   :align: center
   :width: 600 
 
@@ -34,7 +34,7 @@ MQTT是一种基于发布 - 订阅的“轻量级”消息传递协议，用于�
 对多的关系。在设备和服务器的通信中，设备相当于发布者，服务器则相当于订阅者。
 
 
-.. figure:: /../images/tutorials/IoT/IoT_subscribe.png
+.. figure:: /_static/image/tutorials/IoT/IoT_subscribe.png
   :align: center
   :width: 600 
 
@@ -103,7 +103,7 @@ MQTTClient(client_id, server, port=0, user=None, password=None, keepalive=0), ``
 IP地址； ``port`` 参数为mqtt的服务器访问的端口号,一般为1883,不同平台端口会有所不一样；``user`` 参数为用于获取mqtt鉴权的用户名；``password`` 参数为获取mqtt鉴权的password；
 ``keepalive`` 参数为连接保存时间,当在keepalive间隔时间内未有订阅或发布等包,将会自动断开连接。
 
-.. image:: /../images/tutorials/mqtt_1.png
+.. image:: /_static/image/tutorials/mqtt_1.png
     :scale: 60%
 
 发布消息
@@ -119,9 +119,9 @@ IP地址； ``port`` 参数为mqtt的服务器访问的端口号,一般为1883,�
 
 publish后,你可以在Easy IoT工作间的该设备“查看详情”中,查询到刚才发布的消息,如下:
 
-.. image:: /../images/tutorials/mqtt_2.png
+.. image:: /_static/image/tutorials/mqtt_2.png
 
-.. image:: /../images/tutorials/mqtt_3.png
+.. image:: /_static/image/tutorials/mqtt_3.png
 
 订阅主题
 -------
@@ -196,9 +196,9 @@ publish后,你可以在Easy IoT工作间的该设备“查看详情”中,查询
 
 然后点击进入Easy IoT工作间的该设备“发送消息”,发送该主题消息,如下:
 
-.. image:: /../images/tutorials/mqtt_4.png
+.. image:: /_static/image/tutorials/mqtt_4.png
 
-.. image:: /../images/tutorials/mqtt_5.gif
+.. image:: /_static/image/tutorials/mqtt_5.gif
     :scale: 50%
 
 

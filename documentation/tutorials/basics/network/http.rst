@@ -48,12 +48,12 @@ HTTP Server
 
     >>> main()
 
-.. image:: /../images/tutorials/http_1.png
+.. image:: /_static/image/tutorials/http_1.png
 
 
 手机或笔记本电脑连接相同wifi，使其在同个局域网内。按打印提示或oled屏幕显示ip，使用浏览器访问掌控板主机IP地址。
 
-.. image:: /../images/tutorials/http_2.png
+.. image:: /_static/image/tutorials/http_2.png
 
 
 

@@ -94,10 +94,10 @@ MicroPython中的随机数其实是一个稳定算法得出的稳定结果序列
 
 结合上面学到的生成随机数，我们可以用掌控板oled屏制作出雪花飘落效果。
 
-.. literalinclude:: /../../examples/display/snowing.py
+.. literalinclude:: /_static/image/examples/display/snowing.py
     :linenos:
 
-.. figure:: /../images/tutorials/snowing.gif
+.. figure:: /_static/image/tutorials/snowing.gif
     :align: center
 
     飘雪

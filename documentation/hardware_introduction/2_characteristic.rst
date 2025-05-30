@@ -17,4 +17,4 @@
 * 15、蓝牙ble 5 
 * 16、采用嵌入式系统设计的Python3精简的micropython系统，可实现python编程
 * 17、采用type-c USB接口
-* 低功耗
+* 18、低功耗
