@@ -10,7 +10,7 @@ HTTP GET request
 
 以下示例显示了如何下载网页。HTTP使用端口80，您首先需要发送“GET”请求才能下载任何内容。作为请求的一部分，您需要指定要检索的页面。
 
-.. literalinclude:: /../../examples/network/http_get.py
+.. literalinclude:: /examples/network/http_get.py
     :caption: socket实现HTTP get方法:
     :linenos:
 
@@ -30,7 +30,7 @@ urequest 模块
 上面是使用socket来实现http的get请求。我们可以使用 :mod:`urequests` 模块,里面已封装HTTP协议一些常用的请求方式,使用更为简便。
 
 
-.. literalinclude:: /../../examples/network/http_get_request.py
+.. literalinclude:: /examples/network/http_get_request.py
     :caption: 使用urequest模块,访问网页
     :linenos:
 
@@ -39,7 +39,7 @@ urequest 模块
 HTTP Server
 ----------------
 
-.. literalinclude:: /../../examples/network/http_server_simplistic.py
+.. literalinclude:: /examples/network/http_server_simplistic.py
     :caption: 以下示例，掌控板作为HTTP服务端，使用浏览器可以访问板载光线传感器:
     :linenos:
 

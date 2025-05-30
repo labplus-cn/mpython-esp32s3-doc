@@ -23,7 +23,7 @@ http协议采用的是请求/响应模型，浏览器或客户端发出请求，
 这是一个json数组，包含有IP地址等信息。我们通过访问这个url，获取到这些信息然后返回字符串text，通过ujson.loads(str)把字符串给生成dict字典类型，就可以直接读关键字（key）获取对应的值（value）。
 
 
-.. literalinclude:: /../../examples/network/ip_parsing_json.py
+.. literalinclude:: /examples/network/ip_parsing_json.py
     :caption: 将网站中的部分信息显示在OLED显示屏上
     :linenos:
 

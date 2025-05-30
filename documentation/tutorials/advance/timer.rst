@@ -5,7 +5,7 @@
 
 --------------------------------------
 
-.. literalinclude:: /../../examples/timer/timer_alarm.py
+.. literalinclude:: /examples/timer/timer_alarm.py
     :caption: 定时警报器
     :linenos:
 

@@ -49,7 +49,7 @@
         pass
 
 
-.. literalinclude:: /../../examples/thread/thread_creat.py
+.. literalinclude:: /examples/thread/thread_creat.py
     :caption: 完整代码如下,开启两线程并循环迭代打印输出:
     :linenos: 
 
@@ -90,7 +90,7 @@
 .. Attention:: ``release()`` 方法应只在 `锁定` 状态下被调用; 它将状态更改为 `已解锁` 并立即返回。如果尝试释放未锁定的锁，则会引发 `RuntimeError` 。
 
 
-.. literalinclude:: /../../examples/thread/thread_lock.py
+.. literalinclude:: /examples/thread/thread_lock.py
     :caption: 我们将上文的示例改成线程的锁定,如下。只有一个线程能成功地获取锁，然后继续执行代码，其他线程就继续等待直到获得锁为止:
     :linenos: 
 

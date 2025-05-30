@@ -67,9 +67,9 @@
 ..     :caption: 我们用加速度计制作一个上下左右各滚动的水平球
 ..     :linenos:
 
-.. .. image:: /_static/image/tutorials/gravity.gif
-..     :align: center
-..     :scale: 100 %
+.. image:: /_static/image/tutorials/gravity.gif
+    :align: center
+    :scale: 100 %
    
 
 当检测到掌控板在X轴和Y轴方向倾斜时（范围-1g 至+1g），将X轴、Y轴的偏移值也就是加速度值（范围-1至1）分别映射在以设定的中心点为原点的X坐标上的Y坐标（范围32至-32）、X坐标（范围-64至64）上::
@@ -102,7 +102,7 @@
 计算掌控板倾斜的角度
 ++++++++++++++++++++++++++++
 
-.. literalinclude:: /../../examples/accelerometer/degrees.py
+.. literalinclude:: /examples/accelerometer/degrees.py
     :caption: 通过测量由于重力引起的加速度，可以计算出设备相对于水平面的倾斜角
     :linenos:
 

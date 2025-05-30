@@ -6,7 +6,7 @@
 
 ------------------------------------------------------------
 
-.. literalinclude:: /../../examples/button/button_tp_ctl_rgb.py
+.. literalinclude:: /examples/button/button_tp_ctl_rgb.py
     :caption: 示例-触摸不同按键，点亮不同色RGB灯
     :linenos:
         

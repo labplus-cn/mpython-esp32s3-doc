@@ -50,7 +50,7 @@ TCP编程的客户端一般步骤是：
 
 
 
-.. literalinclude:: /../../examples/network/tcpClient.py
+.. literalinclude:: /examples/network/tcpClient.py
     :caption: TCP Client示例:
     :linenos:
 
@@ -90,7 +90,7 @@ TCP编程的服务端一般步骤是：
 
 tcpServer示例:
 
-.. literalinclude:: /../../examples/network/tcpServer.py
+.. literalinclude:: /examples/network/tcpServer.py
     :caption: TCP Server示例:
     :linenos:
 

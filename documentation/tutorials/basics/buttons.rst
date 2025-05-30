@@ -15,7 +15,7 @@
 获取按键状态
 ++++++++++
 
-.. literalinclude:: /../../examples/button/button_ctl_led.py
+.. literalinclude:: /examples/button/button_ctl_led.py
     :caption: 示例-按A键开灯，按B键关灯
     :linenos:
 
@@ -42,7 +42,7 @@
     在出现需要时，CPU必须暂停现在的事情，处理别的事情，处理完了再回去执行暂停的事情。
 
 
-.. literalinclude:: /../../examples/button/button_irq_ctl_led.py
+.. literalinclude:: /examples/button/button_irq_ctl_led.py
     :caption: 示例-按下按键 A 打开板载灯和蜂鸣器，按下按键 B 关闭板载灯和蜂鸣器
     :linenos:
    

@@ -14,7 +14,7 @@
 radio
 --------
 
-.. literalinclude:: /_static/image/examples/radio/radio.py
+.. literalinclude:: /examples/radio/radio.py
     :caption: 你可以用两块掌控板上传该程序,在REPL下,发送和接收广播消息
     :linenos:
 
@@ -43,7 +43,7 @@ mac为网络设备的MAC地址,地址均唯一。如,想做单播应用,可过�
     电报机
 
 
-.. literalinclude:: /_static/image/examples/radio/telegraph.py
+.. literalinclude:: /examples/radio/telegraph.py
     :caption: 电报机示例
     :linenos:
 
