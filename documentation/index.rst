@@ -39,6 +39,15 @@
     programming_mode/index
     .. programming_mode/hardware_connection
 
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 教程
+
+   tutorials/basics/index.rst
+..    tutorials/advance/index.rst
+
+
 .. toctree::
     :maxdepth: 4
     :caption: 三、示例
