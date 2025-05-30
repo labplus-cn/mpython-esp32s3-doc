@@ -46,13 +46,21 @@ Master
 读取到2字节数据后，还需要根据sht20手册说明，做数据处理转换温度单位，转换公式如下图。
 
 
+<<<<<<< HEAD
 .. figure:: /../images/tutorials/sht20_temper.png
+=======
+.. figure:: /_static/image/tutorials/sht20_temper.png
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
     :width: 400
 
     SHT20温度转换公式
 
+<<<<<<< HEAD
 .. figure:: /../images/tutorials/sht20_humidi.png
+=======
+.. figure:: /_static/image/tutorials/sht20_humidi.png
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
     :width: 400
 

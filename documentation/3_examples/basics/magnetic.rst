@@ -14,7 +14,11 @@
 
     用来衡量磁感应强度大小的单位是特斯拉(Tesla)或者高斯(Gauss) [1Tesla=10000Gauss]。随着地理位置的不同，通常地磁场的强度是250~600毫高斯。
 
+<<<<<<< HEAD
 .. figure:: /../images/tutorials/magnetic/earth_magnetic.jpg
+=======
+.. figure:: /_static/image/tutorials/magnetic/earth_magnetic.jpg
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :width: 600px
     :align: center
 

@@ -11,7 +11,11 @@ UDP的通信过程与TCP相比较更为简单，不需要复制的三次握手�
 
 下图讲解服务器与客户端UDP通信連接的交互过程：
 
+<<<<<<< HEAD
 .. figure:: /../images/tutorials/udp原理.png
+=======
+.. figure:: /_static/image/tutorials/udp原理.png
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :scale: 100 %
     :align: center
 
@@ -46,11 +50,19 @@ UDP编程的客户端一般步骤是：
 UDP客户端的示例:
 
 
+<<<<<<< HEAD
 .. literalinclude:: /../../examples/network/udp_client.py
     :caption: UDP客户端的示例
     :linenos:
 
 .. image:: /../images/tutorials/udpclient.gif
+=======
+.. literalinclude:: /_static/examples/network/udp_client.py
+    :caption: UDP客户端的示例
+    :linenos:
+
+.. image:: /_static/image/tutorials/udpclient.gif
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
 
 UDP服务端
@@ -65,7 +77,11 @@ UDP編程的服务器端一般步骤是：
 5. 关闭连接
 
 
+<<<<<<< HEAD
 .. literalinclude:: /../../examples/network/udp_server.py
+=======
+.. literalinclude:: /_static/examples/network/udp_server.py
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :caption: UDP服务端的示例
     :linenos:
 

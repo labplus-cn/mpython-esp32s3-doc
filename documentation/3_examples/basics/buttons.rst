@@ -7,7 +7,11 @@
 在掌控板A,B按键按下的过程如下述，当按下时,电平从高变低,在高电平（1）变为低电平（0）的那一瞬间叫作下降沿。当按键松开时,电平从低变高,在低电平（0）变为高电平（1）的那一瞬间叫作上升沿。
 我们可以通过获取电平变化来获取,当前按键状态。
 
+<<<<<<< HEAD
 .. image:: /../images/tutorials/falling.png
+=======
+.. image:: /_static/image/tutorials/falling.png
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
 
 ----------------------------------------------
@@ -15,7 +19,11 @@
 获取按键状态
 ++++++++++
 
+<<<<<<< HEAD
 .. literalinclude:: /../../examples/button/button_ctl_led.py
+=======
+.. literalinclude:: /_static/examples/button/button_ctl_led.py
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :caption: 示例-按A键开灯，按B键关灯
     :linenos:
 
@@ -42,7 +50,11 @@
     在出现需要时，CPU必须暂停现在的事情，处理别的事情，处理完了再回去执行暂停的事情。
 
 
+<<<<<<< HEAD
 .. literalinclude:: /../../examples/button/button_irq_ctl_led.py
+=======
+.. literalinclude:: /_static/examples/button/button_irq_ctl_led.py
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :caption: 示例-按下按键 A 打开板载灯和蜂鸣器，按下按键 B 关闭板载灯和蜂鸣器
     :linenos:
    

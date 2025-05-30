@@ -68,7 +68,11 @@
 
     上面需要使用到一块面包板、1个LED灯、mPython拓展板、杜邦线。LED灯的正极连接至掌控板的P0引脚,LED负极连接至掌控板的GND。
 
+<<<<<<< HEAD
 .. image:: /../images/tutorials/blink.gif
+=======
+.. image:: /_static/image/tutorials/blink.gif
+>>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
 
 ::
 
