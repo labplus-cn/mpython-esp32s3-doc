@@ -1,10 +1,9 @@
-4. 编程示例
-=====================
+
+3. 示例
+==================
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 2
 
-   1_1_introduction.rst
-   1_2_Technical parameters.rst
-   1_3_IO.rst
-   1_4_Structural dimensions.rst
+    /3_examples/basics/index.rst
+    /3_examples/advance/index.rst
