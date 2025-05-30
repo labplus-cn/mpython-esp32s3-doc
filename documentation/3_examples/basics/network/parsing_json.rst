@@ -16,31 +16,19 @@ http协议采用的是请求/响应模型，浏览器或客户端发出请求，
 
 例如，想从 http://ip-api.com/json/ 这个开放的接口中获取IP地址等信息，我们将地址直接在浏览器输入，可以看到：
 
-<<<<<<< HEAD
-.. image:: /../images/tutorials/httpjson.png
-=======
 .. image:: /_static/image/tutorials/httpjson.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
     :scale: 100 %
 
 这是一个json数组，包含有IP地址等信息。我们通过访问这个url，获取到这些信息然后返回字符串text，通过ujson.loads(str)把字符串给生成dict字典类型，就可以直接读关键字（key）获取对应的值（value）。
 
 
-<<<<<<< HEAD
-.. literalinclude:: /../../examples/network/ip_parsing_json.py
-=======
 .. literalinclude:: /_static/examples/network/ip_parsing_json.py
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :caption: 将网站中的部分信息显示在OLED显示屏上
     :linenos:
 
 
-<<<<<<< HEAD
-.. image:: /../images/tutorials/json.jpg
-=======
 .. image:: /_static/image/tutorials/json.jpg
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
     :scale: 70 %
 

@@ -27,11 +27,7 @@
 能运行的机制。他们可以互相感知和沟通。现在想象一下，无生命的物体是否可以在没有任何人为干预的情况下感知并相互作用。听起来很神奇不是吗？
 
 
-<<<<<<< HEAD
-.. figure:: /../images/tutorials/IoT/IoT.png
-=======
 .. figure:: /_static/image/tutorials/IoT/IoT.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
   :align: center
 
   what is IoT?
@@ -42,11 +38,7 @@
 目前物联网架构通常分为感知层、网络层和应用层三个层次，也有四层架构、五层架构和七层架构的分法，不过我们这里使用通常使用的三层架构进行说明。图示如下:
 
 
-<<<<<<< HEAD
-.. figure:: /../images/tutorials/IoT/three-layer-iot-architecture.png
-=======
 .. figure:: /_static/image/tutorials/IoT/three-layer-iot-architecture.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
   :align: center
   :width: 400
 
@@ -90,11 +82,7 @@
 
 
 
-<<<<<<< HEAD
-.. figure:: /../images/tutorials/IoT/IoT_smarthome.png
-=======
 .. figure:: /_static/image/tutorials/IoT/IoT_smarthome.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
   :align: center
   :width: 700
 

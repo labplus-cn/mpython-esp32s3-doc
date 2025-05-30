@@ -29,11 +29,7 @@
 ++++++++++++++++++++++++
 
 
-<<<<<<< HEAD
-.. literalinclude:: /../../examples/IoT/bigiot.py
-=======
 .. literalinclude:: /examples/IoT/bigiot.py
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :caption: bigiot简单通讯示例::
     :linenos:
 
@@ -50,20 +46,12 @@
 贝壳物联支持多种客户端与设备间通讯,如浏览器、微信小程序公众号、APP(Android)。
 
 
-<<<<<<< HEAD
-.. figure:: /../images/tutorials/IoT/bigiot_1.gif
-=======
 .. figure:: /_static/image/tutorials/IoT/bigiot_1.gif
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
   :align: center
 
   浏览器端
 
-<<<<<<< HEAD
-.. figure:: /../images/tutorials/IoT/bigiot_2.gif
-=======
 .. figure:: /_static/image/tutorials/IoT/bigiot_2.gif
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
   :align: center
   :width: 500
 

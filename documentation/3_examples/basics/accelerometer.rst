@@ -9,17 +9,12 @@
 * Y - 向左和向右倾斜。
 * Z - 上下翻转。
 
-<<<<<<< HEAD
 .. image:: /../images/tutorials/xyz.png
-=======
-.. image:: /_static/image/tutorials/xyz.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
 
 
 例：通过OLED显示屏来观察3个轴加速度值的变化
 ::
-<<<<<<< HEAD
     from mpython import *
     
     while True:
@@ -34,20 +29,6 @@
         oled.DispChar("加速度z:", 0, 32)
         oled.DispChar(str(z1), 48, 32)
         oled.show()
-=======
-    from lv_gui import *
-    from mpython import *
-
-    gui = GUI()
-
-    while True:
-        gui.fill(type=0)
-        gui.draw_label(text=str('加速度x：' + str(accelerometer.get_x())), row=1, color=0xffffff, wrap=False)
-        gui.draw_label(text=str('加速度x：' + str(accelerometer.get_y())), row=2, color=0xffffff, wrap=False)
-        gui.draw_label(text=str('加速度z：' + str(accelerometer.get_z())), row=3, color=0xffffff, wrap=False)
-        gui.update()
-
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
 
 
 使用前，导入mpython模块::

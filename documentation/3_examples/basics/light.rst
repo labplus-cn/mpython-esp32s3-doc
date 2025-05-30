@@ -6,17 +6,6 @@
 例：光控灯::
 
     from mpython import *
-<<<<<<< HEAD
-
-    while True:
-        oled.fill(0)                                   #清屏
-        oled.DispChar("亮度:",30,16)                    #显示亮度
-        oled.DispChar("%d" % (light.read()), 60, 16)    #显示板载光线传感器
-        oled.show()                                     #刷新
-        sleep_ms(100)                                   #延时100ms
-
-        if light.read() < 200 :                    # 当光线小于200，灯亮
-=======
     from lv_gui import *
     import time
 
@@ -27,7 +16,6 @@
         gui.update()                                    #刷新                      
         time.sleep_ms(100)                                   #延时100ms
         if light.read() < 500 :                    # 当光线小于500，灯亮
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
             rgb.fill((50,50,50))
             rgb.write()
         else:                                      # 否则，灯灭

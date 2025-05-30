@@ -71,11 +71,7 @@ EXT连接是掌控板的P3引脚::
             oled.show()
             oled.fill(0)
 
-<<<<<<< HEAD
-.. image:: /../images/tutorials/ext.png
-=======
 .. image:: /_static/image/tutorials/ext.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :width: 180
     :align: center
 
@@ -105,11 +101,7 @@ EXT连接是掌控板的P3引脚::
     * 由于IO引脚电压为3.3V，我们需要输出电压为2V。因此，映射值是2/3*1023。
     * 由于计算出来的为浮点型数，我们还需要使用 ``int()`` 转成整型。
 
-<<<<<<< HEAD
-.. image:: /../images/tutorials/pwm.png
-=======
 .. image:: /_static/image/tutorials/pwm.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
 
 您可以在上面看到三种不同PWM信号的图表。它们都具有相同的周期（因此具有频率），但它们具有不同的占空比。
 

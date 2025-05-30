@@ -37,30 +37,17 @@ MicroPython将运行您输入的代码并打印结果（如果有的话）；如
     408
 
 
-<<<<<<< HEAD
-可以尝试下载mPython的OLED显示屏上显示字符::
-
-    >>> from mpython import *
-    >>> oled.DispChar('hello,world!',0,0)
-    >>> oled.show()
-=======
 可以尝试在LCD显示屏上显示字符::
 
     >>> from lv_gui import *
     >>> gui.draw_label(text=str('Hello, world!'), row=1, color=0xffffff, wrap=False)
     >>> gui.update()
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     >>> 
 
 .. Note::
 
-<<<<<<< HEAD
-    ``oled.DispChar(str,x,y)``   ``str`` 为要显示的字符串， ``x`` 、``y`` 为显示起点的x、y坐标。
-    然后用 ``oled.show()`` 刷新屏幕后，字符串即可显示在OLED显示屏上。您可以尝试在其他位置显示任意字符串。
-=======
     ``gui.draw_label(text, row, color=0xffffff, wrap=False)``   ``text`` 为要显示的字符串
     然后用 ``gui.update()`` 刷新屏幕后，字符串即可显示在OLED显示屏上。您可以尝试在其他位置显示任意字符串。
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
 
 
 

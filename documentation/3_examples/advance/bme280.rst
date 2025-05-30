@@ -30,12 +30,8 @@ mpython内已实例化 ``BME280`` 类,直接使用 ``bme280`` 对象即可。获
 
 
 
-<<<<<<< HEAD
-.. image:: /../images/classic/bme280.png
-=======
 
 .. image:: /_static/image/classic/bme280.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
     :scale: 80 %
 

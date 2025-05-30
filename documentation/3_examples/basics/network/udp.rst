@@ -11,11 +11,7 @@ UDP的通信过程与TCP相比较更为简单，不需要复制的三次握手�
 
 下图讲解服务器与客户端UDP通信連接的交互过程：
 
-<<<<<<< HEAD
-.. figure:: /../images/tutorials/udp原理.png
-=======
 .. figure:: /_static/image/tutorials/udp原理.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :scale: 100 %
     :align: center
 
