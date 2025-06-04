@@ -73,7 +73,7 @@
 
 
 
-.. image:: /../images/classic/weather.jpg
+.. image:: /_static/images/classic/weather.jpg
     :align: center
     :scale: 60 %
 

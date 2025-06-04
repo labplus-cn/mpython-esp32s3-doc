@@ -1,7 +1,7 @@
 呼吸灯
 =============
 
-.. literalinclude:: /../../examples/pin/breathing_light.py
+.. literalinclude:: /_static/examples/pin/breathing_light.py
     :linenos:
 
 

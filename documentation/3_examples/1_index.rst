@@ -7,3 +7,4 @@
 
     /3_examples/basics/index.rst
     /3_examples/advance/index.rst
+    /3_examples/classic/index.rst

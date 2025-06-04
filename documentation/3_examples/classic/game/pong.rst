@@ -8,6 +8,6 @@
 
 |
 
-.. literalinclude:: /../../examples/game/pong.py
+.. literalinclude:: /_static/examples/game/pong.py
     :caption: 完整代码
     :linenos:

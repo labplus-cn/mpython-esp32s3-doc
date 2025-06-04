@@ -8,6 +8,6 @@
 
 |
 
-.. literalinclude:: /../../examples/game/flappybird.py
+.. literalinclude:: /_static/examples/game/flappybird.py
     :caption: 完整代码
     :linenos:

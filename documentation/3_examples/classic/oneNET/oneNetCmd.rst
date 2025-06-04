@@ -17,11 +17,11 @@ OneNET平台准备
 OneNET平台创建MQTT协议的产品并添加设备。
 OneNET平台官网地址：https://open.iot.10086.cn/，登录成功进入开发者中心，添加一个新产品。
 
-.. image:: /../images/classic/oneNet_1.gif
+.. image:: /_static/images/classic/oneNet_1.gif
 
 在新建的产品下新建一个设备mPython。
 
-.. image:: /../images/classic/oneNet_2.gif
+.. image:: /_static/images/classic/oneNet_2.gif
 
 
 编写程序
@@ -77,9 +77,9 @@ OneNET平台官网地址：https://open.iot.10086.cn/，登录成功进入开发
 
     修改程序中设备ID、产品ID和APIKEY参数的信息，如下图。
 
-.. image:: /../images/classic/oneNet_3.png
+.. image:: /_static/images/classic/oneNet_3.png
 
-.. image:: /../images/classic/oneNet_4.png
+.. image:: /_static/images/classic/oneNet_4.png
 
 
 效果展示

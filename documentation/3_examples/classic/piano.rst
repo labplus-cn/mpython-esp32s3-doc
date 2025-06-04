@@ -52,4 +52,4 @@
             p0Status=1
 
     
-.. image:: /../images/classic/piano.gif
+.. image:: /_static/images/classic/piano.gif

@@ -8,6 +8,6 @@
 
 |
 
-.. literalinclude:: /../../examples/game/snake.py
+.. literalinclude:: /_static/examples/game/snake.py
     :caption: 完整代码
     :linenos:

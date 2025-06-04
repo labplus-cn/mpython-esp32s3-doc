@@ -8,6 +8,6 @@
 
 |
 
-.. literalinclude:: /../../examples/game/tetris.py
+.. literalinclude:: /_static/examples/game/tetris.py
     :caption: 完整代码
     :linenos:
