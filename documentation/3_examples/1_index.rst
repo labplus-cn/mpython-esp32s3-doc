@@ -7,4 +7,6 @@
 
     /3_examples/basics/index.rst
     /3_examples/advance/index.rst
+    /3_examples/AudioAI/index.rst
+    /3_examples/ImageAI/index.rst
     .. /3_examples/classic/index.rst

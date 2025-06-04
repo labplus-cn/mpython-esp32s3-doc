@@ -4,5 +4,6 @@
 .. toctree::
    :maxdepth: 2
 
-   1_1_introduction.rst
+   1_1_mpy_syntax.rst
+   1_2_api_lib.rst
 
