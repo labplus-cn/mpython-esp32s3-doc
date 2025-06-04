@@ -4,4 +4,7 @@
 .. toctree::
    :maxdepth: 1
 
-   1_1_introduction.rst
+   1_xiaozhi.rst
+   2_xiaozhi.rst
+   3_examples_xiaozhi.rst
+
