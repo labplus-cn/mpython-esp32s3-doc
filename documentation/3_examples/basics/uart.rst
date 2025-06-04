@@ -36,11 +36,7 @@
 UART通信基本上使用2个引脚进行数据传输。Tx-用于发送数据的发送数据的引脚，Rx-用于获取数据的接收数据的引脚。两个串口进行通信的话， 最少需要三根线相连。
 
 
-<<<<<<< HEAD
-.. figure:: /../images/tutorials/uart_pin.png
-=======
 .. figure:: /_static/image/tutorials/uart_pin.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
     :width: 250
 

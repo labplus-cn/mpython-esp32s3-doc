@@ -10,11 +10,7 @@ HTTP GET request
 
 以下示例显示了如何下载网页。HTTP使用端口80，您首先需要发送“GET”请求才能下载任何内容。作为请求的一部分，您需要指定要检索的页面。
 
-<<<<<<< HEAD
-.. literalinclude:: /../../examples/network/http_get.py
-=======
 .. literalinclude:: /_static/examples/network/http_get.py
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :caption: socket实现HTTP get方法:
     :linenos:
 
