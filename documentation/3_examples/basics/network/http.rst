@@ -30,11 +30,7 @@ urequest 模块
 上面是使用socket来实现http的get请求。我们可以使用 :mod:`urequests` 模块,里面已封装HTTP协议一些常用的请求方式,使用更为简便。
 
 
-<<<<<<< HEAD
-.. literalinclude:: /../../examples/network/http_get_request.py
-=======
 .. literalinclude:: /_static/examples/network/http_get_request.py
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :caption: 使用urequest模块,访问网页
     :linenos:
 
@@ -43,11 +39,7 @@ urequest 模块
 HTTP Server
 ----------------
 
-<<<<<<< HEAD
-.. literalinclude:: /../../examples/network/http_server_simplistic.py
-=======
 .. literalinclude:: /_static/examples/network/http_server_simplistic.py
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :caption: 以下示例，掌控板作为HTTP服务端，使用浏览器可以访问板载光线传感器:
     :linenos:
 
@@ -56,20 +48,12 @@ HTTP Server
 
     >>> main()
 
-<<<<<<< HEAD
-.. image:: /../images/tutorials/http_1.png
-=======
 .. image:: /_static/image/tutorials/http_1.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
 
 
 手机或笔记本电脑连接相同wifi，使其在同个局域网内。按打印提示或oled屏幕显示ip，使用浏览器访问掌控板主机IP地址。
 
-<<<<<<< HEAD
-.. image:: /../images/tutorials/http_2.png
-=======
 .. image:: /_static/image/tutorials/http_2.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
 
 
 

@@ -14,11 +14,7 @@
 
 每当我们想要在PC和MCU之间或两个MCU之间进行通信时，最简单的方法就是使用UART。在两个UART之间传输数据只需要两根线。数据从发送UART的Tx引脚流向接收UART的Rx引脚。
 
-<<<<<<< HEAD
-.. figure:: /../images/tutorials/serial-two-wire.png
-=======
 .. figure:: /_static/image/tutorials/serial-two-wire.png
->>>>>>> a49b02ac8b2ea287667f94e3850599e06d43dcdb
     :align: center
     :width: 500
 

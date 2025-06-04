@@ -169,7 +169,7 @@ PicoBoard上的传感器与掌控板的一一对应，如下表：
 * 3、添加“PicoBroad”后，Scratch界面上会出现“PicoBoard”指令模块。当“PicoBoard”右边的黄色圆点变成绿色，同时掌控板上的三个RGB灯闪烁，此时表示掌控板与Scratch连接成功；
 * 4、连接成功后，就可以在Scratch中做一些互动程序了。
 
-.. image:: /_static/images/classic/scratch.jpg
+.. image:: /_static/image/classic/scratch.jpg
     :scale: 50%
     :align: center
 
@@ -178,7 +178,7 @@ Scratch软件编辑图形化程序
 
 示例下载 :download:`Scratch示例 </../tools/Scratch.zip>` 。
 
-.. image:: /_static/images/classic/scratch.gif
+.. image:: /_static/image/classic/scratch.gif
     :scale: 50%
     :align: center
 
@@ -188,7 +188,7 @@ Scratch软件编辑图形化程序
 掌握板在scratch模式时是无法读取文件和刷入程序的。如果想返回mPython2读取文件或刷入程序，必须使掌控板退出scratch模式，进入repl模式。方法如下：
 * 同时按下复位键和button b后，先松开复位按键2秒后，当OLED显示屏上显示“replMode”字样时再松开button b，此时成功返回到repl模式，如图所示：
 
-.. image:: /_static/images/classic/replmode.jpg
+.. image:: /_static/image/classic/replmode.jpg
     :scale: 35%
     :align: center
 

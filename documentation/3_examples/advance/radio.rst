@@ -43,9 +43,9 @@ mac为网络设备的MAC地址,地址均唯一。如,想做单播应用,可过�
     电报机
 
 
-.. literalinclude:: /_static/examples/radio/telegraph.py
-    :caption: 电报机示例
-    :linenos:
+.. .. literalinclude:: /_static/examples/radio/telegraph.py
+..     :caption: 电报机示例
+..     :linenos:
 
 .. |
 .. .. raw:: html

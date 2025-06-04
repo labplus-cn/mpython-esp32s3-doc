@@ -17,11 +17,11 @@ OneNET平台准备
 OneNET平台创建MQTT协议的产品并添加设备。
 OneNET平台官网地址：https://open.iot.10086.cn/，登录成功进入开发者中心，添加一个新产品。
 
-.. image:: /_static/images/classic/oneNet_1.gif
+.. image:: /_static/image/classic/oneNet_1.gif
 
 在新建的产品下新建一个设备mPython。
 
-.. image:: /_static/images/classic/oneNet_2.gif
+.. image:: /_static/image/classic/oneNet_2.gif
 
 
 编写程序
@@ -77,9 +77,9 @@ OneNET平台官网地址：https://open.iot.10086.cn/，登录成功进入开发
 
     修改程序中设备ID、产品ID和APIKEY参数的信息，如下图。
 
-.. image:: /_static/images/classic/oneNet_3.png
+.. image:: /_static/image/classic/oneNet_3.png
 
-.. image:: /_static/images/classic/oneNet_4.png
+.. image:: /_static/image/classic/oneNet_4.png
 
 
 效果展示
@@ -89,16 +89,16 @@ OneNET平台官网地址：https://open.iot.10086.cn/，登录成功进入开发
 当我们给掌控板复位重启，执行开始运行程序。
 
 
-.. image:: /../images/classic/oneNet_5.png
+.. image:: /_static/image/classic/oneNet_5.png
 
 
 这个时候我们OneNET云平台上设备状态灯显示绿色，说明在线了
 
 
-.. image:: /../images/classic/oneNet_6.png
+.. image:: /_static/image/classic/oneNet_6.png
 
 当我们通过页面发送 ``on`` 、``off`` 指令的时候，就会看到终端处接受的的消息打印。掌控板上的RGB LED也会相应的改变。
 
-.. image:: /../images/classic/oneNet_7.gif
+.. image:: /_static/image/classic/oneNet_7.gif
 
-.. image:: /../images/classic/oneNet_8.png
+.. image:: /_static/image/classic/oneNet_8.png

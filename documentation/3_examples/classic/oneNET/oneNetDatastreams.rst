@@ -15,15 +15,15 @@ OneNET平台官网地址：https://open.iot.10086.cn/。 若没有使用过的�
 
 1、进入[开发者中心]的[设备管理]页面，在左侧菜单栏中选择[数据流模板]，点击[添加数据流]。
 
-.. image:: /../images/classic/oneNet_9.png
+.. image:: /_static/image/classic/oneNet_9.png
 
 2、会弹出一个添加数据流的对话框，必填项名称，其他可以选填，填完之后点击[添加]。
 
-.. image:: /../images/classic/oneNet_10.png
+.. image:: /_static/image/classic/oneNet_10.png
  
 3、添加成功后，对话框会自动关闭。数据流展示列表会自动增加刚才新添加的数据流信息。
 
-.. image:: /../images/classic/oneNet_11.png
+.. image:: /_static/image/classic/oneNet_11.png
 
 此次示例，我们需要添加sound和light两个数据流，如上图。
 
@@ -39,11 +39,11 @@ OneNET数据点上报格式
 
 **数据点上报格式如下:**
 
-.. image:: /../images/classic/oneNet_12.png
+.. image:: /_static/image/classic/oneNet_12.png
 
-.. image:: /../images/classic/oneNet_13.png
+.. image:: /_static/image/classic/oneNet_13.png
 
-.. image:: /../images/classic/oneNet_14.png
+.. image:: /_static/image/classic/oneNet_14.png
 
 我们示例用的是数据类型1(type == 1)的JSON格式。
 
@@ -124,15 +124,15 @@ OneNET数据点上报格式
 
 掌控板重启运行程序，每1秒上传声音和光线的数据流至OneNet。
 
-.. image:: /../images/classic/oneNet_16.png
+.. image:: /_static/image/classic/oneNet_16.png
 
 设备指示灯显示绿色说明已经连接成功，选择[数据展示]，查看数据流接收情况。
 
-.. image:: /../images/classic/oneNet_17.png
+.. image:: /_static/image/classic/oneNet_17.png
 
 在[应用管理]中创建应用，在应用中添加仪表图或折线图等元素，在属性中选择显示的数据流，最终效果如下:
 
-.. image:: /../images/classic/oneNet_15.gif
+.. image:: /_static/image/classic/oneNet_15.gif
 
 
 

@@ -18,6 +18,6 @@
         oled.DispChar("照度计",76,50)
         oled.show()
 
-.. image:: /_static/images/classic/soundlight.jpg
+.. image:: /_static/image/classic/soundlight.jpg
     :scale: 27%
     :align: left
