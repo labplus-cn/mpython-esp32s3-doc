@@ -16,7 +16,7 @@
     
     -- 512K SRAM
     
-    -- Wi-Fi协议：IEEE 802.11 b/g/n (802.11n)，速度高达150 Mbps)
+    -- Wi-Fi协议：IEEE 802.11 b/g/n (802.11n)，速度高达150 Mbps
 
     -- 低功耗蓝牙(Bluetooth LE)：Bluetooth 5、Bluetooth mesh,速率支持125Kbps、500Kbps、1Mbps、2Mbps
     
