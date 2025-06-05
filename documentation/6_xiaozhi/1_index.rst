@@ -1,4 +1,4 @@
-6. 掌控板玩小智
+6. 掌控板3.0玩小智
 ==================
 
 .. toctree::
@@ -7,4 +7,5 @@
    1_xiaozhi.rst
    2_xiaozhi.rst
    3_xiaozhi.rst
+   .. 3_xiaozhi-faq.rst
 

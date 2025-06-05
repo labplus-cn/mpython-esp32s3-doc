@@ -1,13 +1,11 @@
-
 #按键常规使用方法
-
 from mpython import *
+import music
 
 def blinkRGB(_):            #闪烁板载rgb
-  
     rgb.fill((50,0,0))
     rgb.write()
-    sleep_ms(100)
+    time.sleep_ms(100)
     rgb.fill((0,0,0))
     rgb.write()
 
@@ -15,6 +13,6 @@ button_a.irq(trigger=Pin.IRQ_FALLING, handler=blinkRGB)    #按键b中断触发b
 
 while True:
     if button_b.value()==0:           #当按键b按下触发蜂鸣器
-        buzz.on(1000)
+        music.play(music.DADADADUM, wait=False, loop=False)
     else:
-        buzz.off()
+        music.stop()

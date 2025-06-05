@@ -13,6 +13,7 @@
    sound.rst
    light.rst
    accelerometer.rst
+   gyroscope.rst
    network/index.rst
    uart.rst
    io/index.rst
