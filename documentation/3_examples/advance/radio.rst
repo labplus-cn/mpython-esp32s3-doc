@@ -15,43 +15,96 @@ radio
 --------
 
 .. literalinclude:: /_static/examples/radio/radio.py
-    :caption: 你可以用两块掌控板上传该程序,在REPL下,发送和接收广播消息
+    :caption: 发送广播消息示例
     :linenos:
 
-.. |
+.. literalinclude:: /_static/examples/radio/radio2.py
+    :caption: 发送数据给特定mac地址设备示例
+    :linenos:
 
-.. .. raw:: html
-
-..     <iframe width="700" height="400" src="https://showmore.com/zh/embed/j9xqz8v"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-.. |
-
-首先我们需要 ``import radio`` ,导入无线模块。然后 ``radio.on()`` ,开启无线功能。配置无线通道 ``radio.config(channel)`` ,channel参数可设置1~13个通道。
-使用 ``radio.send()`` 发送广播消息,消息类型为字符串。接收端,在相同channel,使用 ``radio.receive()`` 来接收广播数据。 ``receive(True)`` 返回数据类型为(msg,mac)。
-mac为网络设备的MAC地址,地址均唯一。如,想做单播应用,可过滤其他MAC设备发送的消息。默认下 ``receive()`` ,返回的数据类型为msg,是不带MAC地址的。
+.. literalinclude:: /_static/examples/radio/radio3.py
+    :caption: 接收消息示例
+    :linenos:
 
 
-电报机
--------
+.. class:: MPythonESPNow(wifi_ch=0)
+    :noindex:
 
-基于上面的radio学习,我们可以用掌控板制作个有趣的电报机！两个掌控板之间通过无线电和摩斯密码传播,是不是有谍战片的既视感咧！赶紧尝试下吧！
+    实例化Radio
 
-.. figure:: /_static/image/tutorials/radio/telegraph.jpg
-    :align: center
-    :width: 400
-
-    电报机
+    :param wifi_ch: 设置信道 0-14
+    :type wifi_ch: int
 
 
-.. .. literalinclude:: /_static/examples/radio/telegraph.py
-..     :caption: 电报机示例
-..     :linenos:
+.. class:: MPythonESPNow
 
-.. |
-.. .. raw:: html
+    .. function:: get_mac(mode)
+        :noindex:
 
-..     <iframe width="700" height="400" src="https://showmore.com/zh/embed/ra3i9uw"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        获取自身网卡mac地址
 
-.. |
+        :param mode: 0 sta地址/1 ap地址 
+        :type mode: int
+        :return: 16进制字符串mac地址
+        :rtype: str
 
-上述电报机示例,ab按键选择无线通道,触摸T,发送电报。当接收到电报,掌控板的RGB会有指示。
+
+
+.. class:: MPythonESPNow
+
+    .. function:: broadcast_data(msg) 
+        :noindex:
+
+        发送无线广播数据，群发
+
+        :param msg: 无线广播数据
+        :type msg: str
+
+
+.. class:: MPythonESPNow
+
+    .. function:: set_add_peer(peer_mac) 
+        :noindex:
+
+        将提供的mac地址注册为对等地址,私发需要注册，群发不需要
+
+        :param peer_mac: mac地址 16进制字符串
+        :type peer_mac: str
+
+
+.. class:: MPythonESPNow
+
+    .. function:: send_msg(peer_mac, msg)
+        :noindex:
+
+        发送无线广播数据，私发
+
+        :param peer_mac: mac地址 16进制字符串
+        :type peer_mac: str
+        :param msg: 无线广播数据
+        :type msg: str
+
+
+
+.. class:: MPythonESPNow
+
+    .. function:: set_irq_callback(espnow_recv_callback)
+        :noindex:
+
+        设置接收消息回调处理函数
+
+        :param espnow_recv_callback: 回调函数
+        :type espnow_recv_callback: function
+
+
+
+.. function:: espnow_recv_callback(espnow_obj)
+    :noindex:
+
+     espnow_mac, espnow_data, espnow_rssi = espnow_obj.recv_msg() 接收消息对象
+
+    :var str espnow_mac: 广播消息设备mac地址
+    :var str espnow_data: 接收消息
+    :var str espnow_rssi: 广播信号强度 dBm
+
+

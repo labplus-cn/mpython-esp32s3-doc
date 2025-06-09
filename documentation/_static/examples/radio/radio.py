@@ -1,18 +1,25 @@
-import radio
-import _thread
+'''广播'''
+'''广播数据'''
+import time
+import random
+from mpython import *
+from radio import *
 
-channel=2
+#MPythonESPNow(wifi_ch=0)  wifi_ch:信道 0-14 整型
+espnow_0 = MPythonESPNow(wifi_ch=0) 
 
-radio.on()
-radio.config(channel=channel)               # radio通道设置
+#MPythonESPNow.get_mac(mode=0) mode:0 sta地址/1 ap地址 16进制字符串mac地址
+oled.fill(0)
+oled.DispChar(str(espnow_0.get_mac(mode=0)), 0, 0, 1)
+oled.show()
 
-def rec_loop():                             # radio接收循环
-    while True:
-        temp=radio.receive(True)           # radio 接收数据,返回(msg,mac)
-        # temp=radio.receive()             # radio 接收数据,返回msg
-        if temp:                           # 当接收到数据时打印
-            print(temp)
+print(espnow_0.get_mac(mode=0)) # sta 
+print(espnow_0.get_mac(mode=1)) # ap
 
-_thread.start_new_thread(rec_loop, ())      # radio接收线程
+while True:
+    msg = random.randint(0, 99999)
+    #MPythonESPNow.broadcast_data(msg='') msg：字符串数据
+    espnow_0.broadcast_data(msg=msg) 
+    print(str(msg))
+    time.sleep(0.5)
 
-radio.send("hello mPython!")

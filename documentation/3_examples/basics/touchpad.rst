@@ -3,21 +3,14 @@
 
 在掌控板正面金手指处拓展6个触摸按键，依次P、Y、T、H、O、N。
 
-
-------------------------------------------------------------
-
 .. .. literalinclude:: /_static/examples/button/button_tp_ctl_rgb.py
 ..     :caption: 示例-触摸不同按键，点亮不同色RGB灯
 ..     :linenos:
         
 
-首先导入 mpython模块，尝试用手指触摸P金手指处，使用 ``read()`` 读取值。观察变化::
-
-  >>> from mpython import *
-  >>> touchPad_P.read()
-  643
-  >>> touchPad_P.read()
-  8
+.. literalinclude:: /_static/examples/mpython_touchpad.py
+    :caption: 触摸按键回调函数用法
+    :name: 触摸按键回调函数用法
 
 .. Note::
 
