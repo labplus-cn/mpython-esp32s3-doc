@@ -2,19 +2,21 @@
 ========
 
 .. toctree::
-   :maxdepth: 1
-   :numbered:
+	:maxdepth: 1
+	:numbered:
 
-   repl.rst
-   neopixel.rst
-   buzz.rst
-   buttons.rst
-   touchpad.rst
-   sound.rst
-   light.rst
-   accelerometer.rst
-   gyroscope.rst
-   network/index.rst
-   uart.rst
-   io/index.rst
+	repl.rst
+	neopixel.rst
+	buzz.rst
+	buttons.rst
+	touchpad.rst
+	sound.rst
+	light.rst
+	accelerometer.rst
+	gyroscope.rst
+	network/index.rst
+	uart.rst
+	io/index.rst
+	lcd.rst
+	camera.rst
 
