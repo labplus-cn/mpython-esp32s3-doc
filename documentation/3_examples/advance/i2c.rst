@@ -28,9 +28,6 @@ Master
 
 .. image:: /_static/image/example/dht11.png
     :align: center
-    :scale: 80 %
-
-    blue:bit 温湿度模块(SHT20)
 
 读取SHT20温度函数::
 
