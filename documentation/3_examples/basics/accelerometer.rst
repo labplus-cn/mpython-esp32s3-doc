@@ -9,27 +9,6 @@
 * Y - 向左和向右倾斜。
 * Z - 上下翻转。
 
-.. image:: /../images/tutorials/xyz.png
-    :align: center
-
-
-例：通过OLED显示屏来观察3个轴加速度值的变化
-::
-    from mpython import *
-    
-    while True:
-        oled.fill(0)     
-        x1 = accelerometer.get_x()
-        y1 = accelerometer.get_y()
-        z1 = accelerometer.get_z()
-        oled.DispChar("加速度x:", 0, 0)
-        oled.DispChar(str(x1), 48, 0)
-        oled.DispChar("加速度y:", 0, 16)
-        oled.DispChar(str(y1), 48, 16)
-        oled.DispChar("加速度z:", 0, 32)
-        oled.DispChar(str(z1), 48, 32)
-        oled.show()
-
 
 使用前，导入mpython模块::
 
@@ -61,16 +40,6 @@
 
 水平球
 ++++++++++++++
-
-
-.. .. literalinclude:: /../../examples/accelerometer/gradienter.py
-..     :caption: 我们用加速度计制作一个上下左右各滚动的水平球
-..     :linenos:
-
-.. image:: /_static/image/tutorials/gravity.gif
-    :align: center
-    :scale: 100 %
-   
 
 当检测到掌控板在X轴和Y轴方向倾斜时（范围-1g 至+1g），将X轴、Y轴的偏移值也就是加速度值（范围-1至1）分别映射在以设定的中心点为原点的X坐标上的Y坐标（范围32至-32）、X坐标（范围-64至64）上::
 
