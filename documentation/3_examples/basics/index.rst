@@ -1,12 +1,13 @@
 基础教程
-========
+======================================
 
 .. toctree::
 	:maxdepth: 1
 	:numbered:
 
 	repl.rst
-	neopixel.rst
+	lcd.rst
+	io/index.rst
 	buzz.rst
 	buttons.rst
 	touchpad.rst
@@ -16,7 +17,6 @@
 	gyroscope.rst
 	network/index.rst
 	uart.rst
-	io/index.rst
-	lcd.rst
-	camera.rst
+	neopixel.rst
+
 

@@ -1,7 +1,7 @@
-摄像头
+图像摄像头教程
 ======================================
 
-乐动掌控2.0内置摄像头，可用于实现人脸检测、人脸识别、二维码识别等图形、图像 AI应用编程教学。
+乐动掌控v2内置摄像头，可用于实现人脸检测、人脸识别、二维码识别等图形、图像 AI应用编程教学。
 
 .. _lvgl_url: https://docs.lvgl.io/master
 .. _lv_micropython: https://github.com/lvgl/lv_micropython
