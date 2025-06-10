@@ -6,8 +6,9 @@
 	:numbered:
 
 	repl.rst
-	lcd.rst
 	io/index.rst
+	lcd.rst
+	neopixel.rst
 	buzz.rst
 	buttons.rst
 	touchpad.rst
@@ -17,6 +18,6 @@
 	gyroscope.rst
 	network/index.rst
 	uart.rst
-	neopixel.rst
+
 
 
