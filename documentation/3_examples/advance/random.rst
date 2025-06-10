@@ -5,15 +5,18 @@
 
 例如，以下是如何在oled显示屏上随机显示名称::
 
+  from lv_gui import *
   from mpython import *
   import random
 
+  gui = GUI()
+
   names = ["Mary", "Yolanda", "Damien", "Alia", "Kushal", "Mei Xiu", "Zoltan" ]
 
+  gui.fill(type=0)
+  gui.draw_label(text=str(random.choice(names)), row=1, color=0xffffff, wrap=False)
+  gui.update()
 
-  oled.DispChar(random.choice(names),40,20)
-  oled.show()
-  oled.fill(0)
 
 列表（names）包含七个定义为字符串的名称。random.choice方法将names列表作为参数并返回随机选择的项目。
 
@@ -26,26 +29,34 @@
 
 MicroPython附带了几个有用的随机数方法。这是如何制作一个简单的骰子::
 
+  from lv_gui import *
   from mpython import *
   import random
 
-  oled.DispChar(str(random.randint(1,6)),60,20)
-  oled.show()
-  oled.fill(0)
+  gui = GUI()
+
+  gui.fill(type=0)
+  gui.draw_label(text=str(random.randint(1,6)), row=1, color=0xffffff, wrap=False)
+  gui.update()
+
 
 .. Note::
 
   每次重启掌控板时，它都会显示一个介于1和6之间的数字。``randint()`` 返回的是整形，我们需要使用 ``str()`` 将整形转为字符串(例如，6 -> "6")。
-  ``oled.DispChar()`` 将随机数写入oled。
+  ``gui.draw_label()`` 将随机数写入屏幕lcd。
 
 假如你想设置随机范围或递增基数，你可以使用random.randrange()::
 
+  from lv_gui import *
   from mpython import *
   import random
 
-  oled.DispChar(str(random.randrange(0,10,2)),60,20)
-  oled.show()
-  oled.fill(0)
+  gui = GUI()
+
+  gui.fill(type=0)
+  gui.draw_label(text=str(random.randrange(0,10,2)), row=1, color=0xffffff, wrap=False)
+  gui.update()
+
 
 .. Note::
 
@@ -54,13 +65,17 @@ MicroPython附带了几个有用的随机数方法。这是如何制作一个简
 
 有时您需要带小数点的数字。你可以使用 ``random.random`` 方法生成0.0到1.0的随机浮点数。如果你需要较大的随机浮点数加的结果 ``random.uniform`` ::
 
+  from lv_gui import *
   from mpython import *
   import random
 
-  oled.DispChar(str(random.random()),30,10)
-  oled.DispChar(str(random.uniform(1,20)),30,30)
-  oled.show()
-  oled.fill(0)
+  gui = GUI()
+
+  gui.fill(type=0)
+  gui.draw_label(text=str(random.random()), row=1, color=0xffffff, wrap=False)
+  gui.draw_label(text=str(random.uniform(1,20)), row=2, color=0xffffff, wrap=False)
+  gui.update()
+
 
 随机种子
 -------
@@ -72,32 +87,3 @@ MicroPython中的随机数其实是一个稳定算法得出的稳定结果序列
 
 有时您希望具有可重复的随机行为：可重现的随机源。这就像说每次掷骰子时你需要相同的五个随机值。
 
-示例::
-
-  import random
-  from mpython import *
-
-
-  for i in range(0,2):
-    random.seed(8)
-
-    for j in range(8):
-      oled.DispChar(str(random.randint(1,10)),j*16,i*16)
-      oled.show()
-      print(random.randint(1,10))
-
-  oled.fill(0)
-
-
-飘雪效果
--------
-
-结合上面学到的生成随机数，我们可以用掌控板oled屏制作出雪花飘落效果。
-
-.. literalinclude:: /_static/examples/display/snowing.py
-    :linenos:
-
-.. figure:: /_static/image/tutorials/snowing.gif
-    :align: center
-
-    飘雪

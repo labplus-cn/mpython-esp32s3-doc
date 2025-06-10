@@ -29,10 +29,7 @@
     p0=MPythonPin(0,PinMode.ANALOG)     # 实例化MPythonPin,将P0设置为"PinMode.ANALOG"模式
     while True:
         value=p0.read_analog()          # 读取P0引脚模拟量
-        oled.DispChar("analog:%d" %value,30,20)
-        oled.show()
-        oled.fill(0)
-
+        print("analog:%d" %value)
 
 ::
     
@@ -67,9 +64,7 @@ EXT连接是掌控板的P3引脚::
         p3=MPythonPin(3,PinMode.ANALOG)     # 实例化MPythonPin,将P3设置为"PinMode.ANALOG"模式
         while True:
             value=p3.read_analog()          # 读取EXT(P3)引脚模拟量
-            oled.DispChar("analog:%d" %value,30,20)
-            oled.show()
-            oled.fill(0)
+            print("analog:%d" %value)
 
 .. image:: /_static/image/tutorials/ext.png
     :width: 180

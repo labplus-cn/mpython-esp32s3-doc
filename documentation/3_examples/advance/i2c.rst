@@ -100,6 +100,5 @@ Master
         temper=sht20_temperature()
         humid=sht20_humidity()
         print("sht20 temperature: %0.1fC sht20 humidity: %0.1f%%" %(temper,humid))
-        oled.DispChar("温度:%0.1f度, 湿度:%d%%" %(temper,humid),10,25)
-        oled.show()
+        print("温度:%0.1f度, 湿度:%d%%" %(temper,humid))
         sleep(1)

@@ -30,11 +30,11 @@
 
     ``Timer.init(period=5000, mode=Timer.PERIODIC,callback=None)`` 用来初始化计时器，`mode` 可以是以下之一：`Timer.ONE_SHOT` 指计时器运行一次，直到配置完毕通道的期限到期；`Timer.PERIODIC` 指定时器以通道的配置频率定期运行。
 
-获取并返回计时器当前计数值，然后显示在OLED显示屏上::
+获取并返回计时器当前计数值，然后显示在显示屏上::
 
     timerNum=tim1.value()
-    oled.DispChar("定时器：%d ms" %timerNum,20,25)
-    oled.show()
+    gui.draw_label(text=str("定时器：%d ms" %timerNum), row=1, color=0xffffff, wrap=False)
+    gui.update()
 
 .. Note::
 
@@ -42,4 +42,4 @@
 
 .. Attention:: 
 
-    您可能会看到定时器没到5000ms整警报声就响了，这是因为定时数据传送到OLED显示屏上这个过程中有延时。
+    您可能会看到定时器没到5000ms整警报声就响了，这是因为定时数据传送到显示屏上这个过程中有延时。

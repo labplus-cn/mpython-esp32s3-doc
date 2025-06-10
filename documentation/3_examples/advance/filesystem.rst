@@ -165,8 +165,7 @@ boot.py和main.py，这两个文件在启动时由MicroPython专门处理。 首
     from mpython import *
     from hello import say_hello
 
-    oled.DispChar(say_hello(),0,0)
-    oled.show()
+    print(say_hello())
 
 .. note::
 

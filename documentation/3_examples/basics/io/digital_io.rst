@@ -22,9 +22,7 @@
 
     while True:
         value=p5.read_digital()      # 读取P5引脚的数字输入
-        oled.DispChar("Button_a:%d" %value,30,20)   # 将读取到值显示至oled上
-        oled.show()                                  # 刷新
-        oled.fill(0)                                 # 清屏
+        print("Button_a:%d" %value)   # 读取到值
 
 .. Note::
 
