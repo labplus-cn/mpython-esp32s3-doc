@@ -82,4 +82,4 @@
 
   * :download:`GD25Q128ES1G_datasheet </8_datasheet/GD25Q128ES1G.pdf>`
 
-  * :download:`TFT_LCD </8_datasheet/LCD(HW-014014RP6W1-01).pdf>`
+  * :download:`1.47 TFT_LCD </8_datasheet/LCD(HW-014014RP6W1-01).pdf>`
