@@ -68,19 +68,18 @@
 1.2.4. 器件规格书
 --------------------------------
 
+  * :download:`ESP32S3_datasheet </8_datasheet/esp32s3_datasheet.pdf>`
 
-  * :download:`ESP32S3_datasheet </8_datasheet/ESP32S3_datasheet.pdf>`
+  * :download:`esp_psram45_datasheet </8_datasheet/esp-psram64_esp-psram64h_datasheet_cn.pdf>`
 
-  * :download:`esp_psram45_datasheet </../8_datasheet/esp-psram64_esp-psram64h_datasheet_cn.pdf>`
+  * :download:`es8388 </8_datasheet/ES8388.pdf>`
 
-  * :download:`es8388 </../8_datasheet/ES8388.pdf>`
+  * :download:`LTR-308ALS-01 </8_datasheet/LTR-308ALS-01.PDF>`
 
-  * :download:`LTR-308ALS-01 </../8_datasheet/LTR-308ALS-01_datasheet.pdf>`
+  * :download:`MMC5603NJ_datasheet </8_datasheet/MMC5603NJ.PDF>`
 
-  * :download:`MMC5603NJ_datasheet </../8_datasheet/MMC5603NJ.pdf>`
+  * :download:`QMI8658C_datasheet </8_datasheet/QMI8658C.PDF>`
 
-  * :download:`QMI8658C_datasheet </../8_datasheet/QMI8658C.pdf>`
+  * :download:`GD25Q128ES1G_datasheet </8_datasheet/GD25Q128ES1G.pdf>`
 
-  * :download:`GD25Q128ES1G_datasheet </../8_datasheet/GD25Q128ES1G.pdf>`
-
-  * :download:`TFT_LCD </../8_datasheet/1.47 TFT LCD(HW-014014RP6W1-01).pdf>`
+  * :download:`TFT_LCD </8_datasheet/LCD(HW-014014RP6W1-01).pdf>`
