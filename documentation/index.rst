@@ -28,7 +28,7 @@
     3_examples/1_index.rst
     5_C_program/index.rst
     6_xiaozhi/1_index.rst
-    .. 4_api/1_index.rst
+    5_api/1_index.rst
     7_faq/1_index.rst
     LICENSE.rst
 
