@@ -1,5 +1,5 @@
 .. 
-.. 这一页是目录树
+.. 主目录树
 
 掌控板3.0帮助文档
 ======================================================
@@ -28,9 +28,9 @@
     1_hardware/1_index.rst
     2_software/1_index.rst
     3_examples/1_index.rst
-    5_C_program/index.rst
+    4_xiaozhi/1_index.rst
     5_api/1_index.rst
-    6_xiaozhi/1_index.rst
+    6_C_program/index.rst
     7_faq/1_index.rst
     LICENSE.rst
 
