@@ -28,11 +28,7 @@ cl掌控板3.0是一块内置MicroPython解释器的微控制器板，它集成E
     1_hardware/1_index.rst
     2_software/1_index.rst
     3_examples/1_index.rst
-<<<<<<< HEAD
-    4_C_program/index.rst
-=======
     4_xiaozhi/1_index.rst
->>>>>>> ff7a43e5eb7cdee0e8630a5d7fed51b4e03bf250
     5_api/1_index.rst
     6_C_program/index.rst
     7_faq/1_index.rst
