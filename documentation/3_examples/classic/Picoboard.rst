@@ -176,7 +176,7 @@ PicoBoard上的传感器与掌控板的一一对应，如下表：
 Scratch软件编辑图形化程序
 ++++++++++++++++++++++++++++
 
-示例下载 :download:`Scratch示例 </../tools/Scratch.zip>` 。
+示例下载 Scratch示例。
 
 .. image:: /_static/image/classic/scratch.gif
     :scale: 50%

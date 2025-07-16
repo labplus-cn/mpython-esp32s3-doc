@@ -3,12 +3,12 @@
 
 
 什么是socket?
------
+-------------
 
 ``Socket`` 是网络编程的一个抽象概念。通常我们用一个Socket表示“打开了一个网络链接”，而打开一个Socket需要知道目标计算机的IP地址和端口号，再指定协议类型即可。
 
 TCP协议简介
------
+----------
 
 TCP协议，传输控制协议（Transmission Control Protocol，缩写为 TCP）是一种面向连接的、可靠的、基于字节流的传输层通讯协议，由IETF的RFC 793定义。
 
@@ -26,16 +26,16 @@ TCP通信需要经过创建连接、数据传送、终止连接三个步骤。TC
 ---------------------------------
 
 TCP编程
------
+----
 
 
 本教程的这一部分将介绍如何作为客户端或服务端使用TCP套接字。有关更全面的socket模块的使用，请查阅 :mod:`usocket` 模块。
-以下教程需要使用到TCP网络调试工具。下文使用的是IOS的 **Network Test Utility** ，可在APP Store搜索安装，android系统请点击下载。 :download:`Network Test Utility.apk </../tools/com.jca.udpsendreceive.2.apk>` 
+以下教程需要使用到TCP网络调试工具。下文使用的是IOS的 **Network Test Utility** ，可在APP Store搜索安装，android系统请点击下载。 
 
 声明：这里的TCP客户端（tcpClient）是你的电脑或者手机，而TCP服务端（tcpServer）是mpython掌控板。
 
 TCP客户端
-~~~~~~~~
+~~~~~~~~~
 
 
 TCP编程的客户端一般步骤是：
@@ -73,7 +73,7 @@ TCP Server IP选择手机在该网内的IP地址 ，端口号可设范围0~65535
    
 
 TCP服务端
-~~~~~~~~
+~~~~~~~~~
 
 
 TCP编程的服务端一般步骤是：

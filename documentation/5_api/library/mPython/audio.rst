@@ -4,7 +4,7 @@
    :synopsis: 提供音频播放录音的相关功能
 
 :mod:`audio` --- 提供音频播放录音的相关功能
-==========
+-----------------------------------
 
 该模块提供音频录音播放功能,使用P8和P9引脚作为音频解码输出。 由于掌控板无集成喇叭,并不能直接播放音源。你可以使用带集成喇叭的扩展板或自己将P8,P9外接至功放喇叭。
 
@@ -14,7 +14,7 @@
 - P9  -- 右声道
 - GND -- GND
 
-.. image:: /../images/tutorials/audio_interface.png
+.. image:: /_static/image/tutorials/audio_interface.png
   :scale: 120 %
 
 
@@ -43,7 +43,7 @@
 
     - ``url`` (str): 音频文件路径,类型为字符串。可以是本地路径地址,也可以是网络上的URL地址。 
 
-.. literalinclude:: /../../examples/audio/audio_play.py
+.. literalinclude:: /_static/examples/audio/audio_play.py
     :caption: 播放MP3音频
     :linenos:
 

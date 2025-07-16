@@ -29,12 +29,12 @@ SDCard类
 - ``cs``  - SPI的CS控制引脚
 
 
-.. literalinclude:: /../../examples/file/sdcard.py
+.. literalinclude:: /_static/examples/file/sdcard.py
     :caption: 示例-挂载SD卡
     :linenos:
 
 
-.. literalinclude:: /../../examples/file/print_directory.py
+.. literalinclude:: /_static/examples/file/print_directory.py
     :caption: 示例-列出所有文件
     :linenos:
  

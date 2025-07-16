@@ -5,7 +5,7 @@
    :synopsis: 掌控板板载相关功能函数
 
 :mod:`mpython` --- 掌控板板载相关功能函数
-==========================
+------------------------------------------
 
 ``mpython`` 是基于掌控板封装的专有模块,内含掌控板板载资源相关功能函数。 详细代码实现可查阅 :ref:`mpython.py源码 <mpython_code>` 。
 
@@ -51,10 +51,10 @@
 
 
 板载传感器
--------
+------------
 
 声音、光线
-+++++++++
+----------
 
 .. method:: light.read()
 
@@ -164,7 +164,7 @@
 
 单次敲击，类似鼠标的单击操作。
 
-.. data:: accelerometer.event_single_click
+.. data:: accelerometer.event_double_click
 
 连续敲击两次，类似鼠标的双击操作。
 
@@ -189,7 +189,7 @@ event事件定义如下:
 
 .. Attention:: 掌控板v2.3版本以上,去除加速度计运动侦测事件
 
-.. literalinclude:: /../../examples/accelerometer/accelerometer_event.py
+.. literalinclude:: /_static/examples/accelerometer/accelerometer_event.py
     :caption: accelerometer 事件的简单应用
     :linenos:
 
@@ -212,6 +212,7 @@ gyroscope
 获取z轴上的角速度测量值，具体取决于方向。
 
 .. method:: gyroscope.set_range(range)
+
 设置角速度范围,默认不修改为,范围在±256 dps。
 
 角速度范围值为以下常量:
@@ -284,7 +285,7 @@ MMC5983MA磁力计函数接口,可获取3轴地磁感应强度、地磁场强度
     2. 掌控板垂直放置,沿着垂直于地面轴旋转数圈,过程约15秒。
 
 
-.. literalinclude:: /../../examples/magnetic/compass.py
+.. literalinclude:: /_static/examples/magnetic/compass.py
     :caption: 磁力计应用--指北针
     :linenos:
 
@@ -323,7 +324,7 @@ BME280是一款集成温度、湿度、气压，三位一体的环境传感器�
 
 
 button_[a,b]对象
-------
+-----------------
 
 掌控板上的a,b按键。button_a/button_b 是 ``Button`` 类的实例对象。使用 :ref:`machine.Pin.irq<Pin.irq>` 中断实现。定义了
 ``event_pressed`` 和 ``event_released`` 按键按下、释放事件。 用户可轻易的实现事件回调。除此外，还实现当前或过去按键状态、按键次数等函数方法。
@@ -352,7 +353,7 @@ Button类，按键抽象类。
 按键释放事件。
 
 
-.. literalinclude:: /../../examples/button/button_event.py
+.. literalinclude:: /_static/examples/button/button_event.py
     :caption: Button 事件回调的简单应用
     :linenos:
 
@@ -402,10 +403,13 @@ Button类，按键抽象类。
 
        这些值可以一起进行 ``OR`` 运算以触发多个事件。
 
+
      - ``priority`` 设置中断的优先级。它可以采用的值是特定于端口的，但是更高的值总是代表更高的优先级。
 
      - ``wake`` 选择此中断可唤醒系统的电源模式。它可以是 ``machine.IDLE`` ， ``machine.SLEEP`` 或 ``machine.DEEPSLEEP`` 。
+
      这些值也可以进行 ``OR`` 运算，使引脚在多种功耗模式下产生中断。
+
 
 此方法返回一个回调对象。
 
@@ -416,7 +420,7 @@ Button类，按键抽象类。
 
 
 touch对象
-------
+----------
 掌控板上共有6个触摸引脚分别touchpad_p/y/t/h/o/n。是Touch类的实例对象，具体包含函数方法如下。
 
 
@@ -435,7 +439,7 @@ touch对象
 
 返回触摸值
 
-. method:: Touch.config(threshold)
+.. method:: Touch.config(threshold)
 
 触摸阈值设置
 
@@ -482,10 +486,8 @@ rgb对象
 亮度调节,范围0~1.0
 
 
-.. _oled:
-
 oled对象
--------
+----------
 oled对象为framebuf的衍生类，继承framebuf的方法。更多的使用方法请查阅 :mod:`framebuf<framebuf>` 。 
 
 .. method:: oled.poweron()
@@ -527,11 +529,11 @@ oled屏显示文本。采用 `Google Noto Sans CJK <http://www.google.cn/get/not
 
 将frame缓存发送至oled显示。
 
-.. literalinclude:: /../../examples/display/helloworld.py
+.. literalinclude:: /_static/examples/display/helloworld.py
     :caption: hello world
     :linenos:
 
-.. literalinclude:: /../../examples/display/oled_effect of typing.py
+.. literalinclude:: /_static/examples/display/oled_effect of typing.py
     :caption: 打字效果
     :linenos:
 
@@ -549,13 +551,13 @@ oled屏显示文本。采用 `Google Noto Sans CJK <http://www.google.cn/get/not
 
 
 
-.. literalinclude:: /../../examples/display/custom_font/main.py
+.. literalinclude:: /_static/examples/display/custom_font/main.py
     :caption: 自定义字体显示
     :linenos:
 
 * :download:`以上自定义字体示例中simfang16、freescpt18、stxingkai20<https://github.com/labplus-cn/mpython-docs/tree/master/examples/display/custom_font>`
 
-.. figure:: /../images/tutorials/helloworld_customfont.jpg
+.. image:: /_static/image/tutorials/helloworld_customfont.jpg
     :width: 400px
     :align: center
 
@@ -647,7 +649,7 @@ mPython掌控板已实例 ``I2C`` 类，P19、P20 为I2C的SCL、SDA引脚。I2C
 详细有关I2C的读写操作，请查看 :ref:`machine.I2C<machine.I2C>` 模块或 :ref:`I2C基础教程<tutorials_i2c>` 章节。
 
 MPythonPin类
--------
+------------
 
 .. class:: MPythonPin(pin, mode=PinMode.IN,pull=None)
 
@@ -660,97 +662,4 @@ MPythonPin类
         - ``PinMode.IN`` 等于1，数字输入模式
         - ``PinMode.OUT`` 等于2，数字输出模式
         - ``PinMode.PWM`` 等于3，模拟输出模式
-        - ``PinMode.ANALOG`` 等于4，模拟输入模式
-        - ``PinMode.OUT_DRAIN`` 等于5，开漏输出模式
-
-- ``pull`` 指定引脚是否连接了电阻，可以是以下之一：
-
-       - ``None`` - 无上拉或下拉电阻
-       - ``Pin.PULL_UP`` - 上拉电阻使能
-       - ``Pin.PULL_DOWN`` - 下拉电阻使能
-
-
-示例::
-
-        >>> from mpython import MPythonPin       #导入MPython模块
-        >>> P0=MPythonPin(0,PinMode.IN)          #构建引脚0对象，设置数字输入模式
-
-
-
-.. method:: MPythonPin.read_digital()
-
-返回该IO引脚电平值。1代表高电平，0代表低电平
-
-.. method:: MPythonPin.write_digital(value)
-
-IO引脚输出电平控制。``value`` =1时输出高电平， ``value`` =0时输出低电平。
-
-.. method:: MPythonPin.read_analog()
-
-读取ADC并返回读取结果，返回的值将在0到4095之间。
-
-.. method:: MPythonPin.write_analog(duty, freq=1000):
-
-设置输出PWM信号的占空比。
-
-- ``duty`` 0 ≤ duty ≤ 1023
-- ``freq`` PWM波频率,0 < freq ≤ 0x0001312D（十进制：0 < freq ≤ 78125）
-
-
-.. _MPythonPin.irq:
-
-.. method:: MPythonPin.irq(handler=None, trigger=Pin.IRQ_RISING):
-
-如果引脚模式配置为 ``IN`` ,可配置该引脚的触发源处于活动状态时调用的中断处理程序。
-
-参数:
-
-     - ``handler`` 是一个可选的函数，在中断触发时调用。
-
-     - ``trigger`` 配置可以触发中断的事件。可能的值是：
-
-       - ``Pin.IRQ_FALLING`` 下降沿中断
-       - ``Pin.IRQ_RISING`` 上升沿中断
-       - ``Pin.IRQ_LOW_LEVEL`` 低电平中断
-       - ``Pin.IRQ_HIGH_LEVEL`` 高电平中断
-
-       这些值可以一起进行 ``OR`` 运算以触发多个事件。
-
-
-.. _mpython.wifi:
-
-wifi类
-------
-
-提供便捷的wifi连接网络方式或无线AP功能。注意,开启WiFi功能功耗会增大,如不使用情况下,可关闭WiFi可降低功耗。
-
-.. class:: wifi()
-
-构建wifi对象并会创建 ``sta`` 对象和 ``ap`` 对象。可参见 :mod:`network` 模块了解更多使用方法。
-
-    - sta用于客户端连接路由器来连接网络。
-    - ap用于掌控板作为无线AP接入方式。
-
-.. method:: wifi.connectWiFi(ssid,password,timeout=10)
-
-连接wifi网络
-
-    - ``ssid`` -WiFi网络名称
-    - ``password`` -WiFi密码
-    - ``timeout`` -链接超时,默认10秒
-
-.. method:: wifi.disconnectWiFi()
-
-断开wifi网络连接
-
-.. method:: wifi.enable_APWiFi(essid,password,channel=10)
-
-开启wifi的无线AP模式
-
- - ``essid`` - 创建WiFi网络名称
- - ``password`` - 密码
- - ``channel`` -设置wifi使用信道,channel 1~13
-
-.. method:: wifi.disable_APWiFi()
-
-关闭无线AP
+        - ``PinMode.ANALOG``

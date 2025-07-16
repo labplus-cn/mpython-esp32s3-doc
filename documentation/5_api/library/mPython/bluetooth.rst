@@ -306,6 +306,6 @@ HID Mouse Usage IDs                       数值    定义
 
 
 
-.. literalinclude:: /../../examples/bluetooth/hid_ppt_Remote_Control.py
+.. literalinclude:: /_static/examples/bluetooth/hid_ppt_Remote_Control.py
     :caption: PPT 翻页遥控器
     :linenos:

@@ -29,8 +29,8 @@
 ++++++++++++++++++++++++
 
 
-.. literalinclude:: /examples/IoT/bigiot.py
-    :caption: bigiot简单通讯示例::
+.. literalinclude:: /_static/examples/IoT/bigiot.py
+    :caption: bigiot简单通讯示例
     :linenos:
 
 

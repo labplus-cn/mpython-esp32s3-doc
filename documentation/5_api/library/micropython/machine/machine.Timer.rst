@@ -67,6 +67,6 @@ MicroPython的Timer类定义了在给定时间段内（或在一段延迟后执�
 .. data:: Timer.PERIODIC
 
 
-.. literalinclude:: /../../examples/timer/timer_led_blink.py
+.. literalinclude:: /_static/examples/timer/timer_led_blink.py
     :caption: 定时器控制LED闪烁
     :linenos:

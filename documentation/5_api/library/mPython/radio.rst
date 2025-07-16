@@ -4,7 +4,7 @@
    :synopsis: 无线广播相关功能
 
 :mod:`radio` --- radio 无线广播相关功能
-==========
+-----------------------------
 
 radio 模块是基于 `ESP-NOW <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/api-reference/network/esp_now.html>`_ 无连接 Wi-Fi 通信协议而实现无线广播功能,支持13 Channel,在相同的Channel内能接收到成员发出的广播消息,适合30米范围内的多板组网的通讯。
 
@@ -49,6 +49,6 @@ radio 模块是基于 `ESP-NOW <https://docs.espressif.com/projects/esp-idf/zh_C
 
 
 
-.. literalinclude:: /../../examples/radio/radio.py
+.. literalinclude:: /_static/examples/radio/radio.py
     :caption: 无线广播示例
     :linenos:

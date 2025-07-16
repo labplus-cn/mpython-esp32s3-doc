@@ -305,11 +305,11 @@ UUID 类
           ubluetooth.FLAG_NOTIFY
 
 
-.. literalinclude:: /../../examples/ble/ble_advertising.py
+.. literalinclude:: /_static/examples/ble/ble_advertising.py
     :caption: ble_advertising.py(BLE广播)
     :linenos:
 
 
-.. literalinclude:: /../../examples/ble/ble_temperature.py
+.. literalinclude:: /_static/examples/ble/ble_temperature.py
     :caption: 这个例子演示了一个简单的温度传感器外设
     :linenos:

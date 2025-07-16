@@ -2,11 +2,11 @@
 .. _mpython_code:
 
 mpython.py源码
-=============
+----------------
 
 
-:download:`mpython.py源码下载</_build/py/mpython.py>` 
+mpython.py源码下载 
 
 
-.. literalinclude:: /_build/py/mpython.py
+.. literalinclude:: /_static/examples/mpython/mpython.py
     :linenos:

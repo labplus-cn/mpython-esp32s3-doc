@@ -6,7 +6,7 @@
 ==================================================
 
 
-.. figure:: /../images/extboard/extboard_back.png
+.. image:: /_static/image/extboard/extboard_back.png
     :width: 600
     :align: center
 
@@ -29,14 +29,14 @@ Type     Command   motor_no   speed(int)
    :member-order: bysource
 
 
-.. literalinclude:: /../../examples/mpython-shield/motor_simple.py
+.. literalinclude:: /_static/examples/mpython-shield/motor_simple.py
     :caption: 电机驱动示例
     :linenos:
 
-.. literalinclude:: /../../examples/mpython-shield/ir_send.py
+.. literalinclude:: /_static/examples/mpython-shield/ir_send.py
     :caption: NEC编码红外发码示例
     :linenos:
 
-.. literalinclude:: /../../examples/mpython-shield/ir_learn.py
+.. literalinclude:: /_static/examples/mpython-shield/ir_learn.py
     :caption: NEC编码红外学习示例
     :linenos:

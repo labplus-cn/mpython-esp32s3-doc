@@ -1,7 +1,7 @@
 1.1. 掌控板3.0 简介
 ========================= 
 
-.. figure:: /../_static/image/hardware/mpythonv3_1.jpg
+.. figure:: /_static/image/hardware/mpythonv3_1.jpg
     :align: center
     :width: 650
 
