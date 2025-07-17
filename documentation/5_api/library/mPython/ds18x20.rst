@@ -33,7 +33,7 @@ one wire总线是一种串行总线，仅使用一根电线进行通信（除了
 |
 
 
-.. figure:: /../images/tutorials/ds18x20_res.jpeg
+.. image:: /_static/image/tutorials/ds18x20_res.jpeg
     :width: 300
     :align: center
 
@@ -65,7 +65,7 @@ DS18X20类
 - ``rom`` - 设备地址
 
 
-.. literalinclude:: /../../examples/onewire/ds18b20.py
+.. literalinclude:: /_static/examples/onewire/ds18b20.py
     :caption: 示例-ds18b20
     :linenos:
  

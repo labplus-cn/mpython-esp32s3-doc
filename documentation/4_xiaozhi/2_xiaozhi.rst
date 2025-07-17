@@ -22,7 +22,7 @@ mPython0.8.7及以上版本
 3.1 在mPython软件切换到掌控3.0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: /../_static/image/xiaozhi/1.png
+.. image:: /_static/image/xiaozhi/1.png
     :align: center
     :width: 1200
 
@@ -31,7 +31,7 @@ mPython0.8.7及以上版本
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 等待烧录完成
 
-.. figure:: /../_static/image/xiaozhi/2.png
+.. image:: /_static/image/xiaozhi/2.png
     :align: center
     :width: 1200
 

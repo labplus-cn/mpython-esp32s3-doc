@@ -7,5 +7,5 @@
    1_xiaozhi.rst
    2_xiaozhi.rst
    3_xiaozhi.rst
-   .. 3_xiaozhi-faq.rst
+
 

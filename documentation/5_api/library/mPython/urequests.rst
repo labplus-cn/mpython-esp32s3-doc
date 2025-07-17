@@ -5,7 +5,7 @@
    :synopsis: HTTP客户端的相关功能函数,提供各种HTTP请求方式
 
 :mod:`urequests` --- HTTP客户端的相关功能函数
-================
+----------------------
 
 之前我们用了 socket 库，这个作为入门的工具还是不错的，对了解一些爬虫的基本理念，掌握爬虫爬取的流程有所帮助。
 入门之后，我们就需要学习一些更加高级的内容和工具来方便我们的爬取。
@@ -102,6 +102,6 @@ Response类
 
 
 
-.. literalinclude:: /../../examples/network/example_requests.py
+.. literalinclude:: /_static/examples/network/example_requests.py
     :caption: requests示例
     :linenos:

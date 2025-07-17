@@ -14,7 +14,7 @@
 
 - 根据屏幕提示，使用手机去搜索 WIFI 名称为：Xiaozhi-xxxx的WIFI，这个WIFI是由掌控板发出的，没有密码。
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-1.png
+.. image:: /_static/image/xiaozhi/xiaozhi-1.png
     :align: center
     :width: 600
 
@@ -22,7 +22,7 @@
 
  这个网页是不需要网络的，有一些手机通过浏览器打开不了这个网址，所以如果这个网页打不开，请关闭你手机的网络数据，只开启WIFI连接着，再打开网址即可。
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-2.png
+.. image:: /_static/image/xiaozhi/xiaozhi-2.png
     :align: center
     :width: 600
 
@@ -34,7 +34,7 @@
 
 - 完成后在网页中输入我热点的名称和密码。
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-4.png
+.. image:: /_static/image/xiaozhi/xiaozhi-4.png
     :align: center
     :width: 600
 
@@ -44,7 +44,7 @@
 
 - 连接成功后，网页提示设备会重新启动，这个时候等待重启完成即可。
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-6.png
+.. image:: /_static/image/xiaozhi/xiaozhi-6.png
     :align: center
     :width: 600
 
@@ -58,7 +58,7 @@
 - 在配网完成后，开发板会自动连接WIFI，到最后会卡在激活设备界面。
 - 打开浏览器，输入网址：xiaozhi.me。浏览器用手机或者电脑都可以打开。 进入小智AI的网页后，点击控制台，用手机号登录。
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-7.png
+.. image:: /_static/image/xiaozhi/xiaozhi-7.png
     :align: center
     :width: 600
 
@@ -68,7 +68,7 @@
 
 - 登录完成后，在新界面中，点击添加设备。将开发板屏幕显示的 6 位设备码输入到网页上的验证码中。这样就绑定成功了。
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-9.png
+.. image:: /_static/image/xiaozhi/xiaozhi-9.png
     :align: center
     :width: 600
 

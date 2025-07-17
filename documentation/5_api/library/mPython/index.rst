@@ -15,7 +15,6 @@ mPython类库
     parrot.rst
     ds18x20.rst
     servo.rst
-    .. audio.rst   
-    .. gui.rst 
+ 
 
 

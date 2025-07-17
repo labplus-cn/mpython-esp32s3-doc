@@ -1,5 +1,5 @@
 进阶教程
-========
+============
 
 .. toctree::
     :maxdepth: 1
@@ -12,5 +12,5 @@
     i2c.rst
     thread.rst
     filesystem.rst
-    .. bme280.rst
+    bme280.rst
     
