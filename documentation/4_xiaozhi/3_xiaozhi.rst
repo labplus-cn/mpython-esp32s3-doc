@@ -26,7 +26,7 @@
     :align: center
     :width: 600
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-3.png
+.. figure:: /_static/image/xiaozhi/xiaozhi-3.png
     :align: center
     :width: 600
 
@@ -38,7 +38,7 @@
     :align: center
     :width: 600
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-5.png
+.. figure:: /_static/image/xiaozhi/xiaozhi-5.png
     :align: center
     :width: 600
 
@@ -62,7 +62,7 @@
     :align: center
     :width: 600
 
-.. figure:: /../_static/image/xiaozhi/xiaozhi-8.png
+.. figure:: /_static/image/xiaozhi/xiaozhi-8.png
     :align: center
     :width: 600
 
