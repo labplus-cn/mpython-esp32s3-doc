@@ -27,7 +27,5 @@
     advance/thread.rst
     advance/filesystem.rst
     advance/ble.rst
-    /3_examples/AudioAI/index.rst
-    /3_examples/Agent/index.rst
-    /3_examples/ImageAI/camera.rst
-    /3_examples/classic/index.rst
+    AudioAI/index.rst
+    Agent/index.rst
