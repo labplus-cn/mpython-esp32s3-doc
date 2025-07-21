@@ -67,7 +67,7 @@
 
 
 加速度计
-+++++++++
+----------
 
 通过accelerometer对象，您可以获取3轴加速度计值，单位g。 加速度范围±2g/±4g/±8g/±16g,默认为±2g。
 
@@ -193,8 +193,8 @@ event事件定义如下:
     :caption: accelerometer 事件的简单应用
     :linenos:
 
-gyroscope
------------------
+陀螺仪(gyroscope)
+--------------------
 
 通过gyroscope对象，您可以获取陀螺仪角速度值，角速度的单位是dps(°/S)。 
 角速度范围±16dps/±32dps/±64dps/±128dps/±256dps/±512dps/±1024dps/±2048dps ,默认为±256 dps。
@@ -237,8 +237,8 @@ gyroscope
 .. Attention:: 掌控板v2.3版本以上加入陀螺仪传感器
 
 
-magnetic
------------
+磁力计(magnetic)
+-------------------
 MMC5983MA磁力计函数接口,可获取3轴地磁感应强度、地磁场强度、获取电子罗盘角度。
 
 .. Attention:: 掌控板v2.0版本以上,才有MMC5983MA磁力计！
@@ -290,35 +290,8 @@ MMC5983MA磁力计函数接口,可获取3轴地磁感应强度、地磁场强度
     :linenos:
 
 
-bme280
--------
-
-BME280是一款集成温度、湿度、气压，三位一体的环境传感器。具有高精度，多功能，小尺寸等特点。
-
-* 温度检测范围：-40℃~+85℃，分辨率0.1℃，误差±0.5℃
-* 湿度检测范围：0~100%RH，分辨率0.1%RH，误差±2%RH
-* 压力检测范围：300~1100hPa
-* 湿度测量响应时间：1s
-
-.. Attention:: 
-
-    掌控板没有集成BME280传感器,掌控板会扫描I2C总线是否存在0x77(119)I2C设备,确定是否构建bme280对象!
-
-.. method:: bme280.temperature()
-
-返回温度值,单位摄氏度。
-
-.. method:: bme280.pressure()
-
-返回大气压值,单位Pa。
-
-.. method:: bme280.humidity()
-
-返回环境湿度,单位%。
-
-
-蜂鸣器
--------
+蜂鸣器(music)
+-----------------
 
 由 ``music`` 模块驱动掌控板蜂鸣器,具体操作详见 :mod:`music` 模块。
 
@@ -456,7 +429,7 @@ touch对象
 返回按键的按下总数，并在返回之前将该总数重置为零。注意，计数器超过100将不再计数。
 
 rgb对象
--------
+------------
 用于控制掌控板的3颗RGB ws2812灯珠。rgb对象为neopixel的衍生类，继承neopixel的方法。更多的使用方法请查阅 :ref:`neopixel<neopixel>` 。 
 
 .. method:: rgb.write()
@@ -484,161 +457,6 @@ rgb对象
 .. method:: rgb.brightness(brightness)
 
 亮度调节,范围0~1.0
-
-
-oled对象
-----------
-oled对象为framebuf的衍生类，继承framebuf的方法。更多的使用方法请查阅 :mod:`framebuf<framebuf>` 。 
-
-.. method:: oled.poweron()
-
-开启显示屏电源。
-
-.. method:: oled.poweroff()
-
-关闭显示器电源。
-
-.. method:: oled.contrast(brightness)
-
-设置显示屏亮度。
-
-    - ``brightness`` 亮度,范围0~255
-
-
-.. method:: oled.invert(n)
-
-翻转像素点。当n=1时,未填充像素点点亮,填充像素点灭。当n=0时,则反。默认启动是填充像素点点亮。
-
-.. method:: oled.DispChar(s, x, y,mode=TextMode.normal,auto_return=False)
-
-oled屏显示文本。采用 `Google Noto Sans CJK <http://www.google.cn/get/noto/help/cjk/>`_ 开源无衬线字体字体。字体高度16像素点,支持英文,简体中文繁体中文，日文和韩文语言。
-
-返回(字符总像素点宽度,续接显示的x,y坐标)的二元组。
-
-    - ``s`` -需要显示的文本。
-    - ``x`` 、``y`` -文本的左上角作为起点坐标。
-    - ``mode`` - 设置文本模式,默认为TextMode.normal
-
-        - ``TextMode.normal`` - 等于1 。普通模式,文本显示白色,背景为黑色。
-        - ``TextMode.rev`` - 等于2 。反转模式,文本显示黑色,背景为白色。
-        - ``TextMode.trans`` - 等于3 。透明模式,透明文本意味着文本被写在显示中已经可见的内容之上。不同之处在于，以前屏幕上的内容仍然可以看到，而对于normal，背景将被当前选择的背景颜色所替代。
-        - ``TextMode.xor`` - 等于4 。XOR模式,如果背景是黑色的，效果与默认模式(normal模式)相同。如果背景为白色，则反转文本。
-    - ``auto_return`` - 自动换行,当显示字符串超出显示屏宽度可自动换行。默认不换行。
-
-.. method:: oled.show()
-
-将frame缓存发送至oled显示。
-
-.. literalinclude:: /_static/examples/display/helloworld.py
-    :caption: hello world
-    :linenos:
-
-.. literalinclude:: /_static/examples/display/oled_effect of typing.py
-    :caption: 打字效果
-    :linenos:
-
-
-.. method:: oled.DispChar_font(font, s, x, y, invert=False)
-
-自定义字体显示。用户可根据自己需求,在PC端将 `otf` 、 `ttf` 标准字体文件通过Python脚本 `font_to_py.py <https://github.com/peterhinch/micropython-font-to-py/blob/master/font_to_py.py>`_ 转为输出含字体Bitmap的python源码,调用使用。
-返回(字符总像素点宽度,续接显示的x,y坐标)的二元组。
-
-    - ``font`` - 字体对象。`font_to_py.py` 脚本转换得到的Python源码, 放到文件系统中,注意,在使用函数前须导入font文件。   
-    - ``s`` - 显示的字符串
-    - ``x`` 、 ``y`` - 文本的左上角作为起点坐标。
-    - ``invert`` - 显示像素点翻转。
-
-
-
-
-.. literalinclude:: /_static/examples/display/custom_font/main.py
-    :caption: 自定义字体显示
-    :linenos:
-
-* :download:`以上自定义字体示例中simfang16、freescpt18、stxingkai20<https://github.com/labplus-cn/mpython-docs/tree/master/examples/display/custom_font>`
-
-.. image:: /_static/image/tutorials/helloworld_customfont.jpg
-    :width: 400px
-    :align: center
-
-.. admonition:: `font_to_py.py` 脚本使用说明
-
-    - 该脚本要Python 3.2或更高版本运行环境。依赖 `freetype` python包。安装方法, `pip3 install freetype-py`  
-    - 默认情况下，只转换ASCII字符集（ `chr(32)` 到 `chr(126)` 字符）。通过命令行参数 `-c`,根据需要修改此范围，以指定任意的Unicode字符集,可以定义非英语和非连续字符集。
-    - `oled.DispChar_font()` 函数只支持hmap水平映射的字体,所以在转换时,需要使用命令行参数 `-x` 固定转换为水平映射。
-    - 固件参数。字体文件路径、转换后的字体高度、输出文件路径。例如: font_to_py.py FreeSans.ttf 20 myfont.py
-
-在PC端使用font_to_py.py脚本转换字体::
-
-    # 转换高度为16像素只包含ASCII字符集
-    font_to_py.py -x FreeSans.ttf 16 myfont.py
-
-    # 转换高度为16像素指定Unicode字符集,-c参数后面为你指定的字符集
-    font_to_py.py -x simfang.ttf 16 simfang.py -c  ¬!"#£$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~°Ωαβγδθλμπωϕ£
-
-
-该函数功能实现,参考来源于 `peterhinch/micropython-font-to <https://github.com/peterhinch/micropython-font-to-py>`_ 开源项目,更详细有关 `font_to_py.py` 详细使用说明,可到此项目获取更多资料。
-
-
-.. method:: oled.fill(c)
-
-        用指定的颜色填充整个帧缓存。 ``c`` 为1时,像素点亮；``c`` 为0时,像素点灭。
-
-.. method:: oled.circle(x, y, radius , c)
-
-绘制圆
-
-    - ``x`` 、``y`` -左上角作为起点坐标。
-    - ``radius`` -圆半径大小
-    - ``c`` -为1时,像素点亮；``c`` 为0时,像素点灭。
-
-.. method:: oled.fill_circle(x, y, radius , c)
-
-绘制实心圆
-
-    - ``x`` 、``y`` -左上角作为起点坐标。
-    - ``radius`` -圆半径大小
-    - ``c`` -为1时,像素点亮；``c`` 为0时,像素点灭。
-
-.. method:: oled.triangle(x0, y0, x1, y1, x2, y2, c)
-
-绘制三角形
-
-    - ``x0`` 、``y0`` -三角形上顶点坐标 。
-    - ``x1`` 、``y1`` -三角形左顶点坐标 。
-    - ``x2`` 、``y2`` -三角形左顶点坐标 。
-    - ``c`` -为1时,像素点亮；``c`` 为0时,像素点灭。
-
-.. method:: oled.fill_triangle(x0, y0, x1, y1, x2, y2, c)
-
-绘制实心三角形
-
-    - ``x0`` 、``y0`` -三角形上顶点坐标 。
-    - ``x1`` 、``y1`` -三角形左顶点坐标 。
-    - ``x2`` 、``y2`` -三角形左顶点坐标 。
-    - ``c`` -为1时,像素点亮；``c`` 为0时,像素点灭。
-
-
-.. method:: oled.bitmap(x, y, bitmap, w, h,c)
-
-绘制bitmap图案
-
-    - ``x`` 、``y`` -左上角作为起点坐标
-    - ``bitmap`` -图案bitmap 的btyearray字节数组
-    - ``w`` -图案宽度
-    - ``h`` -图案高度
-    - ``c`` -为1时,像素点亮;
-
-
-.. method:: oled.RoundRect( x, y, w, h, r, c)
-
-绘制弧角矩形
-
-    - ``x`` 、``y`` -左上角作为起点坐标
-    - ``w`` -图案宽度
-    - ``h`` -图案高度
-    - ``r`` -圆弧角半径
-    - ``c`` -为1时,像素点亮；``c`` 为0时,像素点灭。
 
 i2c对象
 -------
