@@ -3,7 +3,6 @@
 
 .. toctree::
     :maxdepth: 1
-    :numbered:
 
     breathing_light.rst
     musicbox.rst
