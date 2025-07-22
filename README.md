@@ -3,10 +3,10 @@ https://mpython-pro.readthedocs.io/zh-cn/latest/index.html
 
 ## 掌控板3.0 在线文档
 
-git remote add origin https://github.com/labplus-cn/mpython_pro-documentation.git
+git remote add origin https://github.com/labplus-cn/mpython-esp32s3-doc.git
 ## 编译步骤
 
-git clone https://github.com/labplus-cn/mpython_pro-documentation.git
+git clone https://github.com/labplus-cn/mpython-esp32s3-doc.git
 
 python3环境安装依赖库
 

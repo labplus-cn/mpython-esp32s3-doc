@@ -1,12 +1,14 @@
 .. 
-.. 这一页是目录树
+.. 主目录树
 
 掌控板3.0帮助文档
 ======================================================
 
 欢迎您，使用掌控板3.0！
 
-掌控板3.0是一块MicroPython微控制器板，它集成ESP32-S3高性能双核芯片，使用当下最流行的Python编程语言，以便您轻松地将代码从电脑传输到掌控板中，从而体验程序创作的无穷乐趣
+掌控板是创客教育专家委员会、猫友汇、广大一线老师共同提出需求并与创客教育行业优秀企业代表共同参与研发的教具、学具，是一块为教育而生的开源硬件，也是一个公益项目。
+
+cl掌控板3.0是一块内置MicroPython解释器的微控制器板，它集成ESP32-S3高性能双核芯片，使用当下最流行的Python编程语言，以便您轻松地将代码从电脑传输到掌控板中，从而体验程序创作的无穷乐趣。
 
 .. figure:: /_static/image/mpython_pro.png
     :align: center
@@ -14,79 +16,21 @@
 
 
 | **掌控板官网**: https://www.mpython.cn
-| **mPython下载链接**: https://labplus.cn/software
-| **GitHub开源**: https://github.com/labplus-cn
+| **mPython软件下载链接**: https://labplus.cn/software
+| **GitHub开源固件**: https://github.com/labplus-cn/mpython_esp32s3
 
-  
-.. .. toctree::
+*掌控板项目的软硬件资源已分享至GitHub，供各位掌控板爱好者学习阅览*
+
 
 .. toctree::
     :maxdepth: 3
-    :caption: 一、掌控板3.0 硬件介绍 
-    :titlesonly:
-    :numbered: 
 
-    hardware_introduction/1_introduce.rst
-    hardware_introduction/2_characteristic.rst
-    hardware_introduction/3_function.rst
-    hardware_introduction/5_hardware_parameters.rst
-    hardware_introduction/6_pin_function.rst
-    hardware_introduction/8_firmware.rst
+    1_hardware/1_index.rst
+    2_software/1_index.rst
+    3_examples/1_index.rst
+    4_xiaozhi/1_index.rst
+    5_api/1_index.rst
+    6_C_program/index.rst
+    7_faq/1_index.rst
+    LICENSE.rst
 
-.. toctree::
-    :maxdepth: 3
-    :caption: 二、编程方式
-   
-    programming_mode/index
-    .. programming_mode/hardware_connection
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: 三、教程
-
-   tutorials/basics/index.rst
-..    tutorials/advance/index.rst
-
-
-.. toctree::
-    :maxdepth: 4
-    :caption: 三、示例
-    :titlesonly:
-    :numbered: 
-
-    .. example/0_init
-    .. example/1_face_detect
-    .. example/2_face_recognization.rst
-    .. example/3_guidepost
-    .. example/4_mnist.rst  
-    .. example/5_resnet18_model.rst
-    .. example/6_yolo_model.rst
-    .. example/7_qrcode.rst
-    .. example/7_AprilTag.rst
-    .. example/8_self_learning_classifier.rst
-    .. example/9_visual_tracking.rst
-    .. example/10_yolo_detect.rst
-    .. example/11_color.rst
-    .. example/12_track.rst
-    .. example/13_video.rst
-
-
-.. toctree::
-    :maxdepth: 2
-    :caption: 四、API
-
-    tutorials/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: 六、常见问题
-
-   faq/index
-   faq/technical_exchange
-
-.. toctree::
-   :maxdepth: 1
-   :caption: 七、版权
-
-   LICENSE

@@ -1,10 +1,10 @@
 from mpython import *    #导入mpython模块
-
+from lv_gui import *
 Center_x=63           #设定中心点（原点）x的坐标
 Center_y=31           #设定中心点（原点）y的坐标
 
-while True:
-    
+gui = GUI()
+while True:    
     x=accelerometer.get_x()         #获取X轴的加速度
     y=accelerometer.get_y()         #获取Y轴的加速度
 
