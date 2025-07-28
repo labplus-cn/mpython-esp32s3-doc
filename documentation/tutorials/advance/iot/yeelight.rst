@@ -9,7 +9,7 @@ AI技术、BLE MESH技术、全屋智能照明技术均旗下产品进行广泛�
 -----------
 
 Yeelight 支持Google Assistant 和 Amazon Alexa 智能语音控制。还支持国内少有支持的IFTTT。它可以社交媒体、智能硬件等各类网络服务更好的联动。后续我们会讲解IFTTT的有关应用。
-除此外,Yeelight还针对技术爱好者推出,第三方控制协议,可实现局域网内的个性化的控制。本文讲解的掌控板控制Yeelight智能照明设备就是用到该协议。
+此外,Yeelight还针对技术爱好者推出,第三方控制协议,可实现局域网内的个性化的控制。本文讲解的掌控板控制Yeelight智能照明设备就是用到该协议。
 
 Yeelight第三方控制协议：https://www.yeelight.com/download/Yeelight_Inter-Operation_Spec.pdf
 
