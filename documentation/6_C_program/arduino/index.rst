@@ -1,4 +1,4 @@
-4.2. 掌控板platformio环境下arduino编程
+6.2. 掌控板platformio环境下arduino编程
 ========================================
 
 .. toctree::

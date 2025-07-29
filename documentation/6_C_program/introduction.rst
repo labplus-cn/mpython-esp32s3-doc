@@ -1,9 +1,9 @@
-4.1 概述
+6.1 概述
 ============
 
 掌控板3.0支持C/C++编程， 本文介绍使用PlatformIO作为开发环境，使用VSCode作为代码编辑器，实现掌控板3.0的C/C++编程。
 
-4.1.1 PlatformIO简介
+6.1.1 PlatformIO简介
 ----------------------
 
 PlatformIO是一个开源的物联网开发生态系统，主要用于嵌入式系统开发，为开发者提供了便捷高效的开发环境。以下是详细介绍：
@@ -32,7 +32,7 @@ PlatformIO是一个开源的物联网开发生态系统，主要用于嵌入式�
 - **[CSDN上的PlatformIO相关板块]**:https://www.csdn.net/ CSDN上有许多关于PlatformIO的博客文章、问答等内容，开发者可以通过搜索“PlatformIO”获取相关信息，也可以参与讨论和交流。
 - **[OSCHINA社区PlatformIO项目页面]**:https://www.oschina.net/project/widgets/_project_list?p=5&recommend=false&sort=view&tag=417 OSCHINA是中文开源技术交流社区，其PlatformIO项目页面有相关的技术讨论和资源分享，适合国内开发者交流。
     
-4.1.2 arduino简介
+6.1.2 arduino简介
 ----------------------
 
 Arduino 是一款开源电子原型平台，自 2005 年诞生以来，凭借其简单易用、灵活性高和开源共享的特点，迅速成为电子爱好者、学生、设计师及工程师们进行电子原型开发的热门工具。
