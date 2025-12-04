@@ -4,8 +4,8 @@
 .. toctree::
    :maxdepth: 1
    
-   examples/blink.rst
-   examples/button.rst
+   examples/1_blink.rst
+   examples/2_button.rst
 
 
 

@@ -1,9 +1,9 @@
-进阶教程
-============
+3.2 进阶示例
+======================================
 
 .. toctree::
-    :maxdepth: 1
-    :numbered:
+	:maxdepth: 3
+	:numbered:
 
     iot/index.rst
     random.rst
@@ -12,5 +12,7 @@
     i2c.rst
     thread.rst
     filesystem.rst
-    bme280.rst
-    
+    ble.rst
+
+
+

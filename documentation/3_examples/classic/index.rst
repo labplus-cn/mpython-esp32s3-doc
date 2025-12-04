@@ -1,5 +1,5 @@
-经典案例
-====
+3.3 经典案例
+======================================
 
 .. toctree::
     :maxdepth: 1
@@ -16,7 +16,3 @@
     weather.rst
     oneNET/index.rst
     game/index.rst
-
-
-    
- 

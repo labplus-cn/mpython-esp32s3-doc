@@ -1,5 +1,5 @@
 # 掌控板3.0 在线文档仓库
-https://mpython-pro.readthedocs.io/zh-cn/latest/index.html
+https://mpython-esp32s3-doc.readthedocs.io/zh-cn/latest/
 
 ## 掌控板3.0 在线文档
 
