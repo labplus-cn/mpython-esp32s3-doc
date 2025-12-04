@@ -1,20 +1,16 @@
 blink示例
 ----------------------------------
 
-硬件连接
+1. 硬件连接,如下图所示，将LED模块连接到拓展板P0引脚。
 
-打开示例
-
-硬件通过USB连接到电脑后，打开Arduino IDE，依次点击「文件」→「示例」→「01.Basics」→「Blink」，打开示例代码。
-
-1.选择mPython V3开发板
+2. 选择mPython V3开发板
 
 .. figure:: /_static/image/c_program/arduino_IDE/board_select.png
     :align: center
     :width: 800
 |
 
-2. 选择板子对应的串口
+3. 选择板子对应的串口
 
 .. figure:: /_static/image/c_program/arduino_IDE/serial_port.png
     :align: center
@@ -23,14 +19,13 @@ blink示例
 
 
 
-编写代码
+4. 示例代码
 
-
-.. literalinclude:: /_static/examples/c_program/blink.cpp
-    :caption: 示例-main.cpp
+.. literalinclude:: /_static/examples/c_program/arduino_IDE/blink.cpp
+    :caption: 示例-blink.ino
     :linenos:
 
-编译并上传
+5. 编译并上传
 
 
 代码上传后，掌控板会自动运行代码，LED会闪烁。

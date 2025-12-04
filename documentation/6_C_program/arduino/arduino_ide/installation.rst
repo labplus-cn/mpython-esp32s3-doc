@@ -20,7 +20,7 @@
 ~~~~~~~~~~~~~~~~~~~~~
 
 Windows系统
-……………………………………
+^^^^^^^^^^^^^^^^^^^^^
 
 1. 双击下载的 `.exe` 安装包，若弹出「用户账户控制」提示，点击「是」；
 2. 选择安装语言（推荐English，后续可在IDE内改中文），点击「OK」；
@@ -30,7 +30,7 @@ Windows系统
 6. 安装完成后，点击「Finish」，若提示「Install USB driver」（安装USB驱动），务必点击安装（驱动是连接硬件的关键）。
 
 macOS系统
-………………………………………
+^^^^^^^^^^^^^^^^^^^^^
 
 1. 双击下载的 `.dmg` 镜像文件，弹出安装窗口；
 2. 将「Arduino IDE」图标拖入「Applications」文件夹；
@@ -38,7 +38,7 @@ macOS系统
 4. 若芯片为Apple Silicon（M1/M2/M3），需确保下载的是对应版本，避免兼容性问题。
 
 Linux系统
-………………………………………
+^^^^^^^^^^^^^^^^^^^^^
 
 1. 解压下载的 `.tar.xz` 压缩包（如 `tar -xvf arduino-ide_2.x.x_Linux_64bit.tar.xz`）；
 2. 进入解压后的文件夹，运行安装脚本：`./install.sh`（需sudo权限，输入密码）；
@@ -51,21 +51,31 @@ Linux系统
 
 .. figure:: /_static/image/c_program/arduino_IDE/preferences.png
     :align: center
-    :width: 600
+    :width: 900
 |
-如上图，填入掌控板开发支持URL：https://labplus-cn.github.io/arduino-esp32/package_esp32_mpython_index_cn.json
+如上图，填入掌控板开发支持URL：https://labplus-cn.github.io/arduino-esp32/package_esp32_mpython_index_cn.json，点击「OK」保存。
 
-2. 点击「OK」保存。
+2. 安装掌控板支持包
 
-3. 进入「Tools」→「Board」→「Boards Manager」；
-
-.. figure:: /_static/image/c_program/arduino_IDE/preferences.png
+.. figure:: /_static/image/c_program/arduino_IDE/board_install.png
     :align: center
-    :width: 600
+    :width: 300
 |
 输入mpython搜索，找到mPython掌控板支持包，点击「Install」安装，等待安装完成即可。
 
+3. 进入「Tools」→「Board」→「Boards Manager」，选择mPython V3开发板
 
+.. figure:: /_static/image/c_program/arduino_IDE/board_select.png
+    :align: center
+    :width: 900
+|
+
+4. 插上掌控板，选择串口端口，用于上传程序及串口调试
+
+.. figure:: /_static/image/c_program/arduino_IDE/serial_port.png
+    :align: center
+    :width: 900
+|
 
 
 
