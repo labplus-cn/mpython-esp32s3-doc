@@ -1,4 +1,8 @@
+<<<<<<< HEAD:documentation/6_C_program/arduino/esp32_project.rst
 6.2.3 esp32项目创建
+=======
+4.2.1.3 esp32项目创建
+>>>>>>> dev:documentation/6_C_program/arduino/PlatformIO/esp32_project.rst
 -----------------------
 
 1.新建项目

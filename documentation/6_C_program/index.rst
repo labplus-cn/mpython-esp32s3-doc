@@ -8,15 +8,9 @@
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    introduction.rst
-   arduino/index
-   espidf/index
-
-
-
-
-
-
+   arduino/index.rst
+   espidf/index.rst
 
