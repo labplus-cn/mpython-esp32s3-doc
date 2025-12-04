@@ -2,8 +2,7 @@
 ======================================
 
 .. toctree::
-	:maxdepth: 3
-	:numbered:
+    :maxdepth: 1
 
     iot/index.rst
     random.rst

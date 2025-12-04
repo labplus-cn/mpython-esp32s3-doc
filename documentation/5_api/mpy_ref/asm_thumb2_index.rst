@@ -47,7 +47,6 @@ Thumb2架构的内联汇编
 
 .. toctree::
    :maxdepth: 1
-   :numbered:
 
    asm_thumb2_hints_tips.rst
 

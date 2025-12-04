@@ -2,8 +2,7 @@
 ======================================
 
 .. toctree::
-	:maxdepth: 3
-	:numbered:
+	:maxdepth: 1
 
 	1_repl.rst
 	2_buttons.rst
