@@ -1,7 +1,7 @@
 4.1 概述
 ============
 
-掌控板3.0支持C/C++编程， 本文介绍使用PlatformIO作为开发环境，使用VSCode作为代码编辑器，实现掌控板3.0的C/C++编程。
+掌控板3.0支持C/C++编程， 既可以使用官方的arduino IDE也可以在vscode下安装PlatformIO插件，构建开发环境，vscode+platformIO无论代码编辑还是编译速度，都优于arduino IDE,推荐使用此环境。
 
 4.1.1 PlatformIO简介
 ----------------------
