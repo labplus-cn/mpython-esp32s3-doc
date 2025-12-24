@@ -65,3 +65,24 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+
+
+# 1. 将引擎切换为 xelatex (原生支持 Unicode/中文)
+latex_engine = 'xelatex'
+
+# 2. 配置 LaTeX 导言区以支持中文渲染
+latex_elements = {
+    'papersize': 'a4paper',
+    'utf8extra': '',
+    'inputenc': '',
+    'cmap': '',
+    'preamble': r'''
+    \usepackage{xeCJK}
+    \usepackage{indentfirst}
+    \setlength{\parindent}{2em}
+    \setCJKmainfont{WenQuanYi Micro Hei}
+    \setCJKsansfont{WenQuanYi Micro Hei}
+    \setCJKmonofont{WenQuanYi Micro Hei Mono}
+    ''',
+}

@@ -13,6 +13,14 @@ build:
     # nodejs: "20"
     # rust: "1.70"
     # golang: "1.20"
+  
+  apt_packages:
+    - graphviz
+    - plantuml
+    - texlive-xetex          # 提供 xelatex 命令的核心包
+    - texlive-lang-chinese    # 提供中文必要的宏包支持
+    - texlive-fonts-recommended # 推荐的字体支持库
+    - fonts-wqy-microhei      # 必须：服务器环境下的中文字体
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
@@ -23,9 +31,10 @@ sphinx:
   # fail_on_warning: true
 
 # Optionally build your docs in additional formats such as PDF and ePub
-# formats:
-#    - pdf
-#    - epub
+formats:
+  #  - pdf
+   - epub
+   - html
 
 # Optional but recommended, declare the Python requirements required
 # to build your documentation
