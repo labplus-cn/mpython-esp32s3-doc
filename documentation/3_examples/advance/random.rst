@@ -3,7 +3,7 @@
 
 有时我们需要做些随机行为或生产随机数。这时你可以使用 :ref:`random<random>` 模块。
 
-例如，以下是如何在oled显示屏上随机显示名称::
+例如，以下是如何在lcd显示屏上随机显示名称::
 
   from lv_gui import *
   from mpython import *

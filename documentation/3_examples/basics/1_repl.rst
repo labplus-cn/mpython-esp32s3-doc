@@ -47,7 +47,7 @@ MicroPython将运行您输入的代码并打印结果（如果有的话）；如
 .. Note::
 
     ``gui.draw_label(text, row, color=0xffffff, wrap=False)``   ``text`` 为要显示的字符串
-    然后用 ``gui.update()`` 刷新屏幕后，字符串即可显示在OLED显示屏上。您可以尝试在其他位置显示任意字符串。
+    然后用 ``gui.update()`` 刷新屏幕后，字符串即可显示在LCD显示屏上。您可以尝试在其他位置显示任意字符串。
 
 
 
