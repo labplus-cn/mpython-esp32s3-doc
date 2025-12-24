@@ -5,20 +5,20 @@
 .. toctree::
     :maxdepth: 3
 
-    basics/repl.rst
+    basics/1_repl.rst
     basics/io/index.rst
-    basics/lcd.rst
-    basics/neopixel.rst
-    basics/buzz.rst
-    basics/buttons.rst
-    basics/touchpad.rst
-    basics/sound.rst
-    basics/light.rst
-    basics/accelerometer.rst
-    basics/gyroscope.rst
+    basics/11_lcd.rst
+    basics/5_neopixel.rst
+    basics/4_buzz.rst
+    basics/2_buttons.rst
+    basics/7_touchpad.rst
+    basics/6_sound.rst
+    basics/3_light.rst
+    basics/8_accelerometer.rst
+    basics/9_gyroscope.rst
     basics/network/index.rst
-    basics/uart.rst
-    basics/wifi.rst
+    basics/12_uart.rst
+    basics/13_wifi.rst
     basics/udp.rst
     advance/iot/index.rst
     advance/random.rst
