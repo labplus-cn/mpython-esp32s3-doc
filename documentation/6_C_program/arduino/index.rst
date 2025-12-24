@@ -1,11 +1,13 @@
+<<<<<<< HEAD
 6.2. 掌控板platformio环境下arduino编程
+=======
+4.2. arduino编程
+>>>>>>> dev
 ========================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
    
-   preparation.rst
-   setup.rst
-   esp32_project.rst
-   esp32_example.rst
+   PlatformIO/index.rst
+   arduino_ide/index.rst
 

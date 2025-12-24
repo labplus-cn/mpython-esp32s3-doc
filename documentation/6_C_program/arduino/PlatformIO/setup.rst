@@ -1,4 +1,8 @@
+<<<<<<< HEAD:documentation/6_C_program/arduino/setup.rst
 6.2.2 开发环境搭建
+=======
+4.2.1.2 开发环境搭建
+>>>>>>> dev:documentation/6_C_program/arduino/PlatformIO/setup.rst
 --------------------
 
 安装VSCode

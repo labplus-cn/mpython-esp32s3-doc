@@ -1,4 +1,8 @@
+<<<<<<< HEAD:documentation/6_C_program/arduino/preparation.rst
 6.2.1 环境准备
+=======
+4.2.1.1. 环境准备
+>>>>>>> dev:documentation/6_C_program/arduino/PlatformIO/preparation.rst
 ----------------
 
 **1、硬件需求**
