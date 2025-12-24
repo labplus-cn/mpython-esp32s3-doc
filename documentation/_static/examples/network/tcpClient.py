@@ -1,5 +1,10 @@
 import socket
 from mpython import *
+from lv_gui import *
+
+gui = GUI()
+_thread.stack_size(8192)
+
 
 host = "172.25.1.63"          # TCP服务端的IP地址
 port = 5001                   # TCP服务端的端口
@@ -26,9 +31,9 @@ try:
             break
         print(data)
         data=data.decode('utf-8')                         # 以utf-8编码解码字符串
-        oled.fill(0)                                      # 清屏
-        oled.DispChar(data,0,0)                           # oled显示socket接收数据
-        oled.show()                                       # 显示
+        gui.fill(type=0)                                    # 清屏
+        gui.draw_label(text=str(data), row=1, color=0xffffff, wrap=False)                           # lcd显示socket接收数据
+        gui.update()                                     # 显示
         s.send(data)                                      # 向服务器端发送接收到的数据
 
 # 当捕获异常,关闭套接字、网络

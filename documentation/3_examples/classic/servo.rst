@@ -53,9 +53,6 @@
         if y<=1 and y>=-1:
             angle=int(numberMap(y,1,-1,0,180))    #映射Y轴加速度值
         myServo.write_angle(angle)       #写舵机角度
-        oled.DispChar("angle:%d" %angle,40,25)
-        oled.show()
-        oled.fill(0)
         sleep_ms(10)
 
 
@@ -88,8 +85,6 @@
     if y<=1 and y>=-1:
         angle=int(numberMap(y,1,-1,0,180)) 
 
-输出舵机角度并在OLED显示屏上显示::
+输出舵机角度::
 
     myServo.write_angle(angle)       #写舵机角度
-            oled.DispChar("angle:%d" %angle,40,25)
-            oled.show()

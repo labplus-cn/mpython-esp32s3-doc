@@ -16,9 +16,7 @@ try:
     listenSocket.bind((ip,port))                                            # 绑定ip和端口
     listenSocket.listen(3)                                                  # 开始监听并设置最大连接数
     print ('tcp waiting...')
-    oled.DispChar("%s:%s" %(ip,port),0,0)                                   # oled屏显示本机服务端ip和端口            
-    oled.DispChar('accepting.....',0,16)                                            
-    oled.show()
+
 
     while True:
         print("accepting.....")
@@ -33,9 +31,6 @@ try:
                 break
             data_utf=data.decode()                                          # 接收到的字节流以utf8编码解码字符串
             print(data_utf)
-            oled.DispChar(data_utf,0,48)                                    # 将接收到文本oled显示出来
-            oled.show()
-            oled.fill_rect(0,48,128,16,0)                                   # 局部清屏
             conn.send(data)                                                 # 返回数据给客户端
 
 # 当捕获异常,关闭套接字、网络

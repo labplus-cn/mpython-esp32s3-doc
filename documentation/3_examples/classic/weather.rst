@@ -1,8 +1,8 @@
 获取网络气象
-----------
+-------------
 
 
-例：通过网络获取气象信息，并将气象信息反馈到oled屏上。
+例：通过网络获取气象信息，并将气象信息反馈到lcd屏上。
 ::
     from mpython import*
     import json
@@ -15,8 +15,6 @@
     url_now="https://api.seniverse.com/v3/weather/now.json"           #获取天气实况的请求地址
     url_daily="https://api.seniverse.com/v3/weather/daily.json"       #获取多日天气预报的请求地址
 
-    oled.DispChar('联网中...',40,25)     #OLED屏显示联网提示
-    oled.show()
 
     mywifi=wifi()
     mywifi.connectWiFi('yourESSID','yourpassword')          #连接 WiFi 网络
@@ -58,13 +56,6 @@
         todayIco=nowRsp['results'][0]['now']['code']                  #天气现象图标
         city=nowRsp['results'][0]['location']['name']                 #地理位置
 
-        oled.fill(0)
-        oled.bitmap(10,23,ico[todayIco],38,38,1)                   #显示当前天气现象图标
-        oled.DispChar("%s,天气实况" %city,0,0)
-        oled.DispChar(today,90,0)
-        oled.DispChar("%s℃/%s" %(nowTemper,nowText),70,25)        #显示当前温度
-        oled.DispChar("%s~%s℃" %(todaylow,todayHigh),70,45)       #显示今日最低、最高气温
-        oled.show()
 
     refresh()          #数据更新
 

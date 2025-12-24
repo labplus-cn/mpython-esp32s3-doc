@@ -8,32 +8,9 @@ DHT11数字温湿度传感器是一款含有已校准数字信号输出的温湿
     :scale: 50 %
     :align: center
 
-DHT11数字温湿度传感器和掌控板连接需要借助掌控扩展版，在掌控扩展版中DHT11可使用的引脚有P0/1/8/9/13/14/15/16，在这里使用引脚0。将掌控板插在掌控扩展板上，通过双母头杜邦线将DHT11和扩展板进行连接，DHT11上的“+”连接扩展板的电源口“V”，“-”连接扩展板的地线口“G”，“out”连接扩展板的引脚“0”。
+DHT11数字温湿度传感器和掌控板连接需要借助掌控扩展版，在掌控扩展版中DHT11可使用的引脚有，在这里使用引脚0。将掌控板插在掌控扩展板上，通过双母头杜邦线将DHT11和扩展板进行连接，DHT11上的“+”连接扩展板的电源口“V”，“-”连接扩展板的地线口“G”，“out”连接扩展板的引脚“0”。
 
 .. image:: /_static/image/classic/dhtconnect.jpg
-    :scale: 60 %
-    :align: center
-
-
-例：显示DHT11读取的温湿度
-::
-
-    from mpython import *
-    from dht import DHT11
-    
-    dht=DHT11(Pin(Pin.P0))
-
-    while True:
-        dht.measure()
-        oled.fill(0)
-        oled.DispChar("温度:",0,10)
-        oled.text("%d" % (dht.temperature()), 48, 14)
-        oled.DispChar("湿度:",0,35)
-        oled.text("%d" % (dht.humidity()), 48, 40)
-        oled.show()
-        sleep_ms(100)
-
-.. image:: /_static/image/classic/dhtexample.jpg
     :scale: 60 %
     :align: center
 

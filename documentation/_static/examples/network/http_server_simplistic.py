@@ -17,10 +17,9 @@ def main():
     s.bind(addr)
     s.listen(5)
     print("Listening, connect your browser to http://%s:80/" %addr[0])
-	# oled显示掌控板ip地址
-    oled.DispChar('Connect your browser',0,0,)                           
-    oled.DispChar('http://%s' %addr[0],0,16)
-    oled.show()
+	# 掌控板ip地址
+    print('Connect your browser')                           
+    print('http://%s' %addr[0])
 
     while True:
 		res = s.accept()

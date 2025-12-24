@@ -24,7 +24,7 @@ http协议采用的是请求/响应模型，浏览器或客户端发出请求，
 
 
 .. literalinclude:: /_static/examples/network/ip_parsing_json.py
-    :caption: 将网站中的部分信息显示在OLED显示屏上
+    :caption: 将网站中的部分信息显示在LCD显示屏上
     :linenos:
 
 

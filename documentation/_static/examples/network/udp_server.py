@@ -11,15 +11,11 @@ try:
     ip=mywifi.sta.ifconfig()[0]                                        # 获取本机ip地址
     s.bind((ip,6000))                                                  # 绑定ip和端口号
     print('waiting...')
-    oled.DispChar("%s:6000" %ip,0,0)
-    oled.show()
+
     while True:
         data,addr=s.recvfrom(1024)                           # 接收对方发送过来的数据,读取字节设为1024字节,返回(data,addr)二元组
         print('received:',data,'from',addr)                  # 打印接收到数据                      
-        oled.fill(0)                                         # 清屏
-        oled.DispChar("%s" %data.decode(),0,15)              # oled显示接收内容
-        oled.DispChar("from%s" %addr[0],0,31)
-        oled.show()                 
+               
         
 
 # 当捕获异常,关闭套接字、网络

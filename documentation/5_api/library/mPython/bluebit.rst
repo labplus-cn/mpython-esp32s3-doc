@@ -181,17 +181,6 @@ MP3模块
     :member-order: bysource
 
 
-OLED模块
--------------
-
-.. autoclass:: bluebit.OLEDBit
-    :members:
-    :undoc-members: True
-    :exclude-members: 
-    :special-members: '__init__' 
-    :member-order: bysource
-
-
 红外接收模块
 -------------
 
