@@ -26,7 +26,7 @@ build:
 sphinx:
   configuration: documentation/conf.py
   # You can configure Sphinx to use a different builder, for instance use the dirhtml builder for simpler URLs
-  # builder: "html"
+  builder: "html"
   # Fail on all warnings to avoid broken references
   # fail_on_warning: true
 
@@ -34,7 +34,7 @@ sphinx:
 formats:
   #  - pdf
    - epub
-   - html
+   - htmlzip
 
 # Optional but recommended, declare the Python requirements required
 # to build your documentation
