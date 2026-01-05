@@ -5,7 +5,7 @@
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 4
 
    library/mPython/index.rst
    library/ext_lib/index.rst
