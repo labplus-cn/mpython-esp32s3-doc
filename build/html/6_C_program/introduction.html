@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.1 概述 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=beaddf03"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="4.2. arduino编程" href="arduino/index.html" />
+    <link rel="prev" title="6. 掌控板C/C++编程" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. 掌控板C/C++编程</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1 概述</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#platformio">4.1.1 PlatformIO简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arduino">4.1.2 arduino简介</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="arduino/index.html">4.2. arduino编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="espidf/index.html">4.3. vscdde + esp-idf插件c/c++编程</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">6. 掌控板C/C++编程</a></li>
+      <li class="breadcrumb-item active">4.1 概述</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/6_C_program/introduction.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>4.1 概述<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>掌控板3.0支持C/C++编程， 既可以使用官方的arduino IDE也可以在vscode下安装PlatformIO插件，构建开发环境，vscode+platformIO无论代码编辑还是编译速度，都优于arduino IDE,推荐使用此环境。</p>
+<section id="platformio">
+<h2>4.1.1 PlatformIO简介<a class="headerlink" href="#platformio" title="此标题的永久链接"></a></h2>
+<p>PlatformIO是一个开源的物联网开发生态系统，主要用于嵌入式系统开发，为开发者提供了便捷高效的开发环境。以下是详细介绍：</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>特点优势</strong>：</dt><dd><ul>
+<li><p><strong>跨平台兼容性好</strong>：可在Windows、Linux、macOS等操作系统上使用，支持超过350个嵌入式设备、20多个开发平台及10多个框架，如STM32、ESP32、Arduino等。</p></li>
+<li><p><strong>开发流程简化</strong>：自动下载所需工具链，开发者无需手动组装工具链、编译器和库依赖，点击编译按钮即可自动引入所有必要依赖。</p></li>
+<li><p><strong>调试功能强大</strong>：具备全面的调试环境，支持多种调试探针和目标系统，可通过预定义配置快速调试项目，还能切换到混合模式反汇编视图等进行深入调试。</p></li>
+<li><p><strong>支持远程开发</strong>：允许开发者在喜爱的本地环境中，利用远程机器的计算能力和连接设备进行开发，可在远程机器上运行测试，无需额外软件、SSH等。</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>核心组件</strong>：</dt><dd><ul>
+<li><p><strong>PlatformIO IDE</strong>：可作为插件集成到Visual Studio Code、Atom等编辑器中，提供代码编辑、编译、上传和调试等功能。</p></li>
+<li><p><strong>PlatformIO Core</strong>：基于Python的命令行工具，可独立使用，能实现编译、上传、测试和管理项目依赖等功能。</p></li>
+<li><p><strong>PlatformIO Library Manager</strong>：方便用户通过PlatformIO程序库网站或命令行工具，搜索、安装和更新第三方库。</p></li>
+<li><p><strong>PlatformIO Boards Manager</strong>：支持众多开发板，可方便地配置和选择不同硬件平台进行开发。</p></li>
+<li><p><strong>PlatformIO Frameworks</strong>：提供对Arduino、Mbed、STM32Cube等多个嵌入式框架的支持。</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>使用方法</strong>：</dt><dd><ul>
+<li><p><strong>安装</strong>：若使用VSCode或Atom，可通过插件市场安装PlatformIO IDE插件；命令行用户可通过`pip install -U platformio`安装PlatformIO Core。</p></li>
+<li><p><strong>初始化新项目</strong>：使用`platformio init`命令创建新的项目结构。</p></li>
+<li><p><strong>配置项目</strong>：在`platformio.ini`文件中设置开发板、框架等项目选项。</p></li>
+<li><p><strong>编译和上传</strong>：使用`platformio run`编译项目，使用`platformio run –target upload`上传到硬件设备。</p></li>
+<li><p><strong>调试</strong>：支持通过GDB或OpenOCD进行硬件调试。</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>以下是一些PlatformIO相关的社区：</p>
+<ul class="simple">
+<li><p><strong>[PlatformIO官方社区]</strong>:<a class="reference external" href="https://community.platformio.org">https://community.platformio.org</a> PlatformIO官方提供的社区平台，开发者可以在这里进行技术讨论、寻求帮助、分享项目经验等，是获取PlatformIO相关支持和资源的重要渠道。</p></li>
+<li><p><strong>[CSDN上的PlatformIO相关板块]</strong>:<a class="reference external" href="https://www.csdn.net/">https://www.csdn.net/</a> CSDN上有许多关于PlatformIO的博客文章、问答等内容，开发者可以通过搜索“PlatformIO”获取相关信息，也可以参与讨论和交流。</p></li>
+<li><p><strong>[OSCHINA社区PlatformIO项目页面]</strong>:<a class="reference external" href="https://www.oschina.net/project/widgets/_project_list?p=5&amp;recommend=false&amp;sort=view&amp;tag=417">https://www.oschina.net/project/widgets/_project_list?p=5&amp;recommend=false&amp;sort=view&amp;tag=417</a> OSCHINA是中文开源技术交流社区，其PlatformIO项目页面有相关的技术讨论和资源分享，适合国内开发者交流。</p></li>
+</ul>
+</section>
+<section id="arduino">
+<h2>4.1.2 arduino简介<a class="headerlink" href="#arduino" title="此标题的永久链接"></a></h2>
+<p>Arduino 是一款开源电子原型平台，自 2005 年诞生以来，凭借其简单易用、灵活性高和开源共享的特点，迅速成为电子爱好者、学生、设计师及工程师们进行电子原型开发的热门工具。</p>
+<p><strong>1、核心组成</strong></p>
+<ul class="simple">
+<li><p><strong>硬件</strong>：主要是各种型号的 Arduino 开发板，常见的有 Arduino Uno、Mega、Nano、Due 等。这些开发板以微控制器为核心（如早期多采用 Atmel AVR 系列，后来也有使用 ARM 架构等），配备了数字输入/输出引脚、模拟输入引脚、USB 接口、电源接口等，方便连接各种传感器、执行器等外部设备。</p></li>
+<li><p><strong>软件</strong>：包括 Arduino IDE（集成开发环境），它提供了简单的编程界面，支持使用类 C/C++ 的编程语言进行开发。用户可以通过 IDE 编写代码、编译并上传到开发板中。也可以使用VSCode等其他编辑器进行开发。</p></li>
+</ul>
+<p><strong>2、主要特点</strong></p>
+<ul class="simple">
+<li><p><strong>开源性</strong>：硬件设计图纸和软件代码都是开源的，任何人都可以自由查看、修改和分享，这促进了全球开发者社区的形成和发展，大家可以共享各种项目案例和解决方案。</p></li>
+<li><p><strong>易用性</strong>：编程语法简单易懂，相比传统的嵌入式开发，降低了入门门槛，即使是没有太多编程和电子知识的人，也能快速上手。</p></li>
+<li><p><strong>灵活性</strong>：支持丰富的扩展模块（称为“ shields ”），如以太网 shield、WiFi shield、显示屏 shield 等，通过这些模块可以轻松实现各种功能，满足不同项目的需求。</p></li>
+<li><p><strong>跨平台性</strong>：Arduino IDE 可以在 Windows、Mac OS 和 Linux 等多种操作系统上运行，方便用户在不同的环境下进行开发。</p></li>
+</ul>
+<p><strong>3、应用领域</strong></p>
+<ul class="simple">
+<li><p><strong>教育领域</strong>：是学生学习电子技术、编程和物联网知识的理想工具，通过实际操作可以加深对理论知识的理解。</p></li>
+<li><p><strong>创客项目</strong>：创客们利用 Arduino 制作出各种创意作品，如智能机器人、智能家居设备、环境监测装置等。</p></li>
+<li><p><strong>工业原型</strong>：在工业产品开发初期，工程师可以使用 Arduino 快速制作原型，验证产品的功能和可行性，降低开发成本和周期。</p></li>
+<li><p><strong>艺术创作</strong>：艺术家将 Arduino 与各种艺术形式结合，创作出动感雕塑、互动装置等艺术作品，赋予艺术更多的科技感和互动性。</p></li>
+</ul>
+<p><strong>4、社区与资源</strong></p>
+<p>Arduino 拥有庞大的全球社区，用户可以在社区中交流经验、分享项目、解决问题。同时，还有丰富的学习资源，如官方文档、教程、书籍、视频等，帮助新手快速入门和提升技能。</p>
+<p>总之，Arduino 为电子原型开发提供了一个便捷、高效的平台，它不仅推动了电子技术的普及，也激发了人们的创新精神，在各个领域都有着广泛的应用和发展前景。</p>
+<p>以下是一些知名的Arduino社区：</p>
+<ol class="arabic simple">
+<li><p><strong>[Arduino官方论坛]</strong>:<a class="reference external" href="https://forum.arduino.cc/">https://forum.arduino.cc/</a> Arduino官方提供的社区平台，有丰富的文档、软件下载资源，用户可以在这里进行技术讨论、分享项目经验、报告软件或硬件问题，还能获取官方教程以及关于Arduino产品和服务的最新信息。</p></li>
+<li><p><strong>[Arduino中文社区]</strong>:<a class="reference external" href="http://www.arduino.cn/">http://www.arduino.cn/</a> 国内Arduino爱好者自发组织的非官方、非盈利性社区，也是国内专业的Arduino讨论社区，这里有各种Arduino相关的教程、项目、想法和资料，方便爱好者交流学习。</p></li>
+<li><p><strong>[DF创客社区Arduino论坛]</strong>:<a class="reference external" href="https://mc.dfrobot.com.cn/">https://mc.dfrobot.com.cn/</a> 有齐全的Arduino学习资料、教程、驱动下载和硬件套件，还包含国内丰富的Arduino开源硬件、套件及零部件的使用说明和经验交流内容，有助于初学者快速入门。</p></li>
+<li><p><strong>[极客迷Arduino论坛]</strong>:<a class="reference external" href="https://www.geekfans.com/forum-104-1.html">https://www.geekfans.com/forum-104-1.html</a> 提供Arduino爱好者使用交流经验和常见问题解答等内容，是爱好者互相学习和解决问题的平台之一。</p></li>
+<li><p><strong>[Reddit上的Arduino板块]</strong>:<a class="reference external" href="https://www.reddit.com/r/arduino/">https://www.reddit.com/r/arduino/</a> 全球Arduino爱好者聚集的地方，用户可以在这里讨论Arduino开发的相关话题，分享项目、教程和资源，还能参与每周的项目展示、AMA（问我任何事）等活动，获取行业专家和经验丰富的开发者的建议。</p></li>
+<li><p><strong>[Arduino Educators Community]</strong>:<a class="reference external" href="https://www.arduino.cc/education/educator-community">https://www.arduino.cc/education/educator-community</a> 专为教育工作者设立的社区，包括大学教育工作者、职业和技术教师等，他们可以在这里参与研讨会、测试新产品、提供反馈，还能获得设计产品和服务的机会以及免费的Arduino产品等。</p></li>
+<li><p><strong>[GitHub上的Arduino相关项目社区]</strong>:<a class="reference external" href="https://github.com/topics/arduino">https://github.com/topics/arduino</a> 许多Arduino开发者会将自己的项目代码、库文件等上传到GitHub，用户可以在这里获取丰富的项目资源、代码示例，与其他开发者协作，共同解决技术难题。</p></li>
+<li><p><strong>[Arduino Playground]</strong>:<a class="reference external" href="http://playground.arduino.cc/">http://playground.arduino.cc/</a> 这是一个由用户贡献的教程宝库，包含各种代码示例、项目想法和深入的技术讨论，适合开发者深入学习和探索Arduino相关知识。</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="6. 掌控板C/C++编程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="arduino/index.html" class="btn btn-neutral float-right" title="4.2. arduino编程" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MQTT &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="Yeelight" href="yeelight.html" />
+    <link rel="prev" title="物联网基础知识" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">3. 示例教程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">物联网基础知识</a></li>
+      <li class="breadcrumb-item active">MQTT</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/3_examples/advance/iot/mqtt.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mqtt">
+<h1>MQTT<a class="headerlink" href="#mqtt" title="此标题的永久链接"></a></h1>
+<p>MQTT（Message Queue Telemetry Transport）,遥测传输协议，提供订阅/发布模式，更为简约、轻量，易于使用，针对受限环境（带宽低、网络延迟高、网络通信不稳定），可以简单概括为物联网打造。</p>
+<p>MQTT是一种基于发布 - 订阅的“轻量级”消息传递协议，用于在TCP / IP协议之上使用，它适用于需要“小代码占用”或网络带宽有限的远程位置的连接。
+能实现一对多通信（人们称之为发布或订阅型）的协议。它由3 种功能构成，分别是中介（broker）、发布者（publisher）和订阅者（subscriber）</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../../../_images/mqtt.png"><img alt="../../../_images/mqtt.png" src="../../../_images/mqtt.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">broker、publisher、subscriber</span><a class="headerlink" href="#id6" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<p>中介承担着转发MQTT 通信的服务器的作用。相对而言，发布者和订阅者则起着客户端的作用。发布者是负责发送消息的客户端，而订阅
+者是负责接收消息的客户端。MQTT 交换的消息都附带“主题”地址，各个客户端把这个“主题”视为收信地址，对其执行传输消息的操作。
+形象地比喻一下，中介就是接收邮件的邮箱。</p>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="../../../_images/iot_publish.png"><img alt="../../../_images/iot_publish.png" src="../../../_images/iot_publish.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">MQTT 通信的机制</span><a class="headerlink" href="#id7" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<p>中介在等待各个客户端对其进行连接。订阅者连接中介，把自己想订阅的主题名称告诉中介。这就叫作订阅。
+然后发布者连接中介，以主题为收信地址发送消息。这就是发布。发布者一发布主题，中介就会把消息传递给订阅了该主题的订阅者。</p>
+<p>如上图所示，如果订阅者订阅了主题A，那么只有在发布者发布了主题A 的情况下，中介才会把消息传递给订阅者。订阅者和中介总是处于
+连接状态，而发布者则只需在发布时建立连接，不过要在短期内数次发布时，就需要保持连接状态了。因为中介起着转发消息的作用，所以各
+个客户端彼此之间没有必要知道对方的IP 地址等网络上的收信地址。又因为多个客户端可以订阅同一个主题，所以发布者和订阅者是一
+对多的关系。在设备和服务器的通信中，设备相当于发布者，服务器则相当于订阅者。</p>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="../../../_images/IoT_subscribe.png"><img alt="../../../_images/IoT_subscribe.png" src="../../../_images/IoT_subscribe.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">MQTT 的主题示例</span><a class="headerlink" href="#id8" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<p>主题采用的是分层结构。用“#”和“+”这样的符号能指定多个主题。如上图所示，/Sensor/temperature/# 中使用了“#”符号，这样就
+能指定所有开头为/Sensor/temperature/ 的主题。此外，/Sensor/+/room1中使用了符号“+”，这样一来就能指定所有开头是/Sensor/、结尾是/room1 的主题。</p>
+<p><em>MQTT原理转载至 [图解物联网 / 日本NTT DATA集团等著；丁灵译. –北京：人民邮电出版社， 2017.4]</em></p>
+<section id="id1">
+<h2>物联网平台介绍<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>发布 - 订阅消息传递模式需要消息代理服务器。代理服务器负责根据消息主题向感兴趣的客户端分发消息。</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>目前互联网中MQTT物联网平台多种多样,大家可根据自己要求选择适合自己的mqtt物联网平台。本人推荐以下几个比较好的物联网平台。</p>
+</div>
+<ul>
+<li><p>OneNet 中国移动物联网平台：<a class="reference external" href="https://open.iot.10086.cn/">https://open.iot.10086.cn/</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>优点：支持多种通讯协议,如MQTT,HTTP等；可编辑应用功能,可制作数据显示和开关控件的页面UI。</p></li>
+<li><p>缺点：平台操作较为复杂、与官方的MQTT稍有不同,对入门者比较不好理解。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>DFRobot Easy IoT 物联网平台：<a class="reference external" href="http://iot.dfrobot.com.cn/">http://iot.dfrobot.com.cn/</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>优点：操作简单,适合入门者学习。</p></li>
+<li><p>缺点：不能自定义topic；缺少应用端的UI界面编辑,无法呈现数据。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Adafruit IO 物联网平台：<a class="reference external" href="https://io.adafruit.com/">https://io.adafruit.com/</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>优点：操作简单,适合MQTT教学；有丰富的dashboard编辑功能,可以很好的呈现数据；支持IFTTT,可关联很多的互联网服务,玩法多样。</p></li>
+<li><p>缺点：国外服务器,连接不稳定,经常连接不上。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>除上述外,你也可以自己搭建个mqtt服务器。</p>
+</section>
+<section id="id2">
+<h2>连接MQTT代理服务器<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>下面以Easy IoT 作为讲解如何使用mqtt订阅主题和发布消息。</p>
+<p>首先导入需要的模块:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">umqtt.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">MQTTClient</span>    <span class="c1"># 导入umqtt.simple模块,用于简单的mqtt客户端功能</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>                  <span class="c1"># 导入mpython模块</span>
+</pre></div>
+</div>
+<p>掌控板先连接上互联网:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>                           <span class="c1"># 实例化wifi类</span>
+<span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>   <span class="c1"># wifi连接,ssid为用户名,password为密码</span>
+</pre></div>
+</div>
+<p>实例 MQTTClient:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SERVER</span> <span class="o">=</span> <span class="s2">&quot;182.254.130.180&quot;</span>       <span class="c1"># Easy IoT的MQTT服务器地址</span>
+<span class="n">username</span><span class="o">=</span><span class="s1">&#39;yourIotUserName&#39;</span>       <span class="c1"># 你的Easy IoT上的Iot_id</span>
+<span class="n">password</span><span class="o">=</span><span class="s1">&#39;yourIotPassword&#39;</span>       <span class="c1"># 你的Easy IoT上的Iot_pwd</span>
+<span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;yourClientID&quot;</span>       <span class="c1"># 你的Easy IoT上的Client ID</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">(</span><span class="n">CLIENT_ID</span><span class="p">,</span> <span class="n">SERVER</span><span class="p">,</span><span class="mi">1883</span><span class="p">,</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span>  <span class="c1"># MQTTClient类实例</span>
+<span class="n">c</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>         <span class="c1"># mqtt连接</span>
+</pre></div>
+</div>
+<p>MQTTClient(client_id, server, port=0, user=None, password=None, keepalive=0), <code class="docutils literal notranslate"><span class="pre">client_id</span></code> 参数为mqtt客户端的唯一的id；<code class="docutils literal notranslate"><span class="pre">server</span></code> 参数为mqtt代理服务器的
+IP地址； <code class="docutils literal notranslate"><span class="pre">port</span></code> 参数为mqtt的服务器访问的端口号,一般为1883,不同平台端口会有所不一样；<code class="docutils literal notranslate"><span class="pre">user</span></code> 参数为用于获取mqtt鉴权的用户名；<code class="docutils literal notranslate"><span class="pre">password</span></code> 参数为获取mqtt鉴权的password；
+<code class="docutils literal notranslate"><span class="pre">keepalive</span></code> 参数为连接保存时间,当在keepalive间隔时间内未有订阅或发布等包,将会自动断开连接。</p>
+<a class="reference internal image-reference" href="../../../_images/mqtt_1.png"><img alt="../../../_images/mqtt_1.png" src="../../../_images/mqtt_1.png" style="width: 820.1999999999999px; height: 378.59999999999997px;" /></a>
+</section>
+<section id="id3">
+<h2>发布消息<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>发布Easy IoT上的设备topic:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;Bkgk2zXb4&quot;</span><span class="p">,</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><code class="docutils literal notranslate"><span class="pre">publish(topic,</span> <span class="pre">msg)</span></code> , <code class="docutils literal notranslate"><span class="pre">topic</span></code> 参数为发布的主题,在Easy IoT的管理界面上,是通过topic来区分设备的,且不能修改,这点需要注意；<code class="docutils literal notranslate"><span class="pre">msg</span></code> 参数为该主题的消息；</p>
+</div>
+<p>publish后,你可以在Easy IoT工作间的该设备“查看详情”中,查询到刚才发布的消息,如下:</p>
+<img alt="../../../_images/mqtt_2.png" src="../../../_images/mqtt_2.png" />
+<img alt="../../../_images/mqtt_3.png" src="../../../_images/mqtt_3.png" />
+</section>
+<section id="id4">
+<h2>订阅主题<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>设置当接收消息后,打印输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sub_cb</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">((</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">))</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">sub_cb</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在订阅主题前,需要先设置回调函数 <code class="docutils literal notranslate"><span class="pre">set_callback(sub_cb)</span></code>, <code class="docutils literal notranslate"><span class="pre">sub_cb</span></code> 为当接收的消息后,处理的函数,须包含两个参数。</p>
+<p>订阅主题, <code class="docutils literal notranslate"><span class="pre">topic</span></code> 参数为需要订阅的主题:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>最后使用 <code class="docutils literal notranslate"><span class="pre">wait_msg()</span></code> 等待接收消息:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">wait_msg</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="id5">
+<h3>远程开关灯<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<p>以下示例用到mqtt订阅主题功能做的远程控制开关灯:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">umqtt.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">MQTTClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Timer</span>
+
+<span class="n">SERVER</span> <span class="o">=</span> <span class="s2">&quot;182.254.130.180&quot;</span>            <span class="c1"># Easy IoT的MQTT服务器地址</span>
+<span class="n">username</span><span class="o">=</span><span class="s1">&#39;yourIotUserName&#39;</span>            <span class="c1"># 你的Easy IoT上的Iot_id</span>
+<span class="n">password</span><span class="o">=</span><span class="s1">&#39;yourIotPassword&#39;</span>            <span class="c1"># 你的Easy IoT上的Iot_pwd</span>
+<span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;yourClientID&quot;</span>            <span class="c1"># 你的Easy IoT上的Client ID</span>
+
+<span class="n">TOPIC</span><span class="o">=</span><span class="s1">&#39;yourTopic&#39;</span>                     <span class="c1"># 你的Easy IoT上设备的topic</span>
+
+<span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>                         <span class="c1"># 实例化wifi类</span>
+<span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>   <span class="c1"># wifi连接,ssid为用户名,password为密码</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sub_cb</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>             <span class="c1"># 当接收到订阅消息时的回调函数</span>
+        <span class="nb">print</span><span class="p">((</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">))</span>             <span class="c1"># 打印接收的主题消息</span>
+
+        <span class="k">if</span> <span class="n">topic</span> <span class="o">==</span> <span class="n">TOPIC</span><span class="o">.</span><span class="n">encode</span><span class="p">():</span>     <span class="c1"># 如果topic为我们设备的topic时,由于收到为字节类型。这里需要将 TOPIC 转换为字节类型。</span>
+
+            <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;on&quot;</span><span class="p">:</span>                <span class="c1"># 如果消息为“on”,亮灯</span>
+                    <span class="n">rgb</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+                    <span class="n">rgb</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+
+            <span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;off&quot;</span><span class="p">:</span>         <span class="c1"># 如果消息为“off”,灭灯</span>
+                <span class="n">rgb</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+                <span class="n">rgb</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">(</span><span class="n">CLIENT_ID</span><span class="p">,</span> <span class="n">SERVER</span><span class="p">,</span><span class="mi">1883</span><span class="p">,</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">,</span><span class="n">keepalive</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>   <span class="c1"># MQTTClient类实例,并设置连接保持时间间隔为30秒</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>                             <span class="c1"># mqtt连接</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">sub_cb</span><span class="p">)</span>                  <span class="c1"># 设置回调函数</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TOPIC</span><span class="p">)</span>                      <span class="c1"># 订阅主题</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connected to </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">SERVER</span><span class="p">)</span>
+
+    <span class="n">tim1</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                          <span class="c1"># 创建定时器1</span>
+    <span class="n">tim1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="n">c</span><span class="o">.</span><span class="n">ping</span><span class="p">())</span>     <span class="c1"># 20秒间隔发送Ping,保持连接</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">wait_msg</span><span class="p">()</span>                    <span class="c1"># 循环等待消息</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>                     <span class="c1"># 异常时,断开mqtt连接</span>
+</pre></div>
+</div>
+<p>然后点击进入Easy IoT工作间的该设备“发送消息”,发送该主题消息,如下:</p>
+<img alt="../../../_images/mqtt_4.png" src="../../../_images/mqtt_4.png" />
+<a class="reference internal image-reference" href="../../../_images/mqtt_5.gif"><img alt="../../../_images/mqtt_5.gif" src="../../../_images/mqtt_5.gif" style="width: 705.0px; height: 362.0px;" /></a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="物联网基础知识" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="yeelight.html" class="btn btn-neutral float-right" title="Yeelight" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

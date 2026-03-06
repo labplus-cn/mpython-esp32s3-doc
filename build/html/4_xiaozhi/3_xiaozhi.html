@@ -1,0 +1,197 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使用教程 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=beaddf03"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="5. API文档" href="../5_api/1_index.html" />
+    <link rel="prev" title="烧录教程" href="2_xiaozhi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="1_index.html">4. 掌控板3.0玩小智</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_xiaozhi.html">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_xiaozhi.html">烧录教程</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">使用教程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wifi">1.1 WIFI配网</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2 激活设备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ai">1.3 唤醒AI小智</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.4 小智设备解绑教程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="1_index.html">4. 掌控板3.0玩小智</a></li>
+      <li class="breadcrumb-item active">使用教程</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/4_xiaozhi/3_xiaozhi.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>使用教程<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<nav class="contents local" id="id2">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#wifi" id="id5">1.1 WIFI配网</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id6">1.2 激活设备</a></p></li>
+<li><p><a class="reference internal" href="#ai" id="id7">1.3 唤醒AI小智</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id8">1.4 小智设备解绑教程</a></p></li>
+</ul>
+</nav>
+<section id="wifi">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">1.1 WIFI配网</a><a class="headerlink" href="#wifi" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>WIFI配网：指的是通过开发板 WIFI 的 热点功能，告诉开发板它以后去连接哪一个 WIFI 进行连接网络。</p></li>
+</ul>
+<p>配网模式会在第一次烧录固件后出现，效果如下图：</p>
+<ul class="simple">
+<li><p>根据屏幕提示，使用手机去搜索 WIFI 名称为：Xiaozhi-xxxx的WIFI，这个WIFI是由掌控板发出的，没有密码。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/xiaozhi-1.png"><img alt="../_images/xiaozhi-1.png" class="align-center" src="../_images/xiaozhi-1.png" style="width: 600px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这个网页是不需要网络的，有一些手机通过浏览器打开不了这个网址，所以如果这个网页打不开，请关闭你手机的网络数据，只开启WIFI连接着，再打开网址即可。</p>
+</div>
+<a class="reference internal image-reference" href="../_images/xiaozhi-2.png"><img alt="../_images/xiaozhi-2.png" class="align-center" src="../_images/xiaozhi-2.png" style="width: 600px;" /></a>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/xiaozhi-3.png"><img alt="../_images/xiaozhi-3.png" src="../_images/xiaozhi-3.png" style="width: 600px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>在这个网页中，输入开发板将要连接的WIFI，因为开发板需要网络去调用 AI 大模型的数据，所以你接下来要给开发板配置的WIFI，请确保有网络。</p></li>
+<li><p>完成后在网页中输入我热点的名称和密码。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/xiaozhi-4.png"><img alt="../_images/xiaozhi-4.png" class="align-center" src="../_images/xiaozhi-4.png" style="width: 600px;" /></a>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/xiaozhi-5.png"><img alt="../_images/xiaozhi-5.png" src="../_images/xiaozhi-5.png" style="width: 600px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>连接成功后，网页提示设备会重新启动，这个时候等待重启完成即可。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/xiaozhi-6.png"><img alt="../_images/xiaozhi-6.png" class="align-center" src="../_images/xiaozhi-6.png" style="width: 600px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>开启的手机热点必须是2.4G频段网络，不然搜索不到。</p>
+</div>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">1.2 激活设备</a><a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>在配网完成后，开发板会自动连接WIFI，到最后会卡在激活设备界面。</p></li>
+<li><p>打开浏览器，输入网址：xiaozhi.me。浏览器用手机或者电脑都可以打开。 进入小智AI的网页后，点击控制台，用手机号登录。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/xiaozhi-7.png"><img alt="../_images/xiaozhi-7.png" class="align-center" src="../_images/xiaozhi-7.png" style="width: 600px;" /></a>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/xiaozhi-8.png"><img alt="../_images/xiaozhi-8.png" src="../_images/xiaozhi-8.png" style="width: 600px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>登录完成后，在新界面中，点击添加设备。将开发板屏幕显示的 6 位设备码输入到网页上的验证码中。这样就绑定成功了。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/xiaozhi-9.png"><img alt="../_images/xiaozhi-9.png" class="align-center" src="../_images/xiaozhi-9.png" style="width: 600px;" /></a>
+</section>
+<section id="ai">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">1.3 唤醒AI小智</a><a class="headerlink" href="#ai" title="此标题的永久链接"></a></h2>
+<p>在重新启动后，你可以直接对开发板说 “你好，小智”，测试是否可以正常对话。</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">1.4 小智设备解绑教程</a><a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>在xiaozhi.me 网站上解绑设备。</p>
+<p>发现设备已被别人绑定，无法联系上对方，如何解绑设备?</p>
+<p>这种情况通常发生在你的开发套件或者芯片模组之前已经被绑定到其他账号，在退货或者回收后，没有在xiaozhi.me 网站上解绑设备。也可以通过发邮件解除绑定。发送邮件到 <a class="reference external" href="mailto:xiaozhi&#46;ai&#37;&#52;&#48;tenclass&#46;com">xiaozhi<span>&#46;</span>ai<span>&#64;</span>tenclass<span>&#46;</span>com</a> 。邮件标题为 【解绑设备，设备ID XXX，MAC地址 XXX】</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="2_xiaozhi.html" class="btn btn-neutral float-left" title="烧录教程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../5_api/1_index.html" class="btn btn-neutral float-right" title="5. API文档" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

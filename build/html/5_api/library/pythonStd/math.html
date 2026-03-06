@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>math – 数学运算函数 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="os – 基本的操作系统" href="os.html" />
+    <link rel="prev" title="marshal — Python对象序列化" href="marshal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/math.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-math">
+<span id="math"></span><h1><a class="reference internal" href="#module-math" title="math: mathematical functions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code></a> – 数学运算函数<a class="headerlink" href="#module-math" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档:<a class="reference external" href="https://docs.python.org/3.5/library/math.html#module-math">math</a>.</p>
+<p>该 <code class="docutils literal notranslate"><span class="pre">math</span></code> 模块提供了一些处理浮点数的基本数学函数.</p>
+<p><em>注意:</em> 在pyboard上，浮点数具有32位精度.</p>
+<p>可用性：在WiPy上不可用。此模块需要浮点支持。</p>
+<section id="id2">
+<h2>函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="math.acos">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">acos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.acos" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的反余弦值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.acosh">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">acosh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.acosh" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的反双曲余弦值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.asin">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">asin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.asin" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的反正弦值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.asinh">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">asinh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.asinh" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的反双曲正弦值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.atan">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">atan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.atan" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的反正切值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.atan2">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">atan2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.atan2" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">y/x</span></code> 的反正切主值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.atanh">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">atanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.atanh" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的反双曲正切值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.ceil">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">ceil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.ceil" title="永久链接至目标"></a></dt>
+<dd><p>返回一个整数， <code class="docutils literal notranslate"><span class="pre">x</span></code> 向正无穷大舍入.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.copysign">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">copysign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.copysign" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 带有 <code class="docutils literal notranslate"><span class="pre">y</span></code> 的符号.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.cos">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.cos" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的余弦值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.cosh">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">cosh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.cosh" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的双曲余弦值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.degrees">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">degrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.degrees" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 弧度转换为度数.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.erf">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">erf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.erf" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的错误函数.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.erfc">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">erfc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.erfc" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的互补误差函数.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.exp">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.exp" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的指数值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.expm1">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">expm1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.expm1" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">exp(x)</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.fabs">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">fabs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.fabs" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的绝对值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.floor">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">floor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.floor" title="永久链接至目标"></a></dt>
+<dd><p>返回一个整数， <code class="docutils literal notranslate"><span class="pre">x</span></code> 向负无穷大舍入。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.fmod">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">fmod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.fmod" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x/y</span></code> 的余数.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.frexp">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">frexp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.frexp" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>将浮点数分解为尾数和指数。返回的值是元组 <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">e)</span></code> 这样 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">m</span> <span class="pre">*</span> <span class="pre">2**e</span></code>
+完全正确。如果 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">0</span></code> ，则函数返回 <code class="docutils literal notranslate"><span class="pre">(0.0,0)</span></code> ，否则 <code class="docutils literal notranslate"><span class="pre">0.5</span> <span class="pre">&lt;=</span> <span class="pre">abs(m)</span> <span class="pre">&lt;</span> <span class="pre">1</span></code> .</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="math.gamma">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">gamma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.gamma" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的伽玛函数值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.isfinite">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">isfinite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.isfinite" title="永久链接至目标"></a></dt>
+<dd><p>如果 <code class="docutils literal notranslate"><span class="pre">x</span></code> 是有限,则返回 <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.isinf">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">isinf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.isinf" title="永久链接至目标"></a></dt>
+<dd><p>如果 <code class="docutils literal notranslate"><span class="pre">x</span></code> 是无限,则返回 <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.isnan">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">isnan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.isnan" title="永久链接至目标"></a></dt>
+<dd><p>如果 <code class="docutils literal notranslate"><span class="pre">x</span></code> 不是数字,则返回 <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.ldexp">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">ldexp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.ldexp" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">(2**exp)</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.lgamma">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">lgamma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.lgamma" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的伽玛函数的自然对数.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.log">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.log" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="永久链接至目标"></a></dt>
+<dd><p>一个参数时，返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的自然对数。
+两个参数时，返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 以给定 <code class="docutils literal notranslate"><span class="pre">base</span></code> 为底的对数。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.log10">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">log10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.log10" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的以10为底的对数.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.log2">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">log2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.log2" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的以2为底的对数.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.modf">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">modf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.modf" title="永久链接至目标"></a></dt>
+<dd><p>返回一个由两个浮点数组成的元组，它是数字 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的分数和整数部分。两个返回值都具有相同的符号 <code class="docutils literal notranslate"><span class="pre">x</span></code> .</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.pow">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">pow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.pow" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的 <code class="docutils literal notranslate"><span class="pre">y</span></code> 次方.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.radians">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">radians</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.radians" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 度转换为弧度.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.sin">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.sin" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的正弦值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.sinh">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">sinh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.sinh" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的双曲正弦值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.sqrt">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.sqrt" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的平方根.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.tan">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.tan" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的正切值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.tanh">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.tanh" title="永久链接至目标"></a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的双曲正切值.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.trunc">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">trunc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.trunc" title="永久链接至目标"></a></dt>
+<dd><p>返回一个整数， <code class="docutils literal notranslate"><span class="pre">x</span></code> 向0舍入.</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="math.e">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">e</span></span><a class="headerlink" href="#math.e" title="永久链接至目标"></a></dt>
+<dd><p>自然对数的底</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="math.pi">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">pi</span></span><a class="headerlink" href="#math.pi" title="永久链接至目标"></a></dt>
+<dd><p>圆周长与直径之比</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="marshal.html" class="btn btn-neutral float-left" title="marshal — Python对象序列化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="os.html" class="btn btn-neutral float-right" title="os – 基本的操作系统" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

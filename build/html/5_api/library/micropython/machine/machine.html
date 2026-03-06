@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>machine — 与硬件相关的功能 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../../search.html" />
+    <link rel="next" title="类 Pin – 控制 I/O 引脚" href="machine.Pin.html" />
+    <link rel="prev" title="framebuf — 帧缓冲操作" href="../framebuf.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">MicroPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../btree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">btree</span></code> – 简单的 BTree 数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../framebuf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">framebuf</span></code> — 帧缓冲操作</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../network.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ubluetooth.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code> — 低功耗蓝牙</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ucryptolib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ucryptolib</span></code> – 加密密码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uctypes.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code> –  以结构化方式访问二进制数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../neopixel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">neopixel</span></code> — WS2812 灯带</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ntptime.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ntptime</span></code> — 时间同步</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dht.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dht</span></code> — dht模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../esp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp</span></code> — ESP32相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../esp32.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code> — 特定于ESP32的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onewire.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">onewire</span></code> — 单总线</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">MicroPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/5_api/library/micropython/machine/machine.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-machine">
+<span id="machine"></span><h1><a class="reference internal" href="#module-machine" title="machine: 与硬件相关的功能"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code></a> — 与硬件相关的功能<a class="headerlink" href="#module-machine" title="此标题的永久链接"></a></h1>
+<p>该 <code class="docutils literal notranslate"><span class="pre">machine</span></code> 模块包含与特定电路板上的硬件相关的特定功能。该模块中的大多数功能允许直接和不受限制地访问和控制系统上的硬件块（如CPU，定时器，总线等）。
+使用不当，可能导致故障，锁定，电路板崩溃，以及在极端情况下硬件损坏。</p>
+<p id="machine-callbacks">关于 <a class="reference internal" href="#module-machine" title="machine: 与硬件相关的功能"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code></a> 模块的函数和类方法使用的回调的注释：所有这些回调应被视为在中断上下文中执行。
+这对于ID&gt; = 0的物理设备和具有负ID（例如-1）的“虚拟”设备都是如此（这些“虚拟”设备在真实硬件和实际硬件中断之上仍然是薄的垫片）。
+请参见 <a class="reference internal" href="../../../mpy_ref/isr_rules.html#isr-rules"><span class="std std-ref">中断处理程序</span></a></p>
+<blockquote>
+<div><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="machine.Pin.html">类 Pin – 控制 I/O 引脚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.ADC.html">类 ADC – 模数转换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.TouchPad.html">类 TouchPad – 触摸</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.PWM.html">类 PWM – 脉冲宽度调制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.UART.html">类 UART – 双工串行通信总线</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.I2C.html">类 I2C –  双线串行协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.SPI.html">类 SPI – 串行外设接口总线协议 (主端)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.Timer.html">类 Timer – 控制硬件定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.RTC.html">类 RTC – 实时时钟</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.WDT.html">类 WDT – 看门狗定时器</a></li>
+</ul>
+</div>
+</div></blockquote>
+<section id="id1">
+<h2>复位相关函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.reset">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.reset" title="永久链接至目标"></a></dt>
+<dd><p>与按下外部 RESET复位按键效果一样.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.reset_cause">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">reset_cause</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.reset_cause" title="永久链接至目标"></a></dt>
+<dd><p>获得重启原因。</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>重启原因</p></td>
+<td><p>数值</p></td>
+<td><p>定义</p></td>
+</tr>
+<tr class="row-even"><td><p>PWRON_RESET</p></td>
+<td><p>1</p></td>
+<td><p>上电重启</p></td>
+</tr>
+<tr class="row-odd"><td><p>HARD_RESET</p></td>
+<td><p>2</p></td>
+<td><p>硬重启</p></td>
+</tr>
+<tr class="row-even"><td><p>WDT_RESET</p></td>
+<td><p>3</p></td>
+<td><p>看门狗计时器重启</p></td>
+</tr>
+<tr class="row-odd"><td><p>DEEPSLEEP_RESET</p></td>
+<td><p>4</p></td>
+<td><p>从休眠重启</p></td>
+</tr>
+<tr class="row-even"><td><p>SOFT_RESET</p></td>
+<td><p>5</p></td>
+<td><p>软重启</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>中断相关函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.disable_irq">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">disable_irq</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.disable_irq" title="永久链接至目标"></a></dt>
+<dd><p>禁用中断请求。返回先前的IRQ状态，该状态应被视为不透明值。 <a class="reference internal" href="#machine.enable_irq" title="machine.enable_irq"><code class="xref py py-func docutils literal notranslate"><span class="pre">enable_irq()</span></code></a> 在 <a class="reference internal" href="#machine.disable_irq" title="machine.disable_irq"><code class="xref py py-func docutils literal notranslate"><span class="pre">disable_irq()</span></code></a> 调用之前，
+应将此返回值传递给函数以将中断恢复到其原始状态。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.enable_irq">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">enable_irq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#machine.enable_irq" title="永久链接至目标"></a></dt>
+<dd><p>重新启用中断请求。 <code class="xref py py-func docutils literal notranslate"><span class="pre">state()</span></code> 参数应该是最近一次调用  <a class="reference internal" href="#machine.disable_irq" title="machine.disable_irq"><code class="xref py py-func docutils literal notranslate"><span class="pre">disable_irq()</span></code></a> 函数时返回的值。</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>电源相关函数<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.freq">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">freq</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.freq" title="永久链接至目标"></a></dt>
+<dd><p>返回 CPU 频率,单位Hz</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.idle">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.idle" title="永久链接至目标"></a></dt>
+<dd><p>为CPU提供时钟，有助于在短期或长期内随时降低功耗。一旦触发任何中断，外设继续工作并继续执行
+（在许多端口上，这包括以毫秒级的规则间隔发生的系统定时器中断）。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.sleep">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">sleep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.sleep" title="永久链接至目标"></a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>不推荐使用此函数，可用lightsleep()不带参数。</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.deepsleep">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">deepsleep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.deepsleep" title="永久链接至目标"></a></dt>
+<dd><p>停止执行以尝试进入低功率状态。</p>
+<p>如果指定了time_ms，那么这将是睡眠将持续的最长时间（以毫秒为单位）。否则睡眠可以无限期地持续。</p>
+<p>无论有没有时间，如果有需要处理的事件，执行可以随时恢复。应该在休眠之前配置此类事件或唤醒源，如 <cite>Pin</cite> 更改或 <cite>RTC</cite> 超时。</p>
+<p><code class="docutils literal notranslate"><span class="pre">lightsleep</span></code> 和 <code class="docutils literal notranslate"><span class="pre">deepsleep</span></code> 的精确行为和省电功能在很大程度上取决于底层硬件，但一般属性是：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>lightsleep具有完整的RAM和状态保留。唤醒后，从请求睡眠的点恢复执行，所有子系统都可以运行。</p></li>
+<li><p>深度睡眠可能不会保留RAM或系统的任何其他状态（例如外围设备或网络接口）。唤醒后，从主脚本恢复执行，类似于硬复位或上电复位。该 <cite>reset_cause()</cite> 函数将返回 <cite>machine.DEEPSLEEP</cite> ，这可用于区分深度睡眠唤醒与其他重置。</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.wake_reason">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">wake_reason</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.wake_reason" title="永久链接至目标"></a></dt>
+<dd><p>返回唤醒原因。</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>唤醒原因</p></td>
+<td><p>数值</p></td>
+<td><p>定义</p></td>
+</tr>
+<tr class="row-even"><td><p>PIN_WAKE/EXT0_WAKE</p></td>
+<td><p>2</p></td>
+<td><p>单个RTC_GPIO唤醒</p></td>
+</tr>
+<tr class="row-odd"><td><p>EXT1_WAKE</p></td>
+<td><p>3</p></td>
+<td><p>多RTC_GPIO唤醒</p></td>
+</tr>
+<tr class="row-even"><td><p>TIMER_WAKE</p></td>
+<td><p>4</p></td>
+<td><p>定时器唤醒</p></td>
+</tr>
+<tr class="row-odd"><td><p>TOUCHPAD_WAKE</p></td>
+<td><p>5</p></td>
+<td><p>触摸唤醒</p></td>
+</tr>
+<tr class="row-even"><td><p>ULP_WAKE</p></td>
+<td><p>6</p></td>
+<td><p>协处理器唤醒</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+<section id="id4">
+<h2>其他函数<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.unique_id">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">unique_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.unique_id" title="永久链接至目标"></a></dt>
+<dd><p>返回 board/ SoC的唯一标识符的字节字符串。如果底层硬件允许，它将从board/ SoC实例变化到另一个实例。
+长度因硬件而异（如果您需要短ID，请使用完整值的子字符串）。在某些MicroPython端口中，ID对应于网络MAC地址。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span><span class="o">.</span><span class="n">unique_id</span><span class="p">()</span>
+<span class="go">b&#39;\xccP\xe3\x90\xeb\xd4&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.time_pulse_us">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">time_pulse_us</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulse_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_us</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#machine.time_pulse_us" title="永久链接至目标"></a></dt>
+<dd><p>在给定的引脚上测试外部脉冲电平持续时间，并以微秒为单位返回外部脉冲电平的持续时间。 <code class="docutils literal notranslate"><span class="pre">pulse_level</span></code> =1测试高电平持续时间，pulse_level=0测试低电平持续时间。
+当设置电平和现在脉冲的电平不一致时，则会等到输入电平和设置的电平一致时开始计时，如果设置的电平和现在脉冲的电平一致时，那么就会立即开始计时。
+当引脚电平和设置电平一直相反时，则会等待超时，超时返回-2。当引脚电平和设置电平一直相同时，也会等待超时，超时返回-1， <code class="docutils literal notranslate"><span class="pre">timeout_us</span></code> 即为超时时间。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="machine.rng">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">rng</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.rng" title="永久链接至目标"></a></dt>
+<dd><p>返回一个24 bit软件生成的随机数.</p>
+</dd></dl>
+
+</section>
+<section id="machine-constants">
+<span id="id5"></span><h2>常量<a class="headerlink" href="#machine-constants" title="此标题的永久链接"></a></h2>
+<section id="irq">
+<h3>IRQ唤醒值<a class="headerlink" href="#irq" title="此标题的永久链接"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="machine.machine.SLEEP">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">SLEEP</span></span><a class="headerlink" href="#machine.machine.SLEEP" title="永久链接至目标"></a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="machine.machine.DEEPSLEEP">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">DEEPSLEEP</span></span><a class="headerlink" href="#machine.machine.DEEPSLEEP" title="永久链接至目标"></a></dt>
+<dd><p>4</p>
+</dd></dl>
+
+</section>
+<section id="id6">
+<h3>重启原因<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="machine.machine.PWRON_RESET">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">PWRON_RESET</span></span><a class="headerlink" href="#machine.machine.PWRON_RESET" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.HARD_RESET">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">HARD_RESET</span></span><a class="headerlink" href="#machine.machine.HARD_RESET" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.WDT_RESET">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">WDT_RESET</span></span><a class="headerlink" href="#machine.machine.WDT_RESET" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.DEEPSLEEP_RESET">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">DEEPSLEEP_RESET</span></span><a class="headerlink" href="#machine.machine.DEEPSLEEP_RESET" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.SOFT_RESET">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">SOFT_RESET</span></span><a class="headerlink" href="#machine.machine.SOFT_RESET" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="id7">
+<h3>唤醒原因<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="machine.machine.PIN_WAKE">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">PIN_WAKE</span></span><a class="headerlink" href="#machine.machine.PIN_WAKE" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.EXT0_WAKE">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">EXT0_WAKE</span></span><a class="headerlink" href="#machine.machine.EXT0_WAKE" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.EXT1_WAKE">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">EXT1_WAKE</span></span><a class="headerlink" href="#machine.machine.EXT1_WAKE" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.TIMER_WAKE">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">TIMER_WAKE</span></span><a class="headerlink" href="#machine.machine.TIMER_WAKE" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.TOUCHPAD_WAKE">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">TOUCHPAD_WAKE</span></span><a class="headerlink" href="#machine.machine.TOUCHPAD_WAKE" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="machine.machine.ULP_WAKE">
+<span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">ULP_WAKE</span></span><a class="headerlink" href="#machine.machine.ULP_WAKE" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../framebuf.html" class="btn btn-neutral float-left" title="framebuf — 帧缓冲操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="machine.Pin.html" class="btn btn-neutral float-right" title="类 Pin – 控制 I/O 引脚" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

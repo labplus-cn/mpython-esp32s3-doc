@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>套接字-TCP &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="套接字-UDP" href="udp.html" />
+    <link rel="prev" title="TCP/IP简介" href="tcpip.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">3. 示例教程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">网络</a></li>
+      <li class="breadcrumb-item active">套接字-TCP</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/3_examples/basics/network/tcp.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tcp">
+<h1>套接字-TCP<a class="headerlink" href="#tcp" title="此标题的永久链接"></a></h1>
+<section id="socket">
+<h2>什么是socket?<a class="headerlink" href="#socket" title="此标题的永久链接"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Socket</span></code> 是网络编程的一个抽象概念。通常我们用一个Socket表示“打开了一个网络链接”，而打开一个Socket需要知道目标计算机的IP地址和端口号，再指定协议类型即可。</p>
+</section>
+<section id="id1">
+<h2>TCP协议简介<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>TCP协议，传输控制协议（Transmission Control Protocol，缩写为 TCP）是一种面向连接的、可靠的、基于字节流的传输层通讯协议，由IETF的RFC 793定义。</p>
+<p>TCP通信需要经过创建连接、数据传送、终止连接三个步骤。TCP通信模型中，在通信开始之前，一定要先创建相关连接，才能发送数据，类似于生活中，”打电话””。</p>
+<p>套接字在工作时将连接的双方分为服务器端和客户端,即C/S模式,TCP通讯原理如下图:</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../../../_images/tcp原理.png"><img alt="../../../_images/tcp%E5%8E%9F%E7%90%86.png" src="../../../_images/tcp%E5%8E%9F%E7%90%86.png" style="width: 590.4px; height: 498.6px;" /></a>
+<figcaption>
+<p><span class="caption-text">Socket TCP通讯过程</span><a class="headerlink" href="#id5" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>TCP编程<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>本教程的这一部分将介绍如何作为客户端或服务端使用TCP套接字。有关更全面的socket模块的使用，请查阅 <a class="reference internal" href="../../../5_api/library/pythonStd/usocket.html#module-usocket" title="usocket: socket 模块"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usocket</span></code></a> 模块。
+以下教程需要使用到TCP网络调试工具。下文使用的是IOS的 <strong>Network Test Utility</strong> ，可在APP Store搜索安装，android系统请点击下载。</p>
+<p>声明：这里的TCP客户端（tcpClient）是你的电脑或者手机，而TCP服务端（tcpServer）是mpython掌控板。</p>
+<section id="id3">
+<h3>TCP客户端<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>TCP编程的客户端一般步骤是：</p>
+<ol class="arabic simple">
+<li><p>创建一个socket，用函数socket()</p></li>
+<li><p>设置socket属性，用函数setsockopt() , <em>可选</em></p></li>
+<li><p>绑定IP地址、端口等信息到socket上，用函数bind() , <em>可选</em></p></li>
+<li><p>设置要连接的对方的IP地址和端口等属性</p></li>
+<li><p>连接服务器,用函数connect()</p></li>
+<li><p>收发数据,用函数send()和recv(),或者read()和write()</p></li>
+<li><p>关闭网络连接</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">TCP Client示例:</span><a class="headerlink" href="#id6" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;172.25.1.63&quot;</span>          <span class="c1"># TCP服务端的IP地址</span>
+<span class="linenos"> 5</span><span class="n">port</span> <span class="o">=</span> <span class="mi">5001</span>                   <span class="c1"># TCP服务端的端口</span>
+<span class="linenos"> 6</span><span class="n">s</span><span class="o">=</span><span class="kc">None</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>                 <span class="c1"># 创建wifi类</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1"># 捕获异常，如果在&quot;try&quot; 代码块中意外中断，则停止关闭套接字</span>
+<span class="linenos">12</span><span class="k">try</span><span class="p">:</span>
+<span class="linenos">13</span>    <span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>                   <span class="c1"># WiFi连接，设置ssid 和password</span>
+<span class="linenos">14</span>    <span class="c1"># mywifi.enable_APWiFi(&quot;wifi_name&quot;,13)                  # 还可以开启AP模式,自建wifi网络</span>
+<span class="linenos">15</span>    <span class="n">ip</span><span class="o">=</span><span class="n">mywifi</span><span class="o">.</span><span class="n">sta</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>                             <span class="c1"># 获取本机IP地址</span>
+<span class="linenos">16</span>    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>   <span class="c1"># 创建TCP的套接字,也可以不给定参数。默认为TCP通讯方式</span>
+<span class="linenos">17</span>    <span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># 设置socket属性</span>
+<span class="linenos">18</span>    <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">host</span><span class="p">,</span><span class="n">port</span><span class="p">))</span>                                  <span class="c1"># 设置要连接的服务器端的IP和端口,并连接</span>
+<span class="linenos">19</span>    <span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;hello mPython,I am TCP Client&quot;</span><span class="p">)</span>                 <span class="c1"># 向服务器端发送数据</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">22</span>        <span class="n">data</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>                                 <span class="c1"># 从服务器端套接字中读取1024字节数据</span>
+<span class="linenos">23</span>        <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>                                 <span class="c1"># 如果接收数据为0字节时,关闭套接字</span>
+<span class="linenos">24</span>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;close socket&quot;</span><span class="p">)</span>
+<span class="linenos">25</span>            <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                                      
+<span class="linenos">26</span>            <span class="k">break</span>
+<span class="linenos">27</span>        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos">28</span>        <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>                         <span class="c1"># 以utf-8编码解码字符串</span>
+<span class="linenos">29</span>        <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                                      <span class="c1"># 清屏</span>
+<span class="linenos">30</span>        <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>                           <span class="c1"># oled显示socket接收数据</span>
+<span class="linenos">31</span>        <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>                                       <span class="c1"># 显示</span>
+<span class="linenos">32</span>        <span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>                                      <span class="c1"># 向服务器端发送接收到的数据</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="c1"># 当捕获异常,关闭套接字、网络</span>
+<span class="linenos">35</span><span class="k">except</span><span class="p">:</span>
+<span class="linenos">36</span>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="linenos">37</span>        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                              
+<span class="linenos">38</span>    <span class="n">mywifi</span><span class="o">.</span><span class="n">disconnectWiFi</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>由于在网络中都是以bytes形式传输的，所以需要注意数据编码与解码。</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>上例,使用 <code class="docutils literal notranslate"><span class="pre">connectWiFi()</span></code> 连接同个路由器wifi。你也可以用 <code class="docutils literal notranslate"><span class="pre">enable_APWiFi()</span></code> 开启AP模式,自建wifi网络让其他设备接入进来。</p>
+</div>
+<p>首先掌控板和手机须连接至同个局域网内。打开Network Test Utility，进入“TCP Server”界面，
+TCP Server IP选择手机在该网内的IP地址 ，端口号可设范围0~65535。然后，点击Listen，开始监听端口。
+在程序中设置上文选择的TCP服务端IP地址 <code class="docutils literal notranslate"><span class="pre">host</span></code> 和端口号 <code class="docutils literal notranslate"><span class="pre">port</span></code> ，重启运行程序。</p>
+<p>当连接Server成功后，TCP Server会接收到Client发送的文本 <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">mPython,I</span> <span class="pre">am</span> <span class="pre">TCP</span> <span class="pre">Client</span></code> 。此时您在TCP Server发送文本给Client，掌控板会
+接收到文本并将文本显示至oled屏上。</p>
+<img alt="../../../_images/socket_1.gif" src="../../../_images/socket_1.gif" />
+</section>
+<section id="id4">
+<h3>TCP服务端<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<p>TCP编程的服务端一般步骤是：</p>
+<ol class="arabic simple">
+<li><p>创建一个socket，用函数socket()</p></li>
+<li><p>设置socket属性，用函数setsockopt() , <em>可选</em></p></li>
+<li><p>绑定IP地址、端口等信息到socket上，用函数bind()</p></li>
+<li><p>开启监听和设置最大监听数,用函数listen()</p></li>
+<li><p>等待客户端請求一个连接，用函数accept()</p></li>
+<li><p>收发数据，用函数send()和recv()，或者read()和write()</p></li>
+<li><p>关闭网络连接</p></li>
+</ol>
+<p>tcpServer示例:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">TCP Server示例:</span><a class="headerlink" href="#id7" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">port</span><span class="o">=</span><span class="mi">5001</span>                   <span class="c1"># TCP服务端的端口,range0~65535</span>
+<span class="linenos"> 5</span><span class="n">listenSocket</span><span class="o">=</span><span class="kc">None</span>              
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>               <span class="c1"># 创建wifi类</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="c1"># 捕获异常，如果在&quot;try&quot; 代码块中意外中断，则停止关闭套接字</span>
+<span class="linenos">10</span><span class="k">try</span><span class="p">:</span>
+<span class="linenos">11</span>    <span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>                                   <span class="c1"># WiFi连接，设置ssid 和password</span>
+<span class="linenos">12</span>    <span class="c1"># mywifi.enable_APWiFi(&quot;wifi_name&quot;,13)                                  # 还可以开启AP模式,自建wifi网络</span>
+<span class="linenos">13</span>    <span class="n">ip</span><span class="o">=</span> <span class="n">mywifi</span><span class="o">.</span><span class="n">sta</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>                                            <span class="c1"># 获取本机IP地址</span>
+<span class="linenos">14</span>    <span class="n">listenSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>        <span class="c1"># 创建socket,不给定参数默认为TCP通讯方式</span>
+<span class="linenos">15</span>    <span class="n">listenSocket</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>      <span class="c1"># 设置套接字属性参数</span>
+<span class="linenos">16</span>    <span class="n">listenSocket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">ip</span><span class="p">,</span><span class="n">port</span><span class="p">))</span>                                            <span class="c1"># 绑定ip和端口</span>
+<span class="linenos">17</span>    <span class="n">listenSocket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                                                  <span class="c1"># 开始监听并设置最大连接数</span>
+<span class="linenos">18</span>    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;tcp waiting...&#39;</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">port</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>                                   <span class="c1"># oled屏显示本机服务端ip和端口            </span>
+<span class="linenos">20</span>    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s1">&#39;accepting.....&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>                                            
+<span class="linenos">21</span>    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">24</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accepting.....&quot;</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="n">conn</span><span class="p">,</span><span class="n">addr</span> <span class="o">=</span> <span class="n">listenSocket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>                                   <span class="c1"># 阻塞,等待客户端的请求连接,如果有新的客户端来连接服務器，那麼会返回一个新的套接字专门为这个客户端服务</span>
+<span class="linenos">26</span>        <span class="nb">print</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span><span class="s2">&quot;connected&quot;</span><span class="p">)</span>                                                         
+<span class="linenos">27</span>    
+<span class="linenos">28</span>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">29</span>            <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>                                          <span class="c1"># 接收对方发送过来的数据,读取字节设为1024字节</span>
+<span class="linenos">30</span>            <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+<span class="linenos">31</span>                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;close socket&quot;</span><span class="p">)</span>
+<span class="linenos">32</span>                <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                                                <span class="c1"># 如果接收数据为0字节时,关闭套接字</span>
+<span class="linenos">33</span>                <span class="k">break</span>
+<span class="linenos">34</span>            <span class="n">data_utf</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>                                          <span class="c1"># 接收到的字节流以utf8编码解码字符串</span>
+<span class="linenos">35</span>            <span class="nb">print</span><span class="p">(</span><span class="n">data_utf</span><span class="p">)</span>
+<span class="linenos">36</span>            <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="n">data_utf</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">48</span><span class="p">)</span>                                    <span class="c1"># 将接收到文本oled显示出来</span>
+<span class="linenos">37</span>            <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">38</span>            <span class="n">oled</span><span class="o">.</span><span class="n">fill_rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">128</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>                                   <span class="c1"># 局部清屏</span>
+<span class="linenos">39</span>            <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>                                                 <span class="c1"># 返回数据给客户端</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="c1"># 当捕获异常,关闭套接字、网络</span>
+<span class="linenos">42</span><span class="k">except</span><span class="p">:</span>
+<span class="linenos">43</span>    <span class="k">if</span><span class="p">(</span><span class="n">listenSocket</span><span class="p">):</span>
+<span class="linenos">44</span>        <span class="n">listenSocket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">45</span>    <span class="n">mywifi</span><span class="o">.</span><span class="n">disconnectWiFi</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>上例,使用``connectWiFi()`` 连接同个路由器wifi。你也可以用 <code class="docutils literal notranslate"><span class="pre">enable_APWiFi()</span></code> 开启AP模式,自建wifi网络让其他设备接入进来。</p>
+</div>
+<p>首先掌控板和手机须连接至同个局域网内。掌控板重启运行程序，TCP Server端等待Client端连接请求。打开Network Test Utility，进入“TCP Client”界面，填写Remote host和port,即 <code class="docutils literal notranslate"><span class="pre">socket.blind(ip,port)</span></code>
+的IP地址和端口。Connect连接成功后，发送文本，掌控板接收到文本显示至oled屏并将返回至TCP Client端。您可在手机接收界面看到文本从Client-&gt;Server，Server-&gt;Client的过程。</p>
+<a class="reference internal image-reference" href="../../../_images/socket_2.gif"><img alt="../../../_images/socket_2.gif" class="align-center" src="../../../_images/socket_2.gif" style="width: 326.4px; height: 576.0px;" /></a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="tcpip.html" class="btn btn-neutral float-left" title="TCP/IP简介" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="udp.html" class="btn btn-neutral float-right" title="套接字-UDP" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

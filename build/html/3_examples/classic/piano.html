@@ -1,0 +1,160 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>钢琴 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">钢琴</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/classic/piano.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>钢琴<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>使用music模块和掌控板上的触摸按键，制作一个简易的7音阶触摸钢琴。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>               <span class="c1"># 导入mpython模块</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">music</span>                        <span class="c1"># 导入music模块</span>
+
+<span class="n">note</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;C4:2&quot;</span><span class="p">,</span><span class="s2">&quot;D4:2&quot;</span><span class="p">,</span><span class="s2">&quot;E4:2&quot;</span><span class="p">,</span><span class="s2">&quot;F4:2&quot;</span><span class="p">,</span><span class="s2">&quot;G4:2&quot;</span><span class="p">,</span><span class="s2">&quot;A4:2&quot;</span><span class="p">,</span><span class="s2">&quot;B4:2&quot;</span><span class="p">]</span>     <span class="c1"># 定义7音阶的元组</span>
+
+<span class="n">pStatus</span><span class="p">,</span><span class="n">yStatus</span><span class="p">,</span><span class="n">tStatus</span><span class="p">,</span><span class="n">hStatus</span><span class="p">,</span><span class="n">oStatus</span><span class="p">,</span><span class="n">nStatus</span><span class="p">,</span><span class="n">p0Status</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">7</span>  <span class="c1"># 按键状态标记变量</span>
+
+<span class="n">p0</span> <span class="o">=</span> <span class="n">TouchPad</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">33</span><span class="p">))</span>              <span class="c1"># 由于掌控板上的触摸按键只有6个，还需拓展多一个引脚P0，对应ESP32的IO33</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">touchPad_P</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">100</span> <span class="ow">and</span> <span class="n">pStatus</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>      <span class="c1"># 检测按键按下和判断按键标记</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>                       <span class="c1"># 播放音符</span>
+        <span class="n">pStatus</span><span class="o">=</span><span class="mi">0</span>                                 <span class="c1"># 按键标记置0</span>
+    <span class="k">elif</span> <span class="n">touchPad_P</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&gt;=</span><span class="mi">100</span><span class="p">:</span>
+        <span class="n">pStatus</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">touchPad_Y</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">100</span> <span class="ow">and</span> <span class="n">yStatus</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">yStatus</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">touchPad_Y</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&gt;=</span><span class="mi">100</span><span class="p">:</span>
+        <span class="n">yStatus</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">touchPad_T</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">100</span> <span class="ow">and</span> <span class="n">tStatus</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">tStatus</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">touchPad_T</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&gt;=</span><span class="mi">100</span><span class="p">:</span>
+        <span class="n">tStatus</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">touchPad_H</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">100</span> <span class="ow">and</span> <span class="n">hStatus</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">hStatus</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">touchPad_H</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&gt;=</span><span class="mi">100</span><span class="p">:</span>
+        <span class="n">hStatus</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">touchPad_O</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">100</span> <span class="ow">and</span> <span class="n">oStatus</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+        <span class="n">oStatus</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">touchPad_O</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&gt;=</span><span class="mi">100</span><span class="p">:</span>
+        <span class="n">oStatus</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">touchPad_N</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">100</span> <span class="ow">and</span> <span class="n">nStatus</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+        <span class="n">nStatus</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">touchPad_N</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&gt;=</span><span class="mi">100</span><span class="p">:</span>
+        <span class="n">nStatus</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">p0</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">100</span> <span class="ow">and</span> <span class="n">p0Status</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+        <span class="n">p0Status</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">p0</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&gt;=</span><span class="mi">100</span><span class="p">:</span>
+        <span class="n">p0Status</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<img alt="../../_images/piano.gif" src="../../_images/piano.gif" />
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

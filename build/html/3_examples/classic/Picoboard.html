@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Picoboard-Scratch &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Picoboard-Scratch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/classic/Picoboard.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="picoboard-scratch">
+<h1>Picoboard-Scratch<a class="headerlink" href="#picoboard-scratch" title="此标题的永久链接"></a></h1>
+<p>掌控板可以模拟Scratch中的传感板PicoBoard来使用。要使用掌控板模拟PicoBoard在Scratch中编程，首先需要把建立掌控板与Scratch之间的联系的程序刷入掌控板中。</p>
+<section id="id1">
+<h2>刷入程序<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># mPython掌控板模拟Scratch PicoBoard</span>
+
+<span class="c1">#------------------------------------------------------</span>
+<span class="c1"># Channel | PicoBoard       |  mPython                |</span>
+<span class="c1">#------------------------------------------------------</span>
+<span class="c1"># 4       | resistance-A    | press of the &quot;A&quot; button |</span>
+<span class="c1"># 2       | resistance-B    | accelerometer&#39;s x       |</span>
+<span class="c1"># 1       | resistance-C    | accelerometer&#39;s y       |</span>
+<span class="c1"># 0       | resistance-D    | ext                     |</span>
+<span class="c1"># 3       | button          | press of the &quot;B&quot; button |</span>
+<span class="c1"># 5       | light           | light                   |</span>
+<span class="c1"># 6       | Sound           | Sound                   |</span>
+<span class="c1"># 7       | Slider          | TouchPad                |</span>
+<span class="c1"># -----------------------------------------------------</span>
+
+<span class="c1"># 操作说明：正常启动默认进入scratch模式；退回到repl模式，同时按下复位和button b后，</span>
+<span class="c1">#          先松开复位按键2秒后再松开button b</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">UART</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span><span class="n">ADC</span>
+
+<span class="n">scratchMode</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">ext</span> <span class="o">=</span> <span class="n">MPythonPin</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">ANALOG</span><span class="p">)</span>
+
+<span class="c1">#48*48</span>
+<span class="n">scratchlogo</span><span class="o">=</span> <span class="nb">bytearray</span><span class="p">([</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X02</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X80</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X06</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0XE0</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X0E</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0XF0</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X1B</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X5C</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X33</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X46</span><span class="p">,</span><span class="mh">0X7F</span><span class="p">,</span><span class="mh">0XFD</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X5B</span><span class="p">,</span>
+<span class="mh">0XC0</span><span class="p">,</span><span class="mh">0X7D</span><span class="p">,</span><span class="mh">0X80</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X5C</span><span class="p">,</span><span class="mh">0XFF</span><span class="p">,</span><span class="mh">0XFB</span><span class="p">,</span><span class="mh">0X80</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X5F</span><span class="p">,</span><span class="mh">0X7F</span><span class="p">,</span><span class="mh">0XF7</span><span class="p">,</span><span class="mh">0XC0</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X5E</span><span class="p">,</span><span class="mh">0X4F</span><span class="p">,</span><span class="mh">0XE8</span><span class="p">,</span><span class="mh">0X60</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X7D</span><span class="p">,</span><span class="mh">0XF3</span><span class="p">,</span><span class="mh">0XF8</span><span class="p">,</span><span class="mh">0X30</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X6B</span><span class="p">,</span><span class="mh">0X1D</span><span class="p">,</span><span class="mh">0XF8</span><span class="p">,</span>
+<span class="mh">0X18</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X76</span><span class="p">,</span><span class="mh">0X05</span><span class="p">,</span><span class="mh">0XF8</span><span class="p">,</span><span class="mh">0X0C</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0XD4</span><span class="p">,</span><span class="mh">0X02</span><span class="p">,</span><span class="mh">0XE8</span><span class="p">,</span><span class="mh">0X0C</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0XB4</span><span class="p">,</span>
+<span class="mh">0X03</span><span class="p">,</span><span class="mh">0XEC</span><span class="p">,</span><span class="mh">0X0E</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0XB4</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0X74</span><span class="p">,</span><span class="mh">0X6E</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0X7E</span><span class="p">,</span><span class="mh">0X11</span><span class="p">,</span><span class="mh">0X76</span><span class="p">,</span><span class="mh">0X0A</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="mh">0X01</span><span class="p">,</span><span class="mh">0X7A</span><span class="p">,</span><span class="mh">0X11</span><span class="p">,</span><span class="mh">0X03</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X23</span><span class="p">,</span><span class="mh">0X7B</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0X7E</span><span class="p">,</span><span class="mh">0X60</span><span class="p">,</span><span class="mh">0X02</span><span class="p">,</span><span class="mh">0X0F</span><span class="p">,</span><span class="mh">0XFD</span><span class="p">,</span><span class="mh">0X82</span><span class="p">,</span><span class="mh">0X3F</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X28</span><span class="p">,</span><span class="mh">0X03</span><span class="p">,</span><span class="mh">0X7F</span><span class="p">,</span><span class="mh">0X6C</span><span class="p">,</span><span class="mh">0X1E</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X30</span><span class="p">,</span><span class="mh">0X03</span><span class="p">,</span><span class="mh">0X7C</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X0C</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X10</span><span class="p">,</span><span class="mh">0X03</span><span class="p">,</span><span class="mh">0X78</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X10</span><span class="p">,</span><span class="mh">0X3B</span><span class="p">,</span><span class="mh">0X78</span><span class="p">,</span><span class="mh">0X05</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X10</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0X78</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X30</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X3C</span><span class="p">,</span>
+<span class="mh">0X01</span><span class="p">,</span><span class="mh">0XB8</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0X80</span><span class="p">,</span><span class="mh">0X38</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0XB8</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X20</span><span class="p">,</span><span class="mh">0X38</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0XDC</span><span class="p">,</span><span class="mh">0X04</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X70</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X64</span><span class="p">,</span><span class="mh">0X02</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X80</span><span class="p">,</span><span class="mh">0XE0</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X3A</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0XE0</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X1D</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X38</span><span class="p">,</span><span class="mh">0X07</span><span class="p">,</span><span class="mh">0XC0</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X0F</span><span class="p">,</span><span class="mh">0X80</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X1F</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X03</span><span class="p">,</span><span class="mh">0XF0</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0XFE</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X01</span><span class="p">,</span><span class="mh">0XFF</span><span class="p">,</span><span class="mh">0XFF</span><span class="p">,</span><span class="mh">0XF8</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X3F</span><span class="p">,</span><span class="mh">0XFF</span><span class="p">,</span><span class="mh">0XC0</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0XE0</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span><span class="mh">0X00</span><span class="p">,</span>
+<span class="p">])</span>
+
+<span class="k">if</span> <span class="n">button_b</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>               <span class="c1">#启动检测 button b 按下进入repl</span>
+    <span class="n">scratchMode</span><span class="o">=</span><span class="kc">False</span>
+    <span class="c1">#print(&#39;replMode&#39;)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s1">&#39;replMode&#39;</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 触摸按键扫描</span>
+<span class="c1"># 6个触摸按键按下，scratch依次分别反馈10、20、30、40、50、60</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ScanTouchpad</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">touchPad_P</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">&lt;</span><span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1023</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">touchPad_Y</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1023</span><span class="o">/</span><span class="mi">10</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">touchPad_T</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1023</span><span class="o">/</span><span class="mi">10</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">touchPad_H</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1023</span><span class="o">/</span><span class="mi">10</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">touchPad_O</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1023</span><span class="o">/</span><span class="mi">10</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">touchPad_N</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1023</span><span class="o">/</span><span class="mi">10</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+
+<span class="k">while</span> <span class="n">scratchMode</span><span class="p">:</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">bitmap</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">scratchlogo</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">uart</span> <span class="o">=</span> <span class="n">UART</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">38400</span><span class="p">,</span> <span class="n">rx</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tx</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Create and send Scratch data packet</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="n">sensor</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">upper</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0x380</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span>
+        <span class="n">sensor</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0x7f</span>
+        <span class="n">sensor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">|</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">upper</span>
+        <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sensor</span><span class="p">)</span>
+
+    <span class="n">request</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">uart</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">request</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x01</span><span class="p">:</span>       <span class="c1">#当接收到scratch发来的0x01字节</span>
+            <span class="n">rgb</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">rgb</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+            <span class="n">convert</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">)</span>
+            <span class="n">sleep_us</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">extValue</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">ext</span><span class="o">.</span><span class="n">read_analog</span><span class="p">()</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>                              <span class="c1"># Get ext</span>
+            <span class="n">convert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">extValue</span><span class="p">)</span>
+            <span class="n">reading</span> <span class="o">=</span> <span class="n">accelerometer</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span><span class="o">*</span><span class="mi">1000</span>                    <span class="c1"># Get accelerometer&#39;s y</span>
+            <span class="k">if</span> <span class="n">reading</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">reading</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">reading</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">512</span>
+                <span class="n">convert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">reading</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">reading</span> <span class="o">=</span> <span class="mi">512</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">reading</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+                <span class="n">convert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">reading</span><span class="p">)</span>
+
+            <span class="n">reading</span> <span class="o">=</span> <span class="n">accelerometer</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span><span class="o">*</span><span class="mi">1000</span>                    <span class="c1"># Get accelerometer&#39;s x</span>
+            <span class="k">if</span> <span class="n">reading</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">reading</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">reading</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">512</span>
+                <span class="n">convert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">reading</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">reading</span> <span class="o">=</span> <span class="mi">512</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">reading</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+                <span class="n">convert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">reading</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">button_b</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>                                 <span class="c1"># Get button B state</span>
+                <span class="n">convert</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">convert</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1023</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">button_a</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>                                 <span class="c1">#  Get button A state</span>
+                <span class="n">convert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1023</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">convert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+            <span class="n">convert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1023</span><span class="o">-</span><span class="n">light</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>                            <span class="c1">#  Get light senser</span>
+
+            <span class="n">convert</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">sound</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>                                 <span class="c1">#  Get Sound senser</span>
+
+            <span class="n">convert</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">ScanTouchpad</span><span class="p">())</span>                               <span class="c1">#  Get TouchPad value</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rgb</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">rgb</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>此程序是将掌控板与Scratch建立联系，当刷入该程序后，掌控板就与Scratch PicoBoard建立了联系，这样掌控板就能够模拟PicoBoard上的传感器来使用。
+PicoBoard上的传感器与掌控板的一一对应，如下表：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>PicoBoard</p></th>
+<th class="head"><p>掌控板</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>阻力A</p></td>
+<td><p>按键A</p></td>
+</tr>
+<tr class="row-odd"><td><p>阻力B</p></td>
+<td><p>按键X</p></td>
+</tr>
+<tr class="row-even"><td><p>阻力C</p></td>
+<td><p>按键Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>阻力D</p></td>
+<td><p>ext(P3)</p></td>
+</tr>
+<tr class="row-even"><td><p>按键</p></td>
+<td><p>按键B</p></td>
+</tr>
+<tr class="row-odd"><td><p>光线</p></td>
+<td><p>光线</p></td>
+</tr>
+<tr class="row-even"><td><p>声音</p></td>
+<td><p>声音</p></td>
+</tr>
+<tr class="row-odd"><td><p>滑杆</p></td>
+<td><p>触摸按键</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition- admonition">
+<p class="admonition-title">提示</p>
+<p>当掌控板模拟PicoBoard在Scratch中使用时，注意掌控板的传感器的数值有所变化，如在mPython中，光线传感器的检测数值范围在0~4095之间，而在Scratch中，其数值范围为0~100。在Scratch中查看掌控板传感器参数的方法如下：在脚本栏“更多积木”下，点击相应的积木模块。以按键A为例，在按下与未按下两种条件下，点击“阻力A传感器的值”积木，未按下数值为0，按下数值为100，其他传感器查看方法同理。</p>
+</div>
+</section>
+<section id="scratch">
+<h2>掌控板与Scratch连接<a class="headerlink" href="#scratch" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>1、将上面的程序刷入掌控板，设为默认运行；</p></li>
+<li><p>2、打开Scratch软件（这里使用2.0版本），单击脚本栏的“更多积木”中的“添加扩展”，添加“PicoBroad”硬件；</p></li>
+<li><p>3、添加“PicoBroad”后，Scratch界面上会出现“PicoBoard”指令模块。当“PicoBoard”右边的黄色圆点变成绿色，同时掌控板上的三个RGB灯闪烁，此时表示掌控板与Scratch连接成功；</p></li>
+<li><p>4、连接成功后，就可以在Scratch中做一些互动程序了。</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/scratch.jpg"><img alt="../../_images/scratch.jpg" class="align-center" src="../../_images/scratch.jpg" style="width: 419.5px; height: 349.0px;" /></a>
+</section>
+<section id="id2">
+<h2>Scratch软件编辑图形化程序<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>示例下载 Scratch示例。</p>
+<a class="reference internal image-reference" href="../../_images/scratch.gif"><img alt="../../_images/scratch.gif" class="align-center" src="../../_images/scratch.gif" style="width: 682.0px; height: 384.0px;" /></a>
+</section>
+<section id="scratch-repl">
+<h2>退出Scratch，返回repl模式<a class="headerlink" href="#scratch-repl" title="此标题的永久链接"></a></h2>
+<p>掌握板在scratch模式时是无法读取文件和刷入程序的。如果想返回mPython2读取文件或刷入程序，必须使掌控板退出scratch模式，进入repl模式。方法如下：
+* 同时按下复位键和button b后，先松开复位按键2秒后，当OLED显示屏上显示“replMode”字样时再松开button b，此时成功返回到repl模式，如图所示：</p>
+<a class="reference internal image-reference" href="../../_images/replmode.jpg"><img alt="../../_images/replmode.jpg" class="align-center" src="../../_images/replmode.jpg" style="width: 407.4px; height: 335.65px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

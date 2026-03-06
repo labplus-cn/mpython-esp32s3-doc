@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>线程 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="储存" href="filesystem.html" />
+    <link rel="prev" title="I2C" href="i2c.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../1_index.html">3. 示例教程</a></li>
+      <li class="breadcrumb-item active">线程</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/advance/thread.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>线程<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<div class="admonition- admonition">
+<p class="admonition-title">什么是线程？</p>
+<p>线程是程序中一个单一的顺序控制流程。进程内一个相对独立的、可调度的执行单元，是系统独立调度和分派CPU的基本单位指运行中的程序的调度单位。
+在单个程序中同时运行多个线程完成不同的工作，称为多线程。</p>
+</div>
+<section id="id2">
+<h2>线程的创建<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>首先我们要先导入 <code class="docutils literal notranslate"><span class="pre">_thread</span></code> 线程模块，它将提供启动线程thread所需的功能。请注意，该模块名称为 <code class="docutils literal notranslate"><span class="pre">_thread</span></code> （这里的下划线不是打错了）。
+我们还会导入 <code class="docutils literal notranslate"><span class="pre">time</span></code> 模块，因此我们可以使用 <code class="docutils literal notranslate"><span class="pre">sleep</span></code> 函数，以此在我们的程序中引入一些延迟。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">_thread</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</pre></div>
+</div>
+<p>接下来，我们将定义在线程中执行的函数。简单地循环的迭代5次打印所在的当前运行的时间，每次循环都会一定的延时。
+我们将使用上面提到的 <code class="docutils literal notranslate"><span class="pre">time</span></code> 模块的 <code class="docutils literal notranslate"><span class="pre">sleep</span></code> 方面来引入延时，<code class="docutils literal notranslate"><span class="pre">time</span></code> 模块接收作为输入的延迟秒数。参数 <code class="docutils literal notranslate"><span class="pre">delay</span></code> 为单次迭代循环延时秒数。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_time</span><span class="p">(</span> <span class="n">threadName</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2"> sec&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">threadName</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()[</span><span class="mi">5</span><span class="p">]</span> <span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:End&quot;</span> <span class="o">%</span><span class="n">threadName</span><span class="p">)</span>
+    <span class="c1"># 结束线程</span>
+    <span class="n">_thread</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>启动我们的线程，我们只需调用 _thread 模块的 start_new_thread 函数，将第一个参数指定为我们先前定义的 <code class="docutils literal notranslate"><span class="pre">print_time</span></code> 函数，并将其指定为对应于线程函数参数的2元组。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span> <span class="n">print_time</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Thread-1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>
+<span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span> <span class="n">print_time</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Thread-2&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>最后,使用 <code class="docutils literal notranslate"><span class="pre">while</span></code> 条件判断,使程序在死循环中,不执行任何指令:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">完整代码如下,开启两线程并循环迭代打印输出:</span><a class="headerlink" href="#id4" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">_thread</span>   <span class="c1"># 导入线程模块</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>      <span class="c1"># 导入时间模块</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1"># 定义线程函数,打印线程编号和运行时间</span>
+<span class="linenos"> 5</span><span class="k">def</span><span class="w"> </span><span class="nf">print_time</span><span class="p">(</span> <span class="n">threadName</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>  
+<span class="linenos"> 6</span>    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 7</span>    <span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">10</span>        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2"> sec&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">threadName</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()[</span><span class="mi">5</span><span class="p">]</span> <span class="p">))</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:End&quot;</span> <span class="o">%</span><span class="n">threadName</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="c1"># 结束线程</span>
+<span class="linenos">14</span>    <span class="n">_thread</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="c1"># 启动线程1</span>
+<span class="linenos">17</span><span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span> <span class="n">print_time</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Thread-1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>  
+<span class="linenos">18</span><span class="c1"># 启动线程2</span>
+<span class="linenos">19</span><span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span> <span class="n">print_time</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Thread-2&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>  
+<span class="linenos">20</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># 主体循环</span>
+<span class="linenos">23</span>    <span class="k">pass</span>     <span class="c1"># 空指令</span>
+<span class="linenos">24</span>
+</pre></div>
+</div>
+</div>
+<p>程序执行,会产生以下结果:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">4</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">6</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">6</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">8</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">10</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">10</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">12</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">End</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">14</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">18</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">22</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="n">End</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>多线程看似线程间是并行同时运行的，其实在某一时刻，一个CPU内核只能进行一个进程的任务。</p></li>
+<li><p>现在的计算机所说的多进程/多任务其实是通过加快CPU的执行速度来实现的，因为一个CPU每秒能执行上亿次的计算，能够对进程进行很多次切换，所以在人为可以感知的时间里，看上去，确实是在同时执行。</p></li>
+</ul>
+</div>
+</section>
+<section id="id3">
+<h2>线程的锁定<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>多线程中，所有变量都由所有线程共享，所以，任何一个变量都可以被任何一个线程修改，因此，线程之间共享数据最大的危险在于多个线程同时改一个变量，把内容给改乱了。
+我们将学习如何控制对共享资源的访问。控制是防止数据损坏所必需的。换句话说，为了防止同时访问对象，我们需要使用Lock对象。</p>
+<p>线程锁有两种状态: <cite>锁定</cite> 和 <cite>解锁</cite> 。它是在 <cite>解锁</cite> 状态下创建的。它有两个基本方法，<code class="docutils literal notranslate"><span class="pre">acquire()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">release()</span></code> 。</p>
+<p>当线程锁的状态为 <cite>解锁</cite> 时，<code class="docutils literal notranslate"><span class="pre">acquire()</span></code> 将状态更改为 <cite>锁定</cite> 并立即返回。
+当状态 <cite>锁定</cite> 时，<code class="docutils literal notranslate"><span class="pre">acquire()</span></code> 阻塞，直到另一个线程中对 <code class="docutils literal notranslate"><span class="pre">release()</span></code> 的调用将其更改为 <cite>解锁</cite> ，然后 <code class="docutils literal notranslate"><span class="pre">acquire()</span></code> 调用将其重置为 <cite>锁定</cite> 并返回。</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p><code class="docutils literal notranslate"><span class="pre">release()</span></code> 方法应只在 <cite>锁定</cite> 状态下被调用; 它将状态更改为 <cite>已解锁</cite> 并立即返回。如果尝试释放未锁定的锁，则会引发 <cite>RuntimeError</cite> 。</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">我们将上文的示例改成线程的锁定,如下。只有一个线程能成功地获取锁，然后继续执行代码，其他线程就继续等待直到获得锁为止:</span><a class="headerlink" href="#id5" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">_thread</span>   <span class="c1"># 导入线程模块</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>      <span class="c1"># 导入时间模块</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1"># 创建锁</span>
+<span class="linenos"> 5</span><span class="n">lock</span><span class="o">=</span><span class="n">_thread</span><span class="o">.</span><span class="n">allocate_lock</span><span class="p">()</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># 定义线程函数,打印线程编号和运行时间</span>
+<span class="linenos"> 8</span><span class="k">def</span><span class="w"> </span><span class="nf">print_time</span><span class="p">(</span> <span class="n">threadName</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>  
+<span class="linenos"> 9</span>    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">10</span>    <span class="c1"># 获取锁</span>
+<span class="linenos">11</span>    <span class="k">if</span> <span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">():</span>
+<span class="linenos">12</span>        <span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+<span class="linenos">13</span>            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+<span class="linenos">14</span>            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">15</span>            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2"> sec&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">threadName</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()[</span><span class="mi">5</span><span class="p">]</span> <span class="p">))</span>
+<span class="linenos">16</span>        <span class="c1"># 释放锁</span>
+<span class="linenos">17</span>        <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<span class="linenos">18</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:End&quot;</span> <span class="o">%</span><span class="n">threadName</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="c1"># 结束线程</span>
+<span class="linenos">20</span>        <span class="n">_thread</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="c1"># 启动线程1</span>
+<span class="linenos">23</span><span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span> <span class="n">print_time</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Thread-1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>  
+<span class="linenos">24</span><span class="c1"># 启动线程2</span>
+<span class="linenos">25</span><span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span> <span class="n">print_time</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Thread-2&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">)</span> <span class="p">)</span>  
+<span class="linenos">26</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># 主体循环</span>
+<span class="linenos">29</span>    <span class="k">pass</span>     <span class="c1"># 空指令</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>
+</pre></div>
+</div>
+</div>
+<p>运行结果:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">2</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">4</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">6</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">8</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">10</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">End</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">14</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">18</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">22</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">26</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">30</span> <span class="n">sec</span>
+<span class="n">Thread</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="n">End</span>
+</pre></div>
+</div>
+<p>锁的好处就是确保了某段关键代码只能由一个线程从头到尾完整地执行，坏处当然也很多，首先是阻止了多线程并发执行，包含锁的某段代码实际上只能以单线程模式执行，效率就大大地下降了。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="i2c.html" class="btn btn-neutral float-left" title="I2C" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="filesystem.html" class="btn btn-neutral float-right" title="储存" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

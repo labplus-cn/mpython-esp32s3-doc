@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>无线广播 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="I2C" href="i2c.html" />
+    <link rel="prev" title="定时器" href="timer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../1_index.html">3. 示例教程</a></li>
+      <li class="breadcrumb-item active">无线广播</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/advance/radio.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorials-radio">
+<span id="id1"></span><h1>无线广播<a class="headerlink" href="#tutorials-radio" title="此标题的永久链接"></a></h1>
+<p>掌控板提供2.4G的无线射频通讯,共 13 Channel。可实现一定区域内的简易组网通讯。在相同通道下,成员可接收广播消息。就类似,对讲机一样。在相同频道下,实现通话。</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../../_images/radio.png"><img alt="../../_images/radio.png" src="../../_images/radio.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">对讲机</span><a class="headerlink" href="#id5" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<section id="radio">
+<h2>radio<a class="headerlink" href="#radio" title="此标题的永久链接"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">发送广播消息示例</span><a class="headerlink" href="#id6" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">&#39;&#39;&#39;广播&#39;&#39;&#39;</span>
+<span class="linenos"> 2</span><span class="sd">&#39;&#39;&#39;广播数据&#39;&#39;&#39;</span>
+<span class="linenos"> 3</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="linenos"> 4</span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 6</span><span class="kn">from</span><span class="w"> </span><span class="nn">radio</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">#MPythonESPNow(wifi_ch=0)  wifi_ch:信道 0-14 整型</span>
+<span class="linenos"> 9</span><span class="n">espnow_0</span> <span class="o">=</span> <span class="n">MPythonESPNow</span><span class="p">(</span><span class="n">wifi_ch</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1">#MPythonESPNow.get_mac(mode=0) mode:0 sta地址/1 ap地址 16进制字符串mac地址</span>
+<span class="linenos">12</span><span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">13</span><span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">espnow_0</span><span class="o">.</span><span class="n">get_mac</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">14</span><span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="nb">print</span><span class="p">(</span><span class="n">espnow_0</span><span class="o">.</span><span class="n">get_mac</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># sta </span>
+<span class="linenos">17</span><span class="nb">print</span><span class="p">(</span><span class="n">espnow_0</span><span class="o">.</span><span class="n">get_mac</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># ap</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">20</span>    <span class="n">msg</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="c1">#MPythonESPNow.broadcast_data(msg=&#39;&#39;) msg：字符串数据</span>
+<span class="linenos">22</span>    <span class="n">espnow_0</span><span class="o">.</span><span class="n">broadcast_data</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> 
+<span class="linenos">23</span>    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+<span class="linenos">24</span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="linenos">25</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">发送数据给特定mac地址设备示例</span><a class="headerlink" href="#id7" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">&#39;&#39;&#39;广播&#39;&#39;&#39;</span>
+<span class="linenos"> 2</span><span class="sd">&#39;&#39;&#39;发送数据给特定mac地址设备&#39;&#39;&#39;</span>
+<span class="linenos"> 3</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="linenos"> 4</span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 6</span><span class="kn">from</span><span class="w"> </span><span class="nn">radio</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">espnow_0</span> <span class="o">=</span> <span class="n">MPythonESPNow</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1">#MPythonESPNow.set_add_peer(peer_mac=&#39;&#39;) peer_mac:mac地址 16进制字符串 将提供的mac地址注册为对等地址 7CDFA1F20AF4</span>
+<span class="linenos">11</span><span class="n">espnow_0</span><span class="o">.</span><span class="n">set_add_peer</span><span class="p">(</span><span class="n">peer_mac</span><span class="o">=</span><span class="s1">&#39;7CDFA1F20ADC&#39;</span><span class="p">)</span> 
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="nb">print</span><span class="p">(</span><span class="n">espnow_0</span><span class="o">.</span><span class="n">get_mac</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="linenos">14</span><span class="nb">print</span><span class="p">(</span><span class="n">espnow_0</span><span class="o">.</span><span class="n">get_mac</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">17</span>    <span class="n">msg</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9999999</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="c1">#MPythonESPNow.send_msg(peer_mac=&#39;&#39;,msg=&#39;&#39;) msg：字符串数据</span>
+<span class="linenos">20</span>    <span class="n">espnow_0</span><span class="o">.</span><span class="n">send_msg</span><span class="p">(</span><span class="n">peer_mac</span><span class="o">=</span><span class="s1">&#39;7CDFA1F20ADC&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">22</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">接收消息示例</span><a class="headerlink" href="#id8" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">&#39;&#39;&#39;接收消息&#39;&#39;&#39;</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="linenos"> 3</span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">radio</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">def</span><span class="w"> </span><span class="nf">espnow_recv_callback</span><span class="p">(</span><span class="n">espnow_obj</span><span class="p">):</span>
+<span class="linenos"> 8</span>    <span class="n">espnow_mac</span><span class="p">,</span> <span class="n">espnow_data</span><span class="p">,</span> <span class="n">espnow_rssi</span> <span class="o">=</span> <span class="n">espnow_obj</span><span class="o">.</span><span class="n">recv_msg</span><span class="p">()</span> <span class="c1"># 接收消息</span>
+<span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">espnow_data</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MAC: </span><span class="si">{</span><span class="n">espnow_mac</span><span class="si">}</span><span class="s2">, RSSI: </span><span class="si">{</span><span class="n">espnow_rssi</span><span class="si">}</span><span class="s2"> dBm, Data: </span><span class="si">{</span><span class="n">espnow_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">espnow_1</span> <span class="o">=</span> <span class="n">MPythonESPNow</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">13</span><span class="c1"># MPythonESPNow.set_irq_callback(callback) callback 接收消息回调函数</span>
+<span class="linenos">14</span><span class="n">espnow_1</span><span class="o">.</span><span class="n">set_irq_callback</span><span class="p">(</span><span class="n">espnow_recv_callback</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="nb">print</span><span class="p">(</span><span class="n">espnow_1</span><span class="o">.</span><span class="n">get_mac</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="linenos">17</span><span class="nb">print</span><span class="p">(</span><span class="n">espnow_1</span><span class="o">.</span><span class="n">get_mac</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MPythonESPNow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wifi_ch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>实例化Radio</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wifi_ch</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#id6" title="int"><em>int</em></a>) – 设置信道 0-14</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="MPythonESPNow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MPythonESPNow</span></span><a class="headerlink" href="#MPythonESPNow" title="永久链接至目标"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_mac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>获取自身网卡mac地址</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mode</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#id6" title="int"><em>int</em></a>) – 0 sta地址/1 ap地址</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>16进制字符串mac地址</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#str" title="str">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MPythonESPNow</span></span><a class="headerlink" href="#id0" title="永久链接至目标"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">broadcast_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>发送无线广播数据，群发</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#str" title="str"><em>str</em></a>) – 无线广播数据</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id2">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MPythonESPNow</span></span><a class="headerlink" href="#id2" title="永久链接至目标"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">set_add_peer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_mac</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>将提供的mac地址注册为对等地址,私发需要注册，群发不需要</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>peer_mac</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#str" title="str"><em>str</em></a>) – mac地址 16进制字符串</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id3">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MPythonESPNow</span></span><a class="headerlink" href="#id3" title="永久链接至目标"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">send_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_mac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>发送无线广播数据，私发</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>peer_mac</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#str" title="str"><em>str</em></a>) – mac地址 16进制字符串</p></li>
+<li><p><strong>msg</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#str" title="str"><em>str</em></a>) – 无线广播数据</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id4">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MPythonESPNow</span></span><a class="headerlink" href="#id4" title="永久链接至目标"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">set_irq_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">espnow_recv_callback</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>设置接收消息回调处理函数</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>espnow_recv_callback</strong> (<em>function</em>) – 回调函数</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">espnow_recv_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">espnow_obj</span></span></em><span class="sig-paren">)</span></dt>
+<dd><blockquote>
+<div><p>espnow_mac, espnow_data, espnow_rssi = espnow_obj.recv_msg() 接收消息对象</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>espnow_mac</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#str" title="str"><em>str</em></a>) – 广播消息设备mac地址</p></li>
+<li><p><strong>espnow_data</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#str" title="str"><em>str</em></a>) – 接收消息</p></li>
+<li><p><strong>espnow_rssi</strong> (<a class="reference internal" href="../../5_api/library/pythonStd/builtins.html#str" title="str"><em>str</em></a>) – 广播信号强度 dBm</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="timer.html" class="btn btn-neutral float-left" title="定时器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="i2c.html" class="btn btn-neutral float-right" title="I2C" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sdcard — SD卡 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="bluebit — blue:bit驱动" href="bluebit.html" />
+    <link rel="prev" title="radio — radio 无线广播相关功能" href="radio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">mPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="mpython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mpython</span></code> — 掌控板板载相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id1">延时</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id2">映射</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id3">板载传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id4">声音、光线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id5">加速度计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#gyroscope">陀螺仪(gyroscope)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#magnetic">磁力计(magnetic)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#music">蜂鸣器(music)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#button-a-b">button_[a,b]对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#touch">touch对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#rgb">rgb对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#i2c">i2c对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#mpythonpin">MPythonPin类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="music.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">music</span></code> — 音乐相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urequests</span></code> — HTTP客户端的相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html#response">Response类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html#id2">方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="umqtt.simple.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umqtt.simple</span></code> — 简单MQTT客户端功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">radio</span></code> — radio 无线广播相关功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radio.html#id1">函数</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sdcard</span></code> — SD卡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bluebit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bluebit</span></code> — blue:bit驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="parrot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parrot</span></code> — 掌控拓展板驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ds18x20.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ds18x20</span></code> — ds18b20温度传感器驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="servo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">servo</span></code> — 舵机驱动功能函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">mPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sdcard</span></code> — SD卡</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/mPython/sdcard.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="module-sdcard"></span><section id="sdcard-sd">
+<h1><a class="reference internal" href="#module-sdcard" title="sdcard: SD卡"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sdcard</span></code></a> — SD卡<a class="headerlink" href="#sdcard-sd" title="此标题的永久链接"></a></h1>
+<p>安全数字或SD卡和微型microSD卡价格低廉，可为设备增加大量存储空间。MicroPython，只有1M的闪存来存储代码和数据。
+如果你拥有更大的闪存空间,可以将micro SD卡通过SPI通讯方式连接到掌控板来扩展其存储空间。</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="https://www.digikey.com/maker-media/520920e2-79cd-4b23-8e89-1acc572496e8"><img alt="https://www.digikey.com/maker-media/520920e2-79cd-4b23-8e89-1acc572496e8" src="https://www.digikey.com/maker-media/520920e2-79cd-4b23-8e89-1acc572496e8" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">SD卡</span><a class="headerlink" href="#id1" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<section id="sdcard">
+<h2>SDCard类<a class="headerlink" href="#sdcard" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sdcard.SDCard">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sdcard.</span></span><span class="sig-name descname"><span class="pre">SDCard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sdcard.SDCard" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>创建SDCard对象,初始化SD卡。</p>
+<p>首先,须确保SPI总线的引脚与micro SD卡物理连接正确。确保您的micro SD卡使用FAT或FAT32文件系统格式化。然后,用os.mount(),将SD卡虚拟新的FAT文件系统挂载到指定的目录中。
+挂载完成后,你就可以使用Python 的文件操作(如打开,关闭,读取和写入)来访问文件。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">spi</span></code> - machine.SPI对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cs</span></code>  - SPI的CS控制引脚</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">示例-挂载SD卡</span><a class="headerlink" href="#id2" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">SPI</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">machine</span><span class="o">,</span><span class="w"> </span><span class="nn">sdcard</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1"># 创建SPI对象,spi引脚如下述</span>
+<span class="linenos"> 5</span><span class="n">spi</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">polarity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P13</span><span class="p">),</span> <span class="n">mosi</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P15</span><span class="p">),</span> <span class="n">miso</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P14</span><span class="p">))</span>
+<span class="linenos"> 6</span><span class="c1"># 构建SDCard对象</span>
+<span class="linenos"> 7</span><span class="n">sd</span> <span class="o">=</span> <span class="n">sdcard</span><span class="o">.</span><span class="n">SDCard</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P16</span><span class="p">))</span>
+<span class="linenos"> 8</span><span class="c1"># 挂载sd到 &#39;/sd&#39; 路径</span>
+<span class="linenos"> 9</span><span class="n">os</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="s1">&#39;/sd&#39;</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1"># 创建文件并写数据</span>
+<span class="linenos">12</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/sd/test.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">13</span>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello world!</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">示例-列出所有文件</span><a class="headerlink" href="#id3" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">SPI</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">machine</span><span class="o">,</span><span class="w"> </span><span class="nn">sdcard</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">spi</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">polarity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P13</span><span class="p">),</span> <span class="n">mosi</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P15</span><span class="p">),</span> <span class="n">miso</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P14</span><span class="p">))</span>
+<span class="linenos"> 5</span><span class="n">sd</span> <span class="o">=</span> <span class="n">sdcard</span><span class="o">.</span><span class="n">SDCard</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P16</span><span class="p">))</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">os</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="s1">&#39;/sd&#39;</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">def</span><span class="w"> </span><span class="nf">print_directory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">tabs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="linenos">10</span>    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="linenos">11</span>        <span class="n">stats</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">file</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">filesize</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="linenos">13</span>        <span class="n">isdir</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x4000</span>
+<span class="linenos">14</span>    
+<span class="linenos">15</span>        <span class="k">if</span> <span class="n">filesize</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+<span class="linenos">16</span>            <span class="n">sizestr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">filesize</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; by&quot;</span>
+<span class="linenos">17</span>        <span class="k">elif</span> <span class="n">filesize</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">:</span>
+<span class="linenos">18</span>            <span class="n">sizestr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%0.1f</span><span class="s2"> KB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filesize</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">20</span>            <span class="n">sizestr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%0.1f</span><span class="s2"> MB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filesize</span><span class="o">/</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="linenos">21</span>    
+<span class="linenos">22</span>        <span class="n">prettyprintname</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos">23</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tabs</span><span class="p">):</span>
+<span class="linenos">24</span>            <span class="n">prettyprintname</span> <span class="o">+=</span> <span class="s2">&quot;   &quot;</span>
+<span class="linenos">25</span>        <span class="n">prettyprintname</span> <span class="o">+=</span> <span class="n">file</span>
+<span class="linenos">26</span>        <span class="k">if</span> <span class="n">isdir</span><span class="p">:</span>
+<span class="linenos">27</span>            <span class="n">prettyprintname</span> <span class="o">+=</span> <span class="s2">&quot;/&quot;</span>
+<span class="linenos">28</span>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0:&lt;40}</span><span class="s1"> Size: </span><span class="si">{1:&gt;10}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prettyprintname</span><span class="p">,</span> <span class="n">sizestr</span><span class="p">))</span>
+<span class="linenos">29</span>        
+<span class="linenos">30</span>        <span class="c1"># recursively print directory contents</span>
+<span class="linenos">31</span>        <span class="k">if</span> <span class="n">isdir</span><span class="p">:</span>
+<span class="linenos">32</span>            <span class="n">print_directory</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">file</span><span class="p">,</span> <span class="n">tabs</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files on filesystem:&quot;</span><span class="p">)</span>
+<span class="linenos">36</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;====================&quot;</span><span class="p">)</span>
+<span class="linenos">37</span><span class="n">print_directory</span><span class="p">(</span><span class="s2">&quot;/sd&quot;</span><span class="p">)</span>
+<span class="linenos">38</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="radio.html" class="btn btn-neutral float-left" title="radio — radio 无线广播相关功能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="bluebit.html" class="btn btn-neutral float-right" title="bluebit — blue:bit驱动" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

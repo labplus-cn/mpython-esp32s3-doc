@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uctypes – 以结构化方式访问二进制数据 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="micropython – 访问和控制MicroPython内部" href="micropython.html" />
+    <link rel="prev" title="ucryptolib – 加密密码" href="ucryptolib.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">MicroPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="btree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">btree</span></code> – 简单的 BTree 数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="framebuf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">framebuf</span></code> — 帧缓冲操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine/machine.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="network.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubluetooth.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code> — 低功耗蓝牙</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ucryptolib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ucryptolib</span></code> – 加密密码</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code> –  以结构化方式访问二进制数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neopixel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">neopixel</span></code> — WS2812 灯带</a></li>
+<li class="toctree-l4"><a class="reference internal" href="random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ntptime.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ntptime</span></code> — 时间同步</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dht.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dht</span></code> — dht模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="esp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp</span></code> — ESP32相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="esp32.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code> — 特定于ESP32的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="onewire.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">onewire</span></code> — 单总线</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">MicroPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code> –  以结构化方式访问二进制数据</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/micropython/uctypes.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-uctypes">
+<span id="uctypes"></span><h1><a class="reference internal" href="#module-uctypes" title="uctypes: 以结构化方式访问二进制数据"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code></a> –  以结构化方式访问二进制数据<a class="headerlink" href="#module-uctypes" title="此标题的永久链接"></a></h1>
+<p>该模块为MicroPython实现“外部数据接口”。它背后的想法类似于CPython的 <code class="docutils literal notranslate"><span class="pre">ctypes</span></code> 模块，但实际的API是不同的，流线型和小尺寸优化。
+该模块的基本思想是定义具有与C语言允许的大致相同功率的数据结构布局，然后使用熟悉的点语法访问它以引用子字段。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p><code class="docutils literal notranslate"><span class="pre">uctypes</span></code> 模块允许访问机器的任意内存地址（包括I / O和控制寄存器）。不小心使用它可能会导致崩溃，数据丢失，甚至硬件故障。</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference internal" href="../pythonStd/ustruct.html#module-ustruct" title="ustruct: 打包和解压缩原始数据类型"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code></a> 模块: 用于访问二进制数据结构的标准Python方法（不能很好地扩展到大型和复杂的结构）。</p>
+</div>
+<p>用法示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">uctypes</span>
+
+<span class="c1"># Example 1: Subset of ELF file header</span>
+<span class="c1"># https://wikipedia.org/wiki/Executable_and_Linkable_Format#File_header</span>
+<span class="n">ELF_HEADER</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;EI_MAG&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mh">0x0</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">ARRAY</span><span class="p">,</span> <span class="mi">4</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">),</span>
+    <span class="s2">&quot;EI_DATA&quot;</span><span class="p">:</span> <span class="mh">0x5</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">,</span>
+    <span class="s2">&quot;e_machine&quot;</span><span class="p">:</span> <span class="mh">0x12</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT16</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># &quot;f&quot; is an ELF file opened in binary mode</span>
+<span class="n">buf</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">uctypes</span><span class="o">.</span><span class="n">sizeof</span><span class="p">(</span><span class="n">ELF_HEADER</span><span class="p">,</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">LITTLE_ENDIAN</span><span class="p">))</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">struct</span><span class="p">(</span><span class="n">uctypes</span><span class="o">.</span><span class="n">addressof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="n">ELF_HEADER</span><span class="p">,</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">LITTLE_ENDIAN</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">header</span><span class="o">.</span><span class="n">EI_MAG</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x7f</span><span class="s2">ELF&quot;</span>
+<span class="k">assert</span> <span class="n">header</span><span class="o">.</span><span class="n">EI_DATA</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Oops, wrong endianness. Could retry with uctypes.BIG_ENDIAN.&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;machine:&quot;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">e_machine</span><span class="p">))</span>
+
+
+<span class="c1"># Example 2: In-memory data structure, with pointers</span>
+<span class="n">COORD</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">FLOAT32</span><span class="p">,</span>
+    <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="mi">4</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">FLOAT32</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">STRUCT1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;data1&quot;</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">,</span>
+    <span class="s2">&quot;data2&quot;</span><span class="p">:</span> <span class="mi">4</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT32</span><span class="p">,</span>
+    <span class="s2">&quot;ptr&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">8</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">PTR</span><span class="p">,</span> <span class="n">COORD</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Suppose you have address of a structure of type STRUCT1 in &quot;addr&quot;</span>
+<span class="c1"># uctypes.NATIVE is optional (used by default)</span>
+<span class="n">struct1</span> <span class="o">=</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">struct</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">STRUCT1</span><span class="p">,</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">NATIVE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x:&quot;</span><span class="p">,</span> <span class="n">struct1</span><span class="o">.</span><span class="n">ptr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="c1"># Example 3: Access to CPU registers. Subset of STM32F4xx WWDG block</span>
+<span class="n">WWDG_LAYOUT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;WWDG_CR&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">{</span>
+        <span class="c1"># BFUINT32 here means size of the WWDG_CR register</span>
+        <span class="s2">&quot;WDGA&quot;</span><span class="p">:</span> <span class="mi">7</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_POS</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_LEN</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BFUINT32</span><span class="p">,</span>
+        <span class="s2">&quot;T&quot;</span><span class="p">:</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_POS</span> <span class="o">|</span> <span class="mi">7</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_LEN</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BFUINT32</span><span class="p">,</span>
+    <span class="p">}),</span>
+    <span class="s2">&quot;WWDG_CFR&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s2">&quot;EWI&quot;</span><span class="p">:</span> <span class="mi">9</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_POS</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_LEN</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BFUINT32</span><span class="p">,</span>
+        <span class="s2">&quot;WDGTB&quot;</span><span class="p">:</span> <span class="mi">7</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_POS</span> <span class="o">|</span> <span class="mi">2</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_LEN</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BFUINT32</span><span class="p">,</span>
+        <span class="s2">&quot;W&quot;</span><span class="p">:</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_POS</span> <span class="o">|</span> <span class="mi">7</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_LEN</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BFUINT32</span><span class="p">,</span>
+    <span class="p">}),</span>
+<span class="p">}</span>
+
+<span class="n">WWDG</span> <span class="o">=</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">struct</span><span class="p">(</span><span class="mh">0x40002c00</span><span class="p">,</span> <span class="n">WWDG_LAYOUT</span><span class="p">)</span>
+
+<span class="n">WWDG</span><span class="o">.</span><span class="n">WWDG_CFR</span><span class="o">.</span><span class="n">WDGTB</span> <span class="o">=</span> <span class="mb">0b10</span>
+<span class="n">WWDG</span><span class="o">.</span><span class="n">WWDG_CR</span><span class="o">.</span><span class="n">WDGA</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current counter:&quot;</span><span class="p">,</span> <span class="n">WWDG</span><span class="o">.</span><span class="n">WWDG_CR</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>定义结构布局<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>结构布局由“描述符”定义 - 一个Python字典，它将字段名称编码为键，以及将它们作为关联值访问它们所需的其他属性:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;field1&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">properties</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;field2&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">properties</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>目前，<code class="docutils literal notranslate"><span class="pre">uctypes</span></code> 需要明确规定每个字段的偏移量。从结构开始以字节为单位给出偏移量。</p>
+<p>以下是各种字段类型的编码示例:</p>
+<ul>
+<li><p>标量类型:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;field_name&quot;</span><span class="p">:</span> <span class="n">offset</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT32</span>
+</pre></div>
+</div>
+<p>换句话说，该值是标量类型标识符，与结构起始处的字段偏移量（以字节为单位）进行或运算。</p>
+</li>
+<li><p>递归结构:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s2">&quot;b0&quot;</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">,</span>
+    <span class="s2">&quot;b1&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>即，值是2元组，其第一个元素是偏移量，第二个是结构描述符字典（注意：递归描述符中的偏移量与其定义的结构相关）。
+当然，递归结构不仅可以通过文字字典指定，还可以通过按名称引用结构描述符字典（前面定义）来指定。</p>
+</li>
+<li><p>原始类型的数组:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;arr&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">offset</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">ARRAY</span><span class="p">,</span> <span class="n">size</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>即，value是一个2元组，其第一个元素是ARRAY标志ORed与offset，第二个是标量元素类型ORed数组中的元素。</p>
+</li>
+<li><p>聚合类型的数组:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;arr2&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">offset</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">ARRAY</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">}),</span>
+</pre></div>
+</div>
+<p>即，value是一个3元组，其第一个元素是ARRAY标志ORed与offset，第二个是数组中的元素数，第三个是元素类型的描述符。</p>
+</li>
+<li><p>指向原始类型的指针:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ptr&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">offset</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">PTR</span><span class="p">,</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>即，value是一个2元组，其第一个元素是PTR标志，与偏移量进行OR运算，第二个元素是标量元素类型。</p>
+</li>
+<li><p>指向聚合类型的指针:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ptr2&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">offset</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">PTR</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">}),</span>
+</pre></div>
+</div>
+<p>ie值是一个2元组，其第一个元素是PTR标志ORed with offset，second是指向的类型的描述符。</p>
+</li>
+<li><p>位地址:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;bitf0&quot;</span><span class="p">:</span> <span class="n">offset</span> <span class="o">|</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BFUINT16</span> <span class="o">|</span> <span class="n">lsbit</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_POS</span> <span class="o">|</span> <span class="n">bitsize</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_LEN</span><span class="p">,</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>ie value是一种包含给定位域的标量值（类型名称类似于标量类型，但带有前缀BF），ORed带有包含位域的标量值的偏移量，并进一步与位内的位值和位域内的位长度进行或运算。
+标量值，分别通过BF_POS和BF_LEN位移位。位域位置从标量的最低有效位（具有0的位置）计数，并且是字段的最右位的数量（换句话说，它是标量需要向右移位的位数）提取位域）。</p>
+<p>在上面的例子中，首先在偏移0处提取UINT16值（当访问硬件寄存器时，这个细节可能很重要，需要特定的访问大小和对齐），
+然后是最右边的位是此UINT16的lsbit位的位域，以及length是bitsize bits，将被提取。
+例如，如果lsbit为0且 bitsize为8，那么它将有效地访问UINT16的最低有效字节。</p>
+<p>注意，位域操作独立于目标字节字节序，特别是上面的例子将在小端和大端结构中访问UINT16的最低有效字节。
+但它取决于最低有效位被编号为0.某些目标可能在其原生ABI中使用不同的编号，但uctypes始终使用上述标准化编号。</p>
+</section>
+<section id="id2">
+<h2>模块内容<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="uctypes.struct">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NATIVE</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.struct" title="永久链接至目标"></a></dt>
+<dd><p>基于内存中的结构地址，描述符（编码为字典）和布局类型（参见下文）来实例化“外部数据结构”对象。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uctypes.LITTLE_ENDIAN">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">LITTLE_ENDIAN</span></span><a class="headerlink" href="#uctypes.LITTLE_ENDIAN" title="永久链接至目标"></a></dt>
+<dd><p>little-endian压缩结构的布局类型。（打包意味着每个字段占用描述符中定义的字节数，即对齐为1）。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uctypes.BIG_ENDIAN">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">BIG_ENDIAN</span></span><a class="headerlink" href="#uctypes.BIG_ENDIAN" title="永久链接至目标"></a></dt>
+<dd><p>big-endian压缩结构的布局类型。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uctypes.NATIVE">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">NATIVE</span></span><a class="headerlink" href="#uctypes.NATIVE" title="永久链接至目标"></a></dt>
+<dd><p>本机结构的布局类型 - 数据字节顺序和对齐符合运行MicroPython的系统的ABI。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uctypes.sizeof">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">sizeof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NATIVE</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.sizeof" title="永久链接至目标"></a></dt>
+<dd><p>以字节为单位返回数据结构的大小。的结构参数可以是一个类结构或特定实例化结构对象（或其聚集体字段）。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uctypes.addressof">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">addressof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.addressof" title="永久链接至目标"></a></dt>
+<dd><p>返回对象的地址。参数应该是字节，字节数组或其他支持缓冲区协议的对象（该缓冲区的地址实际上是返回的）。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uctypes.bytes_at">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">bytes_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.bytes_at" title="永久链接至目标"></a></dt>
+<dd><p>以给定的地址和大小捕获内存作为bytes对象。由于bytes对象是不可变的，因此内存实际上是复制并复制到bytes对象中，因此如果内存内容稍后更改，则创建的对象将保留原始值。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uctypes.bytearray_at">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">bytearray_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.bytearray_at" title="永久链接至目标"></a></dt>
+<dd><p>将给定地址和大小的内存捕获为bytearray对象。与上面的bytes_at（）函数不同，内存是通过引用捕获的，因此它也可以写入，并且您将在给定的内存地址访问当前值。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uctypes.UINT8">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">UINT8</span></span><a class="headerlink" href="#uctypes.UINT8" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.INT8">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">INT8</span></span><a class="headerlink" href="#uctypes.INT8" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.UINT16">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">UINT16</span></span><a class="headerlink" href="#uctypes.UINT16" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.INT16">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">INT16</span></span><a class="headerlink" href="#uctypes.INT16" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.UINT32">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">UINT32</span></span><a class="headerlink" href="#uctypes.UINT32" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.INT32">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">INT32</span></span><a class="headerlink" href="#uctypes.INT32" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.UINT64">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">UINT64</span></span><a class="headerlink" href="#uctypes.UINT64" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.INT64">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">INT64</span></span><a class="headerlink" href="#uctypes.INT64" title="永久链接至目标"></a></dt>
+<dd><p>结构描述符的整数类型。提供了8,16,32和64位类型的常量，包括有符号和无符号。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uctypes.FLOAT32">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">FLOAT32</span></span><a class="headerlink" href="#uctypes.FLOAT32" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.FLOAT64">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">FLOAT64</span></span><a class="headerlink" href="#uctypes.FLOAT64" title="永久链接至目标"></a></dt>
+<dd><p>结构描述符的浮点类型。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uctypes.VOID">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">VOID</span></span><a class="headerlink" href="#uctypes.VOID" title="永久链接至目标"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">VOID</span></code> 是一个别名 <code class="docutils literal notranslate"><span class="pre">UINT8</span></code> ，用于方便地定义C的void指针：。( <code class="docutils literal notranslate"><span class="pre">uctypes.PTR</span></code> , <code class="docutils literal notranslate"><span class="pre">uctypes.VOID</span></code> )</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uctypes.PTR">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">PTR</span></span><a class="headerlink" href="#uctypes.PTR" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="uctypes.ARRAY">
+<span class="sig-prename descclassname"><span class="pre">uctypes.</span></span><span class="sig-name descname"><span class="pre">ARRAY</span></span><a class="headerlink" href="#uctypes.ARRAY" title="永久链接至目标"></a></dt>
+<dd><p>输入指针和数组的常量。请注意，结构没有显式常量，它是隐式的：没有 <code class="docutils literal notranslate"><span class="pre">PTR</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">ARRAY</span></code> 标志的聚合类型是结构。</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>结构描述符和实例化结构对象<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>给定结构描述符字典及其布局类型，您可以使用 <a class="reference internal" href="#uctypes.struct" title="uctypes.struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">uctypes.struct()</span></code></a>  构造函数在给定的内存地址处实例化特定的结构实例。
+内存地址通常来自以下来源:</p>
+<ul class="simple">
+<li><p>访问裸机系统上的硬件寄存器时的预定义地址。在特定MCU / SoC的数据表中查找这些地址。</p></li>
+<li><p>作为从调用某些FFI（外部函数接口）函数的返回值。</p></li>
+<li><p>从 <cite>uctypes.addressof()</cite>,当您想要将参数传递给FFI函数时，或者，为了访问I / O的某些数据（例如，从文件或网络套接字读取的数据）。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>结构对象<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>结构对象允许使用标准点表示法访问各个字段：<code class="docutils literal notranslate"><span class="pre">my_struct.substruct1.field1</span></code> 。
+如果字段是标量类型，获取它将产生与字段中包含的值对应的原始值（Python整数或浮点数）。
+标量字段也可以分配给。</p>
+<p>如果字段是数组，则可以使用标准下标运算符访问其各个元素 <code class="docutils literal notranslate"><span class="pre">[]</span></code> - 包括读取和分配。</p>
+<p>如果一个字段是一个指针，它可以使用 <code class="docutils literal notranslate"><span class="pre">[0]</span></code> 语法解除引用（对应于C  <code class="docutils literal notranslate"><span class="pre">*</span></code> 运算符，但也 <code class="docutils literal notranslate"><span class="pre">[0]</span></code> 适用于C）。还支持使用其他整数值（但是为0）订阅指针，其语义与C中相同。</p>
+<p>总而言之，访问结构字段通常遵循C语法，除了指针取消引用，当您需要使用 <code class="docutils literal notranslate"><span class="pre">[0]</span></code> 运算符而不是 <code class="docutils literal notranslate"><span class="pre">*</span></code> 。</p>
+</section>
+<section id="id5">
+<h2>限制<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<ol class="arabic simple">
+<li><p>访问非标量字段会导致分配中间对象以表示它们。这意味着应特别注意布局在禁用内存分配时需要访问的结构（例如，来自中断）。建议如下:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>避免访问嵌套结构。例如，代替 <code class="docutils literal notranslate"><span class="pre">mcu_registers.peripheral_a.register1</span></code> 为每个外围设备定义单独的布局描述符，以便进行访问 <code class="docutils literal notranslate"><span class="pre">peripheral_a.register1</span></code> 。或者只缓存特定的外围设备: 如果寄存器由多个位域组成，则需要缓存对特定寄存器的引用: <code class="docutils literal notranslate"><span class="pre">peripheral_a</span> <span class="pre">=</span> <span class="pre">mcu_registers.peripheral_areg_a</span> <span class="pre">=</span> <span class="pre">mcu_registers.peripheral_a.reg_a</span></code></p></li>
+<li><p>避免使用其他非标量数据，例如数组。例如，而不是 peripheral_a.register[0]使用peripheral_a.register0。同样，另一种方法是缓存中间值，例如 <code class="docutils literal notranslate"><span class="pre">register0</span> <span class="pre">=</span> <span class="pre">peripheral_a.register[0]</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>2. <code class="docutils literal notranslate"><span class="pre">uctypes</span></code> 模块支持的偏移范围有限。支持的确切范围被认为是实现细节，一般建议是将结构定义拆分为从几千字节到几十千字节的最大值。
+在大多数情况下，无论如何这都是一种自然情况，例如，在一个结构中定义MCU的所有寄存器（扩展到32位地址空间）没有意义，而是通过外围模块定义外设模块。
+在某些极端情况下，您可能需要人工分割几个部分的结构（例如，如果在中间访问具有多兆字节数组的本机数据结构，尽管这将是非常合成的情况）。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="ucryptolib.html" class="btn btn-neutral float-left" title="ucryptolib – 加密密码" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="micropython.html" class="btn btn-neutral float-right" title="micropython – 访问和控制MicroPython内部" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

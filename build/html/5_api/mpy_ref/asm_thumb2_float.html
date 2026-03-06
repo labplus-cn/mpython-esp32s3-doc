@@ -1,0 +1,169 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10. 浮点数指令 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10. </span>浮点数指令</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/5_api/mpy_ref/asm_thumb2_float.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">10. </span>浮点数指令<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>这些指令支持使用ARM浮点协同处理器（在诸如Python的平台上，此平台即配备了此处理器）。FPU有32个称为 <code class="docutils literal notranslate"><span class="pre">s0-s31</span></code> 的寄存器，
+每个寄存器可容纳一个精度浮点。数据可通过 <code class="docutils literal notranslate"><span class="pre">vmov</span></code> 指令在FPU寄存器和ARM内核寄存器间传输。</p>
+<p>注意：MicroPython不支持向汇编函数传输浮点，同样您与也不可将浮点置于 <code class="docutils literal notranslate"><span class="pre">r0</span></code> 中并期待合理值。解决方法有两种。
+一种是使用数组，另一种是传输且/或返回整数并在代码中转化为浮点数。</p>
+<section id="id2">
+<h2><span class="section-number">10.1. </span>文件规范<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>符号： <code class="docutils literal notranslate"><span class="pre">Sd,</span> <span class="pre">Sm,</span> <span class="pre">Sn</span></code> 表示FPU寄存器， <code class="docutils literal notranslate"><span class="pre">Rd,</span> <span class="pre">Rm,</span> <span class="pre">Rn</span></code> 表示ARM核心寄存器。后者可为任何ARM核心寄存器，尽管寄存器 <code class="docutils literal notranslate"><span class="pre">R13-R15</span></code> 在此情况下并不适用。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">10.2. </span>算法<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>vadd(Sd, Sn, Sm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">Sn</span> <span class="pre">+</span> <span class="pre">Sm</span></code></p></li>
+<li><p>vsub(Sd, Sn, Sm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">Sn</span> <span class="pre">-</span> <span class="pre">Sm</span></code></p></li>
+<li><p>vneg(Sd, Sm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">-Sm</span></code></p></li>
+<li><p>vmul(Sd, Sn, Sm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">Sn</span> <span class="pre">*</span> <span class="pre">Sm</span></code></p></li>
+<li><p>vdiv(Sd, Sn, Sm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">Sn</span> <span class="pre">/</span> <span class="pre">Sm</span></code></p></li>
+<li><p>vsqrt(Sd, Sm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">sqrt(Sm)</span></code></p></li>
+</ul>
+<p>寄存器可能相同： <code class="docutils literal notranslate"><span class="pre">vmul(S0,</span> <span class="pre">S0,</span> <span class="pre">S0)</span></code> 将执行 <code class="docutils literal notranslate"><span class="pre">S0</span> <span class="pre">=</span> <span class="pre">S0*S0</span></code></p>
+</section>
+<section id="armfpu">
+<h2><span class="section-number">10.3. </span>在ARM和FPU寄存器间移动<a class="headerlink" href="#armfpu" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>vmov(Sd, Rm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">Rm</span></code></p></li>
+<li><p>vmov(Rd, Sm) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Sm</span></code></p></li>
+</ul>
+<p>FPU有一个称为FPSCR的寄存器，与ARM的核心APSR相似，储存条件代码及其他数据。以下指令提供对其的访问。</p>
+<ul class="simple">
+<li><p>vmrs(APSR_nzcv, FPSCR)</p></li>
+</ul>
+<p>将浮点N、Z、C、V标志移动到APSR N、Z、C、V标志中。</p>
+<p>这是在诸如FPU比对之类的指令后完成的，从而使条件代码可由汇编代码进行测试。以下为该指令的一般形式。</p>
+<ul class="simple">
+<li><p>vmrs(Rd, FPSCR) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">FPSCR</span></code></p></li>
+</ul>
+</section>
+<section id="fpu">
+<h2><span class="section-number">10.4. </span>在FPU寄存器和内存间移动<a class="headerlink" href="#fpu" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>vldr(Sd, [Rn, offset]) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">[Rn</span> <span class="pre">+</span> <span class="pre">offset]</span></code></p></li>
+<li><p>vstr(Sd, [Rn, offset]) <code class="docutils literal notranslate"><span class="pre">[Rn</span> <span class="pre">+</span> <span class="pre">offset]</span> <span class="pre">=</span> <span class="pre">Sd</span></code></p></li>
+</ul>
+<p>其中 <code class="docutils literal notranslate"><span class="pre">[Rn</span> <span class="pre">+</span> <span class="pre">offset]</span></code> 表示通过将Rn添加到偏移量获得的存储器地址。其单位为字节。由于每个浮点值占用一个32位字，因此在访问浮点数组时，偏移量须始终为4字节的倍数。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">10.5. </span>数据比对<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>vcmp(Sd, Sm)</p></li>
+</ul>
+<p>比对Sd和Sm中的值，并设定FPU N、C、Z、V标志。这之后通常有 <code class="docutils literal notranslate"><span class="pre">vmrs(APSR_nzcv,</span> <span class="pre">FPSCR)</span></code> 来启用待检测的结果。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">10.6. </span>整数和浮点间的转换<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>vcvt_f32_s32(Sd, Sm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">float(Sm)</span></code></p></li>
+<li><p>vcvt_s32_f32(Sd, Sm) <code class="docutils literal notranslate"><span class="pre">Sd</span> <span class="pre">=</span> <span class="pre">int(Sm)</span></code></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

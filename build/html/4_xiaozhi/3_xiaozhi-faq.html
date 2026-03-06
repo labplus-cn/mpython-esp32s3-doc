@@ -1,0 +1,137 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>功能与使用问题 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=beaddf03"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">功能与使用问题</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/4_xiaozhi/3_xiaozhi-faq.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>功能与使用问题<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>Q1：小智AI终端支持播放音乐吗？
+A：支持播放测试的音乐，由于版权问题，曲目仅限测试歌曲和网友提交的歌曲，以及一些儿歌等。如需连接更多音乐，可自己扩展IO接口播放本地音乐或自行代码实现连接第三方平台音乐播放接口。</p>
+<p>Q2：小智AI终端支持DeepSeeK等大模型切换吗？
+A：支持，目前已支持以下大模型/API：</p>
+<p>Qwen 2.5（实时）
+DeepSeek V3
+DouBao 1.5 Pro
+Qwen Max 2.5</p>
+<p>操作：登录小智AI管理后台控制面板，在控制台/设备管理/配置角色页面切换AI角色大模型。 管理后台控制面板：<a class="reference external" href="https://xiaozhi.dev">https://xiaozhi.dev</a></p>
+<p>Q16：可以给小智AI终端的换更大的喇叭吗？
+A：可以的，目前小智AI终端默认的数字功放MAX98357支持3W左右的喇叭。如需更大功率，可换用其他支持I2S的功放模块，但注意ESP32开发板的USB供电一般不超过5W，更高功率需要另外单独供电。</p>
+<p>Q20：小智AI的角色名称可以换吗？
+A：可以，到小智AI管理后台控制面板——角色配置中修改AI角色名字，保存后生效。</p>
+<p>注意：角色名字是大模型配置的智能体名称，与离线唤醒词”你好小智”无关，两者不存在关联。 控制台地址：<a class="reference external" href="https://xiaozhi.dev/console/">https://xiaozhi.dev/console/</a></p>
+<p>Q21：小智AI支持更换声音/音色吗？
+A：支持，到小智AI网站控制台——配置角色中切换角色声音，可以先试听，然后提交保存配置。下次对话就会使用新配置的音色。 管理后台：<a class="reference external" href="https://xiaozhi.dev">https://xiaozhi.dev</a></p>
+<p>Q22：请问能让小智AI听声辨人记住我是谁吗？
+A：可以，操作步骤：</p>
+<p>到小智AI网站后台控制台——智能体——找到声纹识别
+在下拉菜单中选择一段语音记录（建议较长且清晰的）
+填写名称和描述（对话人和角色的关系）
+点击OK按钮添加说话人
+重新唤醒小智AI，下次对话中询问时，它会知道你是谁
+注意：受技术限制，识别准确率不是100%；说话人越多，分辨准确率会下降。</p>
+<p>Q23：小智AI支持更换成自己定制的声音吗？
+A：内部测试中，此功能需要服务端支持，暂未开放上传定制音色，请关注后续更新公告。</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>_thread — 线程 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="MicroPython类库" href="index.html" />
+    <link rel="prev" title="zlib – zlib解压缩" href="../pythonStd/zlib.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pythonStd/zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="../pythonStd/index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/micropython/_thread.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="thread">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程<a class="headerlink" href="#thread" title="此标题的永久链接"></a></h1>
+<p>该模块提供了用于处理多个线程（也称为轻量级进程或任务）的低级原语 - 多个控制线程共享其全局数据空间。为
+了同步，提供了简单的锁（也称为互斥锁或二进制信号量）。</p>
+<p>发生线程特定错误时，会RuntimeError引发异常。</p>
+<p>快速使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">_thread</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">th_func</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running thread </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">id</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">th_func</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>方法<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">_thread.start_new_thread（function，args</span> <span class="pre">[，kwargs]）</span></span></dt>
+<dd></dd></dl>
+
+<p>启动一个新线程并返回其标识符。线程使用参数列表args（必须是元组）执行函数。可选kwargs参数指定关键字参数的字典。
+当函数返回时，线程将以静默方式退出。当函数以未处理的异常终止时，将打印堆栈跟踪，然后线程退出（但其他线程继续运行）。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="thread.exit">
+<span class="sig-prename descclassname"><span class="pre">_thread.</span></span><span class="sig-name descname"><span class="pre">exit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#thread.exit" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>引发 SystemExit 异常。如果未捕获时，这将导致线程以静默方式退出。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="thread.allocate_lock">
+<span class="sig-prename descclassname"><span class="pre">_thread.</span></span><span class="sig-name descname"><span class="pre">allocate_lock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#thread.allocate_lock" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>返回一个新的锁定对象。锁的方法如下所述。锁最初为解锁状态。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="thread.get_ident">
+<span class="sig-prename descclassname"><span class="pre">_thread.</span></span><span class="sig-name descname"><span class="pre">get_ident</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#thread.get_ident" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>返回thread identifier当前线程。这是一个非零整数。它的价值没有直接意义;
+它旨在用作例如索引线程特定数据的字典的魔术cookie。当线程退出并创建另一个线程时，可以回收线程标识符。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="thread.stack_size">
+<span class="sig-prename descclassname"><span class="pre">_thread.</span></span><span class="sig-name descname"><span class="pre">stack_size</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#thread.stack_size" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>返回创建新线程时使用的线程堆栈大小（以字节为单位）。可选的size参数指定用于后续创建的线程的堆栈大小，并且必须是0（使用平台或配置的默认值）或至少为4096（4KiB）的正整数值。
+4KiB是目前支持的最小堆栈大小值，以保证解释器本身有足够的堆栈空间。</p>
+</section>
+<section id="id2">
+<h2>对象<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="object">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">_thread.LockType</span></span></dt>
+<dd></dd></dl>
+
+<p>这是锁定对象的类型。</p>
+</section>
+<section id="lock">
+<h2>Lock 类<a class="headerlink" href="#lock" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Lock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Lock</span></span><a class="headerlink" href="#Lock" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>Python提供的线程模块包含一个易于实现的锁定机制，可以实现线程之间的同步。通过调用Lock()方法创建一个新锁。
+新锁对象的获取（阻塞）方法用于强制线程同步运行。可选的阻塞参数使您可以控制线程是否等待获取锁定。</p>
+<section id="id3">
+<h3>方法<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>锁定对象具有以下方法：</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lock.acquire">
+<span class="sig-prename descclassname"><span class="pre">lock.</span></span><span class="sig-name descname"><span class="pre">acquire</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waitflag</span> <span class="pre">=</span> <span class="pre">1，timeout</span> <span class="pre">=</span> <span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lock.acquire" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>在没有任何可选参数的情况下，此方法无条件地获取锁定，如果有必要，等待它被另一个线程释放（一次只有一个线程可以获取锁定 - 这就是它们存在的原因）。</p>
+<p>如果存在整数 <code class="docutils literal notranslate"><span class="pre">waitflag</span></code> 参数，则操作取决于其值：如果它为零，则仅在不等待的情况下立即获取锁定时获取锁定，而如果它非零，则如上所述无条件地获取锁定。</p>
+<p>如果浮点超时参数存在且为正，则它指定返回之前的最长等待时间（以秒为单位）。负超时参数指定无限制等待。如果 <code class="docutils literal notranslate"><span class="pre">waitflag</span></code> 为零，则无法指定超时。</p>
+<p><code class="docutils literal notranslate"><span class="pre">True</span></code> 如果成功获取锁定则返回值，否则返回值 <code class="docutils literal notranslate"><span class="pre">False</span></code> 。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lock.release">
+<span class="sig-prename descclassname"><span class="pre">lock.</span></span><span class="sig-name descname"><span class="pre">release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lock.release" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>释放锁定。必须先获取锁，但不一定是同一个线程。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lock.locked">
+<span class="sig-prename descclassname"><span class="pre">lock.</span></span><span class="sig-name descname"><span class="pre">locked</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lock.locked" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>返回锁的状态：True表示被某个线程获取，False则表示没有。</p>
+<p>除了这些方法之外，还可以通过with语句使用锁定对象，例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">_thread</span>
+
+<span class="n">a_lock</span> <span class="o">=</span> <span class="n">_thread</span><span class="o">.</span><span class="n">allocate_lock</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">a_lock</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a_lock is locked while this executes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../pythonStd/zlib.html" class="btn btn-neutral float-left" title="zlib – zlib解压缩" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="index.html" class="btn btn-neutral float-right" title="MicroPython类库" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

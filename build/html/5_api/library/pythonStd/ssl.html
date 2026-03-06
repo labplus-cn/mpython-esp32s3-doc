@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ssl – SSL/TLS 模块 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="struct – 打包和解压缩原始数据类型" href="struct.html" />
+    <link rel="prev" title="socket – socket 模块" href="socket.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/ssl.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ssl">
+<span id="ssl-ssl-tls"></span><h1><a class="reference internal" href="#module-ssl" title="ssl: TLS/SSL 套接字对象包装器"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code></a> – SSL/TLS 模块<a class="headerlink" href="#module-ssl" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/ssl.html#module-ssl">ssl</a></p>
+<p>此模块提供对客户端和服务器端网络套接字的传输层安全性（以前称为”安全套接字层”）加密和对等身份验证工具的访问。</p>
+<section id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ssl.ssl.wrap_socket">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">wrap_socket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cert_reqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">CERT_NONE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_hostname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_handshake</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.ssl.wrap_socket" title="永久链接至目标"></a></dt>
+<dd><p>包装给定的sock并返回一个新的包装套接字对象。此函数的实现是首先创建一个SSLContext，然后在该上下文对象上调用SSLContext.wrap_socket方法。参数sock、server_side和server_hostname原样传递给方法调用。参数do_handshake作为do_handshake_on_connect传递。其余参数具有以下行为：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cert_reqs</span></code> 确定对等方（服务器或客户端）是否必须出示有效证书。请注意，对于基于mbedtls的端口，ssl.CERT_NONE和ssl.CERT_OPTIONAL不会验证任何证书，只有ssl.CERT_REQUIRED会。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cadata</span></code> 是一个字节对象，包含将验证对等方证书的CA证书链（DER格式）。目前仅支持单个DER编码的证书。</p></li>
+</ul>
+<p>根据特定MicroPython端口中底层模块的实现，上面的一些或所有关键字参数可能不受支持。</p>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>模块的某些实现不验证服务器证书，这使得建立的SSL连接容易发生中间人攻击。
+CPython的wrap_socket返回一个具有典型套接字方法（如send、recv等）的SSLSocket对象。MicroPython的wrap_socket返回一个更类似于CPython的SSLObject的对象，它没有这些套接字方法。</p>
+</div>
+</section>
+<section id="id2">
+<h2>类<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ssl.SSLContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLContext</span></span><a class="headerlink" href="#ssl.SSLContext" title="永久链接至目标"></a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="ssl.SSLContext.ssl.SSLContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protocol</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.SSLContext.ssl.SSLContext" title="永久链接至目标"></a></dt>
+<dd><p>创建一个新的SSLContext实例。protocol参数必须是PROTOCOL_*常量之一。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ssl.SSLContext.load_cert_chain">
+<span class="sig-name descname"><span class="pre">load_cert_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyfile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.SSLContext.load_cert_chain" title="永久链接至目标"></a></dt>
+<dd><p>加载私钥和相应的证书。certfile是证书文件路径的字符串。keyfile是私钥文件路径的字符串。</p>
+<div class="attention admonition">
+<p class="admonition-title">Difference to CPython</p>
+<p>MicroPython扩展：certfile和keyfile可以是字节对象而不是字符串，在这种情况下，它们被解释为实际的证书/密钥数据。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ssl.SSLContext.load_verify_locations">
+<span class="sig-name descname"><span class="pre">load_verify_locations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cafile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.SSLContext.load_verify_locations" title="永久链接至目标"></a></dt>
+<dd><p>加载将验证对等方证书的CA证书链。cafile是CA证书的文件路径。cadata是包含CA证书的字节对象。应该只提供这些参数中的一个。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ssl.SSLContext.get_ciphers">
+<span class="sig-name descname"><span class="pre">get_ciphers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ssl.SSLContext.get_ciphers" title="永久链接至目标"></a></dt>
+<dd><p>获取启用的密码列表，以字符串列表形式返回。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ssl.SSLContext.set_ciphers">
+<span class="sig-name descname"><span class="pre">set_ciphers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ciphers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.SSLContext.set_ciphers" title="永久链接至目标"></a></dt>
+<dd><p>设置使用此上下文创建的套接字的可用密码。ciphers应该是IANA密码套件格式的字符串列表。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ssl.SSLContext.wrap_socket">
+<span class="sig-name descname"><span class="pre">wrap_socket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sock</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_handshake_on_connect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_hostname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.SSLContext.wrap_socket" title="永久链接至目标"></a></dt>
+<dd><p>采用流sock（通常是SOCK_STREAM类型的socket.socket实例），并返回ssl.SSLSocket的实例，该实例将基础流包装在SSL上下文中。返回的对象具有通常的流接口方法，如 <code class="docutils literal notranslate"><span class="pre">read()</span></code> ，<code class="docutils literal notranslate"><span class="pre">write()</span></code> 等。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">server_side</span></code> 选择包装的套接字是在服务器端还是客户端。服务器端SSL套接字应该从非SSL侦听服务器套接字上的 <code class="docutils literal notranslate"><span class="pre">accept()</span></code> 返回的普通套接字创建。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">do_handshake_on_connect</span></code> 确定握手是作为wrap_socket的一部分完成还是延迟到初始读写时完成。对于阻塞套接字，立即进行握手是标准的。对于非阻塞套接字（即当传递给wrap_socket的sock处于非阻塞模式时），握手通常应该延迟，因为否则wrap_socket会阻塞直到完成。请注意，在AXTLS中，握手可以延迟到第一次读写，但随后会阻塞直到完成。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server_hostname</span></code> 用于客户端，设置要对照接收到的服务器证书检查的主机名。它还设置服务器名称指示（SNI）的名称，允许服务器呈现适当的证书。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client_id</span></code> 是MicroPython特定的扩展参数，仅在实现DTLS服务器时使用。有关详细信息，请参阅DTLS支持。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ssl.SSLContext.verify_mode">
+<span class="sig-name descname"><span class="pre">verify_mode</span></span><a class="headerlink" href="#ssl.SSLContext.verify_mode" title="永久链接至目标"></a></dt>
+<dd><p>设置或获取对等证书验证的行为。必须是CERT_*常量之一。</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>ssl.CERT_REQUIRED要求设备的日期/时间正确设置，例如使用mpremote rtc –set或ntptime，并且在客户端时必须指定server_hostname。</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="dtls">
+<h2>DTLS支持<a class="headerlink" href="#dtls" title="此标题的永久链接"></a></h2>
+<div class="attention admonition">
+<p class="admonition-title">Difference to CPython</p>
+<p>这是MicroPython扩展。</p>
+</div>
+<p>在大多数端口上，此模块通过可用于SSLContext的protocol参数的PROTOCOL_DTLS_CLIENT和PROTOCOL_DTLS_SERVER常量支持客户端和服务器模式的DTLS。
+在这种情况下，底层套接字应表现为数据报套接字（即类似于使用socket.AF_INET作为af和socket.SOCK_DGRAM作为类型打开的套接字）。
+DTLS仅在使用mbedTLS的端口上受支持，并且在大多数配置中默认启用，但可以通过将MICROPY_PY_SSL_DTLS定义为0来手动禁用。</p>
+<section id="id3">
+<h3>DTLS服务器支持<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>MicroPython的DTLS服务器支持配置为”Hello Verify”，这是DTLS 1.2所必需的。这对DTLS客户端是透明的，但在MicroPython中实现DTLS服务器时需要考虑以下相关事项：</p>
+<ul>
+<li><p>服务器在调用SSLContext.wrap_socket()时应传递额外的参数client_id。此ID必须是一个字节对象（或类似对象），带有表示客户端的传输特定标识符。最简单的方法是将socket.recv_from()返回的(client_ip, client_port)元组转换为字节字符串，即：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">client_addr</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">MSG_PEEK</span><span class="p">)</span>
+<span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">client_addr</span><span class="p">)</span>  <span class="c1"># 连接回客户端</span>
+<span class="n">sock</span> <span class="o">=</span> <span class="n">ssl_ctx</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">server_side</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">client_id</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">client_addr</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+<li><p>客户端第一次连接时，服务器对wrap_socket的调用将失败，出现OSError错误”Hello Verify Required”。这是因为DTLS”Hello Verify” cookie尚未被客户端知道。如果同一客户端第二次连接，则wrap_socket将成功。</p></li>
+<li><p>“Hello Verify”的DTLS cookie与SSLContext对象相关联，因此应使用相同的SSLContext对象来包装来自同一客户端的后续连接。cookie实现包括超时，并且无论有多少客户端连接，内存使用都是恒定的，因此可以在服务器的整个生命周期中重用同一个SSLContext对象。</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>异常<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="ssl.ssl.SSLError">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLError</span></span><a class="headerlink" href="#ssl.ssl.SSLError" title="永久链接至目标"></a></dt>
+<dd><p>此异常不存在。而是使用它的基类OSError。</p>
+</dd></dl>
+
+</section>
+<section id="id5">
+<h2>常量<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="ssl.ssl.PROTOCOL_TLS_CLIENT">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">PROTOCOL_TLS_CLIENT</span></span><a class="headerlink" href="#ssl.ssl.PROTOCOL_TLS_CLIENT" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="ssl.ssl.PROTOCOL_TLS_SERVER">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">PROTOCOL_TLS_SERVER</span></span><a class="headerlink" href="#ssl.ssl.PROTOCOL_TLS_SERVER" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="ssl.ssl.PROTOCOL_DTLS_CLIENT">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">PROTOCOL_DTLS_CLIENT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">当启用DTLS支持时</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.ssl.PROTOCOL_DTLS_CLIENT" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="ssl.ssl.PROTOCOL_DTLS_SERVER">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">PROTOCOL_DTLS_SERVER</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">当启用DTLS支持时</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.ssl.PROTOCOL_DTLS_SERVER" title="永久链接至目标"></a></dt>
+<dd><p>protocol参数的支持值。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="ssl.ssl.CERT_NONE">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">CERT_NONE</span></span><a class="headerlink" href="#ssl.ssl.CERT_NONE" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="ssl.ssl.CERT_OPTIONAL">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">CERT_OPTIONAL</span></span><a class="headerlink" href="#ssl.ssl.CERT_OPTIONAL" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="ssl.ssl.CERT_REQUIRED">
+<span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">CERT_REQUIRED</span></span><a class="headerlink" href="#ssl.ssl.CERT_REQUIRED" title="永久链接至目标"></a></dt>
+<dd><p>cert_reqs参数和SSLContext.verify_mode属性的支持值。</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="socket.html" class="btn btn-neutral float-left" title="socket – socket 模块" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="struct.html" class="btn btn-neutral float-right" title="struct – 打包和解压缩原始数据类型" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

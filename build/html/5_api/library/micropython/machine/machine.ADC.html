@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>类 ADC – 模数转换 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../../search.html" />
+    <link rel="next" title="类 TouchPad – 触摸" href="machine.TouchPad.html" />
+    <link rel="prev" title="类 Pin – 控制 I/O 引脚" href="machine.Pin.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">MicroPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../btree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">btree</span></code> – 简单的 BTree 数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../framebuf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">framebuf</span></code> — 帧缓冲操作</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="machine.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../network.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ubluetooth.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code> — 低功耗蓝牙</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ucryptolib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ucryptolib</span></code> – 加密密码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uctypes.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code> –  以结构化方式访问二进制数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../neopixel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">neopixel</span></code> — WS2812 灯带</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ntptime.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ntptime</span></code> — 时间同步</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dht.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dht</span></code> — dht模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../esp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp</span></code> — ESP32相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../esp32.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code> — 特定于ESP32的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onewire.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">onewire</span></code> — 单总线</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">MicroPython类库</a></li>
+          <li class="breadcrumb-item"><a href="machine.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+      <li class="breadcrumb-item active">类 ADC – 模数转换</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/5_api/library/micropython/machine/machine.ADC.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="module-ADC"><span id="machine-adc"></span></span><section id="adc">
+<h1>类 ADC – 模数转换<a class="headerlink" href="#adc" title="此标题的永久链接"></a></h1>
+<section id="id1">
+<h2>构建对象<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ADC.ADC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">ADC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Pin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ADC.ADC" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>创建与设定引脚关联的ADC对象。这样您就可以读取该引脚上的模拟值。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin</span></code> - ADC在专用引脚上可用，ESP32可用引脚有：IO39、IO36、IO35、IO33、IO34、IO32。掌控板的ADC引脚有P0、P1、P2、P3、P4、P10。</p></li>
+</ul>
+</div></blockquote>
+<p>详细引脚定义可查阅 <a class="reference external" href="../../../_images/pinout_wroom_pinout.png">ESP32引脚功能表.</a> 和  <span class="xref std std-ref">掌控板引脚定义</span> 章节。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADC</span><span class="p">,</span> <span class="n">Pin</span>
+
+<span class="n">adc</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">33</span><span class="p">))</span>      <span class="c1"># create an ADC object</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="ADC.ADC.read">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ADC.ADC.read" title="永久链接至目标"></a></dt>
+<dd><p>读取ADC并返回读取结果。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ADC.ADC.atten">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">atten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ADC.ADC.atten" title="永久链接至目标"></a></dt>
+<dd><p>该方法允许设置ADC输入的衰减量。这允许更宽的可能输入电压范围，但是以精度为代价（相同的位数现在表示更宽的范围）。在未设置atten(),默认为0DB衰减。可能的衰减选项包括：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">db</span></code></p>
+<blockquote>
+<div><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>宏定义</p></th>
+<th class="head"><p>衰减量</p></th>
+<th class="head"><p>数值</p></th>
+<th class="head"><p>满量程电压</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ADC.ATTN_0DB</span></code></p></td>
+<td><p>0dB衰减</p></td>
+<td><p>0</p></td>
+<td><p>1V</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ADC.ATTN_2_5DB</span></code></p></td>
+<td><p>2.5dB衰减</p></td>
+<td><p>1</p></td>
+<td><p>1.5V</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ADC.ATTN_6DB</span></code></p></td>
+<td><p>6dB衰减</p></td>
+<td><p>2</p></td>
+<td><p>2V</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ADC.ATTN_11DB</span></code></p></td>
+<td><p>11dB衰减</p></td>
+<td><p>3</p></td>
+<td><p>3.3V</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ADC.ADC.width">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ADC.ADC.width" title="永久链接至目标"></a></dt>
+<dd><p>设置数据宽度(分辨率)。ADC的分辨率是指能够将采集的模拟信号转化为数字信号的精度，通常我们用“位”来表述，比如8位就是指ADC可以将制定量程内的电压信号，分别对应到0 - 2^8-1,即 0-255这256个数字上。分辨率位数越高，能够表示的也就越精确，信息丢失的也就越少。</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">bit</span></code> -  宽度选项有:</p>
+<blockquote>
+<div><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>宏定义</p></th>
+<th class="head"><p>数值</p></th>
+<th class="head"><p>满量程</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ADC.WIDTH_9BIT</span></code></p></td>
+<td><p>0</p></td>
+<td><p>0x1ff(511)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ADC.WIDTH_10BIT</span></code></p></td>
+<td><p>1</p></td>
+<td><p>0x3ff(1023)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ADC.WIDTH_11BIT</span></code></p></td>
+<td><p>2</p></td>
+<td><p>0x7ff(2047)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ADC.WIDTH_12BIT</span></code></p></td>
+<td><p>3</p></td>
+<td><p>00xfff(4095)</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADC</span><span class="p">,</span> <span class="n">Pin</span>
+
+<span class="n">adc</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">34</span><span class="p">))</span>      <span class="c1"># create an ADC object</span>
+<span class="n">adc</span><span class="o">.</span><span class="n">atten</span><span class="p">(</span><span class="n">adc</span><span class="o">.</span><span class="n">ATTN_11DB</span><span class="p">)</span>   <span class="c1"># set 3.3V Range</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">adc</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<section id="id4">
+<h3>衰减比<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="ADC.ADC.ATTN_0DB">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">ATTN_0DB</span></span><a class="headerlink" href="#ADC.ADC.ATTN_0DB" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="ADC.ADC.ATTN_2_5DB">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">ATTN_2_5DB</span></span><a class="headerlink" href="#ADC.ADC.ATTN_2_5DB" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="ADC.ADC.ATTN_6DB">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">ATTN_6DB</span></span><a class="headerlink" href="#ADC.ADC.ATTN_6DB" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="ADC.ADC.ATTN_11DB">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">ATTN_11DB</span></span><a class="headerlink" href="#ADC.ADC.ATTN_11DB" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="id5">
+<h3>数据宽度<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="ADC.ADC.WIDTH_9BIT">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">WIDTH_9BIT</span></span><a class="headerlink" href="#ADC.ADC.WIDTH_9BIT" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="ADC.ADC.WIDTH_10BIT">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">WIDTH_10BIT</span></span><a class="headerlink" href="#ADC.ADC.WIDTH_10BIT" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="ADC.ADC.WIDTH_11BIT">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">WIDTH_11BIT</span></span><a class="headerlink" href="#ADC.ADC.WIDTH_11BIT" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="ADC.ADC.WIDTH_12BIT">
+<span class="sig-prename descclassname"><span class="pre">ADC.</span></span><span class="sig-name descname"><span class="pre">WIDTH_12BIT</span></span><a class="headerlink" href="#ADC.ADC.WIDTH_12BIT" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="machine.Pin.html" class="btn btn-neutral float-left" title="类 Pin – 控制 I/O 引脚" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="machine.TouchPad.html" class="btn btn-neutral float-right" title="类 TouchPad – 触摸" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

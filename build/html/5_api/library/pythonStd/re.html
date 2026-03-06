@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>re – 正则表达式 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="select – 高效地等待I/O" href="select.html" />
+    <link rel="prev" title="random — 生成随机数" href="../micropython/random.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/re.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-re">
+<span id="re"></span><h1><a class="reference internal" href="#module-re" title="re: 正则表达式"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code></a> – 正则表达式<a class="headerlink" href="#module-re" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/re.html#module-re">re</a></p>
+<p>该模块实现了正则表达式操作。支持的正则表达式语法是CPython <code class="docutils literal notranslate"><span class="pre">re</span></code> 模块的子集（实际上是POSIX扩展正则表达式的子集）。</p>
+<p>支持的运算符和特殊序列是:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'.'</span></code></dt><dd><p>匹配任何字符。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'[]'</span></code></dt><dd><p>匹配字符集。支持单个字符和范围，包括否定集（例​​如 <code class="docutils literal notranslate"><span class="pre">[^a-c]</span></code> ）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'^'</span></code></dt><dd><p>匹配字符串的开头。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'$'</span></code></dt><dd><p>匹配字符串的结尾。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'?'</span></code></dt><dd><p>匹配零个或前一个子模式之一。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'*'</span></code></dt><dd><p>匹配前一个子模式的零个或多个。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'+'</span></code></dt><dd><p>匹配前一个子模式中的一个或多个。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'??'</span></code></dt><dd><p>非贪婪版本?，匹配零或一，偏好为零。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'*?'</span></code></dt><dd><p>非贪婪版本*，匹配零或更多，与最短匹配的偏好。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'+?'</span></code></dt><dd><p>非贪婪版本+，匹配一个或多个，与最短匹配的偏好。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">|</span></code></dt><dd><p>匹配此运算符的左侧或右侧子模式。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">(...)</span></code></dt><dd><p>分组。每个组都在捕获（它捕获的子字符串可以通过 <cite>match.group()</cite> 方法访问）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\d</span></code></dt><dd><p>匹配数字。相当于 <code class="docutils literal notranslate"><span class="pre">[0-9]</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\D</span></code></dt><dd><p>匹配非数字。相当于 <code class="docutils literal notranslate"><span class="pre">[^0-9]</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\s</span></code></dt><dd><p>匹配空白。相当于 <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">\t-\r]</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\S</span></code></dt><dd><p>匹配非空白。相当于 <code class="docutils literal notranslate"><span class="pre">[^</span> <span class="pre">\t-\r]</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\w</span></code></dt><dd><p>匹配”单词字符”（仅限ASCII）。相当于 <code class="docutils literal notranslate"><span class="pre">[A-Za-z0-9_]</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\W</span></code></dt><dd><p>匹配非”单词字符”（仅限ASCII）。相当于 <code class="docutils literal notranslate"><span class="pre">[^A-Za-z0-9_]</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\</span></code></dt><dd><p>转义字符。除了上面列出的那些之外，反斜杠后面的任何其他字符都是字面意思。例如，<code class="docutils literal notranslate"><span class="pre">\*</span></code> 等同于文字 <code class="docutils literal notranslate"><span class="pre">*``（不作为</span> <span class="pre">``*</span></code> 运算符）。
+需要注意的是 <code class="docutils literal notranslate"><span class="pre">\r</span></code> ，<code class="docutils literal notranslate"><span class="pre">\n</span></code> 等没有特殊处理，并且将相当于文字字母 <code class="docutils literal notranslate"><span class="pre">r</span></code> ，<code class="docutils literal notranslate"><span class="pre">n</span></code> 等。由于这一点，不推荐使用原始Python字符串（<code class="docutils literal notranslate"><span class="pre">r&quot;&quot;</span></code>）为正则表达式。
+例如，<code class="docutils literal notranslate"><span class="pre">r&quot;\r\n&quot;</span></code> 当用作正则表达式时相当于 <code class="docutils literal notranslate"><span class="pre">&quot;rn&quot;</span></code> 。要匹配CR后跟LF的字符，请使用 <code class="docutils literal notranslate"><span class="pre">&quot;\r\n&quot;</span></code> 。</p>
+</dd>
+</dl>
+<p><strong>不支持</strong>:</p>
+<ul class="simple">
+<li><p>计算重复次数 (<code class="docutils literal notranslate"><span class="pre">{m,n}</span></code>)</p></li>
+<li><p>命名组 (<code class="docutils literal notranslate"><span class="pre">(?P&lt;name&gt;...)</span></code>)</p></li>
+<li><p>非捕获组 (<code class="docutils literal notranslate"><span class="pre">(?:...)</span></code>)</p></li>
+<li><p>更高级的断言 (<code class="docutils literal notranslate"><span class="pre">\b</span></code>, <code class="docutils literal notranslate"><span class="pre">\B</span></code>)</p></li>
+<li><p>特殊字符逃脱 ，例如 <code class="docutils literal notranslate"><span class="pre">\r</span></code> ，<code class="docutils literal notranslate"><span class="pre">\n</span></code> 使用Python自己的转义</p></li>
+<li><p>等等</p></li>
+</ul>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="c1"># As re doesn&#39;t support escapes itself, use of r&quot;&quot; strings is not</span>
+<span class="c1"># recommended.</span>
+<span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;[</span><span class="se">\r\n</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="n">regex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;line1</span><span class="se">\r</span><span class="s2">line2</span><span class="se">\n</span><span class="s2">line3</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Result:</span>
+<span class="c1"># [&#39;line1&#39;, &#39;line2&#39;, &#39;line3&#39;, &#39;&#39;, &#39;&#39;]</span>
+</pre></div>
+</div>
+<section id="id2">
+<h2>函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="re.compile">
+<span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#re.compile" title="永久链接至目标"></a></dt>
+<dd><p>编译正则表达式，返回 <cite>regex &lt;regex&gt;</cite> 对象。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="re.match">
+<span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.match" title="永久链接至目标"></a></dt>
+<dd><p>编译 <em>regex_str</em> 并匹配 <em>string</em> 。匹配始终从字符串中的起始位置开始。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="re.search">
+<span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.search" title="永久链接至目标"></a></dt>
+<dd><p>编译 <cite>regex_str</cite> 并在字符串中搜索它。与 <code class="docutils literal notranslate"><span class="pre">match</span></code> 此不同，这将搜索匹配正则表达式的第一个位置的字符串（如果正则表达式已锚定，则仍可能为0）。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="re.sub">
+<span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.sub" title="永久链接至目标"></a></dt>
+<dd><p>编译 regex_str 并在 string 中搜索它，用 replace 替换所有匹配项，并返回新字符串。
+replace 可以是字符串或函数。如果是字符串，则可以使用形式为 &lt;number&gt; 和 g&lt;number&gt; 的转义序列来扩展到相应的组（或未匹配组的空字符串）。
+如果 replace 是函数，则它必须接受单个参数（匹配项）并应返回替换字符串。
+如果指定了 count 且非零，则替换将在此多次替换后停止。flags 参数被忽略。
+注意：此函数的可用性取决于MicroPython端口。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="re.DEBUG">
+<span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">DEBUG</span></span><a class="headerlink" href="#re.DEBUG" title="永久链接至目标"></a></dt>
+<dd><p>标记值，显示有关已编译表达式的调试信息。
+（可用性取决于MicroPython端口。）</p>
+</dd></dl>
+
+</section>
+<section id="regex">
+<h2>Regex对象<a class="headerlink" href="#regex" title="此标题的永久链接"></a></h2>
+<p>编译后的正则表达式。此类的实例使用 re.compile() 创建。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="re.regex.match">
+<span class="sig-prename descclassname"><span class="pre">regex.</span></span><span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#re.regex.match" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="re.regex.search">
+<span class="sig-prename descclassname"><span class="pre">regex.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#re.regex.search" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="re.regex.sub">
+<span class="sig-prename descclassname"><span class="pre">regex.</span></span><span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">replace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.regex.sub" title="永久链接至目标"></a></dt>
+<dd><p>类似于模块级函数 match()、search() 和 sub()。
+如果相同的正则表达式应用于多个字符串，使用方法（更）更高效。
+可选的第二个参数 pos 给出字符串中搜索开始的索引；默认为0。这与切片字符串并不完全等效；’^’ 模式字符在字符串的实际开头和换行符之后的位置匹配，但不一定在搜索开始的索引处匹配。
+可选参数 endpos 限制字符串搜索的距离；就好像字符串是 endpos 字符长，所以只会搜索从 pos 到 endpos - 1 的字符以寻找匹配项。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="re.regex.split">
+<span class="sig-prename descclassname"><span class="pre">regex.</span></span><span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.regex.split" title="永久链接至目标"></a></dt>
+<dd><p>使用正则表达式分割字符串。如果给出 max_split，它指定要执行的最大分割数。返回字符串列表（如果指定，最多可能有 max_split+1 个元素）。</p>
+</dd></dl>
+
+</section>
+<section id="match">
+<h2>Match对象<a class="headerlink" href="#match" title="此标题的永久链接"></a></h2>
+<p>由 match() 和 search() 方法返回并传递给 sub() 中的替换函数的匹配对象。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="re.match.group">
+<span class="sig-prename descclassname"><span class="pre">match.</span></span><span class="sig-name descname"><span class="pre">group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.match.group" title="永久链接至目标"></a></dt>
+<dd><p>返回匹配的（子）字符串。index 为0表示整个匹配，1及以上表示每个捕获组。仅支持数字组。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="re.match.groups">
+<span class="sig-prename descclassname"><span class="pre">match.</span></span><span class="sig-name descname"><span class="pre">groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#re.match.groups" title="永久链接至目标"></a></dt>
+<dd><p>返回包含匹配组的所有子字符串的元组。
+注意：此方法的可用性取决于MicroPython端口。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="re.match.start">
+<span class="sig-prename descclassname"><span class="pre">match.</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#re.match.start" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="re.match.end">
+<span class="sig-prename descclassname"><span class="pre">match.</span></span><span class="sig-name descname"><span class="pre">end</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#re.match.end" title="永久链接至目标"></a></dt>
+<dd><p>返回原始字符串中匹配的子字符串组的开始或结束的索引。index 默认为整个组，否则它将选择一个组。
+注意：这些方法的可用性取决于MicroPython端口。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="re.match.span">
+<span class="sig-prename descclassname"><span class="pre">match.</span></span><span class="sig-name descname"><span class="pre">span</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#re.match.span" title="永久链接至目标"></a></dt>
+<dd><p>返回 2 元组 (match.start(index), match.end(index))。
+注意：此方法的可用性取决于MicroPython端口。</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../micropython/random.html" class="btn btn-neutral float-left" title="random — 生成随机数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="select.html" class="btn btn-neutral float-right" title="select – 高效地等待I/O" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

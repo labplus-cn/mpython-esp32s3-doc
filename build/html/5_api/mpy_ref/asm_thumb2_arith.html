@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. 算法指令 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>算法指令</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/5_api/mpy_ref/asm_thumb2_arith.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">5. </span>算法指令<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2><span class="section-number">5.1. </span>文件规范<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>符号： <code class="docutils literal notranslate"><span class="pre">Rd</span></code> , <code class="docutils literal notranslate"><span class="pre">Rm</span></code> , <code class="docutils literal notranslate"><span class="pre">Rn</span></code> 表示ARM寄存器R0-R7。 <code class="docutils literal notranslate"><span class="pre">immN</span></code> 表示具有N位宽度的即时值，如 <code class="docutils literal notranslate"><span class="pre">imm8</span></code> 、 <code class="docutils literal notranslate"><span class="pre">imm3``等。</span>
+<span class="pre">``Carry</span></code> 表示进位条件标志。 <code class="docutils literal notranslate"><span class="pre">not(carry)</span></code> 表示其补码。对于多于一个寄存器参数的指令，允许其相同。
+例如，以下指令将把R0的内容添加到其自身，将结果置于R0中:</p>
+<ul class="simple">
+<li><p>add(r0, r0, r0)</p></li>
+</ul>
+<p>除特殊说明的情况外，算法指令将会影响条件标志。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.2. </span>加<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>add(Rdn, imm8) <code class="docutils literal notranslate"><span class="pre">Rdn</span> <span class="pre">=</span> <span class="pre">Rdn</span> <span class="pre">+</span> <span class="pre">imm8</span></code></p></li>
+<li><p>add(Rd, Rn, imm3) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rn</span> <span class="pre">+</span> <span class="pre">imm3</span></code></p></li>
+<li><p>add(Rd, Rn, Rm) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rn</span> <span class="pre">+Rm</span></code></p></li>
+<li><p>adc(Rd, Rn) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rd</span> <span class="pre">+</span> <span class="pre">Rn</span> <span class="pre">+</span> <span class="pre">carry</span></code></p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">5.3. </span>减<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>sub(Rdn, imm8) <code class="docutils literal notranslate"><span class="pre">Rdn</span> <span class="pre">=</span> <span class="pre">Rdn</span> <span class="pre">-</span> <span class="pre">imm8</span></code></p></li>
+<li><p>sub(Rd, Rn, imm3) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rn</span> <span class="pre">-</span> <span class="pre">imm3</span></code></p></li>
+<li><p>sub(Rd, Rn, Rm) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rn</span> <span class="pre">-</span> <span class="pre">Rm</span></code></p></li>
+<li><p>sbc(Rd, Rn) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rd</span> <span class="pre">-</span> <span class="pre">Rn</span> <span class="pre">-</span> <span class="pre">not(carry)</span></code></p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">5.4. </span>取反<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>neg(Rd, Rn) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">-Rn</span></code></p></li>
+</ul>
+</section>
+<section id="id6">
+<h2><span class="section-number">5.5. </span>乘和除<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>mul(Rd, Rn) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rd</span> <span class="pre">*</span> <span class="pre">Rn</span></code></p></li>
+</ul>
+<p>这会产生一个溢出丢失的32位结果。结果可能将根据操作数的定义被视为有符号或无符号。</p>
+<ul class="simple">
+<li><p>sdiv(Rd, Rn, Rm) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rn</span> <span class="pre">/</span> <span class="pre">Rm</span></code></p></li>
+<li><p>udiv(Rd, Rn, Rm) <code class="docutils literal notranslate"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rn</span> <span class="pre">/</span> <span class="pre">Rm</span></code></p></li>
+</ul>
+<p>这些函数分别执行有符号和无符号的除法。条件标志不受影响。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

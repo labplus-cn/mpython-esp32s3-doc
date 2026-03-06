@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>驱动舵机 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">驱动舵机</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/classic/servo.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="servo-classic">
+<span id="id1"></span><h1>驱动舵机<a class="headerlink" href="#servo-classic" title="此标题的永久链接"></a></h1>
+</section>
+<section id="id2">
+<h1>舵机原理<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h1>
+<p>舵机是一种位置（角度）伺服的驱动器，它由直流电机、减速齿轮组、传感器和控制电路组成的一套自动控制系统。通过发送信号，指定输出轴旋转角度，一般而言都有最大旋转角度（比如180度），与普通直流电机的区别主要在直流电机是一圈圈转动的，舵机只能在一定角度内转动，不能一圈圈转（但数字舵机可以在舵机模式和电机模式中切换）。普通直流电机无法反馈转动的角度信息，而舵机可以。</p>
+<a class="reference internal image-reference" href="../../_images/Servo.jpg"><img alt="../../_images/Servo.jpg" class="align-center" src="../../_images/Servo.jpg" style="width: 311.5px; height: 238.7px;" /></a>
+<p>标准的舵机有3条引线，分别是：地线GND(舵机连接线的棕色)、电源线Vcc（舵机连接线的红色）、控制信号线(舵机连接线的橙色)。</p>
+<a class="reference internal image-reference" href="../../_images/Servo1.jpg"><img alt="../../_images/Servo1.jpg" class="align-center" src="../../_images/Servo1.jpg" style="width: 559.2px; height: 194.4px;" /></a>
+<p>舵机的伺服系统由可变宽度的脉冲来进行控制，控制线是用来传送脉冲的。脉冲的参数有最小值，最大值，和频率。一般而言，舵机的基准信号周期为20ms，宽度为1.5ms，这个基准信号定义的位置为中间位置，角度是由来自控制线的持续的脉冲所产生。该脉冲的高电平部分一般为0.5ms-2.5ms范围内的角度控制脉冲部分，总间隔为2ms。这种控制方法叫做脉冲调制，脉冲的长短决定舵机转动多大角度。</p>
+<a class="reference internal image-reference" href="../../_images/Servo2.png"><img alt="../../_images/Servo2.png" class="align-center" src="../../_images/Servo2.png" style="width: 700.0px; height: 200.0px;" /></a>
+<p>例如：1.5毫秒脉冲会到转动到中间位置（对于180°舵机来说，就是90°位置）。当控制系统发出指令，让舵机移动到某一位置，并让他保持这个角度，这时外力的影响不会让他角度产生变化，但是这个是由上限的，上限就是他的最大扭力。除非控制系统不停的发出脉冲稳定舵机的角度，舵机的角度不会一直不变。</p>
+<p>180度角度伺服对应的控制关系是：</p>
+<a class="reference internal image-reference" href="../../_images/Servo3.jpg"><img alt="../../_images/Servo3.jpg" class="align-center" src="../../_images/Servo3.jpg" style="width: 600.0px; height: 463.0px;" /></a>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>不同舵机的脉宽范围会有所不一样，控制时需要留意！</p>
+</div>
+</section>
+<section id="id3">
+<h1>加速度控制舵机<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h1>
+<p>我们结合加速度计制作一个通过左右倾斜掌控板来控制舵机的角度:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">servo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Servo</span>
+
+<span class="n">myServo</span><span class="o">=</span><span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">min_us</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">max_us</span><span class="o">=</span><span class="mi">2500</span><span class="p">)</span>      <span class="c1">#构建Servo对象</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">accelerometer</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>          <span class="c1">#获取Y轴的加速度</span>
+    <span class="k">if</span> <span class="n">y</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">y</span><span class="o">&gt;=-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">angle</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">numberMap</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">))</span>    <span class="c1">#映射Y轴加速度值</span>
+    <span class="n">myServo</span><span class="o">.</span><span class="n">write_angle</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>       <span class="c1">#写舵机角度</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;angle:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">angle</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>舵机和掌控板的连接需要借助掌控扩展板。你可以查阅 <span class="xref std std-ref">掌控板接口引脚说明</span> ,了解可供使用的PWM模拟输出的引脚 。在这里使用引脚P0。将掌控板插在掌控扩展板上，通过双母头杜邦线将舵机和扩展板进行连接，舵机上的电源线Vcc（舵机连接线的红色）连接扩展板的电源口“V”，地线GND(舵机连接线的棕色)连接扩展板的地线口“G”，控制信号线(舵机连接线的橙色)连接扩展板的引脚“0”。</p>
+<a class="reference internal image-reference" href="../../_images/Servo1.jpg"><img alt="../../_images/Servo1.jpg" class="align-center" src="../../_images/Servo1.jpg" style="width: 419.4px; height: 145.79999999999998px;" /></a>
+<p>使用前，导入mpython、servo模块:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">servo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Servo</span>
+</pre></div>
+</div>
+<p>构建Servo对象，设置舵机脉冲宽度参数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myServo</span><span class="o">=</span><span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">min_us</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">max_us</span><span class="o">=</span><span class="mi">2500</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Servo(pin, min_us=750, max_us=2250, actuation_range=180) 用来构建Servo对象，默认使用SG90舵机。不同舵机脉冲宽度参数和角度范围会有所不一样,根据舵机型号自行设置。<code class="docutils literal notranslate"><span class="pre">pin</span></code> 设置舵机PWM控制信号引脚，<code class="docutils literal notranslate"><span class="pre">min_us</span></code> 设置舵机PWM信号脉宽最小宽度，单位微秒，默认min_us=750，<code class="docutils literal notranslate"><span class="pre">max_us</span></code> 设置舵机PWM信号脉宽最小宽度，单位微秒，默认max_us=2250，<code class="docutils literal notranslate"><span class="pre">actuation_range</span></code> 设置舵机转动最大角度。</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>您可以设置 <code class="docutils literal notranslate"><span class="pre">actuation_range</span></code> 来对应用给定的 <code class="docutils literal notranslate"><span class="pre">min_us</span></code> 和 <code class="docutils literal notranslate"><span class="pre">max_us</span></code> 观察到的实际运动范围值。您也可以将脉冲宽度扩展到这些限制之上和之下伺服机构可能会停止，嗡嗡声，并在停止时吸收额外的电流。仔细测试，找出安全的最小值和最大值。</p>
+</div>
+<p>当检测到掌控板在Y轴方向倾斜时（范围-1g 至+1g），将Y轴的加速度值（范围-1至1）映射在舵机输出轴旋转角度（（范围0至180））上:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">y</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">y</span><span class="o">&gt;=-</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">angle</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">numberMap</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>输出舵机角度并在OLED显示屏上显示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myServo</span><span class="o">.</span><span class="n">write_angle</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>       <span class="c1">#写舵机角度</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;angle:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">angle</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

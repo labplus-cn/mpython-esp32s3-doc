@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>获取网络气象 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">获取网络气象</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/classic/weather.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>获取网络气象<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>例：通过网络获取气象信息，并将气象信息反馈到oled屏上。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span><span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urequests</span>                    <span class="c1">#用于网络访问的模块</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">seniverse</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>             <span class="c1">#天气图标模块</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Timer</span>           <span class="c1">#定时器模块</span>
+
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s1">&#39;yourkey&#39;</span>                 <span class="c1">#心知天气API密钥（key）</span>
+
+<span class="n">url_now</span><span class="o">=</span><span class="s2">&quot;https://api.seniverse.com/v3/weather/now.json&quot;</span>           <span class="c1">#获取天气实况的请求地址</span>
+<span class="n">url_daily</span><span class="o">=</span><span class="s2">&quot;https://api.seniverse.com/v3/weather/daily.json&quot;</span>       <span class="c1">#获取多日天气预报的请求地址</span>
+
+<span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s1">&#39;联网中...&#39;</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>     <span class="c1">#OLED屏显示联网提示</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>
+<span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s1">&#39;yourESSID&#39;</span><span class="p">,</span><span class="s1">&#39;yourpassword&#39;</span><span class="p">)</span>          <span class="c1">#连接 WiFi 网络</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">nowWeather</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;zh-Hans&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">):</span>         <span class="c1">#设置天气实况返回的数据</span>
+    <span class="n">nowResult</span> <span class="o">=</span> <span class="n">urequests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_now</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">apikey</span><span class="p">,</span>
+        <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
+        <span class="s1">&#39;language&#39;</span><span class="p">:</span> <span class="n">language</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="n">unit</span>
+    <span class="p">})</span>
+    <span class="n">json</span><span class="o">=</span><span class="n">nowResult</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">nowResult</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">json</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dailyWeather</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;zh-Hans&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="n">days</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">):</span>        <span class="c1">#设置多日天气，只返回今日的数据</span>
+    <span class="n">dailyResult</span> <span class="o">=</span> <span class="n">urequests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_daily</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">apikey</span><span class="p">,</span>
+        <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
+        <span class="s1">&#39;language&#39;</span><span class="p">:</span> <span class="n">language</span><span class="p">,</span>
+        <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span>
+        <span class="s1">&#39;days&#39;</span><span class="p">:</span> <span class="n">days</span>
+    <span class="p">})</span>
+    <span class="n">json</span><span class="o">=</span><span class="n">dailyResult</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">dailyResult</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span>  <span class="n">json</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">():</span>
+    <span class="n">nowRsp</span><span class="o">=</span><span class="n">nowWeather</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>                 <span class="c1">#通过API密钥获取天气实况</span>
+    <span class="n">dailyRsp</span><span class="o">=</span><span class="n">dailyWeather</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>             <span class="c1">#通过API密钥获取多日天气预报</span>
+
+    <span class="n">today</span><span class="o">=</span><span class="n">dailyRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;daily&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;date&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>         <span class="c1">#当前日期，显示“月-日”</span>
+    <span class="n">todayHigh</span><span class="o">=</span><span class="n">dailyRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;daily&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;high&#39;</span><span class="p">]</span>          <span class="c1">#最高温度</span>
+    <span class="n">todaylow</span><span class="o">=</span><span class="n">dailyRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;daily&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;low&#39;</span><span class="p">]</span>            <span class="c1">#最低温度</span>
+
+    <span class="n">nowText</span><span class="o">=</span><span class="n">nowRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;now&#39;</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>                   <span class="c1">#天气现象文字</span>
+    <span class="n">nowTemper</span><span class="o">=</span><span class="n">nowRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;now&#39;</span><span class="p">][</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span>          <span class="c1">#温度</span>
+    <span class="n">todayIco</span><span class="o">=</span><span class="n">nowRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;now&#39;</span><span class="p">][</span><span class="s1">&#39;code&#39;</span><span class="p">]</span>                  <span class="c1">#天气现象图标</span>
+    <span class="n">city</span><span class="o">=</span><span class="n">nowRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>                 <span class="c1">#地理位置</span>
+
+    <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">bitmap</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="n">ico</span><span class="p">[</span><span class="n">todayIco</span><span class="p">],</span><span class="mi">38</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>                   <span class="c1">#显示当前天气现象图标</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">,天气实况&quot;</span> <span class="o">%</span><span class="n">city</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">℃/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">nowTemper</span><span class="p">,</span><span class="n">nowText</span><span class="p">),</span><span class="mi">70</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>        <span class="c1">#显示当前温度</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">~</span><span class="si">%s</span><span class="s2">℃&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">todaylow</span><span class="p">,</span><span class="n">todayHigh</span><span class="p">),</span><span class="mi">70</span><span class="p">,</span><span class="mi">45</span><span class="p">)</span>       <span class="c1">#显示今日最低、最高气温</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">refresh</span><span class="p">()</span>          <span class="c1">#数据更新</span>
+
+<span class="n">tim1</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tim1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">1800000</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span><span class="n">refresh</span><span class="p">())</span>      <span class="c1">#定时，每半个钟刷新一次</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/weather.jpg"><img alt="../../_images/weather.jpg" class="align-center" src="../../_images/weather.jpg" style="width: 450.0px; height: 333.0px;" /></a>
+<p>使用前，导入mpython、json、urequests、Timer和天气图标seniverse模块（将seniverse模块文件导入掌控板文件根目录）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span><span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urequests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">seniverse</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Timer</span>
+</pre></div>
+</div>
+<p>使用心知天气的免费天气API，您须先在心知天气官网注册一个账号，您将获得一个API密钥（key），API密钥（key）是用来验证API请求合法性的一个唯一字符串，通过API请求中的key参数传入:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">API_KEY</span> <span class="o">=</span> <span class="s1">&#39;yourkey&#39;</span>
+</pre></div>
+</div>
+<p>添加天气实况和多日天气预报的请求地址（更多请求可参考心知天气官网提供的天气数据选项）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url_now</span><span class="o">=</span><span class="s2">&quot;https://api.seniverse.com/v3/weather/now.json&quot;</span>           <span class="c1">#获取天气实况的请求地址</span>
+<span class="n">url_daily</span><span class="o">=</span><span class="s2">&quot;https://api.seniverse.com/v3/weather/daily.json&quot;</span>       <span class="c1">#获取多日天气预报的请求地址</span>
+</pre></div>
+</div>
+<p>连接您的 WiFi 网络，需要设置您的WiFi名称和密码:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>
+<span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s1">&#39;yourESSID&#39;</span><span class="p">,</span><span class="s1">&#39;yourpassword&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>定义天气实况和多日天气预报返回的结果:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">nowWeather</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;zh-Hans&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">):</span>
+    <span class="n">nowResult</span> <span class="o">=</span> <span class="n">urequests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_now</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">apikey</span><span class="p">,</span>
+        <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
+        <span class="s1">&#39;language&#39;</span><span class="p">:</span> <span class="n">language</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="n">unit</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="n">nowResult</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dailyWeather</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;zh-Hans&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="n">days</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">):</span>
+    <span class="n">dailyResult</span> <span class="o">=</span> <span class="n">urequests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_daily</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">apikey</span><span class="p">,</span>
+        <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
+        <span class="s1">&#39;language&#39;</span><span class="p">:</span> <span class="n">language</span><span class="p">,</span>
+        <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span>
+        <span class="s1">&#39;days&#39;</span><span class="p">:</span> <span class="n">days</span>
+    <span class="p">})</span>
+    <span class="k">return</span>  <span class="n">dailyResult</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>参数：<code class="docutils literal notranslate"><span class="pre">unit</span></code> 为温度单位， <code class="docutils literal notranslate"><span class="pre">c</span></code> 为摄氏度℃。<code class="docutils literal notranslate"><span class="pre">start</span></code> 为起始时间，如 <code class="docutils literal notranslate"><span class="pre">-2</span></code> 前天，<code class="docutils literal notranslate"><span class="pre">-1</span></code> 昨天，<code class="docutils literal notranslate"><span class="pre">0</span></code> 今天，<code class="docutils literal notranslate"><span class="pre">1</span></code> 明天。<code class="docutils literal notranslate"><span class="pre">days</span></code> 为天数，返回从start算起days天的结果。更多参数可参考心知天气官网。
+<a class="reference external" href="https://www.seniverse.com/doc">https://www.seniverse.com/doc</a></p>
+</div>
+<p>对返回的所有结果有选择性的输出，元组可以使用下标索引来访问元组中的值:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">today</span><span class="o">=</span><span class="n">dailyRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;daily&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;date&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>         <span class="c1">#当前日期，显示“月-日”</span>
+<span class="n">todayHigh</span><span class="o">=</span><span class="n">dailyRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;daily&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;high&#39;</span><span class="p">]</span>          <span class="c1">#最高温度</span>
+<span class="n">todaylow</span><span class="o">=</span><span class="n">dailyRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;daily&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;low&#39;</span><span class="p">]</span>            <span class="c1">#最低温度</span>
+
+<span class="n">nowText</span><span class="o">=</span><span class="n">nowRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;now&#39;</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>                   <span class="c1">#天气现象文字</span>
+<span class="n">nowTemper</span><span class="o">=</span><span class="n">nowRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;now&#39;</span><span class="p">][</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span>          <span class="c1">#温度</span>
+<span class="n">todayIco</span><span class="o">=</span><span class="n">nowRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;now&#39;</span><span class="p">][</span><span class="s1">&#39;code&#39;</span><span class="p">]</span>                  <span class="c1">#天气现象图标</span>
+<span class="n">city</span><span class="o">=</span><span class="n">nowRsp</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>                 <span class="c1">#地理位置</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>元组的具体使用方法参考Python的元组。</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

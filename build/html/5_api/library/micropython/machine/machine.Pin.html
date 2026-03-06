@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>类 Pin – 控制 I/O 引脚 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../../search.html" />
+    <link rel="next" title="类 ADC – 模数转换" href="machine.ADC.html" />
+    <link rel="prev" title="machine — 与硬件相关的功能" href="machine.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">MicroPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../btree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">btree</span></code> – 简单的 BTree 数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../framebuf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">framebuf</span></code> — 帧缓冲操作</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="machine.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../network.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ubluetooth.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code> — 低功耗蓝牙</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ucryptolib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ucryptolib</span></code> – 加密密码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uctypes.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code> –  以结构化方式访问二进制数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../neopixel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">neopixel</span></code> — WS2812 灯带</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ntptime.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ntptime</span></code> — 时间同步</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dht.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dht</span></code> — dht模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../esp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp</span></code> — ESP32相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../esp32.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code> — 特定于ESP32的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onewire.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">onewire</span></code> — 单总线</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">MicroPython类库</a></li>
+          <li class="breadcrumb-item"><a href="machine.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+      <li class="breadcrumb-item active">类 Pin – 控制 I/O 引脚</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/5_api/library/micropython/machine/machine.Pin.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="module-Pin"><span id="machine-pin"></span></span><section id="pin-i-o">
+<h1>类 Pin – 控制 I/O 引脚<a class="headerlink" href="#pin-i-o" title="此标题的永久链接"></a></h1>
+<p>引脚对象用于控制I / O引脚（也称为GPIO - 通用输入/输出）。引脚对象通常与可以驱动输出电压和读取输入电压的物理引脚相关联。
+引脚类具有设置引脚模式（IN，OUT等）的方法以及获取和设置数字逻辑电平的方法。有关引脚的模拟控制, 请参阅 <a class="reference internal" href="machine.ADC.html#module-ADC" title="ADC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ADC</span></code></a> 类.</p>
+<p>通过使用明确指定某个I / O引脚的标识符来构造引脚对象。允许的标识符形式和标识符映射到的物理引脚是特定于端口的。
+标识符的可能性是整数，字符串或具有端口和引脚号的元组。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+
+<span class="c1"># create an output pin on pin #32</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+<span class="c1"># set the value low then high</span>
+<span class="n">p0</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p0</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># create an input pin on pin #33, with a pull up resistor</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">33</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+
+
+<span class="c1"># configure an irq callback</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">IRQ_FALLING</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IRQ&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>构建对象<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Pin.Pin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">Pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Pin.Pin" title="永久链接至目标"></a></dt>
+<dd><p>访问与给定相关的引脚外设（GPIO引脚） <code class="docutils literal notranslate"><span class="pre">id</span></code> 。如果在构建对象中给出了其他参数，则它们用于初始化引脚。
+未指定的任何设置将保持其先前的状态。</p>
+</dd></dl>
+
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>mPython 掌控板提供自有的引脚映射,将引脚映射为ESP32的GPIO。如,掌控板的P0引脚对应ESP32的IO33,则你可以使用 <code class="docutils literal notranslate"><span class="pre">Pin.P0</span></code> 来替换 <code class="docutils literal notranslate"><span class="pre">33</span></code> 。</p>
+</div>
+<p>参数:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> 是强制性的，可以是任意对象。可能的值类型包括：int（内部引脚标识符），str（引脚名称）和元组（[port，pin]对）。如是使用mPython,可用Pin.P(0~20),例如(Pin.P0)P0引脚提供映射为GPIO。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code> 指定引脚模式，可以是以下之一：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.IN</span></code> - 引脚配置为输入。如果将其视为输出，则引脚处于高阻态。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.OUT</span></code> - 引脚配置为（正常）输出。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.OPEN_DRAIN</span></code> -引脚配置为开漏输出。开漏输出以下列方式工作：如果输出值设置为0，则引脚处于低电平有效; 如果输出值为1，则引脚处于高阻态。并非所有端口都实现此模式，或某些端口可能仅在某些引脚上实现。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.ALT_OPEN_DRAIN</span></code> - 引脚配置为漏极开路。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pull</span></code> 指定引脚是否连接了（弱）拉电阻，可以是以下之一：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code> - 无上拉或下拉电阻</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.PULL_UP</span></code> - 上拉电阻使能</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.PULL_DOWN</span></code> - 下拉电阻使能</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code> 仅对 <code class="docutils literal notranslate"><span class="pre">Pin.OUT</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Pin.OPEN_DRAIN</span></code> 模式有效，并指定初始输出引脚值，否则引脚外设的状态保持不变。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="Pin.Pin.init">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Pin.Pin.init" title="永久链接至目标"></a></dt>
+<dd><p>使用给定参数重新初始化引脚。只会设置指定的参数。引脚外围状态的其余部分将保持不变。
+有关参数的详细信息，请参阅构建对象文档。</p>
+<p>返回 <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Pin.Pin.value">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pin.Pin.value" title="永久链接至目标"></a></dt>
+<dd><p>此方法允许设置和获取引脚的值，具体取决于是否 <code class="docutils literal notranslate"><span class="pre">x</span></code> 提供参数。</p>
+<p>如果省略该参数，则该方法获得引脚的数字逻辑电平，分别返回对应于低电压信号和高电压信号的0或1。
+此方法的行为取决于引脚的模式：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.IN</span></code> -  该方法返回引脚上当前存在的实际输入值.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.OUT</span></code> - 该方法的行为和返回值未定义.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.OPEN_DRAIN</span></code> - 如果引脚处于状态“0”，则方法的行为和返回值未定义。否则，如果引脚处于状态“1”，则该方法返回引脚上当前存在的实际输入值。</p></li>
+</ul>
+</div></blockquote>
+<p>如果提供了参数，则此方法设置引脚的数字逻辑电平。参数x可以是转换为布尔值的任意值。
+如果转换为True，则将引脚设置为状态“1”，否则将其设置为“0”状态。此方法的行为取决于引脚的模式：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.IN</span></code> - 该值存储在引脚的输出缓冲区中。引脚状态不会改变，它仍然处于高阻态。一旦更改为 <code class="docutils literal notranslate"><span class="pre">Pin.OUT</span></code> 或 <code class="docutils literal notranslate"><span class="pre">Pin.OPEN_DRAIN</span></code> 模式，存储的值将在引脚上激活。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.OUT</span></code> -  输出缓冲区立即设置为给定值。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.OPEN_DRAIN</span></code> - 如果值为“0”，则引脚设置为低电压状态。否则，引脚被设置为高阻态。</p></li>
+</ul>
+</div></blockquote>
+<p>设置此方法返回的值时 <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Pin.Pin.__call__">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pin.Pin.__call__" title="永久链接至目标"></a></dt>
+<dd><p>Pin对象是可调用的。call方法提供了一个（快速）快捷方式来设置和获取引脚的值。它相当于Pin.value([x])。有关详细信息,请参阅 <a class="reference internal" href="#Pin.Pin.value" title="Pin.Pin.value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pin.value()</span></code></a> 。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Pin.Pin.on">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Pin.Pin.on" title="永久链接至目标"></a></dt>
+<dd><p>设置引脚为高电平</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Pin.Pin.off">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Pin.Pin.off" title="永久链接至目标"></a></dt>
+<dd><p>设置引脚为低电平</p>
+</dd></dl>
+
+<span class="target" id="pin-irq"></span><dl class="py method">
+<dt class="sig sig-object py" id="Pin.Pin.irq">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">irq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trigger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Pin.IRQ_FALLING</span> <span class="pre">|</span> <span class="pre">Pin.IRQ_RISING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wake</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Pin.Pin.irq" title="永久链接至目标"></a></dt>
+<dd><p>配置在引脚的触发源处于活动状态时调用的中断处理程序。如果引脚模式是， <code class="docutils literal notranslate"><span class="pre">Pin.IN</span></code> 则触发源是引脚上的外部值。
+如果引脚模式是， <code class="docutils literal notranslate"><span class="pre">Pin.OUT</span></code> 则触发源是引脚的输出缓冲器。
+否则，如果引脚模式是， <code class="docutils literal notranslate"><span class="pre">Pin.OPEN_DRAIN</span></code> 那么触发源是状态’0’的输出缓冲器和状态’1’的外部引脚值。</p>
+<p>参数:</p>
+<blockquote>
+<div><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">handler</span></code> 是一个可选的函数，在中断触发时调用。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trigger</span></code> 配置可以触发中断的事件。可能的值是：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.IRQ_FALLING</span></code> 下降沿中断</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.IRQ_RISING</span></code> 上升沿中断</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.IRQ_LOW_LEVEL</span></code> 低电平中断</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.IRQ_HIGH_LEVEL</span></code> 高电平中断</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.WAKE_HIGH</span></code> 用于唤醒功能,高电平触发</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pin.WAKE_LOW</span></code> 用于唤醒功能,低电平触发</p></li>
+</ul>
+<p>这些值可以一起进行 <code class="docutils literal notranslate"><span class="pre">OR</span></code> 运算以触发多个事件。</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wake</span></code> 选择此中断可唤醒系统的电源模式。它可以是 <code class="docutils literal notranslate"><span class="pre">machine.IDLE</span></code> ，<code class="docutils literal notranslate"><span class="pre">machine.SLEEP</span></code> 或 <code class="docutils literal notranslate"><span class="pre">machine.DEEPSLEEP</span></code> 。这些值也可以一起进行“或”运算，以使引脚在多个功耗模式下产生中断。</p></li>
+</ul>
+</div></blockquote>
+<p>此方法返回一个回调对象。</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>板自有的引脚映射,将掌控板引脚映射为ESP32的GPIO
+掌控</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="Pin.Pin.P0">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P0</span></span><a class="headerlink" href="#Pin.Pin.P0" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P1">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P1</span></span><a class="headerlink" href="#Pin.Pin.P1" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P2">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P2</span></span><a class="headerlink" href="#Pin.Pin.P2" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P3">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P3</span></span><a class="headerlink" href="#Pin.Pin.P3" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P4">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P4</span></span><a class="headerlink" href="#Pin.Pin.P4" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P5">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P5</span></span><a class="headerlink" href="#Pin.Pin.P5" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P6">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P6</span></span><a class="headerlink" href="#Pin.Pin.P6" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P7">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P7</span></span><a class="headerlink" href="#Pin.Pin.P7" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P8">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P8</span></span><a class="headerlink" href="#Pin.Pin.P8" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P9">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P9</span></span><a class="headerlink" href="#Pin.Pin.P9" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P10">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P10</span></span><a class="headerlink" href="#Pin.Pin.P10" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P11">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P11</span></span><a class="headerlink" href="#Pin.Pin.P11" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P13">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P13</span></span><a class="headerlink" href="#Pin.Pin.P13" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P14">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P14</span></span><a class="headerlink" href="#Pin.Pin.P14" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P15">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P15</span></span><a class="headerlink" href="#Pin.Pin.P15" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P16">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P16</span></span><a class="headerlink" href="#Pin.Pin.P16" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P19">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P19</span></span><a class="headerlink" href="#Pin.Pin.P19" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P20">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P20</span></span><a class="headerlink" href="#Pin.Pin.P20" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P23">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P23</span></span><a class="headerlink" href="#Pin.Pin.P23" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P24">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P24</span></span><a class="headerlink" href="#Pin.Pin.P24" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P25">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P25</span></span><a class="headerlink" href="#Pin.Pin.P25" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P26">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P26</span></span><a class="headerlink" href="#Pin.Pin.P26" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P27">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P27</span></span><a class="headerlink" href="#Pin.Pin.P27" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.P28">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">P28</span></span><a class="headerlink" href="#Pin.Pin.P28" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>以下常量用于配置引脚对象。</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="Pin.Pin.IN">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">IN</span></span><a class="headerlink" href="#Pin.Pin.IN" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.OUT">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">OUT</span></span><a class="headerlink" href="#Pin.Pin.OUT" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.OPEN_DRAIN">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">OPEN_DRAIN</span></span><a class="headerlink" href="#Pin.Pin.OPEN_DRAIN" title="永久链接至目标"></a></dt>
+<dd><p>选择引脚模式。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="Pin.Pin.PULL_UP">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">PULL_UP</span></span><a class="headerlink" href="#Pin.Pin.PULL_UP" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.PULL_DOWN">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">PULL_DOWN</span></span><a class="headerlink" href="#Pin.Pin.PULL_DOWN" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.PULL_HOLD">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">PULL_HOLD</span></span><a class="headerlink" href="#Pin.Pin.PULL_HOLD" title="永久链接至目标"></a></dt>
+<dd><p>选择是否有上拉/下拉电阻。使用 <cite>None</cite> 无拉的值 。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="Pin.Pin.IRQ_FALLING">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">IRQ_FALLING</span></span><a class="headerlink" href="#Pin.Pin.IRQ_FALLING" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.IRQ_RISING">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">IRQ_RISING</span></span><a class="headerlink" href="#Pin.Pin.IRQ_RISING" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.IRQ_LOW_LEVEL">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">IRQ_LOW_LEVEL</span></span><a class="headerlink" href="#Pin.Pin.IRQ_LOW_LEVEL" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="Pin.Pin.IRQ_HIGH_LEVEL">
+<span class="sig-prename descclassname"><span class="pre">Pin.</span></span><span class="sig-name descname"><span class="pre">IRQ_HIGH_LEVEL</span></span><a class="headerlink" href="#Pin.Pin.IRQ_HIGH_LEVEL" title="永久链接至目标"></a></dt>
+<dd><p>选择IRQ触发类型。</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="machine.html" class="btn btn-neutral float-left" title="machine — 与硬件相关的功能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="machine.ADC.html" class="btn btn-neutral float-right" title="类 ADC – 模数转换" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

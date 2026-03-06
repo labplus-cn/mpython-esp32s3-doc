@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>模拟IO &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="显示" href="../11_lcd.html" />
+    <link rel="prev" title="数字IO" href="digital_io.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">3. 示例教程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">引脚</a></li>
+      <li class="breadcrumb-item active">模拟IO</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/3_examples/basics/io/analog_io.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="io">
+<h1>模拟IO<a class="headerlink" href="#io" title="此标题的永久链接"></a></h1>
+<p>本章节介绍掌控板引脚的模拟输入输出的使用方法。引脚是您的电路板与连接到它的外部设备进行通信的方式。掌控板可以通过拓展板将IO引脚拓展并连接控制或读取其他元器件或模块。</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>你可以查阅 <span class="xref std std-ref">掌控板接口引脚说明</span> ,了解可供使用的模拟引脚 。</p>
+</div>
+<section id="analog-in">
+<span id="id1"></span><h2>模拟输入<a class="headerlink" href="#analog-in" title="此标题的永久链接"></a></h2>
+<p>掌控板可供使用的模拟输入引脚有 <strong>P0</strong>、<strong>P1</strong>、<strong>P2</strong>、<strong>P3</strong>、P4、P10,其中P4,P10分别被掌控板的光线和麦克风传感器使用。</p>
+<div class="admonition- admonition">
+<p class="admonition-title">什么是模拟输入呢？</p>
+<p>模拟输入是将模拟信号转换为数字信号，简称ADC。</p>
+</div>
+<p>以下是使用P0引脚读取模拟输入:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>           <span class="c1"># 导入mpython模块</span>
+
+<span class="n">p0</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">ANALOG</span><span class="p">)</span>     <span class="c1"># 实例化MPythonPin,将P0设置为&quot;PinMode.ANALOG&quot;模式</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">p0</span><span class="o">.</span><span class="n">read_analog</span><span class="p">()</span>          <span class="c1"># 读取P0引脚模拟量</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;analog:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="n">p0</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">ANALOG</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><code class="docutils literal notranslate"><span class="pre">MPythonPin</span></code> 实例化。<code class="docutils literal notranslate"><span class="pre">mode</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">PinMode.ANALOG</span></code> 模拟输入模式。</p>
+</div>
+<p>读模拟输入:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p0</span><span class="o">.</span><span class="n">read_analog</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>因为adc采样数据宽度为12bit，所以满量程为4095。</p>
+</div>
+<section id="ext">
+<h3>EXT鳄鱼夹<a class="headerlink" href="#ext" title="此标题的永久链接"></a></h3>
+<p>接下来，你可以通过鳄鱼夹线将阻性元件(如光敏、热敏电阻)接到掌控板的 <code class="docutils literal notranslate"><span class="pre">EXT</span></code> 和 <code class="docutils literal notranslate"><span class="pre">GND</span></code> 焊盘 ,测量传感器的输入值变化……</p>
+<p>EXT连接是掌控板的P3引脚:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>           <span class="c1"># 导入mpython模块</span>
+
+    <span class="n">p3</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">ANALOG</span><span class="p">)</span>     <span class="c1"># 实例化MPythonPin,将P3设置为&quot;PinMode.ANALOG&quot;模式</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">p3</span><span class="o">.</span><span class="n">read_analog</span><span class="p">()</span>          <span class="c1"># 读取EXT(P3)引脚模拟量</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;analog:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/ext.png"><img alt="../../../_images/ext.png" class="align-center" src="../../../_images/ext.png" style="width: 180px;" /></a>
+</section>
+</section>
+<section id="id2">
+<h2>模拟输出<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<div class="admonition- admonition">
+<p class="admonition-title">什么是模拟输出呢？</p>
+<p>电路板的引脚不能像音频放大器那样输出模拟信号 - 通过调制引脚上的电压。这些引脚只能使能全3.3V输出，或者将其下拉至0V。
+然而，仍然可以通过非常快速地接通和断开该电压来控制LED的亮度或电动机的速度，并控制它的开启时间和关闭时间。
+这种技术称为脉冲宽度调制（PWM），这就是 <code class="docutils literal notranslate"><span class="pre">write_analog</span></code> 的方法。</p>
+</div>
+<p>输出某电压的PWM信号:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>           <span class="c1"># 导入mpython模块</span>
+
+<span class="n">p0</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">PWM</span><span class="p">)</span>     <span class="c1"># 实例化MPythonPin,将P0设置为&quot;PinMode.PWM&quot;模式</span>
+
+<span class="n">voltage</span><span class="o">=</span><span class="mf">2.0</span>                      <span class="c1"># 电压2V</span>
+<span class="n">p0</span><span class="o">.</span><span class="n">write_analog</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">voltage</span><span class="o">/</span><span class="mf">3.3</span><span class="o">*</span><span class="mi">1023</span><span class="p">))</span>    <span class="c1">#计算对应电压PWM的占空比</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">write_analog(value)</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">value</span></code> 为PWM信号的占空比。</p></li>
+<li><p>由于IO引脚电压为3.3V，我们需要输出电压为2V。因此，映射值是2/3*1023。</p></li>
+<li><p>由于计算出来的为浮点型数，我们还需要使用 <code class="docutils literal notranslate"><span class="pre">int()</span></code> 转成整型。</p></li>
+</ul>
+</div>
+<img alt="../../../_images/pwm.png" src="../../../_images/pwm.png" />
+<p>您可以在上面看到三种不同PWM信号的图表。它们都具有相同的周期（因此具有频率），但它们具有不同的占空比。</p>
+<ul class="simple">
+<li><p>第一个产生的是 <code class="docutils literal notranslate"><span class="pre">write_analog(511)</span></code> ，因为它具有恰好50％的占空比 - 功率在一半的时间内，而在一半的时间内。结果是该信号的总能量是相同的，就好像它是1.65V而不是3.3V。</p></li>
+<li><p>第二个信号具有25％的占空比，可以用 <code class="docutils literal notranslate"><span class="pre">write_analog(255)</span></code> 。它具有类似的效果，就好像在该引脚上输出0.825V一样。</p></li>
+<li><p>第三个信号具有75％的占空比，并且可以生成 <code class="docutils literal notranslate"><span class="pre">write_analog(767)</span></code>。它的能量是第二个信号的三倍，相当于在第二个引脚输出2.475V。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="digital_io.html" class="btn btn-neutral float-left" title="数字IO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../11_lcd.html" class="btn btn-neutral float-right" title="显示" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

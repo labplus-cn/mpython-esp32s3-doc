@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>解析JSON &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="串口" href="../12_uart.html" />
+    <link rel="prev" title="HTTP" href="http.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">3. 示例教程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">网络</a></li>
+      <li class="breadcrumb-item active">解析JSON</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/3_examples/basics/network/parsing_json.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="json">
+<h1>解析JSON<a class="headerlink" href="#json" title="此标题的永久链接"></a></h1>
+<p>JSON(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。采用完全独立于编程语言的文本格式来存储和表示数据，易于人阅读和编写，同时也易于机器解析和生成，所以在互联网应用非常广泛。</p>
+<p>在python中，json和dict非常类似，都是key-value的形式，而且json、dict也可以非常方便的通过 <a class="reference internal" href="../../../5_api/library/pythonStd/json.html#module-json" title="json: JSON 编码和解码"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code></a> 模块互转。</p>
+<ul class="simple">
+<li><p>json：是一种数据格式，是纯字符串，本质是一种文件组织方式，比如您熟悉的txt、csv、doc、docx、xls、xlsx文件等。</p></li>
+<li><p>dict：是一种数据结构，比如列表list、集合set、字符串str、数组array。</p></li>
+</ul>
+<section id="id1">
+<h2>网络获取解析JSON<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>http协议采用的是请求/响应模型，浏览器或客户端发出请求，服务器给与响应。</p>
+<p>例如，想从 <a class="reference external" href="http://ip-api.com/json/">http://ip-api.com/json/</a> 这个开放的接口中获取IP地址等信息，我们将地址直接在浏览器输入，可以看到：</p>
+<a class="reference internal image-reference" href="../../../_images/httpjson.png"><img alt="../../../_images/httpjson.png" class="align-center" src="../../../_images/httpjson.png" style="width: 684.0px; height: 260.0px;" /></a>
+<p>这是一个json数组，包含有IP地址等信息。我们通过访问这个url，获取到这些信息然后返回字符串text，通过ujson.loads(str)把字符串给生成dict字典类型，就可以直接读关键字（key）获取对应的值（value）。</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">将网站中的部分信息显示在OLED显示屏上</span><a class="headerlink" href="#id2" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span><span class="o">*</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="linenos"> 3</span><span class="kn">import</span><span class="w"> </span><span class="nn">urequests</span>           <span class="c1"># urequests模块是一个用于网络访问的模块</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>
+<span class="linenos"> 6</span><span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s1">&#39;yourESSID&#39;</span><span class="p">,</span> <span class="s1">&#39;yourpassword&#39;</span><span class="p">)</span>    <span class="c1">#连接 WiFi 网络</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">url_ip</span> <span class="o">=</span><span class="s2">&quot;http://ip-api.com/json/&quot;</span>                  <span class="c1">#添加请求地址</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">rsp</span><span class="o">=</span><span class="n">urequests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_ip</span><span class="p">)</span>                          <span class="c1">#发送get请求</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">ipJson</span><span class="o">=</span><span class="n">rsp</span><span class="o">.</span><span class="n">text</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">ipDict</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">ipJson</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s1">&#39;国家:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ipDict</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">],</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>     <span class="c1">#将国家信息显示到OLED显示屏上</span>
+<span class="linenos">17</span><span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s1">&#39;城市:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ipDict</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">],</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>       <span class="c1">#将城市信息显示到OLED显示屏上</span>
+<span class="linenos">20</span><span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s1">&#39;IP:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ipDict</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">],</span><span class="mi">0</span><span class="p">,</span><span class="mi">45</span><span class="p">)</span>        <span class="c1">#将IP地址信息显示到OLED显示屏上</span>
+<span class="linenos">23</span><span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/json.jpg"><img alt="../../../_images/json.jpg" class="align-center" src="../../../_images/json.jpg" style="width: 434.0px; height: 289.09999999999997px;" /></a>
+<p>我们在REPL交互式的编程环境下逐步解析，能更加直观地查看结果。</p>
+<p>使用前，导入mpython、json、urequests模块:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span><span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">urequests</span>
+</pre></div>
+</div>
+<p>连接您的 WiFi 网络，需要设置您的WiFi名称和密码:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s1">&#39;yourESSID&#39;</span><span class="p">,</span> <span class="s1">&#39;yourpassword&#39;</span><span class="p">)</span>
+<span class="go">Connecting to network...</span>
+<span class="go">Connecting to network...</span>
+<span class="go">Connecting to network...</span>
+<span class="go">WiFi Connection Successful,Network Config:(&#39;&#39;,&#39;&#39;,&#39;&#39;,&#39;&#39;)</span>
+</pre></div>
+</div>
+<p>添加请求地址，发送get请求，获取网页第三方接口返回的数据:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url_ip</span> <span class="o">=</span><span class="s2">&quot;http://ip-api.com/json/&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rsp</span><span class="o">=</span><span class="n">urequests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_ip</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>获取的数据返回为json数据文本格式，打印输出，我们可以看到返回的数据:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ipJson</span><span class="o">=</span><span class="n">rsp</span><span class="o">.</span><span class="n">text</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jpJson</span><span class="p">)</span>
+<span class="go">{&quot;as&quot;:&quot;AS56040 China Mobile Communications Corporation&quot;,&quot;city&quot;:&quot;Guangzhou&quot;,&quot;country&quot;:&quot;China&quot;,&quot;countryCode&quot;:&quot;CN&quot;,&quot;isp&quot;:&quot;China Mobile communications corporation&quot;,&quot;lat&quot;:23.1292,&quot;lon&quot;:113.264,&quot;org&quot;:&quot;China Mobile&quot;,&quot;query&quot;:&quot;120.234.223.173&quot;,&quot;region&quot;:&quot;GD&quot;,&quot;regionName&quot;:&quot;Guangdong&quot;,&quot;status&quot;:&quot;success&quot;,&quot;timezone&quot;:&quot;Asia/Shanghai&quot;,&quot;zip&quot;:&quot;&quot;}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>rsp.text 返回为json数据文本格式。</p>
+</div>
+<p>将获取的数据转换为dict字典类型，打印输出，我们可以看到返回的数据:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ipDict</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">ipJson</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ipDict</span><span class="p">)</span>
+<span class="go">{&#39;countryCode&#39;: &#39;CN&#39;, &#39;lon&#39;: 113.264, &#39;regionName&#39;: &#39;Guangdong&#39;, &#39;query&#39;: &#39;120.234.223.173&#39;, &#39;city&#39;: &#39;Guangzhou&#39;, &#39;status&#39;: &#39;success&#39;, &#39;org&#39;: &#39;China Mobile&#39;, &#39;timezone&#39;: &#39;Asia/Shanghai&#39;, &#39;region&#39;: &#39;GD&#39;, &#39;lat&#39;: 23.1292, &#39;isp&#39;: &#39;China Mobile communications corporation&#39;, &#39;as&#39;: &#39;AS56040 China Mobile Communications Corporation&#39;, &#39;zip&#39;: &#39;&#39;, &#39;country&#39;: &#39;China&#39;}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>json.loads(str) 解析 JSON 字符串并返回对象。</p>
+</div>
+<p>我们可以在dict字典中键入关键字（key），获取对应的信息值（value），比如城市、IP地址:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ipDict</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span>
+<span class="go">&#39;Guangzhou&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ipDict</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">]</span>
+<span class="go">&#39;120.234.223.173&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="http.html" class="btn btn-neutral float-left" title="HTTP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../12_uart.html" class="btn btn-neutral float-right" title="串口" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

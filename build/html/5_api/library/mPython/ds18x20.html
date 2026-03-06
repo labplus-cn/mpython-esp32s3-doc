@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ds18x20 — ds18b20温度传感器驱动 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="servo — 舵机驱动功能函数" href="servo.html" />
+    <link rel="prev" title="parrot — 掌控拓展板驱动" href="parrot.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">mPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="mpython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mpython</span></code> — 掌控板板载相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id1">延时</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id2">映射</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id3">板载传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id4">声音、光线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id5">加速度计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#gyroscope">陀螺仪(gyroscope)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#magnetic">磁力计(magnetic)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#music">蜂鸣器(music)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#button-a-b">button_[a,b]对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#touch">touch对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#rgb">rgb对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#i2c">i2c对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#mpythonpin">MPythonPin类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="music.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">music</span></code> — 音乐相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urequests</span></code> — HTTP客户端的相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html#response">Response类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html#id2">方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="umqtt.simple.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umqtt.simple</span></code> — 简单MQTT客户端功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">radio</span></code> — radio 无线广播相关功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radio.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sdcard.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sdcard</span></code> — SD卡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bluebit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bluebit</span></code> — blue:bit驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="parrot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parrot</span></code> — 掌控拓展板驱动</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ds18x20</span></code> — ds18b20温度传感器驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="servo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">servo</span></code> — 舵机驱动功能函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">mPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ds18x20</span></code> — ds18b20温度传感器驱动</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/mPython/ds18x20.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="module-ds18x20"></span><section id="ds18x20-ds18b20">
+<h1><a class="reference internal" href="#module-ds18x20" title="ds18x20: ds18b20温度传感器驱动"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ds18x20</span></code></a> — ds18b20温度传感器驱动<a class="headerlink" href="#ds18x20-ds18b20" title="此标题的永久链接"></a></h1>
+<p>one wire总线是一种串行总线，仅使用一根电线进行通信（除了用于接地和电源的电线）。DS18B20温度传感器是一种非常流行的单线设备,具有体积小，硬件开销低，抗干扰能力强，精度高的特点。</p>
+<hr class="docutils" />
+<p>&lt;table border=”1” class=”docutils”&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</p>
+<a class="reference internal image-reference" href="https://potentiallabs.com/cart/image/cache/catalog/nov-dec/DS18B20-500x500-800x800.jpg"><img alt="https://potentiallabs.com/cart/image/cache/catalog/nov-dec/DS18B20-500x500-800x800.jpg" src="https://potentiallabs.com/cart/image/cache/catalog/nov-dec/DS18B20-500x500-800x800.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://www.botshop.co.za/wp-content/uploads/2018/06/ds18b20-module.png"><img alt="https://www.botshop.co.za/wp-content/uploads/2018/06/ds18b20-module.png" src="https://www.botshop.co.za/wp-content/uploads/2018/06/ds18b20-module.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="https://imgaz.staticbg.com/thumb/large/oaupload/banggood/images/89/FC/cebe2df9-a7d2-4f28-8477-9fd5ffc0ab46.jpg"><img alt="https://imgaz.staticbg.com/thumb/large/oaupload/banggood/images/89/FC/cebe2df9-a7d2-4f28-8477-9fd5ffc0ab46.jpg" src="https://imgaz.staticbg.com/thumb/large/oaupload/banggood/images/89/FC/cebe2df9-a7d2-4f28-8477-9fd5ffc0ab46.jpg" style="width: 200px;" /></a>
+<ul class="simple">
+<li><p>独特的onewire(单总线)接口方式，DS18B20在与微处理器连接时仅需要一条口线即可实现微处理器与DS18B20的双向通讯。</p></li>
+<li><p>测温范围 －55℃～+125℃，</p></li>
+<li><p>支持多点组网功能，多个DS18B20可以并联在唯一的三线上，最多只能并联8个，实现多点测温，如果数量过多，会使供电电源电压过低，从而造成信号传输的不稳定。</p></li>
+<li><p>工作电源: 3.0~5.5V/DC</p></li>
+</ul>
+<p>&lt;table border=”1” class=”docutils”&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</p>
+<hr class="docutils" />
+<section id="ds18x20">
+<h2>DS18X20类<a class="headerlink" href="#ds18x20" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ds18x20.DS18X20">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ds18x20.</span></span><span class="sig-name descname"><span class="pre">DS18X20</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onewire</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ds18x20.DS18X20" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>构建DS18X20类。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">onewire</span></code> - one wire实例对象</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="ds18x20.DS18X20.scan">
+<span class="sig-prename descclassname"><span class="pre">DS18X20.</span></span><span class="sig-name descname"><span class="pre">scan</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ds18x20.DS18X20.scan" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>扫描单总线上的ds18b20设备,返回设备地址的列表。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ds18x20.DS18X20.convert_temp">
+<span class="sig-prename descclassname"><span class="pre">DS18X20.</span></span><span class="sig-name descname"><span class="pre">convert_temp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ds18x20.DS18X20.convert_temp" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>获取采样温度并进行温度单位转换。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ds18x20.DS18X20.read_temp">
+<span class="sig-prename descclassname"><span class="pre">DS18X20.</span></span><span class="sig-name descname"><span class="pre">read_temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rom</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ds18x20.DS18X20.read_temp" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>返回该设备的温度值。注意,在 <code class="docutils literal notranslate"><span class="pre">convert_temp()</span></code> 转换温度后,至少需要等待750毫秒,才能读取温度值。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rom</span></code> - 设备地址</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">示例-ds18b20</span><a class="headerlink" href="#id1" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">onewire</span> 
+<span class="linenos"> 3</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">ds18x20</span>
+<span class="linenos"> 4</span><span class="c1"># 创建one wire总线,引脚为P0</span>
+<span class="linenos"> 5</span><span class="n">ow</span> <span class="o">=</span> <span class="n">onewire</span><span class="o">.</span><span class="n">OneWire</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P0</span><span class="p">))</span> 
+<span class="linenos"> 6</span><span class="c1"># 实例DS18X20类</span>
+<span class="linenos"> 7</span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds18x20</span><span class="o">.</span><span class="n">DS18X20</span><span class="p">(</span><span class="n">ow</span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="c1"># 扫描总线上的DS18B20，获取设备列表</span>
+<span class="linenos"> 9</span><span class="n">roms</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>  
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">12</span>    <span class="c1"># 转换温度值,每次获取温度前必须调用convert_temp，否则温度数据不会更新</span>
+<span class="linenos">13</span>    <span class="n">ds</span><span class="o">.</span><span class="n">convert_temp</span><span class="p">()</span>
+<span class="linenos">14</span>    <span class="c1"># convert_temp后至少等待750ms</span>
+<span class="linenos">15</span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">750</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="c1"># 返回总线的上ds18b20设备的温度值</span>
+<span class="linenos">17</span>    <span class="k">for</span> <span class="n">rom</span> <span class="ow">in</span> <span class="n">roms</span><span class="p">:</span>
+<span class="linenos">18</span>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Device </span><span class="si">%s</span><span class="s1"> temperature is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">rom</span><span class="p">),</span><span class="n">ds</span><span class="o">.</span><span class="n">read_temp</span><span class="p">(</span><span class="n">rom</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="parrot.html" class="btn btn-neutral float-left" title="parrot — 掌控拓展板驱动" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="servo.html" class="btn btn-neutral float-right" title="servo — 舵机驱动功能函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

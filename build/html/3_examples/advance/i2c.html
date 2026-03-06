@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I2C &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="线程" href="thread.html" />
+    <link rel="prev" title="无线广播" href="radio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../1_index.html">3. 示例教程</a></li>
+      <li class="breadcrumb-item active">I2C</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/advance/i2c.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="i2c">
+<span id="tutorials-i2c"></span><h1>I2C<a class="headerlink" href="#i2c" title="此标题的永久链接"></a></h1>
+<p>I²C（Inter-Integrated Circuit）字面上的意思是集成电路之间，它其实是I²C Bus简称。I2C总线类型是由飞利浦半导体公司在八十年代初设计出来的一种简单、双向、二线制、同步串行总线，主要是用来连接整体电路(ICS)</p>
+<p>I2C协议是多个设备仅使用两条线（时钟和数据线）相互通信的一种方式。任何设备都可以是控制I2C时钟和数据线以与其他设备通信的主设备。
+每个I2C器件都分配有一个唯一的地址，用于在读写操作期间识别它。当设备看到其在I2C总线上发送的地址时，它会响应请求，当它看到不同的地址时，它会忽略它。
+使用唯一地址，许多设备可以共享相同的I2C总线而不会产生干扰。</p>
+<hr class="docutils" />
+<p>在使用掌控板，您可以使用 <a class="reference internal" href="../../5_api/library/micropython/machine/machine.I2C.html#machine-i2c"><span class="std std-ref">I2C类</span></a> 函数与I2C总线上的设备进行交互。在大多数情况下，您将充当I2C“主设备”，可以与其他I2C设备读写数据。
+您还可以充当I2C“从属”或外设，它们分配了一个地址，可以监听和响应来自其他I2C设备的请求。</p>
+<section id="master">
+<h2>Master<a class="headerlink" href="#master" title="此标题的永久链接"></a></h2>
+<p>大部分I2C通讯类模块，操作方法类似。mPython掌控板充当I2C主设备，模块作为从机设备，响应主机请求。
+以下SHT20模块作为演示说明，如何读取从机设备数据。</p>
+<img alt="../../_images/dht11.png" class="align-center" src="../../_images/dht11.png" />
+<p>读取SHT20温度函数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sht20_temperature</span><span class="p">():</span>
+    <span class="n">i2c</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xf3</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">i2c</span><span class="o">.</span><span class="n">readfrom</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">46.86</span><span class="o">+</span><span class="mf">175.72</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">65535</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">i2c.writeto(addr,</span> <span class="pre">buf)</span></code> 为I2C写操作函数，向 I2C设备为 <code class="docutils literal notranslate"><span class="pre">addr</span></code> ，发送 <code class="docutils literal notranslate"><span class="pre">buf</span></code> 缓存字节。掌控板需要向SHT20发送 <code class="docutils literal notranslate"><span class="pre">0xf3</span></code> 字节，告诉它，我需要读取温度数据，延时70毫秒后
+再向SHT20读取使用2字节数据。读取操作使用 <code class="docutils literal notranslate"><span class="pre">i2c.readfrom(addr,</span> <span class="pre">nbytes)</span></code> ，<code class="docutils literal notranslate"><span class="pre">nbytes</span></code> 为读取字节数。</p>
+<p>读取到2字节数据后，还需要根据sht20手册说明，做数据处理转换温度单位，转换公式如下图。</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/sht20_temper.png"><img alt="../../_images/sht20_temper.png" src="../../_images/sht20_temper.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">SHT20温度转换公式</span><a class="headerlink" href="#id1" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/sht20_humidi.png"><img alt="../../_images/sht20_humidi.png" src="../../_images/sht20_humidi.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">SHT20湿度转换公式</span><a class="headerlink" href="#id2" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<p>湿度读取的方式也类似，首先发送“0xf5”字节，告诉SHT20我要读取湿度数据，最后按公式转换湿度单位:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sht20_humidity</span><span class="p">():</span>
+    <span class="n">i2c</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xf5</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">i2c</span><span class="o">.</span><span class="n">readfrom</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">6</span><span class="o">+</span><span class="mi">125</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">65535</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>有关更多的I2C操作方法，请查阅 <a class="reference internal" href="../../5_api/library/micropython/machine/machine.I2C.html#machine-i2c"><span class="std std-ref">I2C类</span></a> 章节。</p>
+</div>
+<p>完整SHT20示例:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>                   <span class="c1"># 导入mpython 所有对象</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span><span class="w"> </span><span class="nf">sht20_temperature</span><span class="p">():</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;获取SHT20模块的温度值</span>
+<span class="linenos"> 5</span><span class="sd">    返回:温度</span>
+<span class="linenos"> 6</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 7</span>    <span class="n">i2c</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xf3</span><span class="s1">&#39;</span><span class="p">)</span>                       <span class="c1"># 向0x40地址即SHT20写字节“0xf3”</span>
+<span class="linenos"> 8</span>    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>                                    <span class="c1"># SHT20测量需要时间，须等待</span>
+<span class="linenos"> 9</span>    <span class="n">t</span><span class="o">=</span><span class="n">i2c</span><span class="o">.</span><span class="n">readfrom</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                         <span class="c1"># 从x40地址即SHT20，读取2字节数据</span>
+<span class="linenos">10</span>    <span class="k">return</span> <span class="o">-</span><span class="mf">46.86</span><span class="o">+</span><span class="mf">175.72</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">65535</span>      <span class="c1"># 对读取数据进行温度转换处理 T=-46.86+175.72*St/2^16</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="k">def</span><span class="w"> </span><span class="nf">sht20_humidity</span><span class="p">():</span>
+<span class="linenos">13</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;获取SHT20模块的湿度值</span>
+<span class="linenos">14</span><span class="sd">    返回:湿度</span>
+<span class="linenos">15</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">16</span>    <span class="n">i2c</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xf5</span><span class="s1">&#39;</span><span class="p">)</span>                       <span class="c1"># 向0x40地址即SHT20写字节“0xf5”</span>
+<span class="linenos">17</span>    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>                                    <span class="c1"># SHT20测量需要时间，须等待</span>
+<span class="linenos">18</span>    <span class="n">t</span><span class="o">=</span><span class="n">i2c</span><span class="o">.</span><span class="n">readfrom</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                         <span class="c1"># 从x40地址即SHT20，读取2字节数据</span>
+<span class="linenos">19</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">6</span><span class="o">+</span><span class="mi">125</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">65535</span>             <span class="c1"># 对读取数据进行湿度转换处理 RH=-6+125*Srh/2^16</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">22</span>    <span class="n">temper</span><span class="o">=</span><span class="n">sht20_temperature</span><span class="p">()</span>
+<span class="linenos">23</span>    <span class="n">humid</span><span class="o">=</span><span class="n">sht20_humidity</span><span class="p">()</span>
+<span class="linenos">24</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sht20 temperature: </span><span class="si">%0.1f</span><span class="s2">C sht20 humidity: </span><span class="si">%0.1f%%</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">temper</span><span class="p">,</span><span class="n">humid</span><span class="p">))</span>
+<span class="linenos">25</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;温度:</span><span class="si">%0.1f</span><span class="s2">度, 湿度:</span><span class="si">%d%%</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">temper</span><span class="p">,</span><span class="n">humid</span><span class="p">))</span>
+<span class="linenos">26</span>    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="radio.html" class="btn btn-neutral float-left" title="无线广播" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="thread.html" class="btn btn-neutral float-right" title="线程" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

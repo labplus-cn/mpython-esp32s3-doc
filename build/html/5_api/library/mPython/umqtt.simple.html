@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>umqtt.simple — 简单MQTT客户端功能函数 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="radio — radio 无线广播相关功能" href="radio.html" />
+    <link rel="prev" title="urequests — HTTP客户端的相关功能函数" href="urequests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">mPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="mpython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mpython</span></code> — 掌控板板载相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id1">延时</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id2">映射</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id3">板载传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id4">声音、光线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id5">加速度计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#gyroscope">陀螺仪(gyroscope)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#magnetic">磁力计(magnetic)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#music">蜂鸣器(music)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#button-a-b">button_[a,b]对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#touch">touch对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#rgb">rgb对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#i2c">i2c对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#mpythonpin">MPythonPin类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="music.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">music</span></code> — 音乐相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urequests</span></code> — HTTP客户端的相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html#response">Response类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html#id2">方法</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umqtt.simple</span></code> — 简单MQTT客户端功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">radio</span></code> — radio 无线广播相关功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radio.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sdcard.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sdcard</span></code> — SD卡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bluebit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bluebit</span></code> — blue:bit驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="parrot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parrot</span></code> — 掌控拓展板驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ds18x20.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ds18x20</span></code> — ds18b20温度传感器驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="servo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">servo</span></code> — 舵机驱动功能函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">mPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umqtt.simple</span></code> — 简单MQTT客户端功能函数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/mPython/umqtt.simple.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="module-umqtt.simple"><span id="umqtt-simple"></span></span><section id="umqtt-simple-mqtt">
+<h1><a class="reference internal" href="#module-umqtt.simple" title="umqtt.simple: 简单MQTT客户端功能函数"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umqtt.simple</span></code></a> — 简单MQTT客户端功能函数<a class="headerlink" href="#umqtt-simple-mqtt" title="此标题的永久链接"></a></h1>
+<p>MQTT是一种基于发布 - 订阅的“轻量级”消息传递协议，用于在TCP / IP协议之上使用。
+提供订阅/发布模式，更为简约、轻量，易于使用，针对受限环境（带宽低、网络延迟高、网络通信不稳定），可以简单概括为物联网打造。</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>该模块来源于 <code class="docutils literal notranslate"><span class="pre">MicroPython-lib</span></code> : <a class="reference external" href="https://github.com/micropython/micropython-lib/tree/master/umqtt.simple">https://github.com/micropython/micropython-lib/tree/master/umqtt.simple</a></p>
+</div>
+<section id="id1">
+<h2>构建对象<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umqtt.simple.</span></span><span class="sig-name descname"><span class="pre">MQTTClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepalive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient" title="永久链接至目标"></a></dt>
+<dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">client_id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keepalive</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssl_params</span></code></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.set_callback">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">set_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.set_callback" title="永久链接至目标"></a></dt>
+<dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> - f(topic, msg) 为回调函数,第1参数为 <code class="docutils literal notranslate"><span class="pre">topic</span></code> 接收到的主题,第2参数为 <code class="docutils literal notranslate"><span class="pre">msg</span></code> 为该主题消息</p></li>
+</ul>
+</dd></dl>
+
+<p>为收到的订阅消息设置回调</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.set_last_will">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">set_last_will</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.set_last_will" title="永久链接至目标"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">topic</span></code> 和 <code class="docutils literal notranslate"><span class="pre">msg</span></code> 为字节类型</p>
+</dd></dl>
+
+<p>设置MQTT“last will”消息。应该在 connect()之前调用。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.connect">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clean_session</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.connect" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>连接到服务器。如果此连接使用存储在服务器上的持久会话，则返回True（如果使用clean_session = True参数，则返回False（默认值））。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.disconnect">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.disconnect" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>断开与服务器的连接，释放资源。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.ping">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">ping</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.ping" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>Ping服务器（响应由wait_msg（）自动处理）</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.publish">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.publish" title="永久链接至目标"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">topic</span></code> 和 <code class="docutils literal notranslate"><span class="pre">msg</span></code> 为字节类型</p>
+</dd></dl>
+
+<p>发布消息</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.subscribe">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">subscribe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.subscribe" title="永久链接至目标"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">topic</span></code> 为字节类型</p>
+</dd></dl>
+
+<p>订阅主题</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.wait_msg">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">wait_msg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.wait_msg" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>等待服务器消息。订阅消息将通过set_callback（）传递给回调集，任何其他消息都将在内部处理。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umqtt.simple.MQTTClient.check_msg">
+<span class="sig-prename descclassname"><span class="pre">MQTTClient.</span></span><span class="sig-name descname"><span class="pre">check_msg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#umqtt.simple.MQTTClient.check_msg" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>检查服务器是否有待处理的消息。如果是，则以与wait_msg（）相同的方式处理，如果不是，则立即返回。</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<ul class="simple">
+<li><p>wait_msg()并且check_msg()是“主循环迭代”方法，阻塞和非阻塞版本。wait_msg()如果您没有任何其他前台任务要执行（即您的应用只响应订阅的MQTT消息），check_msg() 如果您也处理其他前台任务，则应定期在循环中调用它们 。</p></li>
+<li><p>请注意，如果您只发布消息，则不需要调用wait_msg()/ check_msg()，也不要订阅消息。</p></li>
+<li><p>发布和订阅都支持QoS 0和1。不支持QoS2以保持较小的代码大小。除ClientID外，目前只支持“clean session”参数进行连接。</p></li>
+<li><p>与MQTT消息相关的所有数据均编码为字节。这包括消息内容和主题名称（即使MQTT规范指出主题名称是UTF-8编码的）。原因很简单：通过网络套接字接收的是二进制数据（字节）</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="urequests.html" class="btn btn-neutral float-left" title="urequests — HTTP客户端的相关功能函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="radio.html" class="btn btn-neutral float-right" title="radio — radio 无线广播相关功能" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

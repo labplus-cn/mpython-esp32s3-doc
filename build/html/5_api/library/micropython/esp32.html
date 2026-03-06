@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>esp32 — 特定于ESP32的功能 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="onewire — 单总线" href="onewire.html" />
+    <link rel="prev" title="esp — ESP32相关的功能" href="esp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">MicroPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="btree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">btree</span></code> – 简单的 BTree 数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="framebuf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">framebuf</span></code> — 帧缓冲操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine/machine.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="network.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubluetooth.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code> — 低功耗蓝牙</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ucryptolib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ucryptolib</span></code> – 加密密码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uctypes.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code> –  以结构化方式访问二进制数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neopixel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">neopixel</span></code> — WS2812 灯带</a></li>
+<li class="toctree-l4"><a class="reference internal" href="random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ntptime.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ntptime</span></code> — 时间同步</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dht.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dht</span></code> — dht模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="esp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp</span></code> — ESP32相关的功能</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code> — 特定于ESP32的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="onewire.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">onewire</span></code> — 单总线</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">MicroPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code> — 特定于ESP32的功能</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/micropython/esp32.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-esp32">
+<span id="esp32-esp32"></span><h1><a class="reference internal" href="#module-esp32" title="esp32: 特定于ESP32的功能"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code></a> — 特定于ESP32的功能<a class="headerlink" href="#module-esp32" title="此标题的永久链接"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">esp32</span></code> 模块包含专门用于控制ESP32模块的功能和类。</p>
+<section id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="esp32.wake_on_touch">
+<span class="sig-prename descclassname"><span class="pre">esp32.</span></span><span class="sig-name descname"><span class="pre">wake_on_touch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wake</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#esp32.wake_on_touch" title="永久链接至目标"></a></dt>
+<dd><p>配置触摸是否将设备从睡眠状态唤醒。 wake应该是一个布尔值</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esp32.wake_on_ext0">
+<span class="sig-prename descclassname"><span class="pre">esp32.</span></span><span class="sig-name descname"><span class="pre">wake_on_ext0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#esp32.wake_on_ext0" title="永久链接至目标"></a></dt>
+<dd><p>配置 <cite>EXT0</cite> 如何将设备从睡眠状态唤醒。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code> :None 或者 有效的Pin对象。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level</span></code> : <code class="docutils literal notranslate"><span class="pre">esp32.WAKEUP_ALL_LOW</span></code> 或 <code class="docutils literal notranslate"><span class="pre">esp32.WAKEUP_ANY_HIGH</span></code> 。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esp32.wake_on_ext1">
+<span class="sig-prename descclassname"><span class="pre">esp32.</span></span><span class="sig-name descname"><span class="pre">wake_on_ext1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#esp32.wake_on_ext1" title="永久链接至目标"></a></dt>
+<dd><p>配置 <cite>EXT1</cite> 如何将设备从睡眠状态唤醒。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code> :None 或者 有效的Pin对象的元组/列表。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level</span></code> : <code class="docutils literal notranslate"><span class="pre">esp32.WAKEUP_ALL_LOW</span></code> 或 <code class="docutils literal notranslate"><span class="pre">esp32.WAKEUP_ANY_HIGH</span></code> 。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esp32.raw_temperature">
+<span class="sig-prename descclassname"><span class="pre">esp32.</span></span><span class="sig-name descname"><span class="pre">raw_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#esp32.raw_temperature" title="永久链接至目标"></a></dt>
+<dd><p>读取内部温度传感器的原始值，返回一个整数。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esp32.hall_sensor">
+<span class="sig-prename descclassname"><span class="pre">esp32.</span></span><span class="sig-name descname"><span class="pre">hall_sensor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#esp32.hall_sensor" title="永久链接至目标"></a></dt>
+<dd><p>读取内部霍尔传感器的原始值，返回一个整数。</p>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>超低功耗协处理器<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="esp32.ULP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esp32.</span></span><span class="sig-name descname"><span class="pre">ULP</span></span><a class="headerlink" href="#esp32.ULP" title="永久链接至目标"></a></dt>
+<dd><p>该类提供对超低功耗协处理器的访问。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esp32.ULP.set_wakeup_period">
+<span class="sig-prename descclassname"><span class="pre">ULP.</span></span><span class="sig-name descname"><span class="pre">set_wakeup_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_us</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#esp32.ULP.set_wakeup_period" title="永久链接至目标"></a></dt>
+<dd><p>设置唤醒时间。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esp32.ULP.load_binary">
+<span class="sig-prename descclassname"><span class="pre">ULP.</span></span><span class="sig-name descname"><span class="pre">load_binary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">load_addr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">program_binary</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#esp32.ULP.load_binary" title="永久链接至目标"></a></dt>
+<dd><p>在给定的load_addr中将program_binary加载到ULP中。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esp32.ULP.run">
+<span class="sig-prename descclassname"><span class="pre">ULP.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#esp32.ULP.run" title="永久链接至目标"></a></dt>
+<dd><p>启动在给定entry_point运行的ULP 。</p>
+</dd></dl>
+
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="esp32.esp32.WAKEUP_ALL_LOW">
+<span class="sig-prename descclassname"><span class="pre">esp32.</span></span><span class="sig-name descname"><span class="pre">WAKEUP_ALL_LOW</span></span><a class="headerlink" href="#esp32.esp32.WAKEUP_ALL_LOW" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="esp32.esp32.WAKEUP_ANY_HIGH">
+<span class="sig-prename descclassname"><span class="pre">esp32.</span></span><span class="sig-name descname"><span class="pre">WAKEUP_ANY_HIGH</span></span><a class="headerlink" href="#esp32.esp32.WAKEUP_ANY_HIGH" title="永久链接至目标"></a></dt>
+<dd><p>选择引脚的唤醒级别。</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="esp.html" class="btn btn-neutral float-left" title="esp — ESP32相关的功能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="onewire.html" class="btn btn-neutral float-right" title="onewire — 单总线" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

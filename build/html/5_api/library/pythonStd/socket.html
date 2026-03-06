@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>socket – socket 模块 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="ssl – SSL/TLS 模块" href="ssl.html" />
+    <link rel="prev" title="select – 高效地等待I/O" href="select.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/socket.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-socket">
+<span id="socket-socket"></span><h1><a class="reference internal" href="#module-socket" title="socket: socket 模块"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code></a> – socket 模块<a class="headerlink" href="#module-socket" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/socket.html#module-socket">socket</a></p>
+<p>该模块提供BSD socket接口的访问。</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<blockquote>
+<div><p>为提高效率与一致性，MicroPython中的套接字对象直接实现 <cite>stream`（类文件）接口。在CPython中，
+需使用 ``makefile()`</cite> 方法来将socket转换为类文件对象。该方法仍由MicroPython（但是是无操作）支持，
+所以在CPython的兼容性问题上，请一定使用该方法。</p>
+</div></blockquote>
+</div>
+<section id="id1">
+<h2>Socket地址格式<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">socket</span></code> 模块的本机套接字地址格式是一个由 <code class="docutils literal notranslate"><span class="pre">getaddrinfo</span></code> 函数返回的不透明数据类型，
+须用其来解析文本地址（包括数字型地址）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sockaddr</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;www.micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># 您必须使用getaddrinfo()，即使是用于数字型地址</span>
+<span class="n">sockaddr</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># 现在您可以使用这一地址了</span>
+<span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">sockaddr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">getaddrinfo</span></code> 是处理地址最有效（在内存和处理能力方面皆是如此）且最便捷的方式。</p>
+<p>然而，socket模块（注意与这里描述的原生MicroPython socket模块的区别）提供了CPython兼容的方式，使用元组来指定地址，如下所述。请注意，根据MicroPython端口的不同，socket模块可能是内置的，也可能需要从micropython-lib安装（如MicroPython Unix端口的情况），并且一些端口仍然只接受元组格式的数字地址，需要使用getaddrinfo函数来解析域名。</p>
+<p>总结：</p>
+<ul class="simple">
+<li><p>编写可移植应用程序时始终使用getaddrinfo。</p></li>
+<li><p>下面描述的元组地址可以作为快速黑客和交互式使用的快捷方式，如果您的端口支持它们。</p></li>
+</ul>
+<p>socket模块的元组地址格式：</p>
+<ul class="simple">
+<li><p>IPv4: (ipv4_address, port)，其中ipv4_address是带有点表示法的数字IPv4地址的字符串，例如 “8.8.8.8”，port是1-65535范围内的整数端口号。注意，域名不被接受为ipv4_address，它们应该首先使用socket.getaddrinfo()解析。</p></li>
+<li><p>IPv6: (ipv6_address, port, flowinfo, scopeid)，其中ipv6_address是带有冒号表示法的数字IPv6地址的字符串，例如 “2001:db8::1”，port是1-65535范围内的整数端口号。flowinfo必须为0。scopeid是链路本地地址的接口作用域标识符。注意，域名不被接受为ipv6_address，它们应该首先使用socket.getaddrinfo()解析。IPv6支持的可用性取决于MicroPython端口。</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="socket.socket.getaddrinfo">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">getaddrinfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">af</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.getaddrinfo" title="永久链接至目标"></a></dt>
+<dd><p>将主机/端口参数转换为包含创建连接到该服务的套接字所需的所有参数的5元组序列。参数af、type和proto（与socket()函数具有相同的含义）可用于过滤返回哪种类型的地址。如果未指定参数或为零，则可以返回所有地址组合（需要在用户端进行过滤）。</p>
+<p>生成的5元组列表具有以下结构：
+(family, type, proto, canonname, sockaddr)</p>
+<p>下面显示了如何连接到给定的URL：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="c1"># 这假设如果未指定&quot;type&quot;，将返回SOCK_STREAM的地址，这可能不成立</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;www.micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>推荐使用过滤参数：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="c1"># 保证返回可用于流操作的可连接地址</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;www.micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<p>CPython在该函数出错时会引发 <code class="docutils literal notranslate"><span class="pre">socket.gaierror</span></code> 异常（OSError子类）。MicroPython没有socket.gaierror，直接引发OSError。注意： <code class="docutils literal notranslate"><span class="pre">getaddrinfo()</span></code> 的错误编号形成一个单独的命名空间，可能与errno模块中的系统错误编号不匹配。为了区分 <code class="docutils literal notranslate"><span class="pre">getaddrinfo()</span></code> 错误，它们用负数表示，而标准系统错误用正数表示（错误编号可通过异常对象的 e.args[0] 属性访问）。使用负值是临时细节，未来可能会改变。</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="socket.socket.inet_ntop">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">inet_ntop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">af</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_addr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.inet_ntop" title="永久链接至目标"></a></dt>
+<dd><p>将给定地址族af的二进制网络地址bin_addr转换为文本表示：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">socket</span><span class="o">.</span><span class="n">inet_ntop</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x7f\0\0\1</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">&#39;127.0.0.1&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="socket.socket.inet_pton">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">inet_pton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">af</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">txt_addr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.inet_pton" title="永久链接至目标"></a></dt>
+<dd><p>将给定地址族af的文本网络地址txt_addr转换为二进制表示：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">socket</span><span class="o">.</span><span class="n">inet_pton</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="s2">&quot;1.2.3.4&quot;</span><span class="p">)</span>
+<span class="go">b&#39;\x01\x02\x03\x04&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<section id="id3">
+<h3>类<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="socket.socket.socket">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">socket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">af</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">AF_INET</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SOCK_STREAM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">IPPROTO_TCP</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.socket" title="永久链接至目标"></a></dt>
+<dd><p>使用给定的地址族、套接字类型和协议号创建一个新的套接字。注意，在大多数情况下不需要指定proto（也不推荐，因为某些MicroPython端口可能省略IPPROTO_*常量）。相反，type参数会自动选择所需的协议：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建STREAM TCP套接字</span>
+<span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="c1"># 创建DGRAM UDP套接字</span>
+<span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="id4">
+<h2>方法<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.close">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.close" title="永久链接至目标"></a></dt>
+<dd><p>标记套接字已关闭并释放所有资源。一旦发生这种情况，套接字对象上的所有未来操作都将失败。如果协议支持，远程端将接收EOF指示。</p>
+<p>内存碎片回收时socket会自动关闭，但还是推荐在必要时用 close() 去关闭</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.bind">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.bind" title="永久链接至目标"></a></dt>
+<dd><p>以列表或元组的方式绑定地址和端口号。套接字必须尚未绑定。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code> ：一个包含地址和端口号的列表或元组。</p></li>
+</ul>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.listen">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">listen</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">backlog</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.listen" title="永久链接至目标"></a></dt>
+<dd><p>监听socket，使服务器能够接收连接。如果指定了 <code class="docutils literal notranslate"><span class="pre">backlog</span></code> ，则必须至少为0（如果低，则将其设置为0）; 并指定在拒绝新连接之前系统将允许的未接受连接数。如果未指定，则选择默认的合理值。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">backlog</span></code> ：接受套接字的最大个数，至少为0，如果没有指定，则默认一个合理值。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.accept">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">accept</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.accept" title="永久链接至目标"></a></dt>
+<dd><p>接收连接请求。socket需要指定地址并监听连接。返回值是 (conn, address)，
+其中conn是用来接收和发送数据的套接字，address是绑定到另一端的套接字。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conn</span></code>：新的套接字对象，可以用来收发消息</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>：连接到服务器的客户端地址</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.connect">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.connect" title="永久链接至目标"></a></dt>
+<dd><p>连接到指定地址的远端套接字。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>：地址和端口号的元组或列表</p></li>
+</ul>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;192.168.3.147&quot;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.send">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.send" title="永久链接至目标"></a></dt>
+<dd><p>将数据发送到套接字。套接字必须连接到远程套接字。返回发送的字节数，可能小于数据长度 (“short write”)。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bytes</span></code>：bytes类型数据</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.sendall">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">sendall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.sendall" title="永久链接至目标"></a></dt>
+<dd><p>将所有数据发送到套接字。套接字必须连接到远程套接字。与 <code class="docutils literal notranslate"><span class="pre">send()</span></code> 此不同，此方法将尝试通过连续发送数据块来发送所有数据。</p>
+<p>此方法在非阻塞套接字上的行为未定义。因此，在MicroPython上，建议使用 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 方法，它具有相同的”无短写入”策略来阻塞套接字，并将返回在非阻塞套接字上发送的字节数。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bytes</span></code>：bytes类型数据</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.recv">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bufsize</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.recv" title="永久链接至目标"></a></dt>
+<dd><p>从套接字接收数据。返回值是表示接收数据的字节对象。一次接收的最大数据量由 <cite>bufsize</cite> 指定。
+大多数端口支持可选的flags参数。可用的标志在socket模块中定义为常量，与CPython中的含义相同。MSG_PEEK和MSG_DONTWAIT在所有接受flags参数的端口上都受支持。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bufsize</span></code>：指定一次接收的最大数据量</p></li>
+</ul>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.sendto">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">sendto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.sendto" title="永久链接至目标"></a></dt>
+<dd><p>将数据发送到套接字。套接字不应连接到远程套接字，因为目标套接字由地址指定。用于UDP通信，返回发送的数据大小。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bytes</span></code>：bytes类型数据</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>：目标地址和端口号的元组</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.recvfrom">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">recvfrom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bufsize</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.recvfrom" title="永久链接至目标"></a></dt>
+<dd><p>从套接字接收数据。返回值是一对（字节，地址），其中bytes是表示接收数据的字节对象，address是发送数据的套接字的地址。用于UDP通信。
+有关可选flags参数的说明，请参见recv函数。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bufsize</span></code>：指定一次接收的最大数据量</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.setsockopt">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">setsockopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.setsockopt" title="永久链接至目标"></a></dt>
+<dd><p>设置给定套接字选项的值。所需的符号常量在套接字模块中定义（<a href="#id8"><span class="problematic" id="id9">SO_</span></a> <a href="#id5"><span class="problematic" id="id6">*</span></a>等）。该值可以是整数或表示缓冲区的类字节对象。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">level</span></code>：套接字选项级别</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optname</span></code>：socket 选项</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>：可以是一个整数，也可以是一个表示缓冲区的bytes类对象。</p></li>
+</ul>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.settimeout">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">settimeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.settimeout" title="永久链接至目标"></a></dt>
+<dd><p>注意：并非每个端口都支持此方法，见下文。</p>
+<p>设置阻塞套接字操作的超时。value参数可以是非负浮点数，表示秒数，也可以是None。如果给出非零值，则如果在操作完成之前超时时间段已过，后续套接字操作将引发OSError异常。如果给出零，则套接字处于非阻塞模式。如果给出None，则套接字处于阻塞模式。</p>
+<p>并非每个MicroPython端口都支持此方法。更可移植和通用的解决方案是使用select.poll对象。这允许同时等待多个对象（不仅是套接字，还包括支持轮询的通用流对象）。示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 代替：</span>
+<span class="n">s</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># 时间（秒）</span>
+<span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 可能超时</span>
+
+<span class="c1"># 使用：</span>
+<span class="n">poller</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+<span class="n">poller</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">select</span><span class="o">.</span><span class="n">POLLIN</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">poller</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># 时间（毫秒）</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+    <span class="c1"># s仍然没有准备好输入，即操作超时</span>
+</pre></div>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<p>CPython在超时的情况下引发socket.timeout异常，这是OSError的子类。MicroPython直接引发OSError。如果您使用except OSError:来捕获异常，您的代码将在MicroPython和CPython中都有效。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.setblocking">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">setblocking</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.setblocking" title="永久链接至目标"></a></dt>
+<dd><p>设置socket的阻塞或非阻塞模式：若标记为false，则将该socket设置为非阻塞模式，而非阻塞模式。</p>
+<p>该方法为某些settimeout()调用的简写:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sock.setblocking(True)</span></code> 相当于 <code class="docutils literal notranslate"><span class="pre">sock.settimeout(None)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sock.setblocking(False)</span></code> 相当于 <code class="docutils literal notranslate"><span class="pre">sock.settimeout(0)</span></code></p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.makefile">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">makefile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rb'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.makefile" title="永久链接至目标"></a></dt>
+<dd><p>返回一个与socket相关联的文件对象。具体的返回类型取决于给定makefile()的参数。该支持仅限于二进制模式（ ‘rb’、’wb’ 和 ‘rwb’）。
+CPython的参数：不支持 encoding、errors 和 newline。</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<p>由于MicroPython不支持缓冲流，则将忽略缓冲参数的值，且将按照该值为0（未缓冲）时处理。</p>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<p>关闭所有由makefile()返回的文件对象，同样将关闭原始socket。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.read">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.read" title="永久链接至目标"></a></dt>
+<dd><p>从socket中读取size字节。返回一个字节对象。若未给定 <code class="docutils literal notranslate"><span class="pre">size</span></code> ，则读取从套接字可用的所有数据直到EOF；因此，该方法在套接字关闭之前不会返回。此函数尝试读取尽可能多的请求数据（无”短读”）。但对于非阻塞套接字，这可能不可能，然后将返回较少的数据。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.readinto">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">readinto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">nbytes</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.readinto" title="永久链接至目标"></a></dt>
+<dd><p>将字节读取入缓冲区。若指定 nbytes ，则最多读取该数量的字节。否则，最多读取 len(buf) 数量的字节。正如 <code class="docutils literal notranslate"><span class="pre">read()</span></code> ，该方法遵循”no short reads”方法。</p>
+<p>返回值：读取并存入缓冲区的字节数量</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.readline">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.readline" title="永久链接至目标"></a></dt>
+<dd><p>接收一行数据，遇换行符结束，并返回接收数据的对象 。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="socket.socket.write">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.socket.write" title="永久链接至目标"></a></dt>
+<dd><p>将字节缓冲区写入套接字。此函数将尝试将所有数据写入套接字（无”短写”）。但是，对于非阻塞套接字，这可能是不可能的，并且返回值将小于buf的长度。</p>
+<p>返回值：写入的字节数。</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="socket.socket.error">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">error</span></span><a class="headerlink" href="#socket.socket.error" title="永久链接至目标"></a></dt>
+<dd><p>MicroPython没有此异常。</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<p>CPython曾经有一个socket.error现已弃用的异常，并且是别名 <code class="docutils literal notranslate"><span class="pre">OSError</span></code> 。在MicroPython中，<code class="docutils literal notranslate"><span class="pre">OSError</span></code> 直接使用。</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="id7">
+<h2>常数<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="socket.AF_INET">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">AF_INET</span></span><a class="headerlink" href="#socket.AF_INET" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="socket.AF_INET6">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">AF_INET6</span></span><a class="headerlink" href="#socket.AF_INET6" title="永久链接至目标"></a></dt>
+<dd><p>地址簇类型。可用性取决于特定的MicroPython端口。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="socket.SOCK_STREAM">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">SOCK_STREAM</span></span><a class="headerlink" href="#socket.SOCK_STREAM" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="socket.SOCK_DGRAM">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">SOCK_DGRAM</span></span><a class="headerlink" href="#socket.SOCK_DGRAM" title="永久链接至目标"></a></dt>
+<dd><p>套接字类型。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="socket.IPPROTO_UDP">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">IPPROTO_UDP</span></span><a class="headerlink" href="#socket.IPPROTO_UDP" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="socket.IPPROTO_TCP">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">IPPROTO_TCP</span></span><a class="headerlink" href="#socket.IPPROTO_TCP" title="永久链接至目标"></a></dt>
+<dd><p>IP协议号。可用性取决于特定的MicroPython端口。
+注意，您不需要在socket.socket()调用中指定这些，因为SOCK_STREAM套接字类型会自动选择IPPROTO_TCP，而SOCK_DGRAM会选择IPPROTO_UDP。因此，这些常量的唯一实际用途是作为setsockopt()的参数。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">SOL_*</span></span></dt>
+<dd><p>套接字选项级别（setsockopt()的参数）。确切的清单取决于MicroPython端口。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">SO_*</span></span></dt>
+<dd><p>套接字选项（setsockopt()的参数）。确切的清单取决于MicroPython端口。</p>
+</dd></dl>
+
+<p>WiPy特定的常量：</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="socket.IPPROTO_SEC">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">IPPROTO_SEC</span></span><a class="headerlink" href="#socket.IPPROTO_SEC" title="永久链接至目标"></a></dt>
+<dd><p>创建SSL兼容套接字的特殊协议值。</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="select.html" class="btn btn-neutral float-left" title="select – 高效地等待I/O" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="ssl.html" class="btn btn-neutral float-right" title="ssl – SSL/TLS 模块" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

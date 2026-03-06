@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gui — 提供GUI类的绘制的相关功能函数 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gui</span></code> — 提供GUI类的绘制的相关功能函数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/mPython/gui.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="module-gui"><span id="gui"></span></span><section id="gui-gui">
+<h1><a class="reference internal" href="#module-gui" title="gui: 提供GUI类的绘制的相关功能函数"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gui</span></code></a> — 提供GUI类的绘制的相关功能函数<a class="headerlink" href="#gui-gui" title="此标题的永久链接"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.UI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.</span></span><span class="sig-name descname"><span class="pre">UI</span></span><a class="headerlink" href="#gui.UI" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<section id="ui">
+<h2>UI类<a class="headerlink" href="#ui" title="此标题的永久链接"></a></h2>
+<p>提供UI界面类控件</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.</span></span><span class="sig-name descname"><span class="pre">UI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>构建UI对象。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">oled</span></code>  - 传入framebuf类的对象,如是mPython OLED显示屏,则oled对象。</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.UI.ProgressBar">
+<span class="sig-prename descclassname"><span class="pre">UI.</span></span><span class="sig-name descname"><span class="pre">ProgressBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.UI.ProgressBar" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>绘制进度条。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> 、 <code class="docutils literal notranslate"><span class="pre">y</span></code> -左上角作为起点坐标</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code> -进度条宽度</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code> -进度条高度</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">progress</span></code> -进度条百分比</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">myUI</span><span class="o">=</span><span class="n">UI</span><span class="p">(</span><span class="n">oled</span><span class="p">)</span>
+<span class="n">myUI</span><span class="o">.</span><span class="n">ProgressBar</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.UI.stripBar">
+<span class="sig-prename descclassname"><span class="pre">UI.</span></span><span class="sig-name descname"><span class="pre">stripBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.UI.stripBar" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>绘制垂直或水平的柱状条</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> 、 <code class="docutils literal notranslate"><span class="pre">y</span></code> -左上角作为起点坐标</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code> -柱状条宽度</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code> -柱状条高度</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">progress</span></code> -柱状条百分比</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dir</span></code> -柱状条方向。dir=1时水平方向,dir=0时,垂直方向。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code> -当frame=1时,显示外框；当frame=0时,不显示外框。</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.UI.qr_code">
+<span class="sig-prename descclassname"><span class="pre">UI.</span></span><span class="sig-name descname"><span class="pre">qr_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.UI.qr_code" title="永久链接至目标"></a></dt>
+<dd><p>绘制29*29二维码</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code> - 二维码数据,类型字符串</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> 、 <code class="docutils literal notranslate"><span class="pre">y</span></code> -左上角作为起点坐标</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code> -放大倍数:可以为1,2。默认为2倍放大。</p></li>
+</ul>
+</dd></dl>
+
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gui</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="n">ui</span><span class="o">=</span><span class="n">gui</span><span class="o">.</span><span class="n">UI</span><span class="p">(</span><span class="n">oled</span><span class="p">)</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">qr_code</span><span class="p">(</span><span class="s1">&#39;https://mpython.readthedocs.io&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="clock">
+<h3>Clock类<a class="headerlink" href="#clock" title="此标题的永久链接"></a></h3>
+<p>提供模拟钟表显示功能</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.Clock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.</span></span><span class="sig-name descname"><span class="pre">Clock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oled</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.Clock" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>构建Clock对象。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">oled</span></code>  - 传入framebuf类的对象,如是mPython OLED显示屏,则oled对象。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> 、<code class="docutils literal notranslate"><span class="pre">y</span></code> -左上角作为起点坐标</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code> -钟表半径</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.Clock.settime">
+<span class="sig-prename descclassname"><span class="pre">Clock.</span></span><span class="sig-name descname"><span class="pre">settime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.Clock.settime" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>获取本地时间并设置模拟钟表时间</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.Clock.drawClock">
+<span class="sig-prename descclassname"><span class="pre">Clock.</span></span><span class="sig-name descname"><span class="pre">drawClock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.Clock.drawClock" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>绘制钟表</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.Clock.clear">
+<span class="sig-prename descclassname"><span class="pre">Clock.</span></span><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.Clock.clear" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>清除钟表</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span><span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Timer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+
+<span class="n">clock</span><span class="o">=</span><span class="n">Clock</span><span class="p">(</span><span class="n">oled</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">Refresh</span><span class="p">():</span>
+        <span class="n">clock</span><span class="o">.</span><span class="n">settime</span><span class="p">()</span>
+        <span class="n">clock</span><span class="o">.</span><span class="n">drawClock</span><span class="p">()</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">clock</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="n">tim1</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tim1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span><span class="n">Refresh</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="image">
+<h3>Image<a class="headerlink" href="#image" title="此标题的永久链接"></a></h3>
+<p>支持 <cite>pbm</cite> 和 <cite>bmp</cite> 1bit的图片格式。</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.Image">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><a class="headerlink" href="#gui.Image" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>构建Image对象</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.Image.load">
+<span class="sig-prename descclassname"><span class="pre">Image.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.Image.load" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>加载 <cite>pbm</cite> 或 <cite>bmp</cite> 图片格式文件,返回该图片的 <a class="reference internal" href="../micropython/framebuf.html#framebuf.FrameBuffer" title="framebuf.FrameBuffer"><code class="xref py py-class docutils literal notranslate"><span class="pre">framebuf.FrameBuffer</span></code></a> 对象。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code> - 图片文件路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">invert</span></code> - 像素点反转。0表示不反转,1则反转。</p></li>
+</ul>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gui</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">()</span>
+<span class="n">fb</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;clown_1.bmp&#39;</span><span class="p">,</span><span class="mi">1</span> <span class="p">)</span>
+
+<span class="n">oled</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">fb</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

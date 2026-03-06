@@ -15,7 +15,7 @@ python3环境安装依赖库
 本地编译
 
     cd documentation
-    make.bat html
+    make html
 
 如果成功，构建的文件将位于其中documentation/_build 文件夹，
 HTML 页面保存在 _build/html 目录。

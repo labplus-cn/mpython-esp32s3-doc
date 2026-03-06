@@ -1,0 +1,178 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6. 比对指令 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>比对指令</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/5_api/mpy_ref/asm_thumb2_compare.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">6. </span>比对指令<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>这些指令对两个参数执行算术或逻辑指令，放弃结果但会设置条件标志。通常，这些指令用于在执行条件分支之前，在不更改数据值的前提下测试数据值。</p>
+<section id="id2">
+<h2><span class="section-number">6.1. </span>文件规范<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>符号： <code class="docutils literal notranslate"><span class="pre">Rd,</span> <span class="pre">Rm,</span> <span class="pre">Rn</span></code> 表示ARM寄存器R0-R7。 <code class="docutils literal notranslate"><span class="pre">imm8</span></code> 表示一个具有8位宽度的即时值。</p>
+</section>
+<section id="apsr">
+<h2><span class="section-number">6.2. </span>应用程序状态寄存器(APSR)<a class="headerlink" href="#apsr" title="此标题的永久链接"></a></h2>
+<p>这包含四个由条件分支指令测试的位。通常情况下，条件分支将测试多个位，例如 <code class="docutils literal notranslate"><span class="pre">bge(LABEL)</span></code> 。
+条件码的含义取决于算术指令的操作数是否被视为有符号或无符号整数。因此， <code class="docutils literal notranslate"><span class="pre">bhi(LABEL)</span></code> 假定处理无符号数， <code class="docutils literal notranslate"><span class="pre">bgt(LABEL)</span></code> 假定处理有符号数。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">6.3. </span>APSR位<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>Z (zero)</p></li>
+</ul>
+<p>若运算的结果为0或比对的操作数相等，则设置为0。</p>
+<ul class="simple">
+<li><p>N (negative)</p></li>
+</ul>
+<p>若结果为负，则设置为N。</p>
+<ul class="simple">
+<li><p>C (carry)</p></li>
+</ul>
+<p>若结果溢出MSB，则加法设定进位标记，例如把0x80000000和0x80000000相加。由于二进制补码算术的性质，
+这种行为在减法时反转，清除借助进位位指示的借位。因此0x10 - 0x01执行为0x10 + 0xffffffff，它将设置进位位。</p>
+<ul class="simple">
+<li><p>V (overflow)</p></li>
+</ul>
+<p>若结果（被视为二进制数的补码）具有与操作数相关的”错误”符号，则会设置溢出标志。例如，将1添加到0x7fffffff将设置溢出位，
+因为结果（0x8000000）（被视为二进制补码整数）为负值。请注意：在此情况下，未设置进位位。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">6.4. </span>比对指令<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>这些指令会设置APSR（应用程序状态寄存器）、N（负）、Z（零）、C（进位）和V（溢出）标志。</p>
+<ul class="simple">
+<li><p>cmp(Rn, imm8) <code class="docutils literal notranslate"><span class="pre">Rn</span> <span class="pre">-</span> <span class="pre">imm8</span></code></p></li>
+<li><p>cmp(Rn, Rm) <code class="docutils literal notranslate"><span class="pre">Rn</span> <span class="pre">-</span> <span class="pre">Rm</span></code></p></li>
+<li><p>cmn(Rn, Rm) <code class="docutils literal notranslate"><span class="pre">Rn</span> <span class="pre">+</span> <span class="pre">Rm</span></code></p></li>
+<li><p>tst(Rn, Rm) <code class="docutils literal notranslate"><span class="pre">Rn</span> <span class="pre">&amp;</span> <span class="pre">Rm</span></code></p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">6.5. </span>条件执行<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">It</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ite</span></code> 指令提供一种有条件地执行一到四个后续指令而无需标记的方法。</p>
+<ul class="simple">
+<li><p>it(&lt;condition&gt;) If then</p></li>
+</ul>
+<p>若&lt;condition&gt;为True，则执行下一指令:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmp</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">)</span>
+<span class="n">it</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+<span class="n">mov</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># runs if r0 == r1</span>
+<span class="c1"># execution continues here 此处继续执行</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ite(&lt;condition&gt;) If then else</p></li>
+</ul>
+<p>若&lt;condtion&gt;为真，执行下一指令，否则执行后续指令，因此:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmp</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">)</span>
+<span class="n">ite</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+<span class="n">mov</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># runs if r0 == r1</span>
+<span class="n">mov</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span> <span class="c1"># runs if r0 != r1</span>
+<span class="c1"># execution continues here 此处继续执行</span>
+</pre></div>
+</div>
+<p>这可能回扩展为控制至多四条后续指令的执行：it[x[y[z]]] where x,y,z=t/e; e.g. itt, itee, itete, ittte, itttt, iteee, etc.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

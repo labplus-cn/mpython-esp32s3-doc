@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>class Signal – control and sense external I/O devices &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">class Signal – control and sense external I/O devices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/5_api/library/micropython/machine/machine.Signal.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-signal-control-and-sense-external-i-o-devices">
+<span id="machine-signal"></span><h1>class Signal – control and sense external I/O devices<a class="headerlink" href="#class-signal-control-and-sense-external-i-o-devices" title="此标题的永久链接"></a></h1>
+<p>The Signal class is a simple extension of the <cite>Pin</cite> class. Unlike Pin, which
+can be only in “absolute” 0 and 1 states, a Signal can be in “asserted”
+(on) or “deasserted” (off) states, while being inverted (active-low) or
+not. In other words, it adds logical inversion support to Pin functionality.
+While this may seem a simple addition, it is exactly what is needed to
+support wide array of simple digital devices in a way portable across
+different boards, which is one of the major MicroPython goals. Regardless
+of whether different users have an active-high or active-low LED, a normally
+open or normally closed relay - you can develop a single, nicely looking
+application which works with each of them, and capture hardware
+configuration differences in few lines in the config file of your app.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Signal</span>
+
+<span class="c1"># Suppose you have an active-high LED on pin 0</span>
+<span class="n">led1_pin</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="c1"># ... and active-low LED on pin 1</span>
+<span class="n">led2_pin</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+<span class="c1"># Now to light up both of them using Pin class, you&#39;ll need to set</span>
+<span class="c1"># them to different values</span>
+<span class="n">led1_pin</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">led2_pin</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Signal class allows to abstract away active-high/active-low</span>
+<span class="c1"># difference</span>
+<span class="n">led1</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="n">led1_pin</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">led2</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="n">led2_pin</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Now lighting up them looks the same</span>
+<span class="n">led1</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">led2</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Even better:</span>
+<span class="n">led1</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+<span class="n">led2</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Following is the guide when Signal vs Pin should be used:</p>
+<ul class="simple">
+<li><p>Use Signal: If you want to control a simple on/off (including software
+PWM!) devices like LEDs, multi-segment indicators, relays, buzzers, or
+read simple binary sensors, like normally open or normally closed buttons,
+pulled high or low, Reed switches, moisture/flame detectors, etc. etc.
+Summing up, if you have a real physical device/sensor requiring GPIO
+access, you likely should use a Signal.</p></li>
+<li><p>Use Pin: If you implement a higher-level protocol or bus to communicate
+with more complex devices.</p></li>
+</ul>
+<p>The split between Pin and Signal come from the usecases above and the
+architecture of MicroPython: Pin offers the lowest overhead, which may
+be important when bit-banging protocols. But Signal adds additional
+flexibility on top of Pin, at the cost of minor overhead (much smaller
+than if you implemented active-high vs active-low device differences in
+Python manually!). Also, Pin is a low-level object which needs to be
+implemented for each support board, while Signal is a high-level object
+which comes for free once Pin is implemented.</p>
+<p>If in doubt, give the Signal a try! Once again, it is offered to save
+developers from the need to handle unexciting differences like active-low
+vs active-high signals, and allow other users to share and enjoy your
+application, instead of being frustrated by the fact that it doesn’t
+work for them simply because their LEDs or relays are wired in a slightly
+different way.</p>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="machine.Signal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">Signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Signal" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">machine.</span></span><span class="sig-name descname"><span class="pre">Signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin_arguments...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert=False</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Create a Signal object. There’re two ways to create it:</p>
+<ul class="simple">
+<li><p>By wrapping existing Pin object - universal method which works for
+any board.</p></li>
+<li><p>By passing required Pin parameters directly to Signal constructor,
+skipping the need to create intermediate Pin object. Available on
+many, but not all boards.</p></li>
+</ul>
+<p>The arguments are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin_obj</span></code> is existing Pin object.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pin_arguments</span></code> are the same arguments as can be passed to Pin constructor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">invert</span></code> - if True, the signal will be inverted (active low).</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="machine.Signal.value">
+<span class="sig-prename descclassname"><span class="pre">Signal.</span></span><span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Signal.value" title="永久链接至目标"></a></dt>
+<dd><p>This method allows to set and get the value of the signal, depending on whether
+the argument <code class="docutils literal notranslate"><span class="pre">x</span></code> is supplied or not.</p>
+<p>If the argument is omitted then this method gets the signal level, 1 meaning
+signal is asserted (active) and 0 - signal inactive.</p>
+<p>If the argument is supplied then this method sets the signal level. The
+argument <code class="docutils literal notranslate"><span class="pre">x</span></code> can be anything that converts to a boolean. If it converts
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the signal is active, otherwise it is inactive.</p>
+<p>Correspondence between signal being active and actual logic level on the
+underlying pin depends on whether signal is inverted (active-low) or not.
+For non-inverted signal, active status corresponds to logical 1, inactive -
+to logical 0. For inverted/active-low signal, active status corresponds
+to logical 0, while inactive - to logical 1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="machine.Signal.on">
+<span class="sig-prename descclassname"><span class="pre">Signal.</span></span><span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Signal.on" title="永久链接至目标"></a></dt>
+<dd><p>Activate signal.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="machine.Signal.off">
+<span class="sig-prename descclassname"><span class="pre">Signal.</span></span><span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Signal.off" title="永久链接至目标"></a></dt>
+<dd><p>Deactivate signal.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

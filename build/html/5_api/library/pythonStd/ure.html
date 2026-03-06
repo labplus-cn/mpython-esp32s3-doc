@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ure – 正则表达式 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ure</span></code> – 正则表达式</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/ure.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ure">
+<span id="ure"></span><h1><a class="reference internal" href="#module-ure" title="ure: 正则表达式"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ure</span></code></a> – 正则表达式<a class="headerlink" href="#module-ure" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/re.html#module-re">re</a></p>
+<p>该模块实现了正则表达式操作。支持的正则表达式语法是CPython <code class="docutils literal notranslate"><span class="pre">re</span></code> 模块的子集（实际上是POSIX扩展正则表达式的子集）。</p>
+<p>支持的运算符和特殊序列是:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'.'</span></code></dt><dd><p>匹配任何角色。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'[]'</span></code></dt><dd><p>匹配字符集。支持单个字符和范围，包括否定集（例​​如 <code class="docutils literal notranslate"><span class="pre">[^a-c]</span></code> ）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'^'</span></code></dt><dd><p>匹配字符串的开头。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'$'</span></code></dt><dd><p>匹配字符串的结尾。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'?'</span></code></dt><dd><p>匹配零个或前一个子模式之一。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'*'</span></code></dt><dd><p>匹配前一个子模式的零个或多个。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'+'</span></code></dt><dd><p>匹配前一个子模式中的一个或多个。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'??'</span></code></dt><dd><p>非贪婪版本?，匹配零或一，偏好为零。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'*?'</span></code></dt><dd><p>非贪婪版本*，匹配零或更多，与最短匹配的偏好。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'+?'</span></code></dt><dd><p>非贪婪版本+，匹配一个或多个，与最短匹配的偏好。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">|</span></code></dt><dd><p>匹配此运算符的左侧或右侧子模式。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">(...)</span></code></dt><dd><p>分组。每个组都在捕获（它捕获的子字符串可以通过 <cite>match.group()</cite> 方法访问）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\d</span></code></dt><dd><p>匹配数字。相当于 <code class="docutils literal notranslate"><span class="pre">[0-9]</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\D</span></code></dt><dd><p>匹配非数字。相当于 <code class="docutils literal notranslate"><span class="pre">[^0-9]</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\s</span></code></dt><dd><p>匹配空白。相当于。<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">\t-\r]</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\S</span></code></dt><dd><p>匹配非空白。相当于。<code class="docutils literal notranslate"><span class="pre">[^</span> <span class="pre">\t-\r]</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\w</span></code></dt><dd><p>匹配“单词字符”（仅限ASCII）。相当于 <code class="docutils literal notranslate"><span class="pre">[A-Za-z0-9_]</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\W</span></code></dt><dd><p>匹配非“单词字符”（仅限ASCII）。相当于 <code class="docutils literal notranslate"><span class="pre">[^A-Za-z0-9_]</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\</span></code></dt><dd><p>Escape character. Any other character following the backslash, except
+for those listed above, is taken literally. For example, <code class="docutils literal notranslate"><span class="pre">\*</span></code> is
+equivalent to literal <code class="docutils literal notranslate"><span class="pre">*</span></code> (not treated as the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator).
+Note that <code class="docutils literal notranslate"><span class="pre">\r</span></code>, <code class="docutils literal notranslate"><span class="pre">\n</span></code>, etc. are not handled specially, and will be
+equivalent to literal letters <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span></code>, etc. Due to this, it’s
+not recommended to use raw Python strings (<code class="docutils literal notranslate"><span class="pre">r&quot;&quot;</span></code>) for regular
+expressions. For example, <code class="docutils literal notranslate"><span class="pre">r&quot;\r\n&quot;</span></code> when used as the regular
+expression is equivalent to <code class="docutils literal notranslate"><span class="pre">&quot;rn&quot;</span></code>. To match CR character followed
+by LF, use <code class="docutils literal notranslate"><span class="pre">&quot;\r\n&quot;</span></code>.</p>
+<p>逃避角色。除了上面列出的那些之外，反斜杠后面的任何其他字符都是字面意思。例如，<code class="docutils literal notranslate"><span class="pre">\*</span></code> 等同于文字 <code class="docutils literal notranslate"><span class="pre">*``（不作为</span> <span class="pre">``*</span></code> 运算符）。
+需要注意的是 <code class="docutils literal notranslate"><span class="pre">\r</span></code> ，<code class="docutils literal notranslate"><span class="pre">\n</span></code> 等没有特殊处理，并且将相当于文字字母 <code class="docutils literal notranslate"><span class="pre">r</span></code> ，<code class="docutils literal notranslate"><span class="pre">n</span></code> 等。由于这一点，不推荐使用（原始Python字符串 <code class="docutils literal notranslate"><span class="pre">r&quot;&quot;</span></code> ）为正则表达式。
+例如，<code class="docutils literal notranslate"><span class="pre">r&quot;\r\n&quot;</span></code> 当用作正则表达式时相当于 <code class="docutils literal notranslate"><span class="pre">&quot;rn&quot;</span></code> 。要匹配CR后跟LF的字符，请使用 <code class="docutils literal notranslate"><span class="pre">&quot;\r\n&quot;</span></code> 。</p>
+</dd>
+</dl>
+<p><strong>不支持</strong>:</p>
+<ul class="simple">
+<li><p>计算重复次数 (<code class="docutils literal notranslate"><span class="pre">{m,n}</span></code>)</p></li>
+<li><p>命名组 (<code class="docutils literal notranslate"><span class="pre">(?P&lt;name&gt;...)</span></code>)</p></li>
+<li><p>非捕获组 (<code class="docutils literal notranslate"><span class="pre">(?:...)</span></code>)</p></li>
+<li><p>更高级的断言 (<code class="docutils literal notranslate"><span class="pre">\b</span></code>, <code class="docutils literal notranslate"><span class="pre">\B</span></code>)</p></li>
+<li><p>特殊字符逃脱 ，例如 <code class="docutils literal notranslate"><span class="pre">\r</span></code> ，<code class="docutils literal notranslate"><span class="pre">\n</span></code> 使用Python自己的转义</p></li>
+<li><p>等等</p></li>
+</ul>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ure</span>
+
+<span class="c1"># As ure doesn&#39;t support escapes itself, use of r&quot;&quot; strings is not</span>
+<span class="c1"># recommended.</span>
+<span class="n">regex</span> <span class="o">=</span> <span class="n">ure</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;[</span><span class="se">\r\n</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="n">regex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;line1</span><span class="se">\r</span><span class="s2">line2</span><span class="se">\n</span><span class="s2">line3</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Result:</span>
+<span class="c1"># [&#39;line1&#39;, &#39;line2&#39;, &#39;line3&#39;, &#39;&#39;, &#39;&#39;]</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ure.compile">
+<span class="sig-prename descclassname"><span class="pre">ure.</span></span><span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ure.compile" title="永久链接至目标"></a></dt>
+<dd><p>编译正则表达式，返回 <cite>regex &lt;regex&gt;</cite> 对象。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ure.match">
+<span class="sig-prename descclassname"><span class="pre">ure.</span></span><span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ure.match" title="永久链接至目标"></a></dt>
+<dd><p>编译 <em>regex_str</em> 并匹配 <em>string</em> 。匹配始终从字符串中的起始位置开始。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ure.search">
+<span class="sig-prename descclassname"><span class="pre">ure.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ure.search" title="永久链接至目标"></a></dt>
+<dd><p>Compile <em>regex_str</em> and search it in a <em>string</em>. Unlike <cite>match</cite>, this will search
+string for first position which matches regex (which still may be
+0 if regex is anchored).</p>
+<p>编译 <cite>regex_str</cite> 并在字符串中搜索它。与 <code class="docutils literal notranslate"><span class="pre">match</span></code> 此不同，这将搜索匹配正则表达式的第一个位置的字符串（如果正则表达式已锚定，则仍可能为0）。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="ure.DEBUG">
+<span class="sig-prename descclassname"><span class="pre">ure.</span></span><span class="sig-name descname"><span class="pre">DEBUG</span></span><a class="headerlink" href="#ure.DEBUG" title="永久链接至目标"></a></dt>
+<dd><p>标记值，显示有关已编译表达式的调试信息。</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2.2.1 开发环境搭建 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="4.2.2.2 基本示例" href="example.html" />
+    <link rel="prev" title="4.2.2 arduino IDE" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">6. 掌控板C/C++编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">4.1 概述</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">4.2. arduino编程</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../PlatformIO/index.html">4.2.1. vscode + PlatformIO</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">4.2.2 arduino IDE</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">4.2.2.1 开发环境搭建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="example.html">4.2.2.2 基本示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../espidf/index.html">4.3. vscdde + esp-idf插件c/c++编程</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">6. 掌控板C/C++编程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">4.2. arduino编程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">4.2.2 arduino IDE</a></li>
+      <li class="breadcrumb-item active">4.2.2.1 开发环境搭建</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/6_C_program/arduino/arduino_ide/installation.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>4.2.2.1 开发环境搭建<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>适配Windows、macOS、Linux三大系统，同时包含常见问题解决。</p>
+<section id="id2">
+<h2>1. 下载安装包<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<ul>
+<li><p>官网下载（最稳定）：</p>
+<p>访问 [Arduino官网下载页](<a class="reference external" href="https://www.arduino.cc/en/software">https://www.arduino.cc/en/software</a>)，根据你的系统选择对应版本：</p>
+<ul class="simple">
+<li><p>Windows：推荐下载「Windows Installer」（安装版），也可选择「Windows ZIP」（免安装版）；</p></li>
+<li><p>macOS：下载「macOS Intel」或「macOS Apple Silicon」（根据芯片选择）；</p></li>
+<li><p>Linux：下载对应架构的压缩包（如64-bit x86）。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2>2. 系统分步安装<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>Windows系统
+……………………………………</p>
+<ol class="arabic simple">
+<li><p>双击下载的 <cite>.exe</cite> 安装包，若弹出「用户账户控制」提示，点击「是」；</p></li>
+<li><p>选择安装语言（推荐English，后续可在IDE内改中文），点击「OK」；</p></li>
+<li><p>点击「Next」，勾选「I accept the agreement」（同意协议），继续「Next」；</p></li>
+<li><p>选择安装路径（默认即可，无需修改），继续「Next」；</p></li>
+<li><p>勾选「Create Desktop Icon」（创建桌面快捷方式），点击「Install」开始安装；</p></li>
+<li><p>安装完成后，点击「Finish」，若提示「Install USB driver」（安装USB驱动），务必点击安装（驱动是连接硬件的关键）。</p></li>
+</ol>
+<p>macOS系统
+………………………………………</p>
+<ol class="arabic simple">
+<li><p>双击下载的 <cite>.dmg</cite> 镜像文件，弹出安装窗口；</p></li>
+<li><p>将「Arduino IDE」图标拖入「Applications」文件夹；</p></li>
+<li><p>首次打开时，若提示「无法验证开发者」，右键点击Applications里的Arduino IDE，选择「打开」，再次点击「打开」即可（macOS安全机制）；</p></li>
+<li><p>若芯片为Apple Silicon（M1/M2/M3），需确保下载的是对应版本，避免兼容性问题。</p></li>
+</ol>
+<p>Linux系统
+………………………………………</p>
+<ol class="arabic simple">
+<li><p>解压下载的 <cite>.tar.xz</cite> 压缩包（如 <cite>tar -xvf arduino-ide_2.x.x_Linux_64bit.tar.xz</cite>）；</p></li>
+<li><p>进入解压后的文件夹，运行安装脚本：<a href="#id4"><span class="problematic" id="id5">`</span></a>./install.sh`（需sudo权限，输入密码）；</p></li>
+<li><p>安装完成后，可通过终端输入 <cite>arduino-ide</cite> 启动，或在应用列表找到图标。</p></li>
+</ol>
+</section>
+<section id="id6">
+<h2>3. 添加掌控板支持<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<ol class="arabic simple">
+<li><p>打开Arduino IDE，点击「File」→「Preferences」；</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../_images/preferences.png"><img alt="../../../_images/preferences.png" src="../../../_images/preferences.png" style="width: 600px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>如上图，填入掌控板开发支持URL：<a class="reference external" href="https://labplus-cn.github.io/arduino-esp32/package_esp32_mpython_index_cn.json">https://labplus-cn.github.io/arduino-esp32/package_esp32_mpython_index_cn.json</a></p>
+<ol class="arabic simple" start="2">
+<li><p>点击「OK」保存。</p></li>
+<li><p>进入「Tools」→「Board」→「Boards Manager」；</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../_images/preferences.png"><img alt="../../../_images/preferences.png" src="../../../_images/preferences.png" style="width: 600px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>输入mpython搜索，找到mPython掌控板支持包，点击「Install」安装，等待安装完成即可。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.2.2 arduino IDE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="example.html" class="btn btn-neutral float-right" title="4.2.2.2 基本示例" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

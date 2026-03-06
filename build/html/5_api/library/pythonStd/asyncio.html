@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>asyncio — 异步I/O调度器 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="binascii – 二进制/ ASCII互转" href="binascii.html" />
+    <link rel="prev" title="array – 数值数组" href="array.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/asyncio.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-asyncio">
+<span id="asyncio-i-o"></span><h1><a class="reference internal" href="#module-asyncio" title="asyncio: 异步I/O调度器"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> — 异步I/O调度器<a class="headerlink" href="#module-asyncio" title="此标题的永久链接"></a></h1>
+<p>该模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/asyncio.html#module-asyncio">asyncio</a></p>
+<p>该模块提供了用于编写并发代码的基础设施，使用协程、事件循环和Future对象。</p>
+<p>快速使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">blink</span><span class="p">(</span><span class="n">led</span><span class="p">,</span> <span class="n">period_ms</span><span class="p">):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="n">period_ms</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">led1</span><span class="p">,</span> <span class="n">led2</span><span class="p">):</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">blink</span><span class="p">(</span><span class="n">led1</span><span class="p">,</span> <span class="mi">700</span><span class="p">))</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">blink</span><span class="p">(</span><span class="n">led2</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">10_000</span><span class="p">)</span>
+
+<span class="c1"># 在pyboard上运行</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyb</span><span class="w"> </span><span class="kn">import</span> <span class="n">LED</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">LED</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">LED</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="c1"># 在通用板上运行</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>核心函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.create_task">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">create_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.create_task" title="永久链接至目标"></a></dt>
+<dd><p>从给定的协程创建一个新任务并安排它运行。
+返回相应的Task对象。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.current_task">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">current_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.current_task" title="永久链接至目标"></a></dt>
+<dd><p>返回与当前运行的任务关联的Task对象。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.run">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.run" title="永久链接至目标"></a></dt>
+<dd><p>从给定的协程创建一个新任务并运行直到完成。
+返回coro返回的值。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.sleep">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">sleep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.sleep" title="永久链接至目标"></a></dt>
+<dd><p>睡眠t秒（可以是浮点数）。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.sleep_ms">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">sleep_ms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.sleep_ms" title="永久链接至目标"></a></dt>
+<dd><p>睡眠t毫秒。
+这是一个协程，是MicroPython扩展。</p>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>附加函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.wait_for">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">wait_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awaitable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.wait_for" title="永久链接至目标"></a></dt>
+<dd><p>等待awaitable完成，但如果超过timeout秒则取消它。如果awaitable不是任务，则会从中创建一个任务。
+如果发生超时，它会取消任务并引发asyncio.TimeoutError：这应该被调用者捕获。任务会收到asyncio.CancelledError，它可以被忽略或使用try…except或try…finally来运行清理代码。
+返回awaitable的返回值。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.wait_for_ms">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">wait_for_ms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awaitable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.wait_for_ms" title="永久链接至目标"></a></dt>
+<dd><p>类似于wait_for，但timeout是以毫秒为单位的整数。
+这是一个协程，是MicroPython扩展。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.gather">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">gather</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">awaitables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_exceptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.gather" title="永久链接至目标"></a></dt>
+<dd><p>并发运行所有awaitables。任何不是任务的awaitables都会被提升为任务。
+返回所有awaitables的返回值列表。
+这是一个协程。</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>类<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="asyncio.asyncio.Task">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Task</span></span><a class="headerlink" href="#asyncio.asyncio.Task" title="永久链接至目标"></a></dt>
+<dd><p>这个对象将协程包装成一个运行中的任务。任务可以使用await task来等待，这将等待任务完成并返回任务的返回值。
+任务不应该直接创建，而是使用create_task来创建它们。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Task.Task.cancel">
+<span class="sig-prename descclassname"><span class="pre">Task.</span></span><span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Task.Task.cancel" title="永久链接至目标"></a></dt>
+<dd><p>通过向任务注入asyncio.CancelledError来取消任务。任务可能会忽略此异常。清理代码可以通过捕获它或通过try…finally来运行。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asyncio.asyncio.Event">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Event</span></span><a class="headerlink" href="#asyncio.asyncio.Event" title="永久链接至目标"></a></dt>
+<dd><p>创建一个新的事件，可用于同步任务。事件开始时处于清除状态。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Event.Event.is_set">
+<span class="sig-prename descclassname"><span class="pre">Event.</span></span><span class="sig-name descname"><span class="pre">is_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Event.Event.is_set" title="永久链接至目标"></a></dt>
+<dd><p>如果事件已设置，返回True，否则返回False。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Event.Event.set">
+<span class="sig-prename descclassname"><span class="pre">Event.</span></span><span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Event.Event.set" title="永久链接至目标"></a></dt>
+<dd><p>设置事件。任何等待事件的任务都将被安排运行。
+注意：这必须在任务中调用。从IRQ、调度器回调或其他线程调用此方法是不安全的。请参阅ThreadSafeFlag。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Event.Event.clear">
+<span class="sig-prename descclassname"><span class="pre">Event.</span></span><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Event.Event.clear" title="永久链接至目标"></a></dt>
+<dd><p>清除事件。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Event.Event.wait">
+<span class="sig-prename descclassname"><span class="pre">Event.</span></span><span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Event.Event.wait" title="永久链接至目标"></a></dt>
+<dd><p>等待事件被设置。如果事件已经设置，则立即返回。
+这是一个协程。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asyncio.asyncio.ThreadSafeFlag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">ThreadSafeFlag</span></span><a class="headerlink" href="#asyncio.asyncio.ThreadSafeFlag" title="永久链接至目标"></a></dt>
+<dd><p>创建一个新的标志，可用于将任务与在asyncio循环外部运行的代码同步，例如其他线程、IRQ或调度器回调。标志开始时处于清除状态。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.ThreadSafeFlag.ThreadSafeFlag.set">
+<span class="sig-prename descclassname"><span class="pre">ThreadSafeFlag.</span></span><span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.ThreadSafeFlag.ThreadSafeFlag.set" title="永久链接至目标"></a></dt>
+<dd><p>设置标志。如果有任务在等待标志，它将被安排运行。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.ThreadSafeFlag.ThreadSafeFlag.clear">
+<span class="sig-prename descclassname"><span class="pre">ThreadSafeFlag.</span></span><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.ThreadSafeFlag.ThreadSafeFlag.clear" title="永久链接至目标"></a></dt>
+<dd><p>清除标志。这可用于确保在等待标志之前清除可能先前设置的标志。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.ThreadSafeFlag.ThreadSafeFlag.wait">
+<span class="sig-prename descclassname"><span class="pre">ThreadSafeFlag.</span></span><span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.ThreadSafeFlag.ThreadSafeFlag.wait" title="永久链接至目标"></a></dt>
+<dd><p>等待标志被设置。如果标志已经设置，则立即返回。标志在从wait返回时自动重置。
+一次只能有一个任务等待标志。
+这是一个协程。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asyncio.asyncio.Lock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Lock</span></span><a class="headerlink" href="#asyncio.asyncio.Lock" title="永久链接至目标"></a></dt>
+<dd><p>创建一个新的锁，可用于协调任务。锁开始时处于未锁定状态。
+除了下面的方法外，锁还可以在async with语句中使用。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Lock.Lock.locked">
+<span class="sig-prename descclassname"><span class="pre">Lock.</span></span><span class="sig-name descname"><span class="pre">locked</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Lock.Lock.locked" title="永久链接至目标"></a></dt>
+<dd><p>如果锁已锁定，返回True，否则返回False。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Lock.Lock.acquire">
+<span class="sig-prename descclassname"><span class="pre">Lock.</span></span><span class="sig-name descname"><span class="pre">acquire</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Lock.Lock.acquire" title="永久链接至目标"></a></dt>
+<dd><p>等待锁处于未锁定状态，然后以原子方式锁定它。任何时候只有一个任务可以获取锁。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Lock.Lock.release">
+<span class="sig-prename descclassname"><span class="pre">Lock.</span></span><span class="sig-name descname"><span class="pre">release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Lock.Lock.release" title="永久链接至目标"></a></dt>
+<dd><p>释放锁。如果有任务在等待锁，队列中的下一个任务将被安排运行，锁保持锁定状态。否则，没有任务在等待，锁变为未锁定状态。</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="tcp">
+<h2>TCP流连接<a class="headerlink" href="#tcp" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.open_connection">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">open_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.open_connection" title="永久链接至目标"></a></dt>
+<dd><p>打开到给定主机和端口的TCP连接。主机地址将使用socket.getaddrinfo解析，这目前是一个阻塞调用。
+如果ssl是ssl.SSLContext对象，此上下文用于创建传输；如果ssl为True，则使用默认上下文。
+返回一对流：读取器和写入器流。
+如果主机无法解析或连接无法建立，将引发特定于套接字的OSError。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.start_server">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">start_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backlog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.start_server" title="永久链接至目标"></a></dt>
+<dd><p>在给定的主机和端口上启动TCP服务器。回调将被调用以处理传入的、已接受的连接，并被传递2个参数：连接的读取器和写入器流。
+如果ssl是ssl.SSLContext对象，此上下文用于创建传输。
+返回一个Server对象。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Stream</span></span><a class="headerlink" href="#asyncio.asyncio.Stream" title="永久链接至目标"></a></dt>
+<dd><p>这表示一个TCP流连接。为了最小化代码，此类同时实现了读取器和写入器，StreamReader和StreamWriter都别名为此类。</p>
+<p>获取流的额外信息，由v给定。v的有效值为：peername。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream.Stream.close">
+<span class="sig-prename descclassname"><span class="pre">Stream.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Stream.Stream.close" title="永久链接至目标"></a></dt>
+<dd><p>关闭流。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream.Stream.wait_closed">
+<span class="sig-prename descclassname"><span class="pre">Stream.</span></span><span class="sig-name descname"><span class="pre">wait_closed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Stream.Stream.wait_closed" title="永久链接至目标"></a></dt>
+<dd><p>等待流关闭。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream.Stream.read">
+<span class="sig-prename descclassname"><span class="pre">Stream.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Stream.Stream.read" title="永久链接至目标"></a></dt>
+<dd><p>读取最多n个字节并返回它们。如果n未提供或为-1，则读取所有字节直到EOF。如果在读取任何字节之前遇到EOF，返回的值将是一个空字节对象。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream.Stream.readinto">
+<span class="sig-prename descclassname"><span class="pre">Stream.</span></span><span class="sig-name descname"><span class="pre">readinto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Stream.Stream.readinto" title="永久链接至目标"></a></dt>
+<dd><p>读取最多n个字节到buf中，n等于buf的长度。
+返回读入buf的字节数。
+这是一个协程，是MicroPython扩展。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream.Stream.readexactly">
+<span class="sig-prename descclassname"><span class="pre">Stream.</span></span><span class="sig-name descname"><span class="pre">readexactly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Stream.Stream.readexactly" title="永久链接至目标"></a></dt>
+<dd><p>读取恰好n个字节并将它们作为字节对象返回。
+如果流在读取n个字节之前结束，会引发EOFError异常。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream.Stream.readline">
+<span class="sig-prename descclassname"><span class="pre">Stream.</span></span><span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Stream.Stream.readline" title="永久链接至目标"></a></dt>
+<dd><p>读取一行并返回它。
+这是一个协程。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream.Stream.write">
+<span class="sig-prename descclassname"><span class="pre">Stream.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Stream.Stream.write" title="永久链接至目标"></a></dt>
+<dd><p>将buf累积到输出缓冲区。数据只有在调用Stream.drain时才会被刷新。建议在调用此函数后立即调用Stream.drain。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Stream.Stream.drain">
+<span class="sig-prename descclassname"><span class="pre">Stream.</span></span><span class="sig-name descname"><span class="pre">drain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Stream.Stream.drain" title="永久链接至目标"></a></dt>
+<dd><p>排空（写入）所有缓冲的输出数据到流。
+这是一个协程。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asyncio.asyncio.Server">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Server</span></span><a class="headerlink" href="#asyncio.asyncio.Server" title="永久链接至目标"></a></dt>
+<dd><p>这表示从start_server返回的服务器类。它可以在async with语句中使用，以在退出时关闭服务器。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Server.Server.close">
+<span class="sig-prename descclassname"><span class="pre">Server.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Server.Server.close" title="永久链接至目标"></a></dt>
+<dd><p>关闭服务器。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Server.Server.wait_closed">
+<span class="sig-prename descclassname"><span class="pre">Server.</span></span><span class="sig-name descname"><span class="pre">wait_closed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Server.Server.wait_closed" title="永久链接至目标"></a></dt>
+<dd><p>等待服务器关闭。
+这是一个协程。</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="id4">
+<h2>事件循环<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.get_event_loop">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">get_event_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.get_event_loop" title="永久链接至目标"></a></dt>
+<dd><p>返回用于调度和运行任务的事件循环。请参阅Loop。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asyncio.asyncio.new_event_loop">
+<span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">new_event_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.new_event_loop" title="永久链接至目标"></a></dt>
+<dd><p>重置事件循环并返回它。
+注意：由于MicroPython只有一个事件循环，此函数只是重置循环的状态，而不是创建一个新的循环。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Loop</span></span><a class="headerlink" href="#asyncio.asyncio.Loop" title="永久链接至目标"></a></dt>
+<dd><p>这表示调度和运行任务的对象。它不能被创建，请使用get_event_loop代替。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.create_task">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">create_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.create_task" title="永久链接至目标"></a></dt>
+<dd><p>从给定的coro创建一个任务并返回新的Task对象。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.run_forever">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">run_forever</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.run_forever" title="永久链接至目标"></a></dt>
+<dd><p>运行事件循环直到调用stop()。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.run_until_complete">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">run_until_complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awaitable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.run_until_complete" title="永久链接至目标"></a></dt>
+<dd><p>运行给定的awaitable直到完成。如果awaitable不是任务，它将被提升为任务。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.stop">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.stop" title="永久链接至目标"></a></dt>
+<dd><p>停止事件循环。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.close">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.close" title="永久链接至目标"></a></dt>
+<dd><p>关闭事件循环。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.set_exception_handler">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">set_exception_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.set_exception_handler" title="永久链接至目标"></a></dt>
+<dd><p>设置当Task引发未捕获的异常时要调用的异常处理程序。处理程序应接受两个参数：(loop, context)。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.get_exception_handler">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">get_exception_handler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.get_exception_handler" title="永久链接至目标"></a></dt>
+<dd><p>获取当前的异常处理程序。返回处理程序，如果没有设置自定义处理程序，则返回None。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.default_exception_handler">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">default_exception_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.default_exception_handler" title="永久链接至目标"></a></dt>
+<dd><p>被调用的默认异常处理程序。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.asyncio.Loop.Loop.call_exception_handler">
+<span class="sig-prename descclassname"><span class="pre">Loop.</span></span><span class="sig-name descname"><span class="pre">call_exception_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.asyncio.Loop.Loop.call_exception_handler" title="永久链接至目标"></a></dt>
+<dd><p>调用当前的异常处理程序。参数context被传递，是一个包含键：’message’、’exception’、’future’的字典。</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="array.html" class="btn btn-neutral float-left" title="array – 数值数组" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="binascii.html" class="btn btn-neutral float-right" title="binascii – 二进制/ ASCII互转" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

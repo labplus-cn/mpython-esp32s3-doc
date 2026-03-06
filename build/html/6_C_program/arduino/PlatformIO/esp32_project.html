@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2.1.3 esp32项目创建 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="4.2.1.4 掌控板V3.0示例" href="esp32_example.html" />
+    <link rel="prev" title="4.2.1.2 开发环境搭建" href="setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">6. 掌控板C/C++编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">4.1 概述</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">4.2. arduino编程</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">4.2.1. vscode + PlatformIO</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="preparation.html">4.2.1.1. 环境准备</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setup.html">4.2.1.2 开发环境搭建</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">4.2.1.3 esp32项目创建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="esp32_example.html">4.2.1.4 掌控板V3.0示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../arduino_ide/index.html">4.2.2 arduino IDE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../espidf/index.html">4.3. vscdde + esp-idf插件c/c++编程</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">6. 掌控板C/C++编程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">4.2. arduino编程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">4.2.1. vscode + PlatformIO</a></li>
+      <li class="breadcrumb-item active">4.2.1.3 esp32项目创建</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/6_C_program/arduino/PlatformIO/esp32_project.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="esp32">
+<h1>4.2.1.3 esp32项目创建<a class="headerlink" href="#esp32" title="此标题的永久链接"></a></h1>
+<section id="id1">
+<h2>1.新建项目<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>1.1 <strong>点击左侧栏platformio图标， 打开PIO Home，如下图依次点击：</strong></p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../_images/prj_new.png"><img alt="../../../_images/prj_new.png" src="../../../_images/prj_new.png" style="width: 1066px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>1.2 <strong>填写项目信息： Project Name: 自定义名称（如esp32_demo）</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Board: 选择 mpython_esp32s3_v3</p></li>
+<li><p>Framework: 选择 Arduino</p></li>
+<li><p>Location: 选择项目保存路径</p></li>
+</ul>
+</div></blockquote>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../_images/prj_name.png"><img alt="../../../_images/prj_name.png" src="../../../_images/prj_name.png" style="width: 500px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>完成后点finish按钮。</p>
+</section>
+<section id="id2">
+<h2>2.项目结构说明<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>esp32_demo/</p>
+<div class="line-block">
+<div class="line">├── .pio/</div>
+<div class="line">├── include/        # 头文件</div>
+<div class="line">├── lib/            # 第三方库</div>
+<div class="line">├── src/            # 源代码</div>
+<div class="line">│   └── main.cpp    # 主程序文件</div>
+<div class="line">├── test/           # 测试代码</div>
+<div class="line">└── platformio.ini  # 项目配置文件</div>
+</div>
+<p>3.编写代码示例（Arduino框架）</p>
+<p>修改main.cpp文件，内容如下：</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">示例-hello,world.</span><a class="headerlink" href="#id3" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#include &lt;Arduino.h&gt;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos"> 4</span>  <span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="linenos"> 5</span><span class="p">}</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos"> 8</span>  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;hello,world.&quot;</span><span class="p">)</span>
+<span class="linenos"> 9</span>  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="linenos">10</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>4.编译项目</p>
+<p>点击底部工具栏的 ✓ 图标（或 Ctrl+Alt+B）</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../_images/prj_build.png"><img alt="../../../_images/prj_build.png" src="../../../_images/prj_build.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>5.上传代码</p>
+<p>点击底部工具栏的 → 图标（或 Ctrl+Alt+U）</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../_images/prj_upload.png"><img alt="../../../_images/prj_upload.png" src="../../../_images/prj_upload.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>如果不能上传，同时按住A B键，再按下复位键，再松开A B键，可强制板子进入烧录态，再执行以上烧录操作。</p>
+</div>
+<p>6.运行结果</p>
+<ul class="simple">
+<li><ul>
+<li><p>点击底部工具栏的 串口监视器图标（或 Ctrl+Shift+M）</p></li>
+</ul>
+</li>
+<li><ul>
+<li><p>默认波特率：115200</p></li>
+</ul>
+</li>
+</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../_images/prj_monitor.png"><img alt="../../../_images/prj_monitor.png" src="../../../_images/prj_monitor.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>代码正常运行，则会在串口控制台不断输出：”hello,world.”。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="setup.html" class="btn btn-neutral float-left" title="4.2.1.2 开发环境搭建" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="esp32_example.html" class="btn btn-neutral float-right" title="4.2.1.4 掌控板V3.0示例" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
