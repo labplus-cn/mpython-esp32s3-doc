@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ubluetooth — 低功耗蓝牙 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="btree – 简单的 BTree 数据库" href="btree.html" />
+    <link rel="prev" title="MicroPython类库" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">MicroPython类库</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code> — 低功耗蓝牙</a></li>
+<li class="toctree-l4"><a class="reference internal" href="btree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">btree</span></code> – 简单的 BTree 数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ucryptolib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ucryptolib</span></code> – 加密密码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deflate.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">deflate</span></code> – deflate压缩与解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="framebuf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">framebuf</span></code> — 帧缓冲操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine/machine.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neopixel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">neopixel</span></code> — WS2812 灯带</a></li>
+<li class="toctree-l4"><a class="reference internal" href="network.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openamp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">openamp</span></code> – 非对称多处理(AMP)支持</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uctypes.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code> –  以结构化方式访问二进制数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vfs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vfs</span></code> – 虚拟文件系统控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="esp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp</span></code> — ESP32相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="esp32.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code> — 特定于ESP32的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="espnow.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">espnow</span></code> – ESP-NOW无线协议支持</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">MicroPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code> — 低功耗蓝牙</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/micropython/ubluetooth.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ubluetooth">
+<span id="ubluetooth"></span><h1><a class="reference internal" href="#module-ubluetooth" title="ubluetooth: 低功耗蓝牙无线电功能"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code></a> — 低功耗蓝牙<a class="headerlink" href="#module-ubluetooth" title="此标题的永久链接"></a></h1>
+<p>该模块提供低功耗蓝牙控制接口。当前，它在中央，外围设备，广播和观察者角色中支持蓝牙低功耗（BLE），并且设备可以同时在多个角色中运行。</p>
+<p>此API旨在与低功耗蓝牙协议相匹配，并为更高级的抽象(如特定的设备类型)提供构建模块。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>该模块仍在开发中，其类，功能，方法和常量可能会发生变化。</p>
+</div>
+<section id="ble">
+<h2>BLE 类<a class="headerlink" href="#ble" title="此标题的永久链接"></a></h2>
+</section>
+<section id="id1">
+<h2>构建<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ubluetooth.BLE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ubluetooth.</span></span><span class="sig-name descname"><span class="pre">BLE</span></span><a class="headerlink" href="#ubluetooth.BLE" title="永久链接至目标"></a></dt>
+<dd><p>返回 BLE 对象</p>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>配置<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.active">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">active</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">active</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.active" title="永久链接至目标"></a></dt>
+<dd><p>（可选）更改BLE无线电的活动状态，并返回当前状态。</p>
+<p>在使用此类的任何其他方法之前，必须使无线电处于活动状态。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.config">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">'param'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.config" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param=value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>获取或设置BLE接口的配置值。为了获得一个值，参数名称应该用字符串引号，并且一次只查询一个参数。要设置值，请使用关键字语法，一次可以设置一个或多个参数。</p>
+<p>当前支持的值为:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'mac'</span></code>: 返回设备的MAC地址。如果设备具有固定地址（例如PYBD），则将其返回。否则（例如ESP32），当BLE接口处于活动状态时，将生成一个随机地址。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'rxbuf'</span></code>: 设置用于存储传入事件的内部缓冲区的大小（以字节为单位）。该缓冲区是整个BLE驱动程序的全局缓冲区，因此可以处理所有事件（包括所有特征）的传入数据。增加此值可以更好地处理突发的传入数据（例如，扫描结果），并可以使中央设备接收较大的特征值。</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>事件处理<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.irq">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">irq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trigger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0xffff</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.irq" title="永久链接至目标"></a></dt>
+<dd><p>为BLE堆栈中的事件注册回调。handler接收两个参数，<code class="docutils literal notranslate"><span class="pre">event</span></code> （看下文的事件代码）和 <code class="docutils literal notranslate"><span class="pre">data</span></code> （其是值的特定事件元组）。</p>
+<p>可选的 <em>trigger</em> 参数允许您设置程序感兴趣的事件的掩码。默认值为所有事件。</p>
+<p>注:  <code class="docutils literal notranslate"><span class="pre">addr</span></code>, <code class="docutils literal notranslate"><span class="pre">adv_data</span></code> 和 <code class="docutils literal notranslate"><span class="pre">uuid</span></code>  元组中的项是引用的数据管理 <a class="reference internal" href="#module-ubluetooth" title="ubluetooth: 低功耗蓝牙无线电功能"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code></a> 模块(即相同的实例将被重新使用多次调用到事件处理程序)。
+如果您的程序想在处理程序之外使用此数据，则它必须首先复制它们，例如使用 <code class="docutils literal notranslate"><span class="pre">bytes(addr)</span></code> or <code class="docutils literal notranslate"><span class="pre">bluetooth.UUID(uuid)</span></code> 。</p>
+<p>一个事件处理程序显示所有可能的事件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bt_irq</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_CENTRAL_CONNECT</span><span class="p">:</span>
+        <span class="c1"># 中央设备已经连接到这个外围设备</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">addr_type</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_CENTRAL_DISCONNECT</span><span class="p">:</span>
+        <span class="c1"># 中央设备已与此外围设备断开</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">addr_type</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTS_WRITE</span><span class="p">:</span>
+        <span class="c1"># 中央设备已写入此特征或描述符</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">attr_handle</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTS_READ_REQUEST</span><span class="p">:</span>
+        <span class="c1"># 中央设备已发出读请求. Note: 这是一个硬件IRQ</span>
+        <span class="c1"># 返回None来拒绝读操作</span>
+        <span class="c1"># Note: 这事件不支持 ESP32.</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">attr_handle</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_SCAN_RESULT</span><span class="p">:</span>
+        <span class="c1"># 一次扫描的结果</span>
+        <span class="n">addr_type</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">connectable</span><span class="p">,</span> <span class="n">rssi</span><span class="p">,</span> <span class="n">adv_data</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_SCAN_COMPLETE</span><span class="p">:</span>
+        <span class="c1"># 扫描持续时间已完成或手动停止</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_PERIPHERAL_CONNECT</span><span class="p">:</span>
+        <span class="c1">#  gap_connect()连接成功</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">addr_type</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_PERIPHERAL_DISCONNECT</span><span class="p">:</span>
+        <span class="c1"># 已连接的外围设备已断开</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">addr_type</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTC_SERVICE_RESULT</span><span class="p">:</span>
+        <span class="c1"># 调用gattc_discover_services()找到的每个服务</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">start_handle</span><span class="p">,</span> <span class="n">end_handle</span><span class="p">,</span> <span class="n">uuid</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTC_CHARACTERISTIC_RESULT</span><span class="p">:</span>
+        <span class="c1"># 调用gattc_discover_services()找到的每个特征</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">def_handle</span><span class="p">,</span> <span class="n">value_handle</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">uuid</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTC_DESCRIPTOR_RESULT</span><span class="p">:</span>
+        <span class="c1"># 调用gattc_discover_descriptors()找到的每个描述符</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">dsc_handle</span><span class="p">,</span> <span class="n">uuid</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTC_READ_RESULT</span><span class="p">:</span>
+        <span class="c1"># gattc_read() 已完成</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">value_handle</span><span class="p">,</span> <span class="n">char_data</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTC_WRITE_STATUS</span><span class="p">:</span>
+        <span class="c1"># gattc_write() 已完成</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">value_handle</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTC_NOTIFY</span><span class="p">:</span>
+        <span class="c1"># 外围设备已发出通知请求</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">value_handle</span><span class="p">,</span> <span class="n">notify_data</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_GATTC_INDICATE</span><span class="p">:</span>
+        <span class="c1">#外围设备发出指示请求</span>
+        <span class="n">conn_handle</span><span class="p">,</span> <span class="n">value_handle</span><span class="p">,</span> <span class="n">notify_data</span> <span class="o">=</span> <span class="n">data</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p>事件代码:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">micropython</span><span class="w"> </span><span class="kn">import</span> <span class="n">const</span>
+<span class="n">_IRQ_CENTRAL_CONNECT</span>                 <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">_IRQ_CENTRAL_DISCONNECT</span>              <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">_IRQ_GATTS_WRITE</span>                     <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">_IRQ_GATTS_READ_REQUEST</span>              <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">_IRQ_SCAN_RESULT</span>                     <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">_IRQ_SCAN_COMPLETE</span>                   <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">_IRQ_PERIPHERAL_CONNECT</span>              <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">_IRQ_PERIPHERAL_DISCONNECT</span>           <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">_IRQ_GATTC_SERVICE_RESULT</span>            <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">_IRQ_GATTC_CHARACTERISTIC_RESULT</span>     <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">_IRQ_GATTC_DESCRIPTOR_RESULT</span>         <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">_IRQ_GATTC_READ_RESULT</span>               <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">_IRQ_GATTC_WRITE_STATUS</span>              <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">_IRQ_GATTC_NOTIFY</span>                    <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">_IRQ_GATTC_INDICATE</span>                  <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>为了节省固件中的空间，这些常量不包括在 <a class="reference internal" href="#module-ubluetooth" title="ubluetooth: 低功耗蓝牙无线电功能"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ubluetooth</span></code></a> 。将您需要的从上面的列表中添加到您的程序中。</p>
+</section>
+<section id="advertiser">
+<h2>广播者(Advertiser)<a class="headerlink" href="#advertiser" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gap_advertise">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gap_advertise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval_us</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adv_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resp_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connectable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gap_advertise" title="永久链接至目标"></a></dt>
+<dd><p>以指定的时间间隔（以微秒为单位）开始广播。该间隔将四舍五入到最接近的625微妙。要停止广播，请将 <cite>interval_us</cite> 设置 为None。</p>
+<p><em>adv_data</em> 和 <em>resp_data</em> 可以是任何 <cite>buffer</cite> 类型 (例如 <code class="docutils literal notranslate"><span class="pre">bytes</span></code>, <code class="docutils literal notranslate"><span class="pre">bytearray</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>)。
+<em>adv_data</em> 包含在所有广播中，并发送 <em>resp_data</em> 以应答有效的扫描。</p>
+<p>注意：如果 <em>adv_data</em> （或 <em>resp_data</em> ）为None，则将重用传递到上一个调用的数据 <code class="docutils literal notranslate"><span class="pre">gap_advertise</span></code> 。
+这样一来，广播者就可以使用来恢复广播 <code class="docutils literal notranslate"><span class="pre">gap_advertise(interval_us)</span></code> 。为了清除广播负载，传递一个空的bytes，即b’’。</p>
+</dd></dl>
+
+</section>
+<section id="scanner">
+<h2>观察者 (Scanner)<a class="headerlink" href="#scanner" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gap_scan">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gap_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duration_ms</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">interval_us</span></span></em><span class="optional">]</span><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">window_us</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gap_scan" title="永久链接至目标"></a></dt>
+<dd><p>运行持续指定时间（以毫秒为单位）的扫描操作。</p>
+<p>要无限期扫描，请将 <em>duration_ms</em> 设置为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 。要停止扫描，请将 <em>duration_ms</em> 设置为 <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</p>
+<p>使用 <em>interval_us</em> 和 <em>window_us</em> 可以选择配置占空比。
+扫描器将每间隔一微秒运行一次 <em>window_us</em> 微秒，总计持续时间为毫秒。默认间隔和窗口分别为1.28秒和11.25毫秒。</p>
+<p>对于每个扫描结果，<em>_IRQ_SCAN_RESULT</em> 将引发该事件。</p>
+<p>停止扫描（由于持续时间结束或明确停止）时，<em>_IRQ_SCAN_COMPLETE</em> 将引发该事件。</p>
+</dd></dl>
+
+</section>
+<section id="gatt-server">
+<h2>外围设备 (GATT Server)<a class="headerlink" href="#gatt-server" title="此标题的永久链接"></a></h2>
+<p>BLE外围设备具有一组注册服务。每个服务可能包含特性，每个特性都有一个值。特征也可以包含描述符，描述符本身具有值。</p>
+<p>这些值存储在本地，并通过在服务注册过程中生成的“值柄”进行访问。它们也可以被远程的中央设备读取或写入。
+此外，外围设备可以通过连接句柄将特征“通知”到已连接的中央设备。</p>
+<p>特征和描述符的默认最大为20个字节。任何由中央设备写给它们的都会被截短到这个长度。但是，任何本地写操作都会增加最大大小,
+所以，如果你写想更长的数据，请注册后使用 <code class="docutils literal notranslate"><span class="pre">gatts_write</span></code> 。例如, gatts_write(char_handle, bytes(100))</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gatts_register_services">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gatts_register_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">services_definition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gatts_register_services" title="永久链接至目标"></a></dt>
+<dd><p>使用指定的服务配置外围设备，替换所有现有服务。</p>
+<p><em>services_definition</em> 是一个服务的列表，其中每个服务都是一个包含UUID和特征列表的二元元组。</p>
+<p>每个特征都是一个包含 <cite>UUID</cite>，<cite>flags</cite> 值以及一个可选的描述符列表的2或3元素元组。</p>
+<p>每个描述符是一个包含UUID和一个flags值的二元元组。</p>
+<p>flags是一个按位或组合的 <a class="reference internal" href="#ubluetooth.ubluetooth.FLAG_READ" title="ubluetooth.ubluetooth.FLAG_READ"><code class="xref py py-data docutils literal notranslate"><span class="pre">ubluetooth.FLAG_READ</span></code></a>，<a class="reference internal" href="#ubluetooth.ubluetooth.FLAG_WRITE" title="ubluetooth.ubluetooth.FLAG_WRITE"><code class="xref py py-data docutils literal notranslate"><span class="pre">ubluetooth.FLAG_WRITE</span></code></a> 和 <a class="reference internal" href="#ubluetooth.ubluetooth.FLAG_NOTIFY" title="ubluetooth.ubluetooth.FLAG_NOTIFY"><code class="xref py py-data docutils literal notranslate"><span class="pre">ubluetooth.FLAG_NOTIFY</span></code></a> 。如下文所定义的值:</p>
+<p>返回值是元组的列表（每个服务一个元素）（每个元素是一个值句柄）。特征和描述符句柄按照定义的顺序被展平到相同的元组中。</p>
+<p>以下示例注册了两个服务 (Heart Rate, and Nordic UART):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HR_UUID</span> <span class="o">=</span> <span class="n">ubluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="mh">0x180D</span><span class="p">)</span>
+<span class="n">HR_CHAR</span> <span class="o">=</span> <span class="p">(</span><span class="n">ubluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="mh">0x2A37</span><span class="p">),</span> <span class="n">ubluetooth</span><span class="o">.</span><span class="n">FLAG_READ</span> <span class="o">|</span> <span class="n">ubluetooth</span><span class="o">.</span><span class="n">FLAG_NOTIFY</span><span class="p">,)</span>
+<span class="n">HR_SERVICE</span> <span class="o">=</span> <span class="p">(</span><span class="n">HR_UUID</span><span class="p">,</span> <span class="p">(</span><span class="n">HR_CHAR</span><span class="p">,),)</span>
+<span class="n">UART_UUID</span> <span class="o">=</span> <span class="n">ubluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="s1">&#39;6E400001-B5A3-F393-E0A9-E50E24DCCA9E&#39;</span><span class="p">)</span>
+<span class="n">UART_TX</span> <span class="o">=</span> <span class="p">(</span><span class="n">ubluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="s1">&#39;6E400003-B5A3-F393-E0A9-E50E24DCCA9E&#39;</span><span class="p">),</span> <span class="n">ubluetooth</span><span class="o">.</span><span class="n">FLAG_READ</span> <span class="o">|</span> <span class="n">ubluetooth</span><span class="o">.</span><span class="n">FLAG_NOTIFY</span><span class="p">,)</span>
+<span class="n">UART_RX</span> <span class="o">=</span> <span class="p">(</span><span class="n">ubluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="s1">&#39;6E400002-B5A3-F393-E0A9-E50E24DCCA9E&#39;</span><span class="p">),</span> <span class="n">ubluetooth</span><span class="o">.</span><span class="n">FLAG_WRITE</span><span class="p">,)</span>
+<span class="n">UART_SERVICE</span> <span class="o">=</span> <span class="p">(</span><span class="n">UART_UUID</span><span class="p">,</span> <span class="p">(</span><span class="n">UART_TX</span><span class="p">,</span> <span class="n">UART_RX</span><span class="p">,),)</span>
+<span class="n">SERVICES</span> <span class="o">=</span> <span class="p">(</span><span class="n">HR_SERVICE</span><span class="p">,</span> <span class="n">UART_SERVICE</span><span class="p">,)</span>
+<span class="p">(</span> <span class="p">(</span><span class="n">hr</span><span class="p">,),</span> <span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">rx</span><span class="p">,),</span> <span class="p">)</span> <span class="o">=</span> <span class="n">bt</span><span class="o">.</span><span class="n">gatts_register_services</span><span class="p">(</span><span class="n">SERVICES</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这三个值柄(<code class="docutils literal notranslate"><span class="pre">hr</span></code>, <code class="docutils literal notranslate"><span class="pre">tx</span></code>, <code class="docutils literal notranslate"><span class="pre">rx</span></code>)可与使用 <a class="reference internal" href="#ubluetooth.BLE.gatts_read" title="ubluetooth.BLE.gatts_read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gatts_read</span></code></a>, <a class="reference internal" href="#ubluetooth.BLE.gatts_write" title="ubluetooth.BLE.gatts_write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gatts_write</span></code></a>,
+和 <a class="reference internal" href="#ubluetooth.BLE.gatts_notify" title="ubluetooth.BLE.gatts_notify"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gatts_notify</span></code></a> 。</p>
+<p>注意：注册服务之前，必须停止广告。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gatts_read">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gatts_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gatts_read" title="永久链接至目标"></a></dt>
+<dd><p>读取本地的值柄 (该值由 <a class="reference internal" href="#ubluetooth.BLE.gatts_write" title="ubluetooth.BLE.gatts_write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gatts_write</span></code></a> 或远程的中央设备写入)。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gatts_write">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gatts_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gatts_write" title="永久链接至目标"></a></dt>
+<dd><p>写入本地的值柄，该值可由中央设备读取。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gatts_notify">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gatts_notify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_handle</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gatts_notify" title="永久链接至目标"></a></dt>
+<dd><p>通知连接的中央设备此值已更改，并且应发出此外围设备的当前值的读取值。</p>
+<p>如果指定了数据，则将该值作为通知的一部分发送到中央设备，从而避免了需要单独的读取请求的情况。请注意，这不会更新存储的本地值。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gatts_set_buffer">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gatts_set_buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gatts_set_buffer" title="永久链接至目标"></a></dt>
+<dd><p>设置内部缓冲区大小（以字节为单位）。这将限制可以接收的最大值。默认值为20。
+将 <code class="docutils literal notranslate"><span class="pre">append</span></code> 设置为 <cite>True</cite> 会将所有远程写入追加到当前值，而不是替换当前值。这样最多可以缓冲len个字节。
+使用时 <a class="reference internal" href="#ubluetooth.BLE.gatts_read" title="ubluetooth.BLE.gatts_read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gatts_read</span></code></a> ，将在读取后清除该值。这个功能在实现某些东西时很有用,比如Nordic UART服务。</p>
+</dd></dl>
+
+</section>
+<section id="gatt-client">
+<h2>中央设备 (GATT Client)<a class="headerlink" href="#gatt-client" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gap_connect">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gap_connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addr_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">addr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan_duration_ms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gap_connect" title="永久链接至目标"></a></dt>
+<dd><p>连接到外围设备。成功,将触发 <code class="docutils literal notranslate"><span class="pre">_IRQ_PERIPHERAL_CONNECT</span></code> 事件。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gap_disconnect">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gap_disconnect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn_handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gap_disconnect" title="永久链接至目标"></a></dt>
+<dd><p>断开指定的连接句柄。成功,将触发 <code class="docutils literal notranslate"><span class="pre">_IRQ_PERIPHERAL_DISCONNECT</span></code> 事件。
+如果未连接连接句柄，返回 <code class="docutils literal notranslate"><span class="pre">False</span></code> ,否则返回 <code class="docutils literal notranslate"><span class="pre">True</span></code> 。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gattc_discover_services">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gattc_discover_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn_handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gattc_discover_services" title="永久链接至目标"></a></dt>
+<dd><p>查询已连接的外围设备的服务。</p>
+<p>对于发现的每个服务, 会触发 <code class="docutils literal notranslate"><span class="pre">_IRQ_GATTC_SERVICE_RESULT</span></code> 事件。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gattc_discover_characteristics">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gattc_discover_characteristics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gattc_discover_characteristics" title="永久链接至目标"></a></dt>
+<dd><p>在已连接的外围设备上查询指定范围内的特征。
+每次特征发现,会触发 <code class="docutils literal notranslate"><span class="pre">_IRQ_GATTC_CHARACTERISTIC_RESULT</span></code> 事件。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gattc_discover_descriptors">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gattc_discover_descriptors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gattc_discover_descriptors" title="永久链接至目标"></a></dt>
+<dd><p>在连接的外围设备中查询指定范围内的描述符。</p>
+<p>每次特征发现,会触发 <code class="docutils literal notranslate"><span class="pre">_IRQ_GATTC_DESCRIPTOR_RESULT</span></code> 事件。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gattc_read">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gattc_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gattc_read" title="永久链接至目标"></a></dt>
+<dd><p>向连接的外围设备发出远程读取，以获取指定的特性或描述符句柄。</p>
+<p>如果成功,会触发 <code class="docutils literal notranslate"><span class="pre">_IRQ_GATTC_READ_RESULT</span></code> 事件</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ubluetooth.BLE.gattc_write">
+<span class="sig-prename descclassname"><span class="pre">BLE.</span></span><span class="sig-name descname"><span class="pre">gattc_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.BLE.gattc_write" title="永久链接至目标"></a></dt>
+<dd><p>针对指定的特征或描述符句柄向连接的外围设备发出远程写操作。</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mode=0</span></code> （默认）是无响应写操作：写操作将发送到远程外围设备，但不会返回确认信息，也不会引发任何事件。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode=1</span></code> i是响应写入：请求远程外围设备发送其已接收到数据的响应/确认。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>如果从远程外围设备收到响应，<code class="docutils literal notranslate"><span class="pre">_IRQ_GATTC_WRITE_STATUS</span></code> 事件将触发。</p>
+</dd></dl>
+
+</section>
+<section id="uuid">
+<h2>UUID 类<a class="headerlink" href="#uuid" title="此标题的永久链接"></a></h2>
+</section>
+<section id="id4">
+<h2>构建<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ubluetooth.UUID">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ubluetooth.</span></span><span class="sig-name descname"><span class="pre">UUID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ubluetooth.UUID" title="永久链接至目标"></a></dt>
+<dd><p>用指定的值创建一个UUID实例。</p>
+<p>该值可以是：</p>
+<ul class="simple">
+<li><p>一个16位整数。例如 <code class="docutils literal notranslate"><span class="pre">0x2908</span></code>.</p></li>
+<li><p>128位UUID字符串。例如 <code class="docutils literal notranslate"><span class="pre">'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'</span></code>.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="id5">
+<h2>常量<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="ubluetooth.ubluetooth.FLAG_READ">
+<span class="sig-prename descclassname"><span class="pre">ubluetooth.</span></span><span class="sig-name descname"><span class="pre">FLAG_READ</span></span><a class="headerlink" href="#ubluetooth.ubluetooth.FLAG_READ" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="ubluetooth.ubluetooth.FLAG_WRITE">
+<span class="sig-prename descclassname"><span class="pre">ubluetooth.</span></span><span class="sig-name descname"><span class="pre">FLAG_WRITE</span></span><a class="headerlink" href="#ubluetooth.ubluetooth.FLAG_WRITE" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="ubluetooth.ubluetooth.FLAG_NOTIFY">
+<span class="sig-prename descclassname"><span class="pre">ubluetooth.</span></span><span class="sig-name descname"><span class="pre">FLAG_NOTIFY</span></span><a class="headerlink" href="#ubluetooth.ubluetooth.FLAG_NOTIFY" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">ble_advertising.py(BLE广播)</span><a class="headerlink" href="#id6" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Helpers for generating BLE advertising payloads.</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">micropython</span><span class="w"> </span><span class="kn">import</span> <span class="n">const</span>
+<span class="linenos"> 4</span><span class="kn">import</span><span class="w"> </span><span class="nn">struct</span>
+<span class="linenos"> 5</span><span class="kn">import</span><span class="w"> </span><span class="nn">bluetooth</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># Advertising payloads are repeated packets of the following form:</span>
+<span class="linenos"> 8</span><span class="c1">#   1 byte data length (N + 1)</span>
+<span class="linenos"> 9</span><span class="c1">#   1 byte type (see constants below)</span>
+<span class="linenos">10</span><span class="c1">#   N bytes type-specific data</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">_ADV_TYPE_FLAGS</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x01</span><span class="p">)</span>
+<span class="linenos">13</span><span class="n">_ADV_TYPE_NAME</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x09</span><span class="p">)</span>
+<span class="linenos">14</span><span class="n">_ADV_TYPE_UUID16_COMPLETE</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x3</span><span class="p">)</span>
+<span class="linenos">15</span><span class="n">_ADV_TYPE_UUID32_COMPLETE</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x5</span><span class="p">)</span>
+<span class="linenos">16</span><span class="n">_ADV_TYPE_UUID128_COMPLETE</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x7</span><span class="p">)</span>
+<span class="linenos">17</span><span class="n">_ADV_TYPE_UUID16_MORE</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x2</span><span class="p">)</span>
+<span class="linenos">18</span><span class="n">_ADV_TYPE_UUID32_MORE</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x4</span><span class="p">)</span>
+<span class="linenos">19</span><span class="n">_ADV_TYPE_UUID128_MORE</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x6</span><span class="p">)</span>
+<span class="linenos">20</span><span class="n">_ADV_TYPE_APPEARANCE</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x19</span><span class="p">)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="c1"># Generate a payload to be passed to gap_advertise(adv_data=...).</span>
+<span class="linenos">24</span><span class="k">def</span><span class="w"> </span><span class="nf">advertising_payload</span><span class="p">(</span><span class="n">limited_disc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">br_edr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">services</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">appearance</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="linenos">25</span>    <span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="k">def</span><span class="w"> </span><span class="nf">_append</span><span class="p">(</span><span class="n">adv_type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="linenos">28</span>        <span class="k">nonlocal</span> <span class="n">payload</span>
+<span class="linenos">29</span>        <span class="n">payload</span> <span class="o">+=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">adv_type</span><span class="p">)</span> <span class="o">+</span> <span class="n">value</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>    <span class="n">_append</span><span class="p">(</span><span class="n">_ADV_TYPE_FLAGS</span><span class="p">,</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mh">0x01</span> <span class="k">if</span> <span class="n">limited_disc</span> <span class="k">else</span> <span class="mh">0x02</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mh">0x00</span> <span class="k">if</span> <span class="n">br_edr</span> <span class="k">else</span> <span class="mh">0x04</span><span class="p">)))</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>    <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+<span class="linenos">34</span>        <span class="n">_append</span><span class="p">(</span><span class="n">_ADV_TYPE_NAME</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span>    <span class="k">if</span> <span class="n">services</span><span class="p">:</span>
+<span class="linenos">37</span>        <span class="k">for</span> <span class="n">uuid</span> <span class="ow">in</span> <span class="n">services</span><span class="p">:</span>
+<span class="linenos">38</span>            <span class="n">b</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">uuid</span><span class="p">)</span>
+<span class="linenos">39</span>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+<span class="linenos">40</span>                <span class="n">_append</span><span class="p">(</span><span class="n">_ADV_TYPE_UUID16_COMPLETE</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="linenos">41</span>            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+<span class="linenos">42</span>                <span class="n">_append</span><span class="p">(</span><span class="n">_ADV_TYPE_UUID32_COMPLETE</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="linenos">43</span>            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="mi">16</span><span class="p">:</span>
+<span class="linenos">44</span>                <span class="n">_append</span><span class="p">(</span><span class="n">_ADV_TYPE_UUID128_COMPLETE</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span>    <span class="c1"># See org.bluetooth.characteristic.gap.appearance.xml</span>
+<span class="linenos">47</span>    <span class="n">_append</span><span class="p">(</span><span class="n">_ADV_TYPE_APPEARANCE</span><span class="p">,</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;&lt;h&#39;</span><span class="p">,</span> <span class="n">appearance</span><span class="p">))</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span>    <span class="k">return</span> <span class="n">payload</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span><span class="k">def</span><span class="w"> </span><span class="nf">decode_field</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">adv_type</span><span class="p">):</span>
+<span class="linenos">53</span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">54</span>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">55</span>    <span class="k">while</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+<span class="linenos">56</span>        <span class="k">if</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">adv_type</span><span class="p">:</span>
+<span class="linenos">57</span>            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+<span class="linenos">58</span>        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="linenos">59</span>    <span class="k">return</span> <span class="n">result</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span>
+<span class="linenos">62</span><span class="k">def</span><span class="w"> </span><span class="nf">decode_name</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+<span class="linenos">63</span>    <span class="n">n</span> <span class="o">=</span> <span class="n">decode_field</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">_ADV_TYPE_NAME</span><span class="p">)</span>
+<span class="linenos">64</span>    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+<span class="linenos">65</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="k">def</span><span class="w"> </span><span class="nf">decode_services</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+<span class="linenos">68</span>    <span class="n">services</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">69</span>    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">decode_field</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">_ADV_TYPE_UUID16_COMPLETE</span><span class="p">):</span>
+<span class="linenos">70</span>        <span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;h&#39;</span><span class="p">,</span> <span class="n">u</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="linenos">71</span>    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">decode_field</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">_ADV_TYPE_UUID32_COMPLETE</span><span class="p">):</span>
+<span class="linenos">72</span>        <span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;d&#39;</span><span class="p">,</span> <span class="n">u</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="linenos">73</span>    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">decode_field</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">_ADV_TYPE_UUID128_COMPLETE</span><span class="p">):</span>
+<span class="linenos">74</span>        <span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+<span class="linenos">75</span>    <span class="k">return</span> <span class="n">services</span>
+<span class="linenos">76</span>
+<span class="linenos">77</span>
+<span class="linenos">78</span><span class="k">def</span><span class="w"> </span><span class="nf">demo</span><span class="p">():</span>
+<span class="linenos">79</span>    <span class="n">payload</span> <span class="o">=</span> <span class="n">advertising_payload</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;micropython&#39;</span><span class="p">,</span> <span class="n">services</span><span class="o">=</span><span class="p">[</span><span class="n">bluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="mh">0x181A</span><span class="p">),</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="s1">&#39;6E400001-B5A3-F393-E0A9-E50E24DCCA9E&#39;</span><span class="p">)])</span>
+<span class="linenos">80</span>    <span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="linenos">81</span>    <span class="nb">print</span><span class="p">(</span><span class="n">decode_name</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+<span class="linenos">82</span>    <span class="nb">print</span><span class="p">(</span><span class="n">decode_services</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+<span class="linenos">83</span>
+<span class="linenos">84</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="linenos">85</span>    <span class="n">demo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">这个例子演示了一个简单的温度传感器外设</span><a class="headerlink" href="#id7" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># This example demonstrates a simple temperature sensor peripheral.</span>
+<span class="linenos"> 2</span><span class="c1">#</span>
+<span class="linenos"> 3</span><span class="c1"># The sensor&#39;s local value updates every second, and it will notify</span>
+<span class="linenos"> 4</span><span class="c1"># any connected central every 10 seconds.</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kn">import</span><span class="w"> </span><span class="nn">bluetooth</span>
+<span class="linenos"> 7</span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="linenos"> 8</span><span class="kn">import</span><span class="w"> </span><span class="nn">struct</span>
+<span class="linenos"> 9</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="linenos">10</span><span class="kn">from</span><span class="w"> </span><span class="nn">ble_advertising</span><span class="w"> </span><span class="kn">import</span> <span class="n">advertising_payload</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="kn">from</span><span class="w"> </span><span class="nn">micropython</span><span class="w"> </span><span class="kn">import</span> <span class="n">const</span>
+<span class="linenos">13</span><span class="n">_IRQ_CENTRAL_CONNECT</span>                 <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">14</span><span class="n">_IRQ_CENTRAL_DISCONNECT</span>              <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="c1"># org.bluetooth.service.environmental_sensing</span>
+<span class="linenos">17</span><span class="n">_ENV_SENSE_UUID</span> <span class="o">=</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="mh">0x181A</span><span class="p">)</span>
+<span class="linenos">18</span><span class="c1"># org.bluetooth.characteristic.temperature</span>
+<span class="linenos">19</span><span class="n">_TEMP_CHAR</span> <span class="o">=</span> <span class="p">(</span><span class="n">bluetooth</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="mh">0x2A6E</span><span class="p">),</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">FLAG_READ</span><span class="o">|</span><span class="n">bluetooth</span><span class="o">.</span><span class="n">FLAG_NOTIFY</span><span class="p">,)</span>
+<span class="linenos">20</span><span class="n">_ENV_SENSE_SERVICE</span> <span class="o">=</span> <span class="p">(</span><span class="n">_ENV_SENSE_UUID</span><span class="p">,</span> <span class="p">(</span><span class="n">_TEMP_CHAR</span><span class="p">,),)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="c1"># org.bluetooth.characteristic.gap.appearance.xml</span>
+<span class="linenos">23</span><span class="n">_ADV_APPEARANCE_GENERIC_THERMOMETER</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">768</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="k">class</span><span class="w"> </span><span class="nc">BLETemperature</span><span class="p">:</span>
+<span class="linenos">26</span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ble</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mpy-temp&#39;</span><span class="p">):</span>
+<span class="linenos">27</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span> <span class="o">=</span> <span class="n">ble</span>
+<span class="linenos">28</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">29</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">handler</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_irq</span><span class="p">)</span>
+<span class="linenos">30</span>        <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">,),)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">gatts_register_services</span><span class="p">((</span><span class="n">_ENV_SENSE_SERVICE</span><span class="p">,))</span>
+<span class="linenos">31</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="linenos">32</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_payload</span> <span class="o">=</span> <span class="n">advertising_payload</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">services</span><span class="o">=</span><span class="p">[</span><span class="n">_ENV_SENSE_UUID</span><span class="p">],</span> <span class="n">appearance</span><span class="o">=</span><span class="n">_ADV_APPEARANCE_GENERIC_THERMOMETER</span><span class="p">)</span>
+<span class="linenos">33</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_advertise</span><span class="p">()</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>    <span class="k">def</span><span class="w"> </span><span class="nf">_irq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="linenos">36</span>        <span class="c1"># Track connections so we can send notifications.</span>
+<span class="linenos">37</span>        <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_CENTRAL_CONNECT</span><span class="p">:</span>
+<span class="linenos">38</span>            <span class="n">conn_handle</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="o">=</span> <span class="n">data</span>
+<span class="linenos">39</span>            <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">conn_handle</span><span class="p">)</span>
+<span class="linenos">40</span>        <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">_IRQ_CENTRAL_DISCONNECT</span><span class="p">:</span>
+<span class="linenos">41</span>            <span class="n">conn_handle</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="o">=</span> <span class="n">data</span>
+<span class="linenos">42</span>            <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">conn_handle</span><span class="p">)</span>
+<span class="linenos">43</span>            <span class="c1"># Start advertising again to allow a new connection.</span>
+<span class="linenos">44</span>            <span class="bp">self</span><span class="o">.</span><span class="n">_advertise</span><span class="p">()</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span>    <span class="k">def</span><span class="w"> </span><span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp_deg_c</span><span class="p">,</span> <span class="n">notify</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="linenos">47</span>        <span class="c1"># Data is sint16 in degrees Celsius with a resolution of 0.01 degrees Celsius.</span>
+<span class="linenos">48</span>        <span class="c1"># Write the local value, ready for a central to read.</span>
+<span class="linenos">49</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">gatts_write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">,</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;&lt;h&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">temp_deg_c</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)))</span>
+<span class="linenos">50</span>        <span class="k">if</span> <span class="n">notify</span><span class="p">:</span>
+<span class="linenos">51</span>            <span class="k">for</span> <span class="n">conn_handle</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">:</span>
+<span class="linenos">52</span>                <span class="c1"># Notify connected centrals to issue a read.</span>
+<span class="linenos">53</span>                <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">gatts_notify</span><span class="p">(</span><span class="n">conn_handle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">)</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span>    <span class="k">def</span><span class="w"> </span><span class="nf">_advertise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval_us</span><span class="o">=</span><span class="mi">500000</span><span class="p">):</span>
+<span class="linenos">56</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">gap_advertise</span><span class="p">(</span><span class="n">interval_us</span><span class="p">,</span> <span class="n">adv_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_payload</span><span class="p">)</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span><span class="k">def</span><span class="w"> </span><span class="nf">demo</span><span class="p">():</span>
+<span class="linenos">60</span>    <span class="n">ble</span> <span class="o">=</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">BLE</span><span class="p">()</span>
+<span class="linenos">61</span>    <span class="n">temp</span> <span class="o">=</span> <span class="n">BLETemperature</span><span class="p">(</span><span class="n">ble</span><span class="p">)</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span>    <span class="n">t</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="linenos">64</span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">65</span>
+<span class="linenos">66</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">67</span>        <span class="c1"># Write every second, notify every 10 seconds.</span>
+<span class="linenos">68</span>        <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span>
+<span class="linenos">69</span>        <span class="n">temp</span><span class="o">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">notify</span><span class="o">=</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">70</span>        <span class="c1"># Random walk the temperature.</span>
+<span class="linenos">71</span>        <span class="n">t</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="linenos">72</span>        <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="linenos">73</span>
+<span class="linenos">74</span>
+<span class="linenos">75</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="linenos">76</span>    <span class="n">demo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="MicroPython类库" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="btree.html" class="btn btn-neutral float-right" title="btree – 简单的 BTree 数据库" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

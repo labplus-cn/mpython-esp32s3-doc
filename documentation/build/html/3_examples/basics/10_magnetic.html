@@ -1,0 +1,153 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>磁力计 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">磁力计</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/basics/10_magnetic.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>磁力计<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>磁力计（Magnetic、M-Sensor）也叫地磁、磁感器，可用于测试磁场强度和方向，定位设备的方位，磁力计的原理跟指南针原理类似。掌
+控板采用MMC5983MA地磁传感器,测量范围在±5 Gauss高斯,可测量磁感应强度大小和指示方位。</p>
+<div class="admonition- admonition">
+<p class="admonition-title">小知识–地磁场</p>
+<p>地磁场是源自于地球内部，并延伸到太空的磁场。粗略地说，地磁场是一个与地球自转轴呈11°夹角的磁偶极子，相当于在地球中心放置了一个倾斜了的磁棒。
+目前的地磁北极位于北半球的格陵兰附近，实际上它是地磁场的南极，而地磁南极则是地磁场的北极。</p>
+<p>地核向外散发热量时，引起外核中熔融铁的对流运动，进而产生电流，地磁场即是此电流所致。这种形成天体磁场的原理，称为发电机理论。</p>
+<p>用来衡量磁感应强度大小的单位是特斯拉(Tesla)或者高斯(Gauss) [1Tesla=10000Gauss]。随着地理位置的不同，通常地磁场的强度是250~600毫高斯。</p>
+</div>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../../_images/earth_magnetic.jpg"><img alt="../../_images/earth_magnetic.jpg" src="../../_images/earth_magnetic.jpg" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">地磁场分布图</span><a class="headerlink" href="#id6" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<section id="id2">
+<h2>掌控板的磁力计使用<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<section id="id3">
+<h3>地磁场<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>地磁场是一个矢量，对于一个固定的地点来说，这个矢量可以被分解为两个与当地水平面平行的分量和一个与当地水平面垂直的分量。
+如果保持电子罗盘和当地的水平面平行，那么罗盘中磁力计的三个轴就和这三个分量对应起来，如图2所示。</p>
+<p>数学描述</p>
+<p>在任何空间点上的地磁场可用一个三维矢量来描述。测量矢量方向的最基本方法，是用指南针判断  磁北极的方向。
+该方向与正北方之间的夹角称为“偏角”（D），与地平面之间的夹角则称为“倾角”（I）。磁场的强度（F）与磁铁所受的磁力成正比。另一种描述方法是北（X）、东（Y）、下（Z）坐标。[12]</p>
+<p>地球的磁场象一个条形磁体一样由磁北极指向磁南极。在磁极点处磁场和当地的水平面垂直，在赤道磁场和当地的水平面平行，所以在北半球磁 场方向倾斜指向地面。
+用来衡量磁感应强度大小的单位是Tesla或者Gauss（1Tesla=10000Gauss）。随着地理位置的不同，通常地磁场的强度是0.4-0.6 Gauss。需要注意的是，磁北极和地理上的北极并不重合，通常他们之间有11度左右的夹角。</p>
+<p>地磁场是一个矢量，对于一个固定的地点来说，这个矢量可以被分解为两个与当地水平面平行的分量和一个与当地水平面垂直的分量。
+如果保持电子罗盘和当地的水平面平行，那么罗盘中磁力计的三个轴就和这三个分量对应起来，如图所示。</p>
+</section>
+<section id="id4">
+<h3>生活中的磁场<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+</section>
+<section id="id5">
+<h3>罗盘的应用<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<p>地磁的北极在地理的南极的附近
+地磁的南极在地理的北极的附近
+磁体的同名磁极相斥,异名磁极相吸
+所以指南针的北极总是指着地理的北极(地磁的南极)</p>
+<p>指南针又称指北针，主要组成部分是一根装在 轴上的磁针，磁针在天然地磁场的作用下可以自由转动并保持在磁子午线的切线方向上，磁针的北极指向地理的北极，利用这一性能可以辨别方向。
+常用于航海、大 地测量、旅行及军事等方面。物理上指示方向的指南针的发明由三部曲组成：司南、磁针和罗盘。他们均属于中国的发明。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

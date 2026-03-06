@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>struct – 打包和解压缩原始数据类型 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="sys – 系统特定功能" href="sys.html" />
+    <link rel="prev" title="ssl – SSL/TLS 模块" href="ssl.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/struct.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-struct">
+<span id="struct"></span><h1><a class="reference internal" href="#module-struct" title="struct: 打包和解压缩原始数据类型"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code></a> – 打包和解压缩原始数据类型<a class="headerlink" href="#module-struct" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/struct.html#module-struct">struct</a></p>
+<p>支持的字节顺序：</p>
+<p>支持的数据类型：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>C Type</p></th>
+<th class="head"><p>Python type</p></th>
+<th class="head"><p>Standard size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+<td><p>signed char</p></td>
+<td><p>integer</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">B</span></code></p></td>
+<td><p>unsigned char</p></td>
+<td><p>integer</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p>short</p></td>
+<td><p>integer</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">H</span></code></p></td>
+<td><p>unsigned short</p></td>
+<td><p>integer</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">i</span></code></p></td>
+<td><p>int</p></td>
+<td><p>integer (1)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">I</span></code></p></td>
+<td><p>unsigned int</p></td>
+<td><p>integer (1)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
+<td><p>long</p></td>
+<td><p>integer (1)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">L</span></code></p></td>
+<td><p>unsigned long</p></td>
+<td><p>integer (1)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q</span></code></p></td>
+<td><p>long long</p></td>
+<td><p>integer (1)</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Q</span></code></p></td>
+<td><p>unsigned long long</p></td>
+<td><p>integer (1)</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">e</span></code></p></td>
+<td><p>n/a (half-float)</p></td>
+<td><p>float (2)</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
+<td><p>float</p></td>
+<td><p>float (2)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p>double</p></td>
+<td><p>float (2)</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p>char[]</p></td>
+<td><p>bytes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">P</span></code></p></td>
+<td><p>void *</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li><p>当使用大于30位的值时需要长整数支持。</p></li>
+<li><p>需要浮点支持。</p></li>
+</ol>
+<div class="attention admonition">
+<p class="admonition-title">Difference to CPython</p>
+<p>格式字符串中不支持空白字符。</p>
+</div>
+<section id="id2">
+<h2>函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="struct.calcsize">
+<span class="sig-prename descclassname"><span class="pre">struct.</span></span><span class="sig-name descname"><span class="pre">calcsize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#struct.calcsize" title="永久链接至目标"></a></dt>
+<dd><p>返回需存入给定 <em>fmt</em> 的字节数量。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="struct.pack">
+<span class="sig-prename descclassname"><span class="pre">struct.</span></span><span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#struct.pack" title="永久链接至目标"></a></dt>
+<dd><p>根据格式字符串fmt，打包 <em>v1, v2, …</em> 值。返回值为一个解码该值的字节对象。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;ii&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">b&#39;\x03\x00\x00\x00\x02\x00\x00\x00&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="struct.pack_into">
+<span class="sig-prename descclassname"><span class="pre">struct.</span></span><span class="sig-name descname"><span class="pre">pack_into</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#struct.pack_into" title="永久链接至目标"></a></dt>
+<dd><p>根据格式字符串fmt，将 <em>v1, v2, …</em> 值打包进从 <em>offset</em> 开始的缓冲区。从缓冲区的末端计数， <em>offset</em> 可能为负值。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="struct.unpack">
+<span class="sig-prename descclassname"><span class="pre">struct.</span></span><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#struct.unpack" title="永久链接至目标"></a></dt>
+<dd><p>根据格式字符串 <em>fmt</em> 对数据进行解压。返回值为一个解压值元组。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">buf</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;bb&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+<span class="go">b&#39;\x01\x02&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;bb&quot;</span><span class="p">,</span> <span class="n">buf</span><span class="p">))</span>
+<span class="go">(1, 2)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="struct.unpack_from">
+<span class="sig-prename descclassname"><span class="pre">struct.</span></span><span class="sig-name descname"><span class="pre">unpack_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#struct.unpack_from" title="永久链接至目标"></a></dt>
+<dd><p>根据格式字符串 <code class="docutils literal notranslate"><span class="pre">fmt</span></code> 从 <code class="docutils literal notranslate"><span class="pre">offset</span></code> 处开始的数据解包。从缓冲区的末尾开始计数的偏移量可能为负。返回值是解压缩值的元组。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">buf</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;bb&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;bb&quot;</span><span class="p">,</span> <span class="n">buf</span><span class="p">))</span>
+<span class="go">(1, 2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="go">(2,)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="ssl.html" class="btn btn-neutral float-left" title="ssl – SSL/TLS 模块" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="sys.html" class="btn btn-neutral float-right" title="sys – 系统特定功能" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>audio — 提供音频播放录音的相关功能 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">audio</span></code> — 提供音频播放录音的相关功能</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/mPython/audio.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="module-audio"><span id="audio"></span></span><section id="id1">
+<h1><a class="reference internal" href="#module-audio" title="audio: 提供音频播放录音的相关功能"><code class="xref py py-mod docutils literal notranslate"><span class="pre">audio</span></code></a> — 提供音频播放录音的相关功能<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>该模块提供音频录音播放功能,使用P8和P9引脚作为音频解码输出。 由于掌控板无集成喇叭,并不能直接播放音源。你可以使用带集成喇叭的扩展板或自己将P8,P9外接至功放喇叭。</p>
+<p>掌控板接3.5mm耳机方法:</p>
+<ul class="simple">
+<li><p>P8  – 左声道</p></li>
+<li><p>P9  – 右声道</p></li>
+<li><p>GND – GND</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/audio_interface.png"><img alt="../../../_images/audio_interface.png" src="../../../_images/audio_interface.png" style="width: 363.59999999999997px; height: 147.6px;" /></a>
+</section>
+<section id="id2">
+<h1>函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h1>
+<section id="id3">
+<h2>基础音频函数<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<section id="id4">
+<h3>播放<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.player_init">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">player_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.player_init" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>音频播放初始化,为音频解码开辟缓存</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.play">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.play" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>本地或网络音频播放,目前只支持wav,mp3格式音频。</p>
+<p>可以播放文件系统的MP3音频,或者网络的MP3音频资源。播放本地mp3音频由于受micropython文件系统限制和RAM大小限制,当文件大于1M基本很难下载下去。所以对音频文件的大小有所限制,应尽可能的小。
+当播放网络MP3音频,须先连接网络,URL必须是完整地址,如”<a class="reference external" href="http://wiki.labplus.cn/images/4/4e/Music_test.mp3">http://wiki.labplus.cn/images/4/4e/Music_test.mp3</a>” 。返回解码状态,当为0,说明可接受音频解码指令;当为1,说明当前正处解码状态,不能响应。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">url</span></code> (str): 音频文件路径,类型为字符串。可以是本地路径地址,也可以是网络上的URL地址。</p></li>
+</ul>
+</div></blockquote>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">播放MP3音频</span><a class="headerlink" href="#id6" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">audio</span>                                    <span class="c1"># 导入audio</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="n">wifi</span>                        <span class="c1"># 导入wifi</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>                                   <span class="c1"># 实例wifi类</span>
+<span class="linenos"> 5</span><span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s1">&#39;ssid&#39;</span><span class="p">,</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>           <span class="c1"># 连接 WiFi 网络</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">audio</span><span class="o">.</span><span class="n">player_init</span><span class="p">()</span>                                   <span class="c1"># 播放初始化</span>
+<span class="linenos"> 8</span><span class="n">audio</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">)</span>                                      <span class="c1"># 本地音频解码                   </span>
+<span class="linenos"> 9</span><span class="n">audio</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="s2">&quot;http://wiki.labplus.cn/images/4/4e/Music_test.mp3&quot;</span><span class="p">)</span>          <span class="c1"># 播放网络音频url</span>
+<span class="linenos">10</span><span class="n">audio</span><span class="o">.</span><span class="n">player_deinit</span><span class="p">()</span>                            <span class="c1"># 播放结束,释放资源</span>
+</pre></div>
+</div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.set_volume">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">set_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.set_volume" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>设置音频音量</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vol</span></code> : 音量设置,范围0~100</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.stop">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.stop" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>音频播放停止</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.pause">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.pause" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>音频播放暂停</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.resume">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">resume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.resume" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>音频播放恢复,用于暂停后的重新播放</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.player_status">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">player_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.player_status" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>用于获取系统是否处于音频播放状态,返回1,说明正处于播放中,返回0,说明播放结束,处于空闲。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.player_deinit">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">player_deinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.player_deinit" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>音频播放结束后,释放缓存</p>
+</section>
+<section id="id5">
+<h3>录音<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.recorder_init">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">recorder_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.recorder_init" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>录音初始化</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.record">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.record" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>录制音频,并以 <cite>wav</cite> 格式存储。音频参数为8000Hz采样率,16位,单声道。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file_name</span></code> - wav文件存储路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">record_time</span></code> - 录音时长,默认5秒。录音时长受文件系统空间限制,最大时长依实际情况而定。</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="audio.audio.recorder_deinit">
+<span class="sig-prename descclassname"><span class="pre">audio.</span></span><span class="sig-name descname"><span class="pre">recorder_deinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#audio.audio.recorder_deinit" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>录音结束后释放资源</p>
+<p>示例-录音:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">audio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">audio</span><span class="o">.</span><span class="n">recorder_init</span><span class="p">()</span>
+<span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 用LED指示录音开始结束</span>
+<span class="n">rgb</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+<span class="n">audio</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="s1">&#39;test.wav&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rgb</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+<span class="n">audio</span><span class="o">.</span><span class="n">recorder_deinit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数字IO &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="模拟IO" href="analog_io.html" />
+    <link rel="prev" title="引脚" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">3. 示例教程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">引脚</a></li>
+      <li class="breadcrumb-item active">数字IO</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/3_examples/basics/io/digital_io.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="io">
+<span id="digital-io"></span><h1>数字IO<a class="headerlink" href="#io" title="此标题的永久链接"></a></h1>
+<p>本章节介绍了掌控板的I/O引脚的数字输入输出使用方法。引脚是掌控板与连接到它的外部设备进行通信的方式。掌控板可以通过拓展板将IO引脚拓展并连接控制或读取其他元器件或模块。</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>除P2(只限数字输入)P3,P4,P10以外,其他引脚均可是使用数字输入、输出模式。有关更详细说明,请查看 <span class="xref std std-ref">掌控板接口引脚说明</span> 。</p>
+</div>
+<section id="id1">
+<h2>数字输入<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>首先,从如何读取引脚的数字输入开始。以下使用掌控板内置的按键a,作为按键输入:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>           <span class="c1"># 导入mpython模块</span>
+
+<span class="n">p5</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>     <span class="c1"># 实例化MPythonPin,将按键a引脚(P5)设置为&quot;PinMode.IN&quot;模式</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">p5</span><span class="o">.</span><span class="n">read_digital</span><span class="p">()</span>      <span class="c1"># 读取P5引脚的数字输入</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Button_a:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">value</span><span class="p">)</span>   <span class="c1"># 读取到值</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这时,你可以按下button a按键看下“按下”和“未按下”的读值。由于按键a电路做了上拉,所以“未按下”时输出为高电平, “按下”时输出为低电平。</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="n">p5</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>使用前，请务必先将 mpython 模块导入，方可使用。</p>
+<p>实例化引脚对象并设置模式。这里使用到 <code class="docutils literal notranslate"><span class="pre">MPythonPin(pin,</span> <span class="pre">mode=PinMode.IN,pull=None)</span></code> 类。
+<code class="docutils literal notranslate"><span class="pre">pin</span></code> 是您要访问的引脚。如果未指定mode，则默认为 <code class="docutils literal notranslate"><span class="pre">PinMode.IN</span></code> 。如果未指定pull，则默认为 <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p5</span><span class="o">.</span><span class="n">read_digital</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>使用read_digital(),返回引脚的电平值。高电平(1),低电平(0)。</p>
+</div>
+</section>
+<section id="id2">
+<h2>数字输出<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>以下是简单的驱动外部LED灯闪烁:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>           <span class="c1"># 导入mpython模块</span>
+
+<span class="n">p0</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>     <span class="c1"># 实例化MPythonPin,将P0设置为&quot;PinMode.OUT&quot;模式</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">p0</span><span class="o">.</span><span class="n">write_digital</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>          <span class="c1"># P0写高电平</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                     <span class="c1">#  延时</span>
+    <span class="n">p0</span><span class="o">.</span><span class="n">write_digital</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>          <span class="c1"># P0写高电平</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                     <span class="c1">#  延时</span>
+</pre></div>
+</div>
+<div class="admonition- admonition">
+<p class="admonition-title">材料、连接方式</p>
+<p>上面需要使用到一块面包板、1个LED灯、mPython拓展板、杜邦线。LED灯的正极连接至掌控板的P0引脚,LED负极连接至掌控板的GND。</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p0</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><code class="docutils literal notranslate"><span class="pre">MPythonPin</span></code> 实例化。<code class="docutils literal notranslate"><span class="pre">mode</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">PinMode.OUT</span></code> 数字输出模式。</p>
+</div>
+<p>对P0引脚写高低电平:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p0</span><span class="o">.</span><span class="n">write_digital</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">p0</span><span class="o">.</span><span class="n">write_digital</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">write_digital(value)</span></code> 方法对引脚写高低电平。其中 <code class="docutils literal notranslate"><span class="pre">value</span></code> 是电平值,“1”代表高电平,“0”代表低电平。</p>
+</div>
+</section>
+<section id="id3">
+<h2>外部中断<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<div class="admonition- admonition">
+<p class="admonition-title">什么是中断呢？</p>
+<p>在程序运行过程中，系统出现了一个必须由CPU立即处理的情况，此时，CPU暂时中止程序的执行转而处理这个新的情况的过程就叫做中断。
+在出现需要时，CPU必须暂停现在的事情，处理别的事情，处理完了再回去执行暂停的事情。</p>
+</div>
+<p>当输入引脚发生电平变化时触发硬件中断，触发器会执行中断处理函数。你可以定义回调函数来做中些断响应的工作。引脚中断使用和掌控板的a,b按键中断本质是一样的。</p>
+<p>以下使用掌控板内置的按键a((P5引脚),作为输入中断,按下按键 A 时蜂鸣器发出声音:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>           <span class="c1"># 导入mpython模块</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">music</span>                    <span class="c1"># 导入music模块</span>
+<span class="n">p5</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>     <span class="c1"># 实例化MPythonPin,将P5设置为&quot;PinMode.IN&quot;模式</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">BuzzOn</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>                    <span class="c1"># 定义中断的回调函数</span>
+    <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">music</span><span class="o">.</span><span class="n">BA_DING</span><span class="p">,</span><span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">p5</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">IRQ_FALLING</span><span class="p">,</span><span class="n">handler</span><span class="o">=</span><span class="n">BuzzOn</span><span class="p">)</span>            <span class="c1"># 设置P5引脚中断的回调函数</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>效果和时用 <code class="docutils literal notranslate"><span class="pre">button_a.irq()</span></code> 按键中断时一样的,button_a的中断也是使用到 <code class="docutils literal notranslate"><span class="pre">Pin.irq</span></code> 的方法。</p>
+</div>
+<p>我们首先实例化MPythonPin,将P5引脚配置为 <code class="docutils literal notranslate"><span class="pre">PinMode.IN</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p5</span><span class="o">=</span><span class="n">MPythonPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">PinMode</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>定义回调函数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">BuzzOn</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+    <span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">music</span><span class="o">.</span><span class="n">BA_DING</span><span class="p">,</span><span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>回调函数，<strong>必须包含一个参数</strong>,否则无法使用, 上面 <code class="docutils literal notranslate"><span class="pre">BuzzOn()</span></code> 定义回调函数,参数为 <code class="docutils literal notranslate"><span class="pre">_</span></code>,你可以任意定义该参数。</p>
+</div>
+<p>最后我们需要告诉引脚何时触发，以及在检测到事件时调用的函数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p5</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">IRQ_FALLING</span><span class="p">,</span><span class="n">handler</span><span class="o">=</span><span class="n">BuzzOn</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>我们将P5设置为仅在下降沿触发  <code class="docutils literal notranslate"><span class="pre">Pin.IRQ_FALLING</span></code> （当它从高电平变为低电平时）。设置回调函数
+handler=”你定义中断处理的回调函数”。更详细的触发方式，请查阅 <span class="xref std std-ref">MPythonPin.irq</span> 。</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="引脚" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="analog_io.html" class="btn btn-neutral float-right" title="模拟IO" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

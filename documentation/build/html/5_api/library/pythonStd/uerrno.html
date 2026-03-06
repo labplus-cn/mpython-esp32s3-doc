@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uerrno – 系统错误代码 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – 系统错误代码</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/uerrno.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-uerrno">
+<span id="uerrno"></span><h1><a class="reference internal" href="#module-uerrno" title="uerrno: 系统错误代码"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code></a> – 系统错误代码<a class="headerlink" href="#module-uerrno" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/errno.html#module-errno">errno</a></p>
+<p>此模块提供访问符号错误代码以进行 <a class="reference internal" href="builtins.html#oserror"><span class="std std-ref">OSError</span></a>  异常。特定的代码清单依赖于 <a class="reference internal" href="../../mpy_ref/glossary.html#term-MicroPython-port"><span class="xref std std-term">MicroPython port</span></a>.</p>
+<section id="id1">
+<h2>常量<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">EEXIST,</span> <span class="pre">EAGAIN,</span> <span class="pre">etc.</span></span></dt>
+<dd><p>错误代码，基于ANSI C/POSIX标准。所有错误代码开头都有“E”。错误通常可以访问为 <code class="docutils literal notranslate"><span class="pre">exc.args[0]</span></code> ，其中 <code class="docutils literal notranslate"><span class="pre">exc</span></code> 是 <code class="docutils literal notranslate"><span class="pre">OSError</span></code> 的一个实例</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">uos</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;my_dir&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">exc</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">uerrno</span><span class="o">.</span><span class="n">EEXIST</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Directory already exists&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uerrno.errorcode">
+<span class="sig-prename descclassname"><span class="pre">uerrno.</span></span><span class="sig-name descname"><span class="pre">errorcode</span></span><a class="headerlink" href="#uerrno.errorcode" title="永久链接至目标"></a></dt>
+<dd><p>字典将数字错误代码映射到带有符号错误代码的字符串（参见上文）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">uerrno</span><span class="o">.</span><span class="n">errorcode</span><span class="p">[</span><span class="n">uerrno</span><span class="o">.</span><span class="n">EEXIST</span><span class="p">])</span>
+<span class="go">EEXIST</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>异常</p></td>
+<td><p>值</p></td>
+<td><p>描述</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EPERM</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Operation not permitted</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOENT</span></code></p></td>
+<td><p>2</p></td>
+<td><p>No such file or directory</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ESRCH</span></code></p></td>
+<td><p>3</p></td>
+<td><p>No such process</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EINTR</span></code></p></td>
+<td><p>4</p></td>
+<td><p>Interrupted system call</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EIO</span></code></p></td>
+<td><p>5</p></td>
+<td><p>I/O error</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENXIO</span></code></p></td>
+<td><p>6</p></td>
+<td><p>No such device or address</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.E2BIG</span></code></p></td>
+<td><p>7</p></td>
+<td><p>Argument list too long</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOEXEC</span></code></p></td>
+<td><p>8</p></td>
+<td><p>Exec format error</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EBADF</span></code></p></td>
+<td><p>9</p></td>
+<td><p>Bad file number</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ECHILD</span></code></p></td>
+<td><p>10</p></td>
+<td><p>No child processes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EAGAIN</span></code></p></td>
+<td><p>11</p></td>
+<td><p>Try again</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOMEM</span></code></p></td>
+<td><p>12</p></td>
+<td><p>Out of memory</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EACCES</span></code></p></td>
+<td><p>13</p></td>
+<td><p>Permission denied</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EFAULT</span></code></p></td>
+<td><p>14</p></td>
+<td><p>Bad address</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOTBLK</span></code></p></td>
+<td><p>15</p></td>
+<td><p>Block device required</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EBUSY</span></code></p></td>
+<td><p>16</p></td>
+<td><p>Device or resource busy</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EEXIST</span></code></p></td>
+<td><p>17</p></td>
+<td><p>File exists</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EXDEV</span></code></p></td>
+<td><p>18</p></td>
+<td><p>Cross-device link</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENODEV</span></code></p></td>
+<td><p>19</p></td>
+<td><p>No such device</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOTDIR</span></code></p></td>
+<td><p>20</p></td>
+<td><p>Not a directory</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EISDIR</span></code></p></td>
+<td><p>21</p></td>
+<td><p>Is a directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EINVAL</span></code></p></td>
+<td><p>22</p></td>
+<td><p>Invalid argument</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENFILE</span></code></p></td>
+<td><p>23</p></td>
+<td><p>File table overflow</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EMFILE</span></code></p></td>
+<td><p>24</p></td>
+<td><p>Too many open files</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOTTY</span></code></p></td>
+<td><p>25</p></td>
+<td><p>Not a typewriter</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ETXTBSY</span></code></p></td>
+<td><p>26</p></td>
+<td><p>Text file busy</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EFBIG</span></code></p></td>
+<td><p>27</p></td>
+<td><p>File too large</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOSPC</span></code></p></td>
+<td><p>28</p></td>
+<td><p>No space left on device</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ESPIPE</span></code></p></td>
+<td><p>29</p></td>
+<td><p>Illegal seek</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EROFS</span></code></p></td>
+<td><p>30</p></td>
+<td><p>Read-only file system</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EMLINK</span></code></p></td>
+<td><p>31</p></td>
+<td><p>Too many links</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EPIPE</span></code></p></td>
+<td><p>32</p></td>
+<td><p>Broken pipe</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EDOM</span></code></p></td>
+<td><p>33</p></td>
+<td><p>Math argument out of domain of func</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ERANGE</span></code></p></td>
+<td><p>34</p></td>
+<td><p>Math result not representable</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EWOULDBLOCK</span></code></p></td>
+<td><p>11</p></td>
+<td><p>Operation would block</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EOPNOTSUPP</span></code></p></td>
+<td><p>95</p></td>
+<td><p>Operation not supported on transport endpoint</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EAFNOSUPPORT</span></code></p></td>
+<td><p>97</p></td>
+<td><p>Address family not supported by protocol</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EADDRINUSE</span></code></p></td>
+<td><p>98</p></td>
+<td><p>Address already in use</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ECONNABORTED</span></code></p></td>
+<td><p>99</p></td>
+<td><p>Software caused connection abort</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ECONNRESET</span></code></p></td>
+<td><p>104</p></td>
+<td><p>Connection reset by peer</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOBUFS</span></code></p></td>
+<td><p>105</p></td>
+<td><p>No buffer space available</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EISCONN</span></code></p></td>
+<td><p>106</p></td>
+<td><p>Transport endpoint is already connected</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ENOTCONN</span></code></p></td>
+<td><p>107</p></td>
+<td><p>Transport endpoint is not connected</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ETIMEDOUT</span></code></p></td>
+<td><p>110</p></td>
+<td><p>Connection timed out</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.ECONNREFUSED</span></code></p></td>
+<td><p>111</p></td>
+<td><p>Connection refused</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EHOSTUNREACH</span></code></p></td>
+<td><p>113</p></td>
+<td><p>No route to host</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EALREADY</span></code></p></td>
+<td><p>114</p></td>
+<td><p>Operation already in progress</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uerrno.EINPROGRESS</span></code></p></td>
+<td><p>115</p></td>
+<td><p>Operation now in progress</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

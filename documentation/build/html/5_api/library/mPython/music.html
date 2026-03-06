@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>music — 音乐相关功能函数 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="urequests — HTTP客户端的相关功能函数" href="urequests.html" />
+    <link rel="prev" title="mpython — 掌控板板载相关功能函数" href="mpython.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">mPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="mpython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mpython</span></code> — 掌控板板载相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id1">延时</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id2">映射</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id3">板载传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id4">声音、光线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#id5">加速度计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#gyroscope">陀螺仪(gyroscope)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#magnetic">磁力计(magnetic)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#music">蜂鸣器(music)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#button-a-b">button_[a,b]对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#touch">touch对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#rgb">rgb对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#i2c">i2c对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mpython.html#mpythonpin">MPythonPin类</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">music</span></code> — 音乐相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urequests</span></code> — HTTP客户端的相关功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html#response">Response类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urequests.html#id2">方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="umqtt.simple.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umqtt.simple</span></code> — 简单MQTT客户端功能函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">radio</span></code> — radio 无线广播相关功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radio.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sdcard.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sdcard</span></code> — SD卡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bluebit.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bluebit</span></code> — blue:bit驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="parrot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parrot</span></code> — 掌控拓展板驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ds18x20.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ds18x20</span></code> — ds18b20温度传感器驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="servo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">servo</span></code> — 舵机驱动功能函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">mPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">music</span></code> — 音乐相关功能函数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/mPython/music.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="module-music"><span id="music-py"></span></span><section id="music">
+<h1><a class="reference internal" href="#module-music" title="music: 音乐相关功能函数"><code class="xref py py-mod docutils literal notranslate"><span class="pre">music</span></code></a> — 音乐相关功能函数<a class="headerlink" href="#music" title="此标题的永久链接"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">music</span></code> 模块与micro:bit的music使用方法相同。</p>
+<p>要使用music模块，你需要:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">music</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>音符<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>以下是音符格式:</p>
+<blockquote>
+<div><p>NOTE[octave][:duration]</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NOTE</span></code> - 表示音符c、d、e、f、g、a、b。注意,“#”表示将基本音级升高半音；“b”表示将基本音级降低半音。音符 <code class="docutils literal notranslate"><span class="pre">R</span></code> ，则将其视为休息（静音）。例如，c#为C-升半音,ab为A-降半音</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">octave</span></code> - 表示音高,默认为4，为中音</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">duration</span></code> - 表示音符持续时长的节拍,默认为4节拍</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>例如，<code class="docutils literal notranslate"><span class="pre">A1:4</span></code> 音高为1的”A”音符，持续4个节拍（节拍也可以由 <code class="docutils literal notranslate"><span class="pre">set_tempo</span></code> 函数设定 - 见下文）。</p>
+<p>贝多芬第五交响曲的开头:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;r4:2&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;eb:8&#39;</span><span class="p">,</span> <span class="s1">&#39;r:2&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;d:8&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>八度音阶的定义和范围符合本页列出的关于科学音高表示法的表格 <a class="reference external" href="https://en.wikipedia.org/wiki/Scientific_pitch_notation#Table_of_note_frequencies">科学音调记号法</a>.  例如，middle “C”是 <code class="docutils literal notranslate"><span class="pre">c4</span></code> 和concert “A”（440）是 <code class="docutils literal notranslate"><span class="pre">a4</span></code> 。八度音符从音符”C”开始。</p>
+</section>
+<section id="id3">
+<h2>函数<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="music.set_tempo">
+<span class="sig-prename descclassname"><span class="pre">music.</span></span><span class="sig-name descname"><span class="pre">set_tempo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#music.set_tempo" title="永久链接至目标"></a></dt>
+<dd><p>设置播放节奏。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ticks</span></code> - 音符时值,整数。默认为4,即为四分音符为一拍。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bpm</span></code> - 节拍速度,整数。单位,bmp(每分钟节拍数)。</p></li>
+</ul>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><p>可参考以下设置播放节奏:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">music.set_tempo()</span></code> - 将播放节奏设置恢复为 ticks = 4, bpm = 120</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.set_tempo(ticks=8)</span></code> - 只改变音符时值,八分音符为一拍</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.set_tempo(bpm=180)</span></code> - 只改变节拍速度</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><p>计算节拍时长（以毫秒为单位）的计算方式： <cite>60000/bpm/ticks_per_beat</cite></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">对于默认的值</span><span class="p">,</span> <span class="mi">60000</span><span class="o">/</span><span class="mi">120</span><span class="o">/</span><span class="mi">4</span> <span class="o">=</span> <span class="mi">125</span> <span class="n">milliseconds</span> <span class="ow">or</span> <span class="mi">1</span> <span class="n">beat</span> <span class="o">=</span> <span class="mi">500</span> <span class="n">milliseconds</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="py function">
+<dt class="sig sig-object py" id="music.get_tempo">
+<span class="sig-prename descclassname"><span class="pre">music.</span></span><span class="sig-name descname"><span class="pre">get_tempo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music.get_tempo" title="永久链接至目标"></a></dt>
+<dd><p>获取当前速度作为整数元组: <code class="docutils literal notranslate"><span class="pre">(ticks,</span> <span class="pre">bpm)</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="music.play">
+<span class="sig-prename descclassname"><span class="pre">music.</span></span><span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">music</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#music.play" title="永久链接至目标"></a></dt>
+<dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">music</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>播放 <code class="docutils literal notranslate"><span class="pre">music</span></code> 包含上面定义的音乐DSL。</p></li>
+<li><p>如果 <code class="docutils literal notranslate"><span class="pre">music</span></code> 是一个字符串，则应该是单个音符，例如 <code class="docutils literal notranslate"><span class="pre">'c1:4'</span></code>。</p></li>
+<li><p>如果 <code class="docutils literal notranslate"><span class="pre">music</span></code> 被指定为音符列表（如上面音乐DSL部分中所定义），则它们一个接一个地播放以执行旋律。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code> 默认是掌控板的P6引脚</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait</span></code> 阻塞：如果 <code class="docutils literal notranslate"><span class="pre">wait</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 为阻塞,否则未不。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loop</span></code> ：如果 <code class="docutils literal notranslate"><span class="pre">loop</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code> ，则重复调整直到stop被调用（见下文）或阻塞调用被中断。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="music.pitch">
+<span class="sig-prename descclassname"><span class="pre">music.</span></span><span class="sig-name descname"><span class="pre">pitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Pin.P6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#music.pitch" title="永久链接至目标"></a></dt>
+<dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, <code class="docutils literal notranslate"><span class="pre">duration</span></code>:以给定指定毫秒数的整数频率播放频率。例如，如果频率设置为440并且长度设置为1000，那么我们会听到标准A调一秒钟。</p>
+<blockquote>
+<div><p>如果 <code class="docutils literal notranslate"><span class="pre">duration</span></code> 为负，则连续播放频率，直到阻塞或者被中断，或者在后台呼叫的情况下，设置或调用新频率stop（见下文）。</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code> pin=Pin.P6,默认是掌控板的P6引脚。可重定义其他引脚。</p>
+<blockquote>
+<div><p>请注意，您一次只能在一个引脚上播放频率。</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait</span></code> 阻塞：如果 <code class="docutils literal notranslate"><span class="pre">wait</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 为阻塞,否则未不。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="music.stop">
+<span class="sig-prename descclassname"><span class="pre">music.</span></span><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music.stop" title="永久链接至目标"></a></dt>
+<dd><p>停止给定引脚上的所有音乐播放。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="music.reset">
+<span class="sig-prename descclassname"><span class="pre">music.</span></span><span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music.reset" title="永久链接至目标"></a></dt>
+<dd><p>以下列方式重置以下属性的状态</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ticks</span> <span class="pre">=</span> <span class="pre">4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bpm</span> <span class="pre">=</span> <span class="pre">120</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">duration</span> <span class="pre">=</span> <span class="pre">4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">octave</span> <span class="pre">=</span> <span class="pre">4</span></code></p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="id4">
+<h2>内置旋律<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>出于教育和娱乐的目的，该模块包含几个以Python列表表示的示例曲调。它们可以像这样使用：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">music</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">music</span><span class="o">.</span><span class="n">NYAN</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>所有音乐都不受版权保护，由Nicholas H.Tollervey撰写并发布到公共领域或者有一位不知名的作曲家，并受到公平（教育）使用条款的保护。</p>
+<p>它们是:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DADADADUM</span></code> - 贝多芬第五交响曲C小调开幕式。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENTERTAINER</span></code> - 斯科特乔普林的Ragtime经典作品“The Entertainer”的开场片段。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRELUDE</span></code> - JSBach的48首前奏曲和赋格曲的第一首C大调前奏曲的开篇。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ODE</span></code> - 贝多芬第七交响曲D小调的“欢乐颂”主题。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NYAN</span></code> - Nyan Cat主题 (<a class="reference external" href="http://www.nyan.cat/">http://www.nyan.cat/</a>). 作曲家不详。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RINGTONE</span></code> - 听起来像手机铃声的东西。用于指示传入消息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FUNK</span></code> - 为秘密特工和犯罪主谋提供的时髦低音系列。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BLUES</span></code> - 一个boogie-woogie 12杆蓝调步行低音。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BIRTHDAY</span></code> - “生日快乐” 版权状态见: <a class="reference external" href="http://www.bbc.co.uk/news/world-us-canada-34332853">http://www.bbc.co.uk/news/world-us-canada-34332853</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WEDDING</span></code> - 来自瓦格纳歌剧“Lohengrin”的新娘合唱。.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FUNERAL</span></code> -  “葬礼进行曲”，也被称为FrédéricChopin的钢琴奏鸣曲第2号B-minor,Op 35。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PUNCHLINE</span></code> -一个有趣的片段表明一个笑话已经被创造出来了。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PYTHON</span></code> - John Philip Sousa的游行“Liberty Bell”又名“Monty Python’s Flying Circus”的主题（之后以Python编程语言命名）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BADDY</span></code> - 沉默的电影时代入口的一个坏人。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CHASE</span></code> - 无声电影时代的追逐场景。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BA_DING</span></code> - 表示发生了某些事情的短信号</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WAWAWAWAA</span></code> - 一个非常悲伤的长号。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JUMP_UP</span></code> - 用于游戏，表示向上移动。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JUMP_DOWN</span></code> - 用于游戏，表示向下移动。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POWER_UP</span></code> - 一种炫耀，表明一项成就被释放。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POWER_DOWN</span></code> - 一种悲伤，表示一项成就已经失去。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GE_CHANG_ZU_GUO</span></code> - 歌唱祖国</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DONG_FANG_HONG</span></code> - 东方红</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CAI_YUN_ZHUI_YUE</span></code> - 彩云追月</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZOU_JIN_XIN_SHI_DAI</span></code> - 走进新时代</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MO_LI_HUA</span></code> - 茉莉花</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YI_MENG_SHAN_XIAO_DIAO</span></code> - 沂蒙山小调</p></li>
+</ul>
+</div></blockquote>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    music.py</span>
+<span class="sd">    ~~~~~~~~</span>
+
+<span class="sd">    Plays a simple tune using the Micropython music module.</span>
+<span class="sd">    This example requires a speaker/buzzer/headphones connected to P0 and GND.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">music</span>
+
+<span class="c1"># play Prelude in C.</span>
+<span class="n">notes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;c4:1&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;g4&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;g4&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f5&#39;</span><span class="p">,</span> <span class="s1">&#39;a4&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f5&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f5&#39;</span><span class="p">,</span> <span class="s1">&#39;a4&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;b3&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f5&#39;</span><span class="p">,</span> <span class="s1">&#39;g4&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f5&#39;</span><span class="p">,</span> <span class="s1">&#39;b3&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f5&#39;</span><span class="p">,</span> <span class="s1">&#39;g4&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;g4&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;g4&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;a5&#39;</span><span class="p">,</span> <span class="s1">&#39;a4&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;a5&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;a5&#39;</span><span class="p">,</span> <span class="s1">&#39;a4&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;a5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;f#&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f#4&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;f#&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;f#4&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;b3&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;g5&#39;</span><span class="p">,</span> <span class="s1">&#39;g4&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;g5&#39;</span><span class="p">,</span> <span class="s1">&#39;b3&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;g5&#39;</span><span class="p">,</span> <span class="s1">&#39;g4&#39;</span><span class="p">,</span> <span class="s1">&#39;d5&#39;</span><span class="p">,</span> <span class="s1">&#39;g5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;b3&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;b3&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;a3&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;a3&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;e4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;d3&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;f#&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;f#&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;d3&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;f#&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;f#&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;g3&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g3&#39;</span><span class="p">,</span> <span class="s1">&#39;b3&#39;</span><span class="p">,</span> <span class="s1">&#39;d4&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span>
+<span class="p">]</span>
+
+<span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="mpython.html" class="btn btn-neutral float-left" title="mpython — 掌控板板载相关功能函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="urequests.html" class="btn btn-neutral float-right" title="urequests — HTTP客户端的相关功能函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

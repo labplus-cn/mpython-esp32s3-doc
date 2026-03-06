@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>espnow – ESP-NOW无线协议支持 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="6. 掌控板C/C++编程" href="../../../6_C_program/index.html" />
+    <link rel="prev" title="esp32 — 特定于ESP32的功能" href="esp32.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pythonStd/index.html">Python标准库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">MicroPython类库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bluetooth.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bluetooth</span></code> — 低功耗蓝牙</a></li>
+<li class="toctree-l4"><a class="reference internal" href="btree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">btree</span></code> – 简单的 BTree 数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cryptolib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cryptolib</span></code> – 加密密码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deflate.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">deflate</span></code> – deflate压缩与解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="framebuf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">framebuf</span></code> — 帧缓冲操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine/machine.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine</span></code> — 与硬件相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neopixel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">neopixel</span></code> — WS2812 灯带</a></li>
+<li class="toctree-l4"><a class="reference internal" href="network.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openamp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">openamp</span></code> – 非对称多处理(AMP)支持</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uctypes.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uctypes</span></code> –  以结构化方式访问二进制数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vfs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vfs</span></code> – 虚拟文件系统控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="esp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp</span></code> — ESP32相关的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="esp32.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">esp32</span></code> — 特定于ESP32的功能</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">espnow</span></code> – ESP-NOW无线协议支持</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">MicroPython类库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">espnow</span></code> – ESP-NOW无线协议支持</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/micropython/espnow.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-espnow">
+<span id="espnow-esp-now"></span><h1><a class="reference internal" href="#module-espnow" title="espnow: ESP-NOW无线协议支持"><code class="xref py py-mod docutils literal notranslate"><span class="pre">espnow</span></code></a> – ESP-NOW无线协议支持<a class="headerlink" href="#module-espnow" title="此标题的永久链接"></a></h1>
+<p>该模块提供了ESP-NOW无线协议的支持，这是一种由Espressif开发的低延迟通信协议。</p>
+<section id="id1">
+<h2>类<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="espnow.ESPNow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">espnow.</span></span><span class="sig-name descname"><span class="pre">ESPNow</span></span><a class="headerlink" href="#espnow.ESPNow" title="永久链接至目标"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="espnow.ESPNow.__init__">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#espnow.ESPNow.__init__" title="永久链接至目标"></a></dt>
+<dd><p>初始化ESPNow对象。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="espnow.ESPNow.active">
+<span class="sig-name descname"><span class="pre">active</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">active</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#espnow.ESPNow.active" title="永久链接至目标"></a></dt>
+<dd><p>（可选）更改ESPNow的活动状态，并返回当前状态。</p>
+<dl class="simple">
+<dt>参数:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">active</span></code>: 布尔值，True表示激活，False表示禁用</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="espnow.ESPNow.add_peer">
+<span class="sig-name descname"><span class="pre">add_peer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#espnow.ESPNow.add_peer" title="永久链接至目标"></a></dt>
+<dd><p>添加一个对等设备。</p>
+<dl class="simple">
+<dt>参数:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peer</span></code>: 对等设备的MAC地址（bytes对象，长度为6）</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="espnow.ESPNow.remove_peer">
+<span class="sig-name descname"><span class="pre">remove_peer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#espnow.ESPNow.remove_peer" title="永久链接至目标"></a></dt>
+<dd><p>移除一个对等设备。</p>
+<dl class="simple">
+<dt>参数:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peer</span></code>: 对等设备的MAC地址（bytes对象，长度为6）</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="espnow.ESPNow.send">
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">sync=False</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#espnow.ESPNow.send" title="永久链接至目标"></a></dt>
+<dd><p>发送数据到对等设备。</p>
+<dl class="simple">
+<dt>参数:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peer</span></code>: 对等设备的MAC地址（bytes对象，长度为6）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: 要发送的数据（类似字节）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sync</span></code>: 是否同步发送（默认为False）</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="espnow.ESPNow.recv">
+<span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#espnow.ESPNow.recv" title="永久链接至目标"></a></dt>
+<dd><p>接收来自对等设备的数据。</p>
+<dl class="simple">
+<dt>参数:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code>: 超时时间（毫秒，可选）</p></li>
+</ul>
+</dd>
+<dt>返回值:</dt><dd><p>元组 (peer, data)，其中peer是发送方的MAC地址，data是接收到的数据</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="espnow.ESPNow.irq">
+<span class="sig-name descname"><span class="pre">irq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#espnow.ESPNow.irq" title="永久链接至目标"></a></dt>
+<dd><p>注册接收数据的回调函数。</p>
+<dl class="simple">
+<dt>参数:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">handler</span></code>: 回调函数，接收参数 (peer, data)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="esp32.html" class="btn btn-neutral float-left" title="esp32 — 特定于ESP32的功能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../../../6_C_program/index.html" class="btn btn-neutral float-right" title="6. 掌控板C/C++编程" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

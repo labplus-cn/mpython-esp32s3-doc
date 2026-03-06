@@ -1,0 +1,152 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DHT11读取温湿度 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">DHT11读取温湿度</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/classic/dht11.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dht11">
+<h1>DHT11读取温湿度<a class="headerlink" href="#dht11" title="此标题的永久链接"></a></h1>
+<p>DHT11数字温湿度传感器是一款含有已校准数字信号输出的温湿度复合传感器，它应用专用的数字模块采集技术和温湿度传感技术，确保产品具有极高的可靠性和卓越的长期稳定性。传感器包括一个电阻式感湿元件和一个NTC测温元件，并与一个高性能8位单片机相连接。因此该产品具有品质卓越、超快响应、抗干扰能力强、性价比极高等优点。</p>
+<a class="reference internal image-reference" href="../../_images/dht111.png"><img alt="../../_images/dht111.png" class="align-center" src="../../_images/dht111.png" style="width: 378.0px; height: 234.0px;" /></a>
+<p>DHT11数字温湿度传感器和掌控板连接需要借助掌控扩展版，在掌控扩展版中DHT11可使用的引脚有P0/1/8/9/13/14/15/16，在这里使用引脚0。将掌控板插在掌控扩展板上，通过双母头杜邦线将DHT11和扩展板进行连接，DHT11上的“+”连接扩展板的电源口“V”，“-”连接扩展板的地线口“G”，“out”连接扩展板的引脚“0”。</p>
+<a class="reference internal image-reference" href="../../_images/dhtconnect.jpg"><img alt="../../_images/dhtconnect.jpg" class="align-center" src="../../_images/dhtconnect.jpg" style="width: 420.0px; height: 324.59999999999997px;" /></a>
+<p>例：显示DHT11读取的温湿度</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dht</span><span class="w"> </span><span class="kn">import</span> <span class="n">DHT11</span>
+
+<span class="n">dht</span><span class="o">=</span><span class="n">DHT11</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P0</span><span class="p">))</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">dht</span><span class="o">.</span><span class="n">measure</span><span class="p">()</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;温度:&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dht</span><span class="o">.</span><span class="n">temperature</span><span class="p">()),</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;湿度:&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dht</span><span class="o">.</span><span class="n">humidity</span><span class="p">()),</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/dhtexample.jpg"><img alt="../../_images/dhtexample.jpg" class="align-center" src="../../_images/dhtexample.jpg" style="width: 450.0px; height: 336.0px;" /></a>
+<p>使用前，导入mpython模块和DHT11类:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dht</span><span class="w"> </span><span class="kn">import</span> <span class="n">DHT11</span>
+</pre></div>
+</div>
+<p>实例化DHT11类，并设置mPython引脚P0:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dht</span><span class="o">=</span><span class="n">DHT11</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">P0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>DHT11测量并返回温湿度数据:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dht</span><span class="o">.</span><span class="n">measure</span><span class="p">()</span>
+<span class="n">dht</span><span class="o">.</span><span class="n">temperature</span><span class="p">()</span>
+<span class="n">dht</span><span class="o">.</span><span class="n">humidity</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><code class="docutils literal notranslate"><span class="pre">dht.measure()</span></code> 为DHT11测量温湿度数据指令，测量后使用 <code class="docutils literal notranslate"><span class="pre">dht.temperature()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">dht.humidity()</span></code> 获取测量的温湿度值。</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

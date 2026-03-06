@@ -1,0 +1,213 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WiFi &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="物联网基础知识" href="../advance/iot/index.html" />
+    <link rel="prev" title="串口" href="12_uart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../1_index.html">3. 示例教程</a></li>
+      <li class="breadcrumb-item active">WiFi</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/basics/13_wifi.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wifi">
+<h1>WiFi<a class="headerlink" href="#wifi" title="此标题的永久链接"></a></h1>
+<nav class="contents local" id="id1">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id2" id="id7">概述</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id8">WiFi 工作模式</a></p></li>
+<li><p><a class="reference internal" href="#station" id="id9">Station 接入点模式</a></p></li>
+<li><p><a class="reference internal" href="#softap" id="id10">SoftAP 热点模式</a></p></li>
+<li><p><a class="reference internal" href="#api" id="id11">API 参考</a></p>
+<ul>
+<li><p><a class="reference internal" href="#wifi-api" id="id12">主要 WiFi API</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id6" id="id13">常见问题</a></p></li>
+</ul>
+</nav>
+<section id="id2">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">概述</a><a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>介绍其 WiFi 功能的基本使用方法。</p>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">WiFi 工作模式</a><a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>掌控3.0支持 2.4G WiFi</p>
+<ol class="arabic simple">
+<li><p>Station 模式（STA）
+- 连接到无线接入点(AP)</p></li>
+<li><p>SoftAP 模式
+- 作为接入点供其他设备连接</p></li>
+</ol>
+</section>
+<section id="station">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Station 接入点模式</a><a class="headerlink" href="#station" title="此标题的永久链接"></a></h2>
+<a class="reference internal image-reference" href="../../_images/wifi.png"><img alt="../../_images/wifi.png" class="align-center" src="../../_images/wifi.png" style="width: 70%;" /></a>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Station 接入点模式</span><a class="headerlink" href="#id4" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">network</span>
+
+<span class="n">my_wifi</span> <span class="o">=</span> <span class="n">wifi</span><span class="p">()</span>
+
+<span class="n">my_wifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;my_wifi&quot;</span><span class="p">,</span> <span class="s2">&quot;12345678&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">my_wifi</span><span class="o">.</span><span class="n">sta</span><span class="o">.</span><span class="n">isconnected</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">my_wifi</span><span class="o">.</span><span class="n">sta</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">())</span>
+
+
+
+</pre></div>
+</div>
+</div>
+</section>
+<section id="softap">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">SoftAP 热点模式</a><a class="headerlink" href="#softap" title="此标题的永久链接"></a></h2>
+<a class="reference internal image-reference" href="../../_images/ap.png"><img alt="../../_images/ap.png" class="align-center" src="../../_images/ap.png" style="width: 70%;" /></a>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">SoftAP 热点模式</span><a class="headerlink" href="#id5" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">network</span>
+
+<span class="n">my_wifi</span> <span class="o">=</span> <span class="n">wifi</span><span class="p">()</span>
+<span class="n">my_wifi</span><span class="o">.</span><span class="n">enable_APWiFi</span><span class="p">(</span><span class="s1">&#39;ap&#39;</span><span class="p">,</span> <span class="s1">&#39;mpython&#39;</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="api">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">API 参考</a><a class="headerlink" href="#api" title="此标题的永久链接"></a></h2>
+<section id="wifi-api">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">主要 WiFi API</a><a class="headerlink" href="#wifi-api" title="此标题的永久链接"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wifi.connectWiFi(&quot;ssid,</span> <span class="pre">&quot;psd&quot;)</span></code> - 连接WiFi</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wifi.disconnectWiFi()</span></code> - 断开连接</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wifi.sta.isconnected()</span></code> - 检查是否连接成功</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wifi.sta.ifconfig()</span></code> - 获取WiFi配置</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wifi.enable_APWiFi('ssid',</span> <span class="pre">'psd',</span> <span class="pre">channel=)</span></code> - 开启 SoftAP 模式</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wifi.disable_APWiFi()</span></code> - 关闭 SoftAP 模式</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">常见问题</a><a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<dl class="simple">
+<dt>Q: 无法连接到 AP</dt><dd><ul class="simple">
+<li><p>检查 SSID 和密码是否正确</p></li>
+<li><p>检查 WiFi 是否是2.4G频段</p></li>
+<li><p>检查路由器设置</p></li>
+<li><p>检查信号强度</p></li>
+</ul>
+</dd>
+<dt>Q: SoftAP 无法被搜索到</dt><dd><ul class="simple">
+<li><p>检查是否设置了正确的频道</p></li>
+<li><p>检查最大连接数是否设置合理</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="12_uart.html" class="btn btn-neutral float-left" title="串口" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../advance/iot/index.html" class="btn btn-neutral float-right" title="物联网基础知识" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

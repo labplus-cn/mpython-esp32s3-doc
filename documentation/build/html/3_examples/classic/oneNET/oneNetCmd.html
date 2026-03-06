@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MQTT协议:1接入OneNET云平台 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MQTT协议:1接入OneNET云平台</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/3_examples/classic/oneNET/oneNetCmd.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mqtt-1onenet">
+<h1>MQTT协议:1接入OneNET云平台<a class="headerlink" href="#mqtt-1onenet" title="此标题的永久链接"></a></h1>
+<p>随着移动互联网的发展，MQTT由于开放源代码，耗电量小等特点，将会在移动消息推送领域会有更多的贡献，
+在物联网领域，传感器与服务器的通信，信息的收集，MQTT都可以作为考虑的方案之一。
+在未来MQTT会进入到我们生活的各各方面，本篇文章教大家利用掌控板使用MQTT协议接入OneNET平台，并且远程控制RGB LED。</p>
+<section id="mqtt">
+<h2>什么是MQTT协议<a class="headerlink" href="#mqtt" title="此标题的永久链接"></a></h2>
+<p>早在1999年，IBM的Andy Stanford-Clark博士以及Arcom公司ArlenNipper博士发明了MQTT（Message Queuing Telemetry Transport，消息队列遥测传输）技术 。MQTT（Message Queuing Telemetry Transport，消息队列遥测传输）是IBM开发的一个即时通讯协议，有可能成为物联网的重要组成部分。该协议支持所有平台，几乎可以把所有联网物品和外部连接起来，被用来当做传感器和致动器（比如通过Twitter让房屋联网）的通信协议。</p>
+<section id="onenet">
+<h3>OneNET平台准备<a class="headerlink" href="#onenet" title="此标题的永久链接"></a></h3>
+<p>OneNET平台创建MQTT协议的产品并添加设备。
+OneNET平台官网地址：<a class="reference external" href="https://open.iot.10086.cn/">https://open.iot.10086.cn/</a>，登录成功进入开发者中心，添加一个新产品。</p>
+<img alt="../../../_images/oneNet_1.gif" src="../../../_images/oneNet_1.gif" />
+<p>在新建的产品下新建一个设备mPython。</p>
+<img alt="../../../_images/oneNet_2.gif" src="../../../_images/oneNet_2.gif" />
+</section>
+<section id="id1">
+<h3>编写程序<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h3>
+<p>程序示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">umqtt.simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">MQTTClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Timer</span>
+
+<span class="c1"># MQTT服务器地址域名为：183.230.40.39,不变</span>
+<span class="n">SERVER</span> <span class="o">=</span> <span class="s2">&quot;183.230.40.39&quot;</span>
+<span class="c1">#设备ID</span>
+<span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;deviceID&quot;</span>
+<span class="c1">#产品ID</span>
+<span class="n">username</span><span class="o">=</span><span class="s1">&#39;productID&#39;</span>
+<span class="c1">#产品APIKey:</span>
+<span class="n">password</span><span class="o">=</span><span class="s1">&#39;APIKey&#39;</span>
+
+<span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sub_cb</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+
+    <span class="nb">print</span><span class="p">((</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;on&quot;</span><span class="p">:</span>
+        <span class="n">rgb</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>       <span class="c1">#点亮红灯</span>
+        <span class="n">rgb</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;off&quot;</span><span class="p">:</span>        <span class="c1">#灭灯</span>
+        <span class="n">rgb</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">rgb</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="n">SERVER</span><span class="p">):</span>
+    <span class="c1">#端口号为：6002</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">(</span><span class="n">CLIENT_ID</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span><span class="mi">6002</span><span class="p">,</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">,</span><span class="n">keepalive</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>    <span class="c1"># 保持连接时间间隔设置10秒</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">sub_cb</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+    <span class="n">tim1</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>           <span class="c1">#创建定时器1</span>
+    <span class="n">tim1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="n">c</span><span class="o">.</span><span class="n">ping</span><span class="p">())</span>   <span class="c1">#  发送心跳包 ,保持连接</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connected to </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">server</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">wait_msg</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+
+<span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>修改程序中设备ID、产品ID和APIKEY参数的信息，如下图。</p>
+</div>
+<img alt="../../../_images/oneNet_3.png" src="../../../_images/oneNet_3.png" />
+<img alt="../../../_images/oneNet_4.png" src="../../../_images/oneNet_4.png" />
+</section>
+<section id="id2">
+<h3>效果展示<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h3>
+<p>当我们给掌控板复位重启，执行开始运行程序。</p>
+<img alt="../../../_images/oneNet_5.png" src="../../../_images/oneNet_5.png" />
+<p>这个时候我们OneNET云平台上设备状态灯显示绿色，说明在线了</p>
+<img alt="../../../_images/oneNet_6.png" src="../../../_images/oneNet_6.png" />
+<p>当我们通过页面发送 <code class="docutils literal notranslate"><span class="pre">on</span></code> 、<code class="docutils literal notranslate"><span class="pre">off</span></code> 指令的时候，就会看到终端处接受的的消息打印。掌控板上的RGB LED也会相应的改变。</p>
+<img alt="../../../_images/oneNet_7.gif" src="../../../_images/oneNet_7.gif" />
+<img alt="../../../_images/oneNet_8.png" src="../../../_images/oneNet_8.png" />
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -9,21 +9,21 @@ MicroPython类库
 .. toctree::
    :maxdepth: 1
 
+   bluetooth.rst
    btree.rst
+   cryptolib.rst
+   deflate.rst
    framebuf.rst
    machine/machine.rst
-   network.rst
-   ubluetooth.rst
-   ucryptolib.rst
-   uctypes.rst
    micropython.rst
    neopixel.rst
-   random.rst
-   ntptime.rst
-   dht.rst
+   network.rst
+   openamp.rst
+   uctypes.rst
+   vfs.rst
    _thread.rst
    esp.rst
    esp32.rst
-   onewire.rst
+   espnow.rst
 
 

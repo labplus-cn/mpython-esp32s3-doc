@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usocket – socket 模块 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usocket</span></code> – socket 模块</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/usocket.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-usocket">
+<span id="usocket-socket"></span><h1><a class="reference internal" href="#module-usocket" title="usocket: socket 模块"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usocket</span></code></a> – socket 模块<a class="headerlink" href="#module-usocket" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/socket.html#module-socket">socket</a></p>
+<p>该模块提供BSD socket接口的访问。</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<blockquote>
+<div><p>为提高效率与一致性，MicroPython中的套接字对象直接实现 <cite>stream`（类文件）接口。在CPython中，
+需使用 ``makefile()`</cite> 方法来将socket转换为类文件对象。该方法仍由MicroPython（但是是无操作）支持，
+所以在CPython的兼容性问题上，请一定使用该方法。</p>
+</div></blockquote>
+</div>
+<section id="id1">
+<h2>Socket地址格式<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>下面函数使用 (ipv4_address, port) 网络地址, ipv4_address 是由点和数字组成的字符串，如 <code class="docutils literal notranslate"><span class="pre">&quot;8.8.8.8&quot;</span></code> ，
+端口是 1-65535 的数字。注意不能使用域名做为 ipv4_address，域名需要先用 <code class="docutils literal notranslate"><span class="pre">socket.getaddrinfo()</span></code> 进行解析。</p>
+<p><code class="docutils literal notranslate"><span class="pre">usocket</span></code> 模块的本机套接字地址格式是一个由 <code class="docutils literal notranslate"><span class="pre">getaddrinfo</span></code> 函数返回的不透明数据类型，
+须用其来解析文本地址（包括数字型地址）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sockaddr</span> <span class="o">=</span> <span class="n">usocket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;www.micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># You must use getaddrinfo() even for numeric addresses 您必须使用getaddrinfo()，即使是用于数字型地址</span>
+<span class="n">sockaddr</span> <span class="o">=</span> <span class="n">usocket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Now you can use that address 现在您可以使用这一地址了</span>
+<span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">getaddrinfo</span></code> 是处理地址最有效（在内存和处理能力方面皆是如此）且最便捷的方式。</p>
+</section>
+<section id="id2">
+<h2>函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="usocket.socket">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">socket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">af</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">AF_INET</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SOCK_STREAM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">IPPROTO_TCP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket" title="永久链接至目标"></a></dt>
+<dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">af</span></code> ：地址</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">socket.AF_INET</span></code>:=2 — TCP/IP – IPv4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">socket.AF_INET6</span></code> :=10 — TCP/IP – IPv6</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> ：socket类型</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">socket.SOCK_STREAM</span></code>:=1 — TCP流</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">socket.SOCK_DGRAM</span></code>:=2 — UDP数据报</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">socket.SOCK_RAW</span></code> :=3 — 原始套接字</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">socket.SO_REUSEADDR</span></code> : =4 — socket可重用</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proto</span></code> ：协议号</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">socket.IPPROTO_TCP</span></code> =6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">socket.IPPROTO_UDP</span></code> =17</p></li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+
+<p>一般不指定proto参数，因为有些MicroPython固件提供默认参数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">&lt;socket&gt;</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="usocket.getaddrinfo">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">getaddrinfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.getaddrinfo" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>将主机域名（host）和端口（port）转换为用于创建套接字的5元组序列。元组列表的结构如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sockaddr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>下面显示了怎样连接到一个网址:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">usocket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">usocket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;www.micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<blockquote>
+<div><p>该函数发生错误时，会引发一个 <code class="docutils literal notranslate"><span class="pre">socket.gaierror</span></code> 异常（ <code class="docutils literal notranslate"><span class="pre">OSError</span></code> 子类）。
+MicroPython并不具有 <code class="docutils literal notranslate"><span class="pre">socket.gaierror</span></code> ，会直接引发OSError。
+注意： <code class="docutils literal notranslate"><span class="pre">getaddrinfo()</span></code> 的错误数量组成一个单独的名称空间，
+可能与 <code class="docutils literal notranslate"><span class="pre">uerrno</span></code> 系统错误代码模块中的错误数量不匹配。
+为区分 <code class="docutils literal notranslate"><span class="pre">getaddrinfo()</span></code> 错误，该错误使用负数标记，标准系统错误为正数（错误数可通过使用异常对象的 e.args[0] 特性访问）。
+暂时使用负数，未来可能改变。</p>
+</div></blockquote>
+</div>
+<section id="id3">
+<h3>socket类<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+</section>
+</section>
+<section id="id4">
+<h2>方法<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.close">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.close" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>标记套接字已关闭并释放所有资源。一旦发生这种情况，套接字对象上的所有未来操作都将失败。如果协议支持，远程端将接收EOF指示。</p>
+<p>内存碎片回收时socket会自动关闭，但还是推荐在必要时用 close() 去关闭</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.bind">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.bind" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>以列表或元组的方式绑定地址和端口号。套接字必须尚未绑定。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code> ：一个包含地址和端口号的列表或元组。</p></li>
+</ul>
+</div></blockquote>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.listen">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">listen</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">backlog</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.listen" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>监听socket，使服务器能够接收连接。如果指定了 <code class="docutils literal notranslate"><span class="pre">backlog</span></code> ，则必须至少为0（如果低，则将其设置为0）; 并指定在拒绝新连接之前系统将允许的未接受连接数。如果未指定，则选择默认的合理值。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">backlog</span></code> ：接受套接字的最大个数，至少为0，如果没有指定，则默认一个合理值。</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.accept">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">accept</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.accept" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>接收连接请求。socket需要指定地址并监听连接。返回值是 (conn, address)，
+其中conn是用来接收和发送数据的套接字，address是绑定到另一端的套接字。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conn</span></code>：新的套接字对象，可以用来收发消息</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>：连接到服务器的客户端地址</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.connect">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.connect" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>连接到指定地址的远端套接字。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>：地址和端口号的元组或列表</p></li>
+</ul>
+</div></blockquote>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;192.168.3.147&quot;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.send">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.send" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>将数据发送到套接字。套接字必须连接到远程套接字。返回发送的字节数，可能小于数据长度 (“short write”)。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bytes</span></code>：bytes类型数据</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.sendall">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">sendall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.sendall" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>将所有数据发送到套接字。套接字必须连接到远程套接字。与 <code class="docutils literal notranslate"><span class="pre">send()</span></code> 此不同，此方法将尝试通过连续发送数据块来发送所有数据。</p>
+<p>此方法在非阻塞套接字上的行为未定义。因此，在MicroPython上，建议使用 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 方法，它具有相同的“无短写入”策略来阻塞套接字，并将返回在非阻塞套接字上发送的字节数。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bytes</span></code>：bytes类型数据</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.recv">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bufsize</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.recv" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>从套接字接收数据。返回值是表示接收数据的字节对象。一次接收的最大数据量由 <cite>bufsize</cite> 指定。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bufsize</span></code>：指定一次接收的最大数据量</p></li>
+</ul>
+</div></blockquote>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.sendto">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">sendto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.sendto" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>将数据发送到套接字。套接字不应连接到远程套接字，因为目标套接字由地址指定。用于UDP通信，返回发送的数据大小。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bytes</span></code>：bytes类型数据</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>：目标地址和端口号的元组</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.recvfrom">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">recvfrom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bufsize</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.recvfrom" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>从套接字接收数据。返回值是一对（字节，地址），其中bytes是表示接收数据的字节对象，address是发送数据的套接字的地址。用于UDP通信。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bufsize</span></code>：指定一次接收的最大数据量</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.setsockopt">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">setsockopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.setsockopt" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>设置给定套接字选项的值。所需的符号常量在套接字模块中定义（<a href="#id8"><span class="problematic" id="id9">SO_</span></a> <a href="#id5"><span class="problematic" id="id6">*</span></a>等）。该值可以是整数或表示缓冲区的类字节对象。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">level</span></code>：套接字选项级别</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optname</span></code>：socket 选项</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>：可以是一个整数，也可以是一个表示缓冲区的bytes类对象。</p></li>
+</ul>
+</div></blockquote>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.settimeout">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">settimeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.settimeout" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>设置超时时间，单位：秒。</p>
+<p>设置超时。<cite>value</cite> 参数可以是表示秒的非负浮点数，也可以是 <cite>None</cite> 。如果给出非零值，则OSError如果在操作完成之前已超过超时时间段值，则后续套接字操作将引发异常。
+如果给出零，则套接字处于非阻塞模式。如果给出 <cite>None</cite> ，则套接字处于阻塞模式。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.setblocking">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">setblocking</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.setblocking" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>设置socket的阻塞或非阻塞模式：若标记为false，则将该socket设置为非阻塞模式，而非阻塞模式。</p>
+<p>该方法为某些settimeout()调用的简写:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sock.setblocking(True)</span></code> 相当于 <code class="docutils literal notranslate"><span class="pre">sock.settimeout(None)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sock.setblocking(False)</span></code> 相当于 <code class="docutils literal notranslate"><span class="pre">sock.settimeout(0)</span></code></p></li>
+</ul>
+</div></blockquote>
+<div class="attention admonition">
+<p class="admonition-title">Difference to CPython</p>
+<p>CPython socket.timeout在超时的情况下引发异常，这是一个OSError子类。MicroPython直接引发OSError。
+如果您用来捕获异常，那么您的代码将在MicroPython和CPython中都有效。</p>
+</div>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.makefile">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">makefile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rb'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.makefile" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>返回一个与socket相关联的文件对象。具体的返回类型取决于给定makefile()的参数。该支持仅限于二进制模式（ ‘rb’ 和 ‘wb’ ）。
+CPython的参数为：不支持 encoding 、 errors 、 newline 。</p>
+<p>Socket须为阻塞模式；允许超时存在，但若出现超时，文件对象的内部缓冲区可能会以不一致状态结束。</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython区别</p>
+<ul class="simple">
+<li><p>由于MicroPython不支持缓冲流，则将忽略缓冲参数的值，且将按照该值为0（未缓冲）时处理。</p></li>
+<li><p>关闭所有由makefile()返回的文件对象，同样将关闭原始socket。</p></li>
+</ul>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.read">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.read" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>从socket中读取size字节。返回一个字节对象。若未给定 <code class="docutils literal notranslate"><span class="pre">size</span></code> ，则按照类似 <code class="xref py py-meth docutils literal notranslate"><span class="pre">socket.readall()</span></code> 的模式运行，见下。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.readinto">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">readinto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">nbytes</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.readinto" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>将字节读取入缓冲区。若指定 nbytes ，则最多读取该数量的字节。否则，最多读取 len(buf) 数量的字节。
+正如 <code class="docutils literal notranslate"><span class="pre">read()</span></code> ，该方法遵循“no short reads”方法。</p>
+<p>返回值：读取并存入缓冲区的字节数量</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.readline">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.readline" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>接收一行数据，遇换行符结束，并返回接收数据的对象 。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="usocket.socket.write">
+<span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.write" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>将字节缓冲区写入套接字。此函数将尝试将所有数据写入套接字（无“短写”）。
+但是，对于非阻塞套接字，这可能是不可能的，并且返回值将小于buf的长度。</p>
+<p>返回值：写入的字节数。</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="usocket.usocket.error">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">error</span></span><a class="headerlink" href="#usocket.usocket.error" title="永久链接至目标"></a></dt>
+<dd><p>MicroPython没有此异常。</p>
+<div class="attention admonition">
+<p class="admonition-title">Difference to CPython</p>
+<p>CPython曾经有一个socket.error现已弃用的异常，并且是别名 <code class="docutils literal notranslate"><span class="pre">OSError</span></code> 。在MicroPython中，<code class="docutils literal notranslate"><span class="pre">OSError</span></code> 直接使用。</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="id7">
+<h2>常数<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="usocket.AF_INET">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">AF_INET</span></span><a class="headerlink" href="#usocket.AF_INET" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="usocket.AF_INET6">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">AF_INET6</span></span><a class="headerlink" href="#usocket.AF_INET6" title="永久链接至目标"></a></dt>
+<dd><p>地址簇</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="usocket.SOCK_STREAM">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">SOCK_STREAM</span></span><a class="headerlink" href="#usocket.SOCK_STREAM" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="usocket.SOCK_DGRAM">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">SOCK_DGRAM</span></span><a class="headerlink" href="#usocket.SOCK_DGRAM" title="永久链接至目标"></a></dt>
+<dd><p>套接字类型</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="usocket.IPPROTO_UDP">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">IPPROTO_UDP</span></span><a class="headerlink" href="#usocket.IPPROTO_UDP" title="永久链接至目标"></a></dt>
+<dt class="sig sig-object py" id="usocket.IPPROTO_TCP">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">IPPROTO_TCP</span></span><a class="headerlink" href="#usocket.IPPROTO_TCP" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>IP协议号</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="usocket.SOL_SOCKET">
+<span class="sig-prename descclassname"><span class="pre">usocket.</span></span><span class="sig-name descname"><span class="pre">SOL_SOCKET</span></span><a class="headerlink" href="#usocket.SOL_SOCKET" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>socket选项级别,默认=4095</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

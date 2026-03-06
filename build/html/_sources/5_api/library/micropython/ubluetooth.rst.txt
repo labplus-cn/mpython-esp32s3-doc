@@ -191,12 +191,12 @@ BLE外围设备具有一组注册服务。每个服务可能包含特性，每�
 
     以下示例注册了两个服务 (Heart Rate, and Nordic UART)::
 
-        HR_UUID = bluetooth.UUID(0x180D)
-        HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | bluetooth.FLAG_NOTIFY,)
+        HR_UUID = ubluetooth.UUID(0x180D)
+        HR_CHAR = (ubluetooth.UUID(0x2A37), ubluetooth.FLAG_READ | ubluetooth.FLAG_NOTIFY,)
         HR_SERVICE = (HR_UUID, (HR_CHAR,),)
-        UART_UUID = bluetooth.UUID('6E400001-B5A3-F393-E0A9-E50E24DCCA9E')
-        UART_TX = (bluetooth.UUID('6E400003-B5A3-F393-E0A9-E50E24DCCA9E'), bluetooth.FLAG_READ | bluetooth.FLAG_NOTIFY,)
-        UART_RX = (bluetooth.UUID('6E400002-B5A3-F393-E0A9-E50E24DCCA9E'), bluetooth.FLAG_WRITE,)
+        UART_UUID = ubluetooth.UUID('6E400001-B5A3-F393-E0A9-E50E24DCCA9E')
+        UART_TX = (ubluetooth.UUID('6E400003-B5A3-F393-E0A9-E50E24DCCA9E'), ubluetooth.FLAG_READ | ubluetooth.FLAG_NOTIFY,)
+        UART_RX = (ubluetooth.UUID('6E400002-B5A3-F393-E0A9-E50E24DCCA9E'), ubluetooth.FLAG_WRITE,)
         UART_SERVICE = (UART_UUID, (UART_TX, UART_RX,),)
         SERVICES = (HR_SERVICE, UART_SERVICE,)
         ( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)

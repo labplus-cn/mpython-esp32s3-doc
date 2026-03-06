@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTTP &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="解析JSON" href="parsing_json.html" />
+    <link rel="prev" title="套接字-UDP" href="udp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">3. 示例教程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">网络</a></li>
+      <li class="breadcrumb-item active">HTTP</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/3_examples/basics/network/http.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="http">
+<h1>HTTP<a class="headerlink" href="#http" title="此标题的永久链接"></a></h1>
+<p>HTTP是基于客户端/服务端（C/S）的架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求/响应协议。</p>
+<p>一个HTTP”客户端”是一个应用程序（Web浏览器或其他任何客户端），通过连接到服务器达到向服务器发送一个或多个HTTP的请求的目的。</p>
+<section id="http-get-request">
+<h2>HTTP GET request<a class="headerlink" href="#http-get-request" title="此标题的永久链接"></a></h2>
+<p>以下示例显示了如何下载网页。HTTP使用端口80，您首先需要发送“GET”请求才能下载任何内容。作为请求的一部分，您需要指定要检索的页面。</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">socket实现HTTP get方法:</span><a class="headerlink" href="#id1" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># 定义http get函数</span>
+<span class="linenos"> 4</span><span class="k">def</span><span class="w"> </span><span class="nf">http_get</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="c1"># 解析url</span>
+<span class="linenos"> 6</span>    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="c1"># 将网站的域名解析成IP地址</span>
+<span class="linenos"> 8</span>    <span class="n">addr</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 9</span>    <span class="c1"># 构建socket</span>
+<span class="linenos">10</span>    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="linenos">11</span>    <span class="c1"># 连接IP地址</span>
+<span class="linenos">12</span>    <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="c1"># 以http get 请求格式发送</span>
+<span class="linenos">14</span>    <span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="s1">&#39;GET /</span><span class="si">%s</span><span class="s1"> HTTP/1.0</span><span class="se">\r\n</span><span class="s1">Host: </span><span class="si">%s</span><span class="se">\r\n\r\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">host</span><span class="p">),</span> <span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
+<span class="linenos">15</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">16</span>        <span class="c1"># socket接收</span>
+<span class="linenos">17</span>        <span class="n">data</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+<span class="linenos">19</span>            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="linenos">20</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">21</span>            <span class="k">break</span>
+<span class="linenos">22</span>    <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="c1"># 访问 http://micropython.org/ks/test.html</span>
+<span class="linenos">25</span><span class="n">http_get</span><span class="p">(</span><span class="s1">&#39;http://micropython.org/ks/test.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>在使用socket模块时，请先连接wifi，并且确保可以访问互联网。有关如何wifi连接，请查看上章节 <a class="reference internal" href="network_basics.html#network-base"><span class="std std-ref">配置wifi</span></a> 。</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">http_get('http://micropython.org/ks/test.html')</span></code> ,掌控板客户端向 <cite>micropython.org</cite> 服务端发送范围test路径资源的get请求。服务端收到请求后将返回数据给客户端。</p>
+<section id="urequest">
+<h3>urequest 模块<a class="headerlink" href="#urequest" title="此标题的永久链接"></a></h3>
+<p>上面是使用socket来实现http的get请求。我们可以使用 <a class="reference internal" href="../../../5_api/library/mPython/urequests.html#module-urequests" title="urequests: HTTP客户端的相关功能函数,提供各种HTTP请求方式"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urequests</span></code></a> 模块,里面已封装HTTP协议一些常用的请求方式,使用更为简便。</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">使用urequest模块,访问网页</span><a class="headerlink" href="#id2" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">urequests</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">my_wifi</span> <span class="o">=</span> <span class="n">wifi</span><span class="p">()</span>
+<span class="linenos"> 5</span><span class="n">my_wifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s1">&#39;ssid&#39;</span><span class="p">,</span><span class="s1">&#39;psw&#39;</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># http get方法</span>
+<span class="linenos"> 8</span><span class="n">r</span> <span class="o">=</span> <span class="n">urequests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://micropython.org/ks/test.html&#39;</span><span class="p">)</span>
+<span class="linenos"> 9</span><span class="c1"># 响应的内容</span>
+<span class="linenos">10</span><span class="n">r</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+<p>有关更多的 <a class="reference internal" href="../../../5_api/library/mPython/urequests.html#module-urequests" title="urequests: HTTP客户端的相关功能函数,提供各种HTTP请求方式"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urequests</span></code></a> 模块使用,请查阅该模块说明。</p>
+</section>
+</section>
+<section id="http-server">
+<h2>HTTP Server<a class="headerlink" href="#http-server" title="此标题的永久链接"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">以下示例，掌控板作为HTTP服务端，使用浏览器可以访问板载光线传感器:</span><a class="headerlink" href="#id3" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">network</span><span class="o">,</span><span class="nn">time</span>
+<span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># 实例化wifi类</span>
+<span class="linenos"> 6</span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span> 
+<span class="linenos"> 7</span><span class="c1"># WiFi连接，设置ssid 和password                          		</span>
+<span class="linenos"> 8</span><span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;psw&quot;</span><span class="p">)</span>   
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="linenos">12</span>    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="linenos">13</span>    <span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">mywifi</span><span class="o">.</span><span class="n">sta</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">80</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bind address info:&quot;</span><span class="p">,</span> <span class="n">ai</span><span class="p">)</span>
+<span class="linenos">15</span>    <span class="n">addr</span> <span class="o">=</span> <span class="n">ai</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">16</span>    <span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">17</span>    <span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Listening, connect your browser to http://</span><span class="si">%s</span><span class="s2">:80/&quot;</span> <span class="o">%</span><span class="n">addr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">20</span>	<span class="c1"># oled显示掌控板ip地址</span>
+<span class="linenos">21</span>    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s1">&#39;Connect your browser&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,)</span>                           
+<span class="linenos">22</span>    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s1">&#39;http://</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">addr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">0</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>
+<span class="linenos">23</span>    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">26</span>		<span class="n">res</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+<span class="linenos">27</span>		<span class="n">client_s</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">28</span>		<span class="n">client_addr</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">29</span>		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Client address:&quot;</span><span class="p">,</span> <span class="n">client_addr</span><span class="p">)</span>
+<span class="linenos">30</span>		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Client socket:&quot;</span><span class="p">,</span> <span class="n">client_s</span><span class="p">)</span>
+<span class="linenos">31</span>		<span class="n">req</span> <span class="o">=</span> <span class="n">client_s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+<span class="linenos">32</span>		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request:&quot;</span><span class="p">)</span>
+<span class="linenos">33</span>		<span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="linenos">34</span>		<span class="c1"># 状态行</span>
+<span class="linenos">35</span>		<span class="n">client_s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;HTTP/1.0 200 OK</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>	
+<span class="linenos">36</span>		<span class="c1"># 响应类型						</span>
+<span class="linenos">37</span>		<span class="n">client_s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Content-Type: text/html; charset=utf-8</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">38</span>		<span class="c1"># CRLF 回车换行</span>
+<span class="linenos">39</span>		<span class="n">client_s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">40</span>		<span class="c1"># 响应内容</span>
+<span class="linenos">41</span>		<span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;欢迎使用掌控板mPython！你的光线传感器值是:</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">light</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos">42</span>		<span class="n">client_s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="linenos">43</span>		<span class="c1"># 关闭socket</span>
+<span class="linenos">44</span>		<span class="n">client_s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>在REPL中运行main:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../../../_images/http_1.png" src="../../../_images/http_1.png" />
+<p>手机或笔记本电脑连接相同wifi，使其在同个局域网内。按打印提示或oled屏幕显示ip，使用浏览器访问掌控板主机IP地址。</p>
+<img alt="../../../_images/http_2.png" src="../../../_images/http_2.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="udp.html" class="btn btn-neutral float-left" title="套接字-UDP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="parsing_json.html" class="btn btn-neutral float-right" title="解析JSON" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

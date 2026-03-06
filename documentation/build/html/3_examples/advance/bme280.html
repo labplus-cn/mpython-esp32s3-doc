@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bme280 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">bme280</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/advance/bme280.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bme280">
+<h1>bme280<a class="headerlink" href="#bme280" title="此标题的永久链接"></a></h1>
+<p>BME280是一款集成温度、湿度、气压，三位一体的环境传感器。具有高精度，多功能，小尺寸等特点。该传感器非常适合各种天气/环境传感。
+精度为±3％，气压为±1 hPa绝对精度，温度精度为±1.0°C。由于压力随高度变化，压力测量结果非常好，您也可以将其用作±1米或更高精度的高度计！</p>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>掌控板预留BME280芯片位置未贴片,默认配置的掌控板是不带BME280环境传感器。如果你的掌控板没有BME280芯片,你可以使用BME280模块,通过拓展板连接到
+I2C引脚并入总线,即P19(SCL)、P20(SDA)。</p>
+</div>
+<section id="id1">
+<h2>获取温湿度、压强<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>获取bme280温湿度、气压并显示至OLED屏的示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>              <span class="c1"># 导入mpython模块</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                   <span class="c1"># 清屏</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;BME280&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;温度：</span><span class="si">%0.1f</span><span class="s2"> C&quot;</span> <span class="o">%</span> <span class="n">bme280</span><span class="o">.</span><span class="n">temperature</span><span class="p">(),</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>   <span class="c1"># 获取bme280温度,单位摄氏度</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;湿度：</span><span class="si">%0.1f</span><span class="s2"> </span><span class="si">%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">bme280</span><span class="o">.</span><span class="n">humidity</span><span class="p">(),</span><span class="mi">10</span><span class="p">,</span><span class="mi">34</span><span class="p">)</span>     <span class="c1"># 获取bme280湿度,单位%</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;压强：</span><span class="si">%0.1f</span><span class="s2"> KPa&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">bme280</span><span class="o">.</span><span class="n">pressure</span><span class="p">()</span><span class="o">/</span><span class="mi">1000</span><span class="p">),</span><span class="mi">10</span><span class="p">,</span><span class="mi">48</span><span class="p">)</span>  <span class="c1"># 获取bme280压强,单位Pa,此处我们显示除1000转至KPa</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>   <span class="c1"># 刷新屏幕</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>      <span class="c1"># 延时2秒</span>
+</pre></div>
+</div>
+<p>mpython内已实例化 <code class="docutils literal notranslate"><span class="pre">BME280</span></code> 类,直接使用 <code class="docutils literal notranslate"><span class="pre">bme280</span></code> 对象即可。获取温度值,使用 <code class="docutils literal notranslate"><span class="pre">temperature()</span></code> 函数,单位摄氏度。获取湿度值,使用
+<code class="docutils literal notranslate"><span class="pre">humidity()</span></code> ,单位%。获取大气压强,使用 <code class="docutils literal notranslate"><span class="pre">pressure()</span></code> ,单位Pa(帕)。</p>
+<a class="reference internal image-reference" href="../../_images/bme280.png"><img alt="../../_images/bme280.png" class="align-center" src="../../_images/bme280.png" style="width: 512.0px; height: 384.0px;" /></a>
+</section>
+<section id="id2">
+<h2>拓展应用<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>现在你已学会了如何获取BME280的气象数据了。进一步思考,如何利用气象数据和如何将它送至远端呢？你可结合之前学习的http Server供远程访问或者使用mqtt协议将数据推送送至服务器。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

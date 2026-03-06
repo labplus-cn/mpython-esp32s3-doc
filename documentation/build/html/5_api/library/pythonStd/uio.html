@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uio – 输入/输出流 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – 输入/输出流</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/uio.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-uio">
+<span id="uio"></span><h1><a class="reference internal" href="#module-uio" title="uio: 输入/输出流"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code></a> – 输入/输出流<a class="headerlink" href="#module-uio" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/io.html#module-io">io</a></p>
+<p>此模块包含其他类型的stream（类文件）对象和辅助函数。</p>
+<section id="id1">
+<h2>概念层次<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="attention admonition">
+<p class="admonition-title">与CPython的区别</p>
+<p>如本节所述，MicroPython中简化了流基类的概念层次结构。</p>
+</div>
+<p>（摘要）基本流类作为所有具体类行为的基础，在CPython中遵循少量二分法（成对分类）。
+在MicroPython中，它们稍微简化并隐含以实现更高的效率并节省资源。</p>
+<p>CPython中的一个重要的二分法是无缓冲流和缓冲流。在MicroPython中，所有流目前都是无缓冲的。这
+是因为所有现代操作系统，甚至许多RTOS和文件系统驱动程序都已经在他们身边执行缓冲。
+添加另一层缓冲是适得其反的（一个称为“bufferbloat”的问题）并占用宝贵的内存。
+请注意，仍然存在缓冲可能有用的情况，因此我们可能会在以后引入可选的缓冲支持。</p>
+<p>但是在CPython中，另一个重要的二分法与“缓冲”相关 - 这是一个流是否可能导致短读/写。
+短读取是指用户从流中请求例如10个字节，但是对于写入则类似。在CPython中，无缓冲流自动对短操作敏感，而缓冲是对它们的保证。
+无短读/写是一个重要的特性，因为它允许开发更简洁和有效的程序 - 这是MicroPython非常需要的东西。
+因此，虽然MicroPython不支持缓冲流，但它仍然提供非短操作流。
+是否会有短期操作取决于每个特定类别的需求，但强烈建议开发人员支持非短操作行为，原因如上所述。
+例如，MicroPython套接字保证避免短读/写。实际上，此时，核心中没有短操作流类的示例，并且一个是特定于端口的类，其中这种需求由硬件特性决定。</p>
+<p>在非阻塞流的情况下，非短操作行为变得棘手，阻塞与非阻塞行为是另一个CPython二分法，完全由MicroPython支持。
+非阻塞流永远不会等待数据到达或被写入 - 它们可能会读/写，或者表示缺少数据（或写入数据的能力）。
+显然，这与“非短操作”策略相冲突，实际上，在CPython中，非阻塞缓冲（以及此非短操作）流的情况令人费解 - 在某些地方，这种组合是禁止的，在某些情况下它是未定义的或只是没有记录，在某些情况下它会引发冗长的异常。这个问题在MicroPython中要简单得多：非阻塞流对于高效的异步操作很重要，因此这个属性在“no-short-ops”上占优势。所以，</p>
+<p>最后的二分法是二元对文本流。MicroPython当然支持这些，但在CPython中，文本流本身就是缓冲的，它们不在MicroPython中。
+（实际上，这是我们可能会引入缓冲支持的案例之一。）</p>
+<p>请注意，为了提高效率，MicroPython不提供与上面的层次结构相对应的抽象基类，并且不可能在纯Python中实现或子类化流类。</p>
+</section>
+<section id="id2">
+<h2>函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="uio.open">
+<span class="sig-prename descclassname"><span class="pre">uio.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uio.open" title="永久链接至目标"></a></dt>
+<dd><p>打开一个文件。内置 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 函数是此函数的别名。</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>类<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="uio.FileIO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uio.</span></span><span class="sig-name descname"><span class="pre">FileIO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uio.FileIO" title="永久链接至目标"></a></dt>
+<dd><p>这是以二进制模式打开的文件类型，例如使用 <code class="docutils literal notranslate"><span class="pre">open(name,</span> <span class="pre">&quot;rb&quot;)</span></code>
+您不应该直接实例化这个类。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="uio.TextIOWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uio.</span></span><span class="sig-name descname"><span class="pre">TextIOWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uio.TextIOWrapper" title="永久链接至目标"></a></dt>
+<dd><p>这是在文本模式下打开的文件类型，例如使用 <code class="docutils literal notranslate"><span class="pre">open(name,</span> <span class="pre">&quot;rt&quot;)</span></code> 。
+您不应该直接实例化这个类。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="uio.StringIO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uio.</span></span><span class="sig-name descname"><span class="pre">StringIO</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uio.StringIO" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="uio.BytesIO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uio.</span></span><span class="sig-name descname"><span class="pre">BytesIO</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uio.BytesIO" title="永久链接至目标"></a></dt>
+<dd><p>用于输入/输出的内存文件类对象。 <code class="docutils literal notranslate"><span class="pre">StringIO</span></code> 用于文本模式I / O（类似于使用“t”修饰符打开的普通文件）。<code class="docutils literal notranslate"><span class="pre">BytesIO</span></code> 用于二进制模式I ​​/ O（类似于使用“b”修饰符打开的普通文件）。可以使用字符串参数指定类文件对象的初始内容（应为普通字符串StringIO或字节对象BytesIO）。
+所有常见的文件的方法，如 <code class="docutils literal notranslate"><span class="pre">read()</span></code> ， <code class="docutils literal notranslate"><span class="pre">write()</span></code> ， <code class="docutils literal notranslate"><span class="pre">seek()</span></code> ， <code class="docutils literal notranslate"><span class="pre">flush()</span></code> ， <code class="docutils literal notranslate"><span class="pre">close()</span></code>  在这些对象上可用以下的方法:</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="uio.BytesIO.getvalue">
+<span class="sig-name descname"><span class="pre">getvalue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uio.BytesIO.getvalue" title="永久链接至目标"></a></dt>
+<dd><p>获取保存数据的底层缓冲区的当前内容。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uio.</span></span><span class="sig-name descname"><span class="pre">StringIO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alloc_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id4">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uio.</span></span><span class="sig-name descname"><span class="pre">BytesIO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alloc_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="永久链接至目标"></a></dt>
+<dd><p>创建一个空 <cite>StringIO</cite>/ <cite>BytesIO</cite> 对象，预分配以容纳 <em>alloc_size</em> 字节数。这意味着写入该字节数不会导致缓冲区的重新分配，因此不会出现内存不足或导致内存碎片的情况。
+这些构造函数是MicroPython扩展，建议仅用于特殊情况和系统级库，而不是最终用户应用程序。</p>
+<div class="attention admonition">
+<p class="admonition-title">Difference to CPython</p>
+<p>这些构造函数是MicroPython扩展。</p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

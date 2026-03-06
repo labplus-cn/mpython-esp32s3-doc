@@ -1,0 +1,158 @@
+:mod:`sys` -- 系统特定功能
+=======================================
+
+.. module:: sys
+   :synopsis: 系统特定功能
+
+
+sys模块中提供了与MicroPython运行环境有关的函数和变量。
+
+这个模块实现了相应 :term:`CPython` 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: `sys <https://docs.python.org/3.5/library/sys.html#module-sys>`_
+
+函数
+---------
+
+.. function:: exit(retval=0, /)
+
+   使用给定的退出代码终止当前程序。在此基础上，此功能提升为 ``SystemExit`` 。如果给出一个参数，则将其值作为参数给出 ``SystemExit``  。
+   在嵌入式端口（即除Windows和Unix之外的所有端口）上，未处理的SystemExit当前会导致MicroPython的软重置。
+
+.. function:: atexit(func)
+
+   注册func在终止时被调用。func必须是一个不接受参数的可调用对象，或者为None以禁用调用。atexit函数将返回此函数设置的先前值，初始值为None。
+
+   .. admonition:: 与CPython的区别
+      :class: attention
+
+      此函数是MicroPython扩展，旨在提供与CPython中atexit模块类似的功能。
+
+.. function:: print_exception(exc, file=sys.stdout, /)
+
+    通过回溯到类文件对象文件（或 ``sys.stdout`` 默认情况下）来打印异常。
+
+.. admonition:: 与CPython的区别
+    :class: attention
+
+    这是 ``traceback``  CPython模块中出现的函数的简化版本。与 ``traceback.print_exception()`` 此不同，此函数仅使用异常值而不是异常类型，异常值和回溯对象; file参数应该是位置的; 不支持其他参数。
+    ``traceback``  可以找到CPython兼容 模块 ``micropython-lib`` 。
+
+.. function:: settrace(tracefunc)
+
+   启用字节码执行的跟踪。有关详细信息，请参阅CPython文档。
+   此函数需要自定义MicroPython构建，因为它通常不存在于预构建的固件中（由于它会影响性能）。相关配置选项是MICROPY_PY_SYS_SETTRACE。
+
+常量
+---------
+
+.. data:: argv
+
+    当前程序启动的可变参数列表。
+
+.. data:: byteorder
+
+    系统的字节顺序（ ``little`` 或 ``big`` ）。
+
+.. data:: implementation
+
+    包含有关当前Python实现的信息的对象。对于MicroPython，它具有以下属性：
+
+    * *name* - 字符串 "micropython"
+    * *version* - 元组 (主要，次要，微，发布级别), e.g. (1, 22, 0, '')
+    * *_machine* - 描述底层机器的字符串
+    * *_mpy* - 支持的mpy文件格式版本（可选属性）
+    * *_build* - 可以帮助识别MicroPython构建配置的字符串
+    * *_thread* - 可选字符串属性，如果目标具有线程，则存在，值为 "GIL" 或 "unsafe"
+
+    此对象是区分MicroPython与其他Python实现的推荐方法（注意，在非常最小的端口中它仍然可能不存在）。
+    从版本1.22.0-preview开始，implementation.version中的第四个节点releaselevel要么是空字符串，要么是"preview"。
+    _build条目是在版本1.25.0中添加的，是一个用连字符分隔的元素集。未来可能会添加新元素，因此最好使用sys.implementation._build.split("-")来访问此字段。当前使用的元素是：
+
+    在unix、webassembly和windows端口上，第一个元素是变体名称，例如'standard'。
+    在微控制器目标上，第一个元素是板名称，第二个元素（如果存在）是板变体，例如'RPI_PICO2-RISCV'
+
+    _thread条目是在版本1.26.0中添加的，如果存在，则目标具有_thread模块。如果目标启用了GIL（全局解释器锁），则此属性为"GIL"。否则，该属性为"unsafe"，目标具有线程但未启用GIL，并且在线程之间共享的可变Python对象（如bytearray、list和dict）必须通过_thread.allocate_lock等锁显式保护。
+
+    .. admonition:: 与CPython的区别
+       :class: attention
+
+       CPython要求此对象具有更多属性，但MicroPython中实现了实际有用的最低限度。
+
+    示例::
+
+        >>> print(sys.implementation)
+        (name='micropython', version=(1, 9, 1))
+
+.. data:: maxsize
+
+    本机整数类型可以在当前平台上保存的最大值，或MicroPython整数类型可表示的最大值，如果它小于平台最大值
+    （对于没有长int支持的MicroPython端口的情况）。
+
+    此属性对于检测平台的“位数”（32位与64位等）非常有用。建议不要直接将此属性与某个值进行比较，而是计算其中的位数::
+
+        bits = 0
+        v = sys.maxsize
+        while v:
+            bits += 1
+            v >>= 1
+        if bits > 32:
+            # 64-bit (or more) platform
+            ...
+        else:
+            # 32-bit (or less) platform
+            # Note that on 32-bit platform, value of bits may be less than 32
+            # (e.g. 31) due to peculiarities described above, so use "> 16",
+            # "> 32", "> 64" style of comparisons.
+
+.. data:: modules
+
+    已载入模块字典。在某些移植版中，它可能不包含在内建模块中。
+
+.. data:: path
+
+    用于搜索导入模块的可变目录列表。
+
+    .. admonition:: 与CPython的区别
+       :class: attention
+
+       在MicroPython中，值为".frozen"的条目将指示导入应在搜索的该点搜索冻结模块。
+       如果未找到冻结模块，则搜索不会查找名为.frozen的目录，而是会继续使用sys.path中的下一个条目。
+
+.. data:: platform
+
+   MicroPython运行的平台。对于OS/RTOS端口，这通常是OS的标识符，例如"linux"。对于裸机端口，它是板的标识符，例如原始MicroPython参考板的"pyboard"。因此，它可以用来区分一个板与另一个板。
+   如果需要检查您的程序是否在MicroPython（与其他Python实现相比）上运行，请使用sys.implementation。
+
+.. data:: stderr
+
+  标准错误 ``stream``
+
+.. data:: stdin
+
+   标准输入 ``stream``
+
+.. data:: stdout
+
+   标准输出 ``stream``
+
+.. data:: ps1
+.. data:: ps2
+
+   可变属性，保存字符串，用于REPL提示符。默认值给出标准Python提示符 >>> 和 ...。
+
+.. data:: tracebacklimit
+
+   可变属性，保存一个整数值，是异常中存储的回溯条目的最大数量。设置为0以禁用添加回溯。默认为1000。
+   注意：并非所有端口都提供此功能。
+
+.. data:: version
+
+    返回 MicroPython 语言版本，字符串
+
+.. data:: version_info
+
+   返回 MicroPython 语言版本，整形元组
+
+   .. admonition:: 与CPython的区别
+      :class: attention
+
+      仅支持前三个版本号（主要、次要、微），并且只能通过索引引用它们，而不能通过名称。

@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uhashlib – 散列算法 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uhashlib</span></code> – 散列算法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/uhashlib.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-uhashlib">
+<span id="uhashlib"></span><h1><a class="reference internal" href="#module-uhashlib" title="uhashlib: 散列算法"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uhashlib</span></code></a> – 散列算法<a class="headerlink" href="#module-uhashlib" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/hashlib.html#module-hashlib">hashlib</a></p>
+<p>该模块实现二进制数据散列算法。可用算法的确切清单取决于board。在可以实现的算法中：</p>
+<ul class="simple">
+<li><p>SHA256 -  当前一代的现代哈希算法（SHA2系列）。它适用于加密安全目的。除非具有特定的代码大小限制，否则建议使用MicroPython内核和任何板提供此功能。</p></li>
+<li><p>SHA1 - 上一代算法。不建议用于新用途，但SHA1是许多Internet标准和现有应用程序的一部分，因此针对网络连接和互操作性的板将尝试提供此功能。</p></li>
+<li><p>MD5 - 遗留算法，不被认为是加密安全的。只有选定的电路板才能实现与传统应用的互操作性。</p></li>
+</ul>
+<section id="id1">
+<h2>构建对象<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="uhashlib.uhashlib.sha256">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uhashlib.</span></span><span class="sig-name descname"><span class="pre">sha256</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uhashlib.uhashlib.sha256" title="永久链接至目标"></a></dt>
+<dd><p>创建一个SHA256哈希对象，并可选择 <code class="docutils literal notranslate"><span class="pre">data</span></code> 输入其中。
+Create an SHA256 hasher object and optionally feed <code class="docutils literal notranslate"><span class="pre">data</span></code> into it.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="uhashlib.uhashlib.sha1">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uhashlib.</span></span><span class="sig-name descname"><span class="pre">sha1</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uhashlib.uhashlib.sha1" title="永久链接至目标"></a></dt>
+<dd><p>创建一个SHA1哈希对象，并可选择 <code class="docutils literal notranslate"><span class="pre">data</span></code> 将其输入其中。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="uhashlib.uhashlib.md5">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uhashlib.</span></span><span class="sig-name descname"><span class="pre">md5</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uhashlib.uhashlib.md5" title="永久链接至目标"></a></dt>
+<dd><p>创建MD5哈希对象并可选择 <code class="docutils literal notranslate"><span class="pre">data</span></code> 将其输入其中。</p>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="uhashlib.hash.update">
+<span class="sig-prename descclassname"><span class="pre">hash.</span></span><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uhashlib.hash.update" title="永久链接至目标"></a></dt>
+<dd><p>将更多的二进制数据馈入散列</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="uhashlib.hash.digest">
+<span class="sig-prename descclassname"><span class="pre">hash.</span></span><span class="sig-name descname"><span class="pre">digest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uhashlib.hash.digest" title="永久链接至目标"></a></dt>
+<dd><p>返回通过哈希传递的所有数据的散列，作为字节对象。调用此方法后，无法再将更多的数据送入散列。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="uhashlib.hash.hexdigest">
+<span class="sig-prename descclassname"><span class="pre">hash.</span></span><span class="sig-name descname"><span class="pre">hexdigest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uhashlib.hash.hexdigest" title="永久链接至目标"></a></dt>
+<dd><p>此方法未实现。使用 <code class="docutils literal notranslate"><span class="pre">ubinascii.hexlify(hash.digest())</span></code> 来达到类似的效果。</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

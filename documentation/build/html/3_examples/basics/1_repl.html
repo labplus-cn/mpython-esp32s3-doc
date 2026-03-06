@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REPL &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="引脚" href="io/index.html" />
+    <link rel="prev" title="3. 示例教程" href="../1_index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../1_index.html">3. 示例教程</a></li>
+      <li class="breadcrumb-item active">REPL</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/basics/1_repl.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="repl">
+<h1>REPL<a class="headerlink" href="#repl" title="此标题的永久链接"></a></h1>
+<p>使用MicroPython的一个主要的优点是交互式的REPL，REPL（read-evaluate-print loop）代表读取﹣求值﹣输出循环。
+REPL对于学习一门新的编程语言具有很大的帮助，因为它能对初学者写的程序立刻做出回应，这意味着你执行代码，并能马上查看结果，而无需经过先编译再上传的繁琐步骤。
+如果mPython掌控板要让REPL在Windows上工作，您需要先安装cp2104的串口驱动程序。</p>
+<section id="id1">
+<h2>串口连接<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>要通过USB-serial访问，您需要使用串口终端软件。在Windows上如kitty、xshell都是不错的选择。串口波特率设置为115200，就可以开始玩MicroPython了。</p>
+<p>通过串行端口建立连接后，您可以通过按几次Enter键来测试它是否正常工作，如果正常工作，您能看到Python REPL提示符，表示为 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> 。</p>
+</section>
+<section id="id2">
+<h2>使用 REPL<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>一旦有提示，您就可以开始尝试了！按Enter键后，可在提示符处键入任何内容。
+MicroPython将运行您输入的代码并打印结果（如果有的话）；如果输入的文本出错，则会打印出错误消息。</p>
+<p>尝试在提示符下输入以下内容:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello mPython&#39;</span><span class="p">)</span>
+<span class="go">hello mPython</span>
+</pre></div>
+</div>
+<p>请注意，您无需键入 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> 箭头，它们表示您应在此提示符后键入文本，其下一行是响应的内容。</p>
+<p>如果您已经了解了一些python，现在可以尝试一些基本命令。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<span class="go">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">12</span><span class="o">*</span><span class="mi">34</span>
+<span class="go">408</span>
+</pre></div>
+</div>
+<p>可以尝试在LCD显示屏上显示字符:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lv_gui</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gui</span><span class="o">.</span><span class="n">draw_label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">),</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="mh">0xffffff</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gui</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><code class="docutils literal notranslate"><span class="pre">gui.draw_label(text,</span> <span class="pre">row,</span> <span class="pre">color=0xffffff,</span> <span class="pre">wrap=False)</span></code>   <code class="docutils literal notranslate"><span class="pre">text</span></code> 为要显示的字符串
+然后用 <code class="docutils literal notranslate"><span class="pre">gui.update()</span></code> 刷新屏幕后，字符串即可显示在OLED显示屏上。您可以尝试在其他位置显示任意字符串。</p>
+</div>
+<section id="id3">
+<h3>行编辑<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>您可以使用向左和向右箭头键移动光标来编辑当前输入的行；按Home键或ctrl-A将光标移动到行的开头，按End或ctrl-E移动到行的末尾；Delete键或退格键用来删除。</p>
+</section>
+<section id="id4">
+<h3>输入历史记录<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<p>REPL会记住您输入的一定数量的前几行文本（ESP32上最多8行）。
+要调用上一行，请使用向上和向下箭头键。</p>
+</section>
+<section id="tab">
+<h3>Tab键<a class="headerlink" href="#tab" title="此标题的永久链接"></a></h3>
+<p>Tab键可以查看模块中所有成员列表。这对于找出模块或对象具有的函数和方法非常有用。
+假设您在上面的例子中导入了machine然后键入 <code class="docutils literal notranslate"><span class="pre">.</span></code> 再按Tab键以查看machine模块所有成员列表:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span><span class="o">.</span>
+<span class="go">__class__       __name__        ADC             DAC</span>
+<span class="go">DEEPSLEEP       DEEPSLEEP_RESET                 EXT0_WAKE</span>
+<span class="go">EXT1_WAKE       HARD_RESET      I2C             PIN_WAKE</span>
+<span class="go">PWM             PWRON_RESET     Pin             RTC</span>
+<span class="go">SLEEP           SOFT_RESET      SPI             Signal</span>
+<span class="go">TIMER_WAKE      TOUCHPAD_WAKE   Timer           TouchPad</span>
+<span class="go">UART            ULP_WAKE        WDT             WDT_RESET</span>
+<span class="go">deepsleep       disable_irq     enable_irq      freq</span>
+<span class="go">idle            mem16           mem32           mem8</span>
+<span class="go">reset           reset_cause     sleep           time_pulse_us</span>
+<span class="go">unique_id       wake_reason</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>行继续和自动缩进<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<p>您键入的某些内容将需要“继续”，也就是说，需要更多行文本才能生成正确的Python语句。在这种情况下，
+提示符将更改为``…``并且光标将自动缩进正确的数量，以便您可以立即开始键入下一行。
+通过定义以下函数来尝试此操作:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">toggle</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+<span class="gp">...</span>
+<span class="gp">...</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>在上面，您需要连续按三次Enter键才能完成复合语句（即三条线上只有点）。完成复合语句的另一种方法是按退格键到达行的开头，然后按Enter键。 （如果您输错了并且想要退出，那么按ctrl-C，所有行都将被忽略。）</p>
+<p>您刚刚定义函数功能为翻转引脚电平。您之前创建的pin对象应该仍然存在
+（如果没有，则需重新创建它），您可以使用以下命令翻转LED:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">toggle</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>现在让我们在一个循环中翻转LED（如果您没有LED，那么您可以打印一些文本而不是调用切换，看看效果）：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">toggle</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">...</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>这将以1Hz（半秒开，半秒关）翻转LED。要停止切换按 <code class="docutils literal notranslate"><span class="pre">ctrl-C</span></code> ，这将引发键盘中断异常并退出循环。</p>
+</section>
+<section id="id6">
+<h3>粘贴模式<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<p>按 <code class="docutils literal notranslate"><span class="pre">ctrl-E</span></code> 将进入特殊粘贴模式，您可将一大块文本复制并粘贴到REPL中。如果按ctrl-E，您将看到粘贴模式提示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paste</span> <span class="n">mode</span><span class="p">;</span> <span class="n">Ctrl</span><span class="o">-</span><span class="n">C</span> <span class="n">to</span> <span class="n">cancel</span><span class="p">,</span> <span class="n">Ctrl</span><span class="o">-</span><span class="n">D</span> <span class="n">to</span> <span class="n">finish</span>
+<span class="o">===</span>
+</pre></div>
+</div>
+<p>然后，您可以粘贴（或键入）您的文本。请注意，没有任何特殊键或命令在粘贴模式下工作（例如Tab或退格）
+，它们只是按原样接受。按 <code class="docutils literal notranslate"><span class="pre">ctrl-D</span></code> 完成输入文本并执行。</p>
+</section>
+<section id="id7">
+<h3>其他控制命令<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>还有其他四个控制命令：</p>
+<ul class="simple">
+<li><p>空白行上的Ctrl-A将进入原始REPL模式。这类似于永久粘贴模式，除了不回显字符。</p></li>
+<li><p>空白处的Ctrl-B转到正常的REPL模式。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl-C</span></code> 取消任何输入，或中断当前运行的代码。</p></li>
+<li><p>空白行上的 <code class="docutils literal notranslate"><span class="pre">Ctrl-D</span></code> 将执行软重启。</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../1_index.html" class="btn btn-neutral float-left" title="3. 示例教程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="io/index.html" class="btn btn-neutral float-right" title="引脚" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

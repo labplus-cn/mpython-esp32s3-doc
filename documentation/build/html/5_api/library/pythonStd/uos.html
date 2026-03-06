@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>os – 基本的操作系统 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/uos.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-os">
+<span id="os"></span><h1><a class="reference internal" href="#module-os" title="os: 操作系统"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> – 基本的操作系统<a class="headerlink" href="#module-os" title="此标题的永久链接"></a></h1>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/os.html#module-os">os</a></p>
+<p>该uos模块包含文件系统访问和安装，终端重定向和复制 <code class="docutils literal notranslate"><span class="pre">uname</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">urandom</span></code> 功能的功能。</p>
+<section id="id2">
+<h2>一般功能<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.uname">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">uname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#os.uname" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>返回一个元组(可能是一个命名元组)，其中包含关于底层和/或其操作系统的信息。元组有五个字段，每个字段的顺序如下:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sysname</span></code> – 底层系统的名称</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nodename</span></code> – 网络名称（和sysname相同）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">release</span></code> – 底层系统的版本</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version</span></code> – MiroPython版本和构建日期</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">machine</span></code> –  底层硬件的标识符(eg board, CPU)</p></li>
+</ul>
+</div></blockquote>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">uname</span><span class="p">()</span>
+<span class="go">(sysname=&#39;esp32&#39;, nodename=&#39;esp32&#39;, release=&#39;1.9.1&#39;, version=&#39;v1.9.1-224-g83d3f3f-dirty on 2017-12-12&#39;, machine=&#39;ESP32 module with ESP32&#39;)</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.urandom">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">urandom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.urandom" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>返回一个带有n个随机字节的字节对象。它是由硬件随机数生成器生成。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="go">b&#39;f\x92\x85t28\xa1\xf0\xaf3\xf5\xd9\xcdx\xc3\n\xedm\xf8\xb7&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>文件系统访问<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.getcwd">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">getcwd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#os.getcwd" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>获取当前目录。</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.chdir">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">chdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.chdir" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>更改当前目录。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="go">&#39;/&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;./lib&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="go">&#39;/lib&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="go">&#39;/&#39;</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.ilistdir">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">ilistdir</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#os.ilistdir" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>此函数返回一个迭代器，然后生成与列出的目录中的条目对应的元组。没有参数，它列出了当前目录，否则它列出了dir给出的目录。</p>
+<p>The 3-tuples have the form <em>(name, type, inode)</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>name</em> 是一个字符串（如果dir是一个字节对象，则为字节），并且是条目的名称;</p></li>
+<li><p><em>type</em> 是一个整数，指定条目的类型，目录为0x4000，常规文件为0x8000;</p></li>
+<li><p><em>inode</em> 是对应于文件inode的整数，对于没有这种概念的文件系统可以是0。</p></li>
+</ul>
+</div></blockquote>
+<p>目前条目的含义目前尚未定义。</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.listdir">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">listdir</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#os.listdir" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>如果没有参数，请列出当前目录。否则列出给定目录。</p>
+<dl>
+<dt>示例::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="go">[&#39;boot.py&#39;, &#39;lib&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./lib&quot;</span><span class="p">)</span>
+<span class="go">[&#39;test.py&#39;]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.mkdir">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">mkdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.mkdir" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>创建目录，path为创建目录的路径。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="go">[&#39;boot.py&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;./lib&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="go">[&#39;boot.py&#39;, &#39;lib&#39;]</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.rmdir">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">rmdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.rmdir" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>删除目录。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="go">[&#39;boot.py&#39;, &#39;lib&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s2">&quot;./lib&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="go">[&#39;boot.py&#39;]</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.remove">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.remove" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>删除文件。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./lib&quot;</span><span class="p">)</span>
+<span class="go">[&#39;test.py&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;./lib/test.py&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./lib&quot;</span><span class="p">)</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.rename">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">rename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.rename" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>重命名文件。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="go">[&#39;test.py&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;test.py&quot;</span><span class="p">,</span> <span class="s2">&quot;mytest.py&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="go">[&#39;mytest.py&#39;]</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.stat">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">stat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.stat" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>获取文件或目录的状态。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="s2">&quot;./lib&quot;</span><span class="p">)</span>
+<span class="go">(16384, 0, 0, 0, 0, 0, 0, 0, 0, 0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="s2">&quot;./lib/test.py&quot;</span><span class="p">)</span>
+<span class="go">(32768, 0, 0, 0, 0, 0, 1, 0, 0, 0)</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.statvfs">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">statvfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.statvfs" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>获取文件系统的状态。</p>
+<p>返回包含以下顺序的文件系统信息的元组：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f_bsize</span></code> – 文件系统块大小</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_frsize</span></code> – 片段大小</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_blocks</span></code> –  f_frsize单位的fs大小</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_bfree</span></code> – free blocks数量</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_bavail</span></code> – number of free blocks for unpriviliged users</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_files</span></code> – inodes数量</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_ffree</span></code> – number of free inodes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_favail</span></code> – number of free inodes for unpriviliged users</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_flag</span></code> – mount flags</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_namemax</span></code> – 最大文件名长度</p></li>
+</ul>
+</div></blockquote>
+<p>相关信息节点参数： <code class="docutils literal notranslate"><span class="pre">f_files</span></code> ，<code class="docutils literal notranslate"><span class="pre">f_ffree</span></code> ，<code class="docutils literal notranslate"><span class="pre">f_avail</span></code> 和 <code class="docutils literal notranslate"><span class="pre">f_flags</span></code> 参数可能会返回0。</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.sync">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">sync</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#os.sync" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>同步所有文件系统。</p>
+</section>
+<section id="id4">
+<h2>终端重定向和复制<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.dupterm">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">dupterm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.dupterm" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<p>复制或切换给定类似 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 对象上的MicroPython终端（REPL）。所述 <cite>stream_object</cite> 参数必须是一个本地流对象，或从导出 <code class="docutils literal notranslate"><span class="pre">uio.IOBase</span></code> 并实施 <code class="docutils literal notranslate"><span class="pre">readinto()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 方法。流应处于非阻塞模式，如果没有可用于读取的数据， <code class="docutils literal notranslate"><span class="pre">readinto()</span></code> 则应返回 <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
+<p>调用此函数后，将在此流上重复所有终端输出，并且流上可用的任何输入都将传递到终端输入。</p>
+<p>所述索引参数应该是哪个复制时隙设置一个非负整数，并且指定。给定端口可以实现多个槽（槽0将始终可用），并且在这种情况下，终端输入和输出在所有设置的槽上复制。</p>
+<p>如果 <code class="docutils literal notranslate"><span class="pre">None</span></code> 作为 <cite>stream_object</cite> 传递，则在索引给出的槽上取消复制。</p>
+<p>该函数返回给定槽中的前一个类似流的对象。</p>
+</section>
+<section id="id5">
+<h2>文件系统安装<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>提供虚拟文件系统（VFS）以及在此VFS中安装多个“真实”文件系统的功能。文件系统对象可以安装在VFS的根目录中，也可以安装在根目录中的子目录中。
+这允许Python程序看到的文件系统的动态和灵活配置。提供 <code class="docutils literal notranslate"><span class="pre">mount()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">umount()</span></code> 功能，以及可能由VFS类表示的各种文件系统实现。</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.mount">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">mount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fsobj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mount_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">readonly</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.mount" title="永久链接至目标"></a></dt>
+<dd><p>将文件系统对象 <cite>fsobj</cite> 挂载到mount_point字符串指定的VFS中的位置。
+fsobj可以是具有 <code class="docutils literal notranslate"><span class="pre">mount()</span></code> 方法或块设备的VFS对象。如果它是块设备，则会自动检测文件系统类型（如果未识别文件系统，则会引发异常）。
+<cite>mount_point</cite> 可以是在根目录下’/’挂载 <cite>fsobj</cite> ，也’/&lt;name&gt;’可以将它挂载在根目录下的子目录中。</p>
+</dd></dl>
+
+<p>如果是 <cite>readonly</cite> 为 <cite>True</cite> 则文件系统以只读方式挂载。</p>
+<p>在挂载过程中，将 <code class="docutils literal notranslate"><span class="pre">mount()</span></code> 在文件系统对象上调用该方法。</p>
+<p><code class="docutils literal notranslate"><span class="pre">OSError(EPERM)</span></code> 如果 <cite>mount_point</cite> 已经安装，则会引发。</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="os.umount">
+<span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">umount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mount_point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.umount" title="永久链接至目标"></a></dt>
+<dd><p>卸载文件系统。<cite>mount_point</cite> 可以是命名安装位置的字符串，也可以是先前安装的文件系统对象。在卸载过程中，将 <cite>umount()</cite> 在文件系统对象上调用该方法。</p>
+</dd></dl>
+
+<p><code class="docutils literal notranslate"><span class="pre">OSError(EINVAL)</span></code> 如果找不到 <cite>mount_point</cite> ，则会引发。</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="os.VfsFat">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">os.</span></span><span class="sig-name descname"><span class="pre">VfsFat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block_dev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.VfsFat" title="永久链接至目标"></a></dt>
+<dd><p>创建使用 <cite>FAT</cite> 文件系统格式的文件系统对象。FAT文件系统的存储由 <cite>block_dev</cite> 提供。可以使用此构造函数创建的对象 <code class="docutils literal notranslate"><span class="pre">mount()</span></code> 。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="os.VfsFat.mkfs">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mkfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block_dev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.VfsFat.mkfs" title="永久链接至目标"></a></dt>
+<dd><p>在 <cite>block_dev</cite> 上构建FAT文件系统。</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yeelight &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="贝壳物联" href="bigiot.html" />
+    <link rel="prev" title="MQTT" href="mqtt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">3. 示例教程</a></li>
+          <li class="breadcrumb-item"><a href="index.html">物联网基础知识</a></li>
+      <li class="breadcrumb-item active">Yeelight</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/3_examples/advance/iot/yeelight.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="yeelight">
+<h1>Yeelight<a class="headerlink" href="#yeelight" title="此标题的永久链接"></a></h1>
+<p><a class="reference external" href="https://www.yeelight.com">Yeelight</a> 拥有完整的智能家居照明产品线，产品系列辐射家居照明系列、台上照明系列、氛围照明系列以及智能控制系列。集前沿技术和至美设计于一体是Yeelight一贯的追求。
+AI技术、BLE MESH技术、全屋智能照明技术均旗下产品进行广泛应用，全线WiFi产品支持智能语音控制，灯光变化，尽在言语之间。</p>
+<section id="id2">
+<h2>局域网控制<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>Yeelight 支持Google Assistant 和 Amazon Alexa 智能语音控制。还支持国内少有支持的IFTTT。它可以社交媒体、智能硬件等各类网络服务更好的联动。后续我们会讲解IFTTT的有关应用。
+除此外,Yeelight还针对技术爱好者推出,第三方控制协议,可实现局域网内的个性化的控制。本文讲解的掌控板控制Yeelight智能照明设备就是用到该协议。</p>
+<p>Yeelight第三方控制协议：<a class="reference external" href="https://www.yeelight.com/download/Yeelight_Inter-Operation_Spec.pdf">https://www.yeelight.com/download/Yeelight_Inter-Operation_Spec.pdf</a></p>
+<figure class="align-center" id="id9">
+<a class="reference external image-reference" href="https://www.yeelight.com/zh_CN/developer"><img alt="../../../_images/yeelight_lan.png" src="../../../_images/yeelight_lan.png" /></a>
+<figcaption>
+<p><span class="caption-text">Yeelight局域网控制</span><a class="headerlink" href="#id9" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<section id="id3">
+<h3>准备<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<ul class="simple">
+<li><p>首先我们要有个Yeelight智能照明设备,按Yeelight官方声明,市面上在售的所有WiFi照明设备以及后续推出的WiFi产品都会支持局域网控制协议。本人较为推荐Yeelight LED灯泡(彩光版),即经济实惠又能控制颜色。</p></li>
+</ul>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="../../../_images/yeelight_led.png"><img alt="../../../_images/yeelight_led.png" src="../../../_images/yeelight_led.png" style="width: 240.0px; height: 240.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Yeelight LED灯泡(彩光版)</span><a class="headerlink" href="#id10" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>YeeLight智能灯泡在使用前，须使用YeeLight APP先配置连接好wifi，并将 “局域网控制” 功能打开。</p></li>
+</ul>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="../../../_images/yeelight_app.gif"><img alt="../../../_images/yeelight_app.gif" src="../../../_images/yeelight_app.gif" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">Yeelight配置过程</span><a class="headerlink" href="#id11" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>掌控板提供 <code class="docutils literal notranslate"><span class="pre">yeelight</span></code> 驱动库,该库可在 <a class="reference external" href="https://github.com/labplus-cn/awesome-mpython/tree/master/library/yeelight">awesome-mpython/libary/yeelight</a> 获取。里面有更详细的 <code class="docutils literal notranslate"><span class="pre">yeelight</span></code> 模块的API说明。 <code class="docutils literal notranslate"><span class="pre">yeelight.py</span></code> 下载至掌控板的文件系统。</p></li>
+<li><p>掌控板连接到Yeelight相同的局域网内。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>编程<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<section id="id5">
+<h4>发现灯泡<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h4>
+<p>掌控板和Yeelight灯泡在同局域网内后,我们要控制灯泡,首先需要知道该灯泡的IP地址,我们可以使用 <code class="docutils literal notranslate"><span class="pre">discover_bulbs()</span></code> 函数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>                   <span class="c1"># 导入mpython模块</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yeelight</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>                  <span class="c1"># 导入yeelight模块</span>
+
+<span class="n">my_wifi</span> <span class="o">=</span> <span class="n">wifi</span><span class="p">()</span>                        <span class="c1"># 连接到与YeeLight相同的局域网内</span>
+<span class="n">my_wifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+
+<span class="n">discover_bulbs</span><span class="p">()</span>                        <span class="c1"># 发现局域网内YeeLight的设备信息</span>
+</pre></div>
+</div>
+<p>网内的Yeelight灯泡响应并返回包含bulbs属性的字典:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">discover_bulbs</span><span class="p">()</span>
+<span class="go">[{&#39;ip&#39;: &#39;192.168.0.8&#39;, &#39;capabilities&#39;: {&#39;rgb&#39;: &#39;16711680&#39;, &#39;bright&#39;: &#39;100&#39;, &#39;support&#39;: &#39;get_prop set_default set_power toggle set_bright start_cf stop_cf set_scene cron_add cron_get cron_del set_ct_abx set_rgb set_hsv set_adjust adjust_bright adjust_ct adjust_color set_music set&#39;, &#39;sat&#39;: &#39;100&#39;, &#39;power&#39;: &#39;off&#39;, &#39;id&#39;: &#39;0x0000000007e7544d&#39;, &#39;name&#39;: &#39;&#39;, &#39;fw_ver&#39;: &#39;26&#39;, &#39;color_mode&#39;: &#39;2&#39;, &#39;hue&#39;: &#39;359&#39;, &#39;ct&#39;: &#39;3500&#39;, &#39;model&#39;: &#39;color&#39;}, &#39;port&#39;: &#39;55443&#39;}]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">discover_bulbs()</span></code> 函数,可获取网内Yeelight设备的属性。从上述返回的来看,该灯泡的IP地址为 <code class="docutils literal notranslate"><span class="pre">192.168.0.8</span></code> 。</p>
+</section>
+<section id="id6">
+<h4>开关控制<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h4>
+<p>知道IP地址后,我们构建 <code class="docutils literal notranslate"><span class="pre">Bulb</span></code> 对象,对灯泡开关控制:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bulb</span><span class="o">=</span><span class="n">Bulb</span><span class="p">(</span><span class="s2">&quot;192.168.0.8&quot;</span><span class="p">)</span>    <span class="c1"># 构建对象</span>
+<span class="n">bulb</span><span class="o">.</span><span class="n">turn_on</span><span class="p">()</span>              <span class="c1"># 开灯指令</span>
+<span class="n">bulb</span><span class="o">.</span><span class="n">turn_off</span><span class="p">()</span>             <span class="c1"># 关灯指令</span>
+</pre></div>
+</div>
+<p>除了 <code class="docutils literal notranslate"><span class="pre">turn_on()</span></code> 、<code class="docutils literal notranslate"><span class="pre">turn_off()</span></code> 还可使用 <code class="docutils literal notranslate"><span class="pre">toggle()</span></code> 反转状态。</p>
+</section>
+<section id="id7">
+<h4>亮度调节<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bulb</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">set_brightness(brightness)</span></code> , <code class="docutils literal notranslate"><span class="pre">brightness</span></code> 参数为亮度值,可调范围0~100 。</p>
+</section>
+<section id="id8">
+<h4>设置颜色<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bulb</span><span class="o">.</span><span class="n">set_rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>           <span class="c1"># 通过RGB设置灯泡颜色</span>
+<span class="n">bulb</span><span class="o">.</span><span class="n">set_hsv</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>           <span class="c1"># 通过HSV设置灯泡颜色</span>
+<span class="n">bulb</span><span class="o">.</span><span class="n">set_color_temp</span><span class="p">(</span><span class="mi">1700</span><span class="p">)</span>       <span class="c1"># 设置灯泡色温</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">yeelight</span></code> 模块提供 <code class="docutils literal notranslate"><span class="pre">set_rgb(red,</span> <span class="pre">green,</span> <span class="pre">blue)</span></code> 和 <code class="docutils literal notranslate"><span class="pre">set_hsv(hue,</span> <span class="pre">saturation)</span></code> 两个函数。”RGB” 和”HSV” 两种颜色模型来设置灯泡灯光颜色。RGB颜色模型比较常用,相信大家并不陌生。通过对红(R)、绿(G)、蓝(B)三个颜色通道的变化以及它们相互之间的叠加来得到各式各样的颜色。
+HSV（Hue Saturation Value）颜色模型：<code class="docutils literal notranslate"><span class="pre">hue</span></code> 色调,用角度度量，取值范围为0～359，从红色开始按逆时针方向计算，红色为0°，绿色为120°,蓝色为240°。<code class="docutils literal notranslate"><span class="pre">saturation</span></code> 饱和度,表示颜色接近光谱色的程度。颜色的饱和度也就愈高。饱和度高，颜色则深而艳。范围0~100。
+Value亮度参数,未提供支持。只需设置 <code class="docutils literal notranslate"><span class="pre">hue</span></code> 、<code class="docutils literal notranslate"><span class="pre">saturation</span></code> 参数即可。在做些彩虹效果,颜色过渡时,HSV更为自然。</p>
+<p>还可以使用 <code class="docutils literal notranslate"><span class="pre">set_color_temp(degrees)</span></code> 函数设置灯泡色温, <code class="docutils literal notranslate"><span class="pre">degrees</span></code> 色温参数,范围1700~6500。</p>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="../../../_images/hsv.png"><img alt="../../../_images/hsv.png" src="../../../_images/hsv.png" style="width: 380.79999999999995px; height: 214.89999999999998px;" /></a>
+<figcaption>
+<p><span class="caption-text">Yeelight HSV颜色模型</span><a class="headerlink" href="#id12" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<hr class="docutils" />
+<figure class="align-center" id="id13">
+<a class="reference internal image-reference" href="../../../_images/yeelight_show.gif"><img alt="../../../_images/yeelight_show.gif" src="../../../_images/yeelight_show.gif" style="width: 640.0px; height: 368.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">掌控板控制Yeelight</span><a class="headerlink" href="#id13" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>Yeelight,目前WiFi智能设备最多支持4个同时TCP连接。连接尝试将被拒绝。对于每个连接，都有一个命令消息配额限制，
+也就是每分钟60个指令。所有LAN也有一个总配额限制,144。</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="mqtt.html" class="btn btn-neutral float-left" title="MQTT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="bigiot.html" class="btn btn-neutral float-right" title="贝壳物联" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

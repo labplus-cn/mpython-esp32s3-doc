@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>串口 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="WiFi" href="13_wifi.html" />
+    <link rel="prev" title="解析JSON" href="network/parsing_json.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../1_index.html">3. 示例教程</a></li>
+      <li class="breadcrumb-item active">串口</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/basics/12_uart.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>串口<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2>串口基本概念<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<section id="id3">
+<h3>串口原理<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>串口通信的英文缩写是UART(Universal Asynchronous Receiver Transmitter) 全称是通用异步收发器。
+听起来很高深的概念，其实就如下图，两个设备，一根线串起来，发送方在线的一头将数据转换为二进制序列，用高低电平按照顺序依次发送01信号，接收方在线的另一头读取这根信号线上的高低电平信号，对应转化为二进制的01序列。
+异步收发指的就是全双工传输，即发送数据的同时也能够接收数据，两者同步进行，就如同我们的电话一样，我们说话的同时也可以听到对方的声音。</p>
+<p>每当我们想要在PC和MCU之间或两个MCU之间进行通信时，最简单的方法就是使用UART。在两个UART之间传输数据只需要两根线。数据从发送UART的Tx引脚流向接收UART的Rx引脚。</p>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="../../_images/serial-two-wire.png"><img alt="../../_images/serial-two-wire.png" src="../../_images/serial-two-wire.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">串口通信原理示意</span><a class="headerlink" href="#id9" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id4">
+<h3>波特率<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<p>波特率(bandrate)是指，每秒钟我们的串口通信所传输的bit个数，通俗的讲就是在一秒内能够发送多少个1和0的二进制数。比如，波特率是9600，就意味着1S中可以发送9600个0和1组成的二级制序列。</p>
+</section>
+<section id="tx-rx">
+<h3>发送端 TX 与 接收端 RX<a class="headerlink" href="#tx-rx" title="此标题的永久链接"></a></h3>
+<p>UART通信基本上使用2个引脚进行数据传输。Tx-用于发送数据的发送数据的引脚，Rx-用于获取数据的接收数据的引脚。两个串口进行通信的话， 最少需要三根线相连。</p>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="../../_images/uart_pin.png"><img alt="../../_images/uart_pin.png" src="../../_images/uart_pin.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-text">RX 代表信息接收端，TX 代表信息发送端</span><a class="headerlink" href="#id10" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>如果是连接些模块，模块并没有自主供电，还须连接VCC！</p>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>串口操作<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>下文通过掌控板与blue:bit蓝牙从机模块的串口通信，最终实现掌控板蓝牙的通讯功能。</p>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="http://wiki.labplus.cn/images/a/a2/黑色传感器最终版12.20-11.png"><img alt="http://wiki.labplus.cn/images/a/a2/黑色传感器最终版12.20-11.png" src="http://wiki.labplus.cn/images/a/a2/黑色传感器最终版12.20-11.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-text">blue:bit 蓝牙模块</span><a class="headerlink" href="#id11" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<section id="uart">
+<h3>构建UART<a class="headerlink" href="#uart" title="此标题的永久链接"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>                            <span class="c1"># 导入mpython所有对象</span>
+
+<span class="n">uart</span><span class="o">=</span><span class="n">UART</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">baudrate</span><span class="o">=</span><span class="mi">9600</span><span class="p">,</span><span class="n">tx</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">P15</span><span class="p">,</span><span class="n">rx</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">P16</span><span class="p">)</span> <span class="c1"># 构建UART对象，设置波特率为9600，TX、RX 引脚分别为P15、P16</span>
+</pre></div>
+</div>
+<p>HC06(blue:bit 蓝牙从机模块)默认出厂的波特率为9600。所以我们在此处构建UART时，波特设为9600，后面才能通讯成功。请根据自己需要的连接串口的波特率自行设置。</p>
+<p><code class="docutils literal notranslate"><span class="pre">UART(id,</span> <span class="pre">baudrate,</span> <span class="pre">bits,</span> <span class="pre">parity,</span> <span class="pre">stop,</span> <span class="pre">tx,</span> <span class="pre">rx,</span> <span class="pre">rts,</span> <span class="pre">cts,</span> <span class="pre">timeout)</span></code> , <code class="docutils literal notranslate"><span class="pre">id</span></code> 为串口号，可设值为1~2.掌控板支持3组串口。0用于REPL。<code class="docutils literal notranslate"><span class="pre">baudrate</span></code> 参数
+为波特率，<code class="docutils literal notranslate"><span class="pre">tx</span></code> 参数为映射发送引脚，<code class="docutils literal notranslate"><span class="pre">rx</span></code> 参数为映射接收引脚。所有引脚均可以作为串口的输入RX，除 <code class="docutils literal notranslate"><span class="pre">P2</span></code>、<code class="docutils literal notranslate"><span class="pre">P3</span></code> 、<code class="docutils literal notranslate"><span class="pre">P4</span></code> 、<code class="docutils literal notranslate"><span class="pre">P10</span></code> 只能作为输入，其余所有的引脚理论上都可以作为输出TX。 一般只需设置上述参数即可，其他参数会保持默认参数。如需了解更多UART的参数，请查阅 <a class="reference internal" href="../../5_api/library/micropython/machine/machine.UART.html#machine-uart"><span class="std std-ref">machine.UART</span></a> 章节。</p>
+</section>
+<section id="id6">
+<h3>串口发送<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<p>你可以使用带蓝牙功能的电脑或手机下载蓝牙调试助手，配对蓝牙模块。这样就可以实现掌控板和电脑、手机的通讯。</p>
+<p>蓝牙连接配对成功后，往串口发送字节数据:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;hello,world!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这时，用串口助手看下，是否接受到掌控板发过来的数据。<code class="docutils literal notranslate"><span class="pre">uart.write(buf)</span></code> 函数为向串口写入（发送）字节数据，返回数据的长度。</p>
+</section>
+<section id="id7">
+<h3>串口读取<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>掌控板接收串口数据，并将数据显示至OLED屏幕上:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>                               <span class="c1"># 导入mpython所有对象</span>
+
+<span class="n">uart</span><span class="o">=</span><span class="n">UART</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">baudrate</span><span class="o">=</span><span class="mi">9600</span><span class="p">,</span><span class="n">tx</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">P15</span><span class="p">,</span><span class="n">rx</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">P16</span><span class="p">,</span><span class="n">timeout</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>    <span class="c1"># 实例UART，设置波特率9600，TX、RX映射引脚为P15、P16，超时设为200ms</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">uart</span><span class="o">.</span><span class="n">any</span><span class="p">()):</span>                     <span class="c1"># 当串口有可读数据时</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">uart</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>          <span class="c1"># 从串口读取一行数据</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;received:&quot;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>         <span class="c1"># 打印接收到的数据</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;接收:</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>     <span class="c1"># 注意需要将字节码解码为字符串</span>
+</pre></div>
+</div>
+<p>这时你可以通过串口助手向串口发送数据，当掌控板接收到串口数据后，打印并显示至OLED屏。在while循环中,轮询使用 <code class="docutils literal notranslate"><span class="pre">uart.any()</span></code> 判断串口中是否有可读数据，当有数据时，用
+<code class="docutils literal notranslate"><span class="pre">uart.readline()</span></code> 读取一行数据。需要注意的是，串口接收到的是字节类型，如果是传至OLED显示，需要用 <code class="docutils literal notranslate"><span class="pre">decode()</span></code> 将字节转为字符串。</p>
+<p>除了 <code class="docutils literal notranslate"><span class="pre">UART.readline()</span></code> 读取数据，还可以使用 <code class="docutils literal notranslate"><span class="pre">UART.read(length)</span></code> 从串口读取指定长度的数据。</p>
+</section>
+</section>
+<section id="id8">
+<h2>拓展<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
+<p>学会了如何使用串口后，你就可以实现掌控板与其他MCU(Arduino)、电脑/手机、电子模块间的通讯。应用更为广泛，您可发挥你想象，如何用好串口，做出更有趣的东西！</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="network/parsing_json.html" class="btn btn-neutral float-left" title="解析JSON" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="13_wifi.html" class="btn btn-neutral float-right" title="WiFi" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>音乐 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="按键" href="2_buttons.html" />
+    <link rel="prev" title="RGB LED" href="5_neopixel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../1_index.html">3. 示例教程</a></li>
+      <li class="breadcrumb-item active">音乐</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/basics/4_buzz.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>音乐<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>掌控板板载喇叭，通过主控IO产生不同频率的脉冲信号，经功率放大后，通过喇叭发出声音。频率不同，发出的音调就不一样，从而可以发出不同的声音，可以做出“多来米发索拉西”的效果。</p>
+<section id="id2">
+<h2>内置旋律<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>掌控板有很多内置的旋律，完整的清单如下：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">music.DADADADUM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.ENTERTAINER</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.PRELUDE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.ODE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.NYAN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.RINGTONE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.FUNK</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.BLUES</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.BIRTHDAY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.WEDDING</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.FUNERAL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.PUNCHLINE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.PYTHON</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.BADDY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.CHASE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.BA_DING</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.WAWAWAWAA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.JUMP_UP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.JUMP_DOWN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.POWER_UP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">music.POWER_DOWN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GE_CHANG_ZU_GUO</span></code> - 歌唱祖国</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DONG_FANG_HONG</span></code> - 东方红</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CAI_YUN_ZHUI_YUE</span></code> - 彩云追月</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZOU_JIN_XIN_SHI_DAI</span></code> - 走进新时代</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MO_LI_HUA</span></code> - 茉莉花</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YI_MENG_SHAN_XIAO_DIAO</span></code> - 沂蒙山小调</p></li>
+</ul>
+<p>我们可以播放一些内置旋律:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">music</span>
+
+<span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">music</span><span class="o">.</span><span class="n">BIRTHDAY</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition- admonition">
+<p class="admonition-title">提示</p>
+<p>music.BIRTHDAY指内置旋律的名称，如若播放其它旋律，只需把music.BIRTHDAY更换为想要播放的旋律即可。</p>
+</div>
+<p>除了播放内置旋律，我们还可以自编乐谱。</p>
+</section>
+<section id="id3">
+<h2>自编乐谱<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>我们可以通过设置音调来自编乐谱。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">music</span>
+
+<span class="n">tune</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;D4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;E4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;C4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;C4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;D4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;E4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;C4:4&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;E4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;F4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;G4:8&quot;</span><span class="p">,</span> <span class="s2">&quot;E4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;F4:4&quot;</span><span class="p">,</span> <span class="s2">&quot;G4:8&quot;</span><span class="p">]</span>
+<span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">tune</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>每个音符都有一个名字（比如C＃或F），一个八度和一个持续时间。八度用数字表示〜0表示最低八度，4表示中央C，8表示您需要的高度。持续时间也表示为数字。 持续时间的值越高，持续时间越长。例如，持续时间4将持续两倍于持续时间2（依此类推）。
+每个音符都表示为一串字符，如下所示：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NOTE</span><span class="p">[</span><span class="n">octave</span><span class="p">][:</span><span class="n">duration</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>例如，C4：4指的是八度音阶4中的音符“C”，持续4个音阶。如果使用音符名称R，则将其视为休息（静音）。</p>
+</section>
+<section id="id4">
+<h2>频率<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>您还可以通过频率设置来制作一些非音符的音调。 例如，创建警笛效果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">music</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">880</span><span class="p">,</span> <span class="mi">1760</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">pitch</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1760</span><span class="p">,</span> <span class="mi">880</span><span class="p">,</span> <span class="o">-</span><span class="mi">16</span><span class="p">):</span>
+        <span class="n">music</span><span class="o">.</span><span class="n">pitch</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在这个实例中是如何使用 <code class="docutils literal notranslate"><span class="pre">music.pitch</span></code> 方法，它需要一个频率。
+其中range函数用于生成数值范围。这些数字用于定义音调的高低。
+range函数有三个参数，分别是起始值，结束值和步长。因此，range的第一次使用是“以16的步长创建880到1760之间的数字范围”；
+第二个次是“以-16”的步长创建1760到880之间的一系列值，持续频率为20毫秒。因此获得像警报器一样在频率上升和下降的频率范围而制作出警笛效果。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="5_neopixel.html" class="btn btn-neutral float-left" title="RGB LED" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="2_buttons.html" class="btn btn-neutral float-right" title="按键" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

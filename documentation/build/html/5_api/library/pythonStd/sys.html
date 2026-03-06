@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sys – 系统特定功能 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="time – 时间相关函数" href="time.html" />
+    <link rel="prev" title="struct – 打包和解压缩原始数据类型" href="struct.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/sys.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-sys">
+<span id="sys"></span><h1><a class="reference internal" href="#module-sys" title="sys: 系统特定功能"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code></a> – 系统特定功能<a class="headerlink" href="#module-sys" title="此标题的永久链接"></a></h1>
+<p>sys模块中提供了与MicroPython运行环境有关的函数和变量。</p>
+<p>这个模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/sys.html#module-sys">sys</a></p>
+<section id="id2">
+<h2>函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="sys.exit">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">exit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sys.exit" title="永久链接至目标"></a></dt>
+<dd><p>使用给定的退出代码终止当前程序。在此基础上，此功能提升为 <code class="docutils literal notranslate"><span class="pre">SystemExit</span></code> 。如果给出一个参数，则将其值作为参数给出 <code class="docutils literal notranslate"><span class="pre">SystemExit</span></code>  。
+在嵌入式端口（即除Windows和Unix之外的所有端口）上，未处理的SystemExit当前会导致MicroPython的软重置。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sys.atexit">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">atexit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sys.atexit" title="永久链接至目标"></a></dt>
+<dd><p>注册func在终止时被调用。func必须是一个不接受参数的可调用对象，或者为None以禁用调用。atexit函数将返回此函数设置的先前值，初始值为None。</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython的区别</p>
+<p>此函数是MicroPython扩展，旨在提供与CPython中atexit模块类似的功能。</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sys.print_exception">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">print_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sys.stdout</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sys.print_exception" title="永久链接至目标"></a></dt>
+<dd><p>通过回溯到类文件对象文件（或 <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> 默认情况下）来打印异常。</p>
+</dd></dl>
+
+<div class="attention admonition">
+<p class="admonition-title">与CPython的区别</p>
+<p>这是 <code class="docutils literal notranslate"><span class="pre">traceback</span></code>  CPython模块中出现的函数的简化版本。与 <code class="docutils literal notranslate"><span class="pre">traceback.print_exception()</span></code> 此不同，此函数仅使用异常值而不是异常类型，异常值和回溯对象; file参数应该是位置的; 不支持其他参数。
+<code class="docutils literal notranslate"><span class="pre">traceback</span></code>  可以找到CPython兼容 模块 <code class="docutils literal notranslate"><span class="pre">micropython-lib</span></code> 。</p>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="sys.settrace">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">settrace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tracefunc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sys.settrace" title="永久链接至目标"></a></dt>
+<dd><p>启用字节码执行的跟踪。有关详细信息，请参阅CPython文档。
+此函数需要自定义MicroPython构建，因为它通常不存在于预构建的固件中（由于它会影响性能）。相关配置选项是MICROPY_PY_SYS_SETTRACE。</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.argv">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">argv</span></span><a class="headerlink" href="#sys.argv" title="永久链接至目标"></a></dt>
+<dd><p>当前程序启动的可变参数列表。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.byteorder">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">byteorder</span></span><a class="headerlink" href="#sys.byteorder" title="永久链接至目标"></a></dt>
+<dd><p>系统的字节顺序（ <code class="docutils literal notranslate"><span class="pre">little</span></code> 或 <code class="docutils literal notranslate"><span class="pre">big</span></code> ）。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.implementation">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">implementation</span></span><a class="headerlink" href="#sys.implementation" title="永久链接至目标"></a></dt>
+<dd><p>包含有关当前Python实现的信息的对象。对于MicroPython，它具有以下属性：</p>
+<ul class="simple">
+<li><p><em>name</em> - 字符串 “micropython”</p></li>
+<li><p><em>version</em> - 元组 (主要，次要，微，发布级别), e.g. (1, 22, 0, ‘’)</p></li>
+<li><p><em>_machine</em> - 描述底层机器的字符串</p></li>
+<li><p><em>_mpy</em> - 支持的mpy文件格式版本（可选属性）</p></li>
+<li><p><em>_build</em> - 可以帮助识别MicroPython构建配置的字符串</p></li>
+<li><p><em>_thread</em> - 可选字符串属性，如果目标具有线程，则存在，值为 “GIL” 或 “unsafe”</p></li>
+</ul>
+<p>此对象是区分MicroPython与其他Python实现的推荐方法（注意，在非常最小的端口中它仍然可能不存在）。
+从版本1.22.0-preview开始，implementation.version中的第四个节点releaselevel要么是空字符串，要么是”preview”。
+_build条目是在版本1.25.0中添加的，是一个用连字符分隔的元素集。未来可能会添加新元素，因此最好使用sys.implementation._build.split(“-“)来访问此字段。当前使用的元素是：</p>
+<p>在unix、webassembly和windows端口上，第一个元素是变体名称，例如’standard’。
+在微控制器目标上，第一个元素是板名称，第二个元素（如果存在）是板变体，例如’RPI_PICO2-RISCV’</p>
+<p>_thread条目是在版本1.26.0中添加的，如果存在，则目标具有_thread模块。如果目标启用了GIL（全局解释器锁），则此属性为”GIL”。否则，该属性为”unsafe”，目标具有线程但未启用GIL，并且在线程之间共享的可变Python对象（如bytearray、list和dict）必须通过_thread.allocate_lock等锁显式保护。</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython的区别</p>
+<p>CPython要求此对象具有更多属性，但MicroPython中实现了实际有用的最低限度。</p>
+</div>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">implementation</span><span class="p">)</span>
+<span class="go">(name=&#39;micropython&#39;, version=(1, 9, 1))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.maxsize">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">maxsize</span></span><a class="headerlink" href="#sys.maxsize" title="永久链接至目标"></a></dt>
+<dd><p>本机整数类型可以在当前平台上保存的最大值，或MicroPython整数类型可表示的最大值，如果它小于平台最大值
+（对于没有长int支持的MicroPython端口的情况）。</p>
+<p>此属性对于检测平台的“位数”（32位与64位等）非常有用。建议不要直接将此属性与某个值进行比较，而是计算其中的位数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bits</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span>
+<span class="k">while</span> <span class="n">v</span><span class="p">:</span>
+    <span class="n">bits</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">v</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="n">bits</span> <span class="o">&gt;</span> <span class="mi">32</span><span class="p">:</span>
+    <span class="c1"># 64-bit (or more) platform</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># 32-bit (or less) platform</span>
+    <span class="c1"># Note that on 32-bit platform, value of bits may be less than 32</span>
+    <span class="c1"># (e.g. 31) due to peculiarities described above, so use &quot;&gt; 16&quot;,</span>
+    <span class="c1"># &quot;&gt; 32&quot;, &quot;&gt; 64&quot; style of comparisons.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.modules">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">modules</span></span><a class="headerlink" href="#sys.modules" title="永久链接至目标"></a></dt>
+<dd><p>已载入模块字典。在某些移植版中，它可能不包含在内建模块中。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.path">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#sys.path" title="永久链接至目标"></a></dt>
+<dd><p>用于搜索导入模块的可变目录列表。</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython的区别</p>
+<p>在MicroPython中，值为”.frozen”的条目将指示导入应在搜索的该点搜索冻结模块。
+如果未找到冻结模块，则搜索不会查找名为.frozen的目录，而是会继续使用sys.path中的下一个条目。</p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.platform">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">platform</span></span><a class="headerlink" href="#sys.platform" title="永久链接至目标"></a></dt>
+<dd><p>MicroPython运行的平台。对于OS/RTOS端口，这通常是OS的标识符，例如”linux”。对于裸机端口，它是板的标识符，例如原始MicroPython参考板的”pyboard”。因此，它可以用来区分一个板与另一个板。
+如果需要检查您的程序是否在MicroPython（与其他Python实现相比）上运行，请使用sys.implementation。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.stderr">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">stderr</span></span><a class="headerlink" href="#sys.stderr" title="永久链接至目标"></a></dt>
+<dd><p>标准错误 <code class="docutils literal notranslate"><span class="pre">stream</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.stdin">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">stdin</span></span><a class="headerlink" href="#sys.stdin" title="永久链接至目标"></a></dt>
+<dd><p>标准输入 <code class="docutils literal notranslate"><span class="pre">stream</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.stdout">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">stdout</span></span><a class="headerlink" href="#sys.stdout" title="永久链接至目标"></a></dt>
+<dd><p>标准输出 <code class="docutils literal notranslate"><span class="pre">stream</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.ps1">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">ps1</span></span><a class="headerlink" href="#sys.ps1" title="永久链接至目标"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.ps2">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">ps2</span></span><a class="headerlink" href="#sys.ps2" title="永久链接至目标"></a></dt>
+<dd><p>可变属性，保存字符串，用于REPL提示符。默认值给出标准Python提示符 &gt;&gt;&gt; 和 …。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.tracebacklimit">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">tracebacklimit</span></span><a class="headerlink" href="#sys.tracebacklimit" title="永久链接至目标"></a></dt>
+<dd><p>可变属性，保存一个整数值，是异常中存储的回溯条目的最大数量。设置为0以禁用添加回溯。默认为1000。
+注意：并非所有端口都提供此功能。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.version">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#sys.version" title="永久链接至目标"></a></dt>
+<dd><p>返回 MicroPython 语言版本，字符串</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.version_info">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">version_info</span></span><a class="headerlink" href="#sys.version_info" title="永久链接至目标"></a></dt>
+<dd><p>返回 MicroPython 语言版本，整形元组</p>
+<div class="attention admonition">
+<p class="admonition-title">与CPython的区别</p>
+<p>仅支持前三个版本号（主要、次要、微），并且只能通过索引引用它们，而不能通过名称。</p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="struct.html" class="btn btn-neutral float-left" title="struct – 打包和解压缩原始数据类型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="time.html" class="btn btn-neutral float-right" title="time – 时间相关函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

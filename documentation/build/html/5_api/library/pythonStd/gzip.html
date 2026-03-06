@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gzip — gzip压缩和解压缩 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="hashlib – 散列算法" href="hashlib.html" />
+    <link rel="prev" title="gc – 回收内存碎片" href="gc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/gzip.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gzip">
+<span id="gzip-gzip"></span><h1><a class="reference internal" href="#module-gzip" title="gzip: gzip压缩和解压缩"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code></a> — gzip压缩和解压缩<a class="headerlink" href="#module-gzip" title="此标题的永久链接"></a></h1>
+<p>该模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/gzip.html#module-gzip">gzip</a></p>
+<p>该模块允许使用gzip文件格式使用的DEFLATE算法对二进制数据进行压缩和解压缩。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>建议使用 deflate.DeflateIO 而不是此模块中的函数，因为它提供了压缩和解压缩的流式接口，在处理从文件、套接字或流读取或写入压缩数据时更方便且内存效率更高。</p>
+</div>
+<p>可用性：</p>
+<p>此模块默认不存在于官方MicroPython固件版本中，因为它重复了deflate模块中可用的功能。
+可以从micropython-lib（源）安装（或冻结）此模块的副本。
+有关更多信息，请参阅包管理。本文档描述了该模块。
+只有在内置deflate模块中启用了压缩支持时，才会提供压缩支持。</p>
+<p>快速使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gzip</span>
+
+<span class="c1"># 压缩文件</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.txt.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">)</span>
+
+<span class="c1"># 解压缩文件</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.txt.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gzip.gzip.open">
+<span class="sig-prename descclassname"><span class="pre">gzip.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gzip.gzip.open" title="永久链接至目标"></a></dt>
+<dd><p>内置open()的包装器，返回GzipFile实例。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gzip.gzip.decompress">
+<span class="sig-prename descclassname"><span class="pre">gzip.</span></span><span class="sig-name descname"><span class="pre">decompress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gzip.gzip.decompress" title="永久链接至目标"></a></dt>
+<dd><p>将数据解压缩为bytes对象。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gzip.gzip.compress">
+<span class="sig-prename descclassname"><span class="pre">gzip.</span></span><span class="sig-name descname"><span class="pre">compress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gzip.gzip.compress" title="永久链接至目标"></a></dt>
+<dd><p>将数据压缩为bytes对象。</p>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>类<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gzip.gzip.GzipFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gzip.</span></span><span class="sig-name descname"><span class="pre">GzipFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileobj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gzip.gzip.GzipFile" title="永久链接至目标"></a></dt>
+<dd><p>此类可用于包装fileobj，fileobj是任何类似流的对象，如文件、套接字或流（包括io.BytesIO）。它本身是一个流，并实现了标准的read/readinto/write/close方法。</p>
+<p>当mode参数为”rb”时，从GzipFile实例读取将解压缩底层流中的数据并返回解压缩的数据。
+如果启用了压缩支持，则mode参数可以设置为”wb”，写入GzipFile实例的数据将被压缩并写入底层流。</p>
+<p>默认情况下，GzipFile类将使用gzip文件格式读写数据，包括带有校验和的头部和尾部，窗口大小为512字节。</p>
+<p>不支持file、compresslevel和mtime参数。fileobj和mode必须始终作为关键字参数指定。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gzip.gzip.GzipFile.GzipFile.read">
+<span class="sig-prename descclassname"><span class="pre">GzipFile.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gzip.gzip.GzipFile.GzipFile.read" title="永久链接至目标"></a></dt>
+<dd><p>读取指定大小的数据。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gzip.gzip.GzipFile.GzipFile.write">
+<span class="sig-prename descclassname"><span class="pre">GzipFile.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gzip.gzip.GzipFile.GzipFile.write" title="永久链接至目标"></a></dt>
+<dd><p>写入数据。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gzip.gzip.GzipFile.GzipFile.close">
+<span class="sig-prename descclassname"><span class="pre">GzipFile.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gzip.gzip.GzipFile.GzipFile.close" title="永久链接至目标"></a></dt>
+<dd><p>关闭文件。</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>示例<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>gzip.GzipFile的典型用例是从存储中读取或写入压缩文件：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gzip</span>
+
+<span class="c1"># 读取：</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">g</span><span class="p">:</span>
+        <span class="c1"># 使用 g.read(), g.readinto(), 等</span>
+
+ <span class="c1"># 同样，但使用 gzip.open:</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+     <span class="c1"># 使用 f.read(), f.readinto(), 等</span>
+
+<span class="c1"># 写入：</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">g</span><span class="p">:</span>
+        <span class="c1"># 使用 g.write(...) 等</span>
+
+<span class="c1"># 同样，但使用 gzip.open:</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># 使用 f.write(...) 等</span>
+
+<span class="c1"># 以gzip格式写入字典作为JSON，使用小（64字节）窗口大小。</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;config.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>有关使用gzip源和选择窗口大小的指导，请参阅deflate文档末尾的注释。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="gc.html" class="btn btn-neutral float-left" title="gc – 回收内存碎片" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="hashlib.html" class="btn btn-neutral float-right" title="hashlib – 散列算法" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>随机数 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="定时器" href="timer.html" />
+    <link rel="prev" title="贝壳物联" href="iot/bigiot.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../1_index.html">3. 示例教程</a></li>
+      <li class="breadcrumb-item active">随机数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/advance/random.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>随机数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>有时我们需要做些随机行为或生产随机数。这时你可以使用 <a class="reference internal" href="../../5_api/library/micropython/random.html#random"><span class="std std-ref">random</span></a> 模块。</p>
+<p>例如，以下是如何在oled显示屏上随机显示名称:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lv_gui</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">gui</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">()</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Mary&quot;</span><span class="p">,</span> <span class="s2">&quot;Yolanda&quot;</span><span class="p">,</span> <span class="s2">&quot;Damien&quot;</span><span class="p">,</span> <span class="s2">&quot;Alia&quot;</span><span class="p">,</span> <span class="s2">&quot;Kushal&quot;</span><span class="p">,</span> <span class="s2">&quot;Mei Xiu&quot;</span><span class="p">,</span> <span class="s2">&quot;Zoltan&quot;</span> <span class="p">]</span>
+
+<span class="n">gui</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">draw_label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">names</span><span class="p">)),</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="mh">0xffffff</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>列表（names）包含七个定义为字符串的名称。random.choice方法将names列表作为参数并返回随机选择的项目。</p>
+<p>你能修改列表以包含你自己的名字吗？</p>
+<section id="id2">
+<h2>随机显示数字<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>随机数非常有用。它们在游戏中很常见。为什么我们还有骰子？</p>
+<p>MicroPython附带了几个有用的随机数方法。这是如何制作一个简单的骰子:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lv_gui</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">gui</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">()</span>
+
+<span class="n">gui</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">draw_label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)),</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="mh">0xffffff</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>每次重启掌控板时，它都会显示一个介于1和6之间的数字。<code class="docutils literal notranslate"><span class="pre">randint()</span></code> 返回的是整形，我们需要使用 <code class="docutils literal notranslate"><span class="pre">str()</span></code> 将整形转为字符串(例如，6 -&gt; “6”)。
+<code class="docutils literal notranslate"><span class="pre">gui.draw_label()</span></code> 将随机数写入屏幕lcd。</p>
+</div>
+<p>假如你想设置随机范围或递增基数，你可以使用random.randrange():</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lv_gui</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">gui</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">()</span>
+
+<span class="n">gui</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">draw_label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="mh">0xffffff</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>random.randrange(start, end, step)。<code class="docutils literal notranslate"><span class="pre">start</span></code> 为随机数开始值，<code class="docutils literal notranslate"><span class="pre">end</span></code> 为随机数结束值，step为递增基数。
+以上例子是随机显示(0,10)范围的偶数。</p>
+</div>
+<p>有时您需要带小数点的数字。你可以使用 <code class="docutils literal notranslate"><span class="pre">random.random</span></code> 方法生成0.0到1.0的随机浮点数。如果你需要较大的随机浮点数加的结果 <code class="docutils literal notranslate"><span class="pre">random.uniform</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lv_gui</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">gui</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">()</span>
+
+<span class="n">gui</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">draw_label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()),</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="mh">0xffffff</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">draw_label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">)),</span> <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="mh">0xffffff</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gui</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>随机种子<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>MicroPython中的随机数其实是一个稳定算法得出的稳定结果序列，而不是一个随机序列。 seed就是这个算法开始计算的第一个值。
+所以就会出现只要seed是一样的，那么后续所有“随机”结果和顺序也都完全一致。</p>
+<p>指定随机数种子，通常和其他随机数生成函数搭配使用</p>
+<p>有时您希望具有可重复的随机行为：可重现的随机源。这就像说每次掷骰子时你需要相同的五个随机值。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="iot/bigiot.html" class="btn btn-neutral float-left" title="贝壳物联" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="timer.html" class="btn btn-neutral float-right" title="定时器" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

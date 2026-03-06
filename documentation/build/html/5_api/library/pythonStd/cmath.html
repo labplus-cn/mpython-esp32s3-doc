@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cmath — 复数数学函数 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="collections – 容器数据类型" href="collections.html" />
+    <link rel="prev" title="Builtin – 内建函数和异常" href="builtins.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../1_index.html">5. API文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../1_1_mpy_syntax.html">5.1. MicroPython 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../1_2_api_lib.html">5.2. API库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../mPython/index.html">mPython类库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ext_lib/index.html">mPython拓展库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Python标准库</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> – 数值数组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asyncio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — 异步I/O调度器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binascii.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> – 二进制/ ASCII互转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtins.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Builtin</span></code> – 内建函数和异常</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collections.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> – 容器数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="errno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">errno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> –  回收内存碎片</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — gzip压缩和解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hashlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heapq.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> – 输入/输出流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="json.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> – JSON 编码和解码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="marshal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code> — Python对象序列化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code> – 数学运算函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="os.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> – 基本的操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="platform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code> — 访问底层平台的标识数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/random.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> — 生成随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> – 正则表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> – 高效地等待I/O</a></li>
+<li class="toctree-l4"><a class="reference internal" href="socket.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code> – socket 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ssl.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code> – SSL/TLS 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="struct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">struct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> – 系统特定功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code> – 时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> – zlib解压缩</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micropython/_thread.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> — 线程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../micropython/index.html">MicroPython类库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../1_index.html">5. API文档</a></li>
+          <li class="breadcrumb-item"><a href="../../1_2_api_lib.html">5.2. API库</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python标准库</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> — 复数数学函数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/5_api/library/pythonStd/cmath.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-cmath">
+<span id="cmath"></span><h1><a class="reference internal" href="#module-cmath" title="cmath: 复数数学函数"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code></a> — 复数数学函数<a class="headerlink" href="#module-cmath" title="此标题的永久链接"></a></h1>
+<p>该模块实现了相应 <a class="reference internal" href="../../mpy_ref/glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> 模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档: <a class="reference external" href="https://docs.python.org/3.5/library/cmath.html#module-cmath">cmath</a></p>
+<p>该模块提供了对复数进行数学运算的函数。</p>
+<p>可用性：在WiPy和ESP8266上不可用。此模块需要浮点支持。</p>
+<p>快速使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cmath</span>
+
+<span class="c1"># 复数运算</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z =&#39;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;abs(z) =&#39;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;phase(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">phase</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;polar(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rect(1, cmath.pi/2) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># 三角函数</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sin(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cos(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tan(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1"># 指数和对数</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;exp(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;log(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;log10(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1"># 平方根</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sqrt(z) =&#39;</span><span class="p">,</span> <span class="n">cmath</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="id2">
+<h2>常量<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="cmath.cmath.e">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">e</span></span><a class="headerlink" href="#cmath.cmath.e" title="永久链接至目标"></a></dt>
+<dd><p>自然对数的底 e，约等于 2.718281828459045。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="cmath.cmath.pi">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">pi</span></span><a class="headerlink" href="#cmath.cmath.pi" title="永久链接至目标"></a></dt>
+<dd><p>圆周率 π，约等于 3.141592653589793。</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>函数<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.phase">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.phase" title="永久链接至目标"></a></dt>
+<dd><p>返回复数的相位（辐角），以弧度为单位，范围在 (-pi, +pi] 之间。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.polar">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">polar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.polar" title="永久链接至目标"></a></dt>
+<dd><p>返回复数的极坐标表示，作为一个元组 (r, phi)，其中 r 是模，phi 是相位。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.rect">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.rect" title="永久链接至目标"></a></dt>
+<dd><p>返回复数，其模为 r，相位为 phi。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.sin">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.sin" title="永久链接至目标"></a></dt>
+<dd><p>返回复数的正弦值。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.cos">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.cos" title="永久链接至目标"></a></dt>
+<dd><p>返回复数的余弦值。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.tan">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.tan" title="永久链接至目标"></a></dt>
+<dd><p>返回复数的正切值。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.exp">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.exp" title="永久链接至目标"></a></dt>
+<dd><p>返回 e 的 x 次方。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.log">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.log" title="永久链接至目标"></a></dt>
+<dd><p>返回 x 的自然对数（以 e 为底）。分支切割沿负实轴。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.log10">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">log10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.log10" title="永久链接至目标"></a></dt>
+<dd><p>返回 x 的以 10 为底的对数。分支切割沿负实轴。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cmath.cmath.sqrt">
+<span class="sig-prename descclassname"><span class="pre">cmath.</span></span><span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cmath.cmath.sqrt" title="永久链接至目标"></a></dt>
+<dd><p>返回 x 的平方根。</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="builtins.html" class="btn btn-neutral float-left" title="Builtin – 内建函数和异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="collections.html" class="btn btn-neutral float-right" title="collections – 容器数据类型" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

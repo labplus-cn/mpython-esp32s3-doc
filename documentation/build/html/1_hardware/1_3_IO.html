@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3. 引脚排布及功能 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=beaddf03"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="1.4. 结构尺寸" href="1_4_Structural_dimensions.html" />
+    <link rel="prev" title="1.2. 技术参数" href="1_2_Technical_parameters.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="1_index.html">1. 硬件</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_1_introduce.html">1.1. 掌控板3.0 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_2_Technical_parameters.html">1.2. 技术参数</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. 引脚排布及功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_4_Structural_dimensions.html">1.4. 结构尺寸</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_examples/1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="1_index.html">1. 硬件</a></li>
+      <li class="breadcrumb-item active">1.3. 引脚排布及功能</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/1_hardware/1_3_IO.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>1.3. 引脚排布及功能<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">可拓展引脚功能表</span><a class="headerlink" href="#id2" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 18.5%" />
+<col style="width: 22.2%" />
+<col style="width: 22.2%" />
+<col style="width: 37.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>引脚</p></th>
+<th class="head"><p>GPIO</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>引脚功能</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>P0</p></td>
+<td><p>GPIO1</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,TouchPad</p></td>
+</tr>
+<tr class="row-odd"><td><p>P1</p></td>
+<td><p>GPIO2</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,TouchPad</p></td>
+</tr>
+<tr class="row-even"><td><p>P2</p></td>
+<td><p>GPIO3</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,TouchPad</p></td>
+</tr>
+<tr class="row-odd"><td><p>P3</p></td>
+<td><p>GPIO4</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,TouchPad</p></td>
+</tr>
+<tr class="row-even"><td><p>P4</p></td>
+<td><p>GPIO5</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,TouchPad</p></td>
+</tr>
+<tr class="row-odd"><td><p>P5</p></td>
+<td><p>GPIO0</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出, 板载按键A</p></td>
+</tr>
+<tr class="row-even"><td><p>P6</p></td>
+<td><p>GPIO7</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,TouchPad</p></td>
+</tr>
+<tr class="row-odd"><td><p>P7</p></td>
+<td><p>GPIO8</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出, 板载RGB LED</p></td>
+</tr>
+<tr class="row-even"><td><p>P8</p></td>
+<td><p>GPIO15</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟(PWM)/数字输出,neopixel</p></td>
+</tr>
+<tr class="row-odd"><td><p>P9</p></td>
+<td><p>GPIO16</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟(PWM)/数字输出,neopixel</p></td>
+</tr>
+<tr class="row-even"><td><p>P10</p></td>
+<td><p>GPIO6</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,板载声音传感器</p></td>
+</tr>
+<tr class="row-odd"><td><p>P11</p></td>
+<td><p>GPIO46</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟(PWM)/数字输出, 按键B,neopixel</p></td>
+</tr>
+<tr class="row-even"><td><p>P12</p></td>
+<td><p>GPIO21</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟(PWM)/数字输出, 板载蜂鸣器</p></td>
+</tr>
+<tr class="row-odd"><td><p>P13</p></td>
+<td><p>GPIO17</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟(PWM)/数字输出,neopixel</p></td>
+</tr>
+<tr class="row-even"><td><p>P14</p></td>
+<td><p>GPIO18</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟(PWM)/数字输出,neopixel</p></td>
+</tr>
+<tr class="row-odd"><td><p>P15</p></td>
+<td><p>GPIO48</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟(PWM)/数字输出,neopixel</p></td>
+</tr>
+<tr class="row-even"><td><p>P16</p></td>
+<td><p>GPIO47</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟(PWM)/数字输出,neopixel</p></td>
+</tr>
+<tr class="row-odd"><td><p>3V3</p></td>
+<td></td>
+<td><p>POWER</p></td>
+<td><p>电源正输入:连接USB时,掌控板内部稳压输出3.3V,未连接USB可以通过输入(2.7-3.6)V电压为掌控板供电</p></td>
+</tr>
+<tr class="row-even"><td><p>P19</p></td>
+<td><p>GPIO43</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟/数字输出，I2C总线SCL,与内部I2C传感器共享总线,neopixel</p></td>
+</tr>
+<tr class="row-odd"><td><p>P20</p></td>
+<td><p>GPIO44</p></td>
+<td><p>I/O</p></td>
+<td><p>数字输入,模拟/数字输出，I2C总线SDA,与内部I2C传感器共享总线,neopixel</p></td>
+</tr>
+<tr class="row-even"><td><p>GND</p></td>
+<td></td>
+<td><p>GND</p></td>
+<td><p>电源GND</p></td>
+</tr>
+<tr class="row-odd"><td><p>Touch_P(P23)</p></td>
+<td><p>GPIO9</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,板载触摸键P</p></td>
+</tr>
+<tr class="row-even"><td><p>Touch_Y(P24)</p></td>
+<td><p>GPIO10</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,板载触摸键Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>Touch_T(P25)</p></td>
+<td><p>GPIO11</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,板载触摸键T</p></td>
+</tr>
+<tr class="row-even"><td><p>Touch_H(P26)</p></td>
+<td><p>GPIO12</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,板载触摸键H</p></td>
+</tr>
+<tr class="row-odd"><td><p>Touch_O(P27)</p></td>
+<td><p>GPIO13</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,板载触摸键O</p></td>
+</tr>
+<tr class="row-even"><td><p>Touch_N(P28)</p></td>
+<td><p>GPIO14</p></td>
+<td><p>I/O</p></td>
+<td><p>模拟(ADC)/数字输入,模拟(PWM)/数字输出,板载触摸键N</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">LCD屏引脚</span><a class="headerlink" href="#id3" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 45.5%" />
+<col style="width: 54.5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>GPIO</p></th>
+<th class="head"><p>引脚功能</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GPIO33</p></td>
+<td><p>BL</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO34</p></td>
+<td><p>CS</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO35</p></td>
+<td><p>RS</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO36</p></td>
+<td><p>SCK</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO37</p></td>
+<td><p>SDA</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">音频解码芯片引脚</span><a class="headerlink" href="#id4" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 45.5%" />
+<col style="width: 54.5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>GPIO</p></th>
+<th class="head"><p>引脚功能</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GPIO38</p></td>
+<td><p>DOUT</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO39</p></td>
+<td><p>MCLK</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO40</p></td>
+<td><p>DIN</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO41</p></td>
+<td><p>BCK</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO42</p></td>
+<td><p>LRCK</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="1_2_Technical_parameters.html" class="btn btn-neutral float-left" title="1.2. 技术参数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="1_4_Structural_dimensions.html" class="btn btn-neutral float-right" title="1.4. 结构尺寸" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

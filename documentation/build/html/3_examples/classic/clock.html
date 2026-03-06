@@ -1,0 +1,229 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数字模拟时钟 &mdash; 掌控板3.0  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=babeb00e"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            掌控板3.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../1_hardware/1_index.html">1. 硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_software/1_index.html">2. 软件编程(microPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_index.html">3. 示例教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_xiaozhi/1_index.html">4. 掌控板3.0玩小智</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../5_api/1_index.html">5. API文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../6_C_program/index.html">6. 掌控板C/C++编程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../7_faq/1_index.html">7. 技术支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">版权说明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">掌控板3.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">数字模拟时钟</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/3_examples/classic/clock.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>数字模拟时钟<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>我们可以将OLED显示屏结合WiFi功能制作数字模拟时钟，通过WiFi连接网络来获取国际标准时间，将时间显示在OLED显示屏上。</p>
+<section id="id2">
+<h2>数字时钟<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ntptime</span><span class="o">,</span><span class="nn">network</span>     <span class="c1"># 导入国际标准时间、网络模块</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span><span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Timer</span>  <span class="c1"># 导入计时模块</span>
+
+<span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>
+<span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>  <span class="c1"># WiFi设置</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ntptime</span><span class="o">.</span><span class="n">settime</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="p">:</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;ntp链接超时,请重启!&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_time</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>   <span class="c1">#定义时钟刷屏时间</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">年</span><span class="si">%d</span><span class="s2">月</span><span class="si">%d</span><span class="s2">日 </span><span class="si">%d</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">年</span><span class="si">{}</span><span class="s2">月</span><span class="si">{}</span><span class="s2">日&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span><span class="mi">38</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">tim1</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">tim1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">get_time</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>数字时钟是取代模拟表盘而以数字显示的钟表，它用数字显示此时的时间，案例中的数字时钟能同时显示时，分，秒。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>
+<span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>显示时间，需要先连接网络，因此需要设置WiFi名称及其密码。</p>
+<div class="admonition- admonition">
+<p class="admonition-title">提示</p>
+<p>关于WiFi连接，可参见 <span class="xref std std-ref">wifi类</span> 模块了解更多使用方法。</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">ntptime</span><span class="o">.</span><span class="n">settime</span><span class="p">()</span>   <span class="c1">#获取国际标准时间</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="p">:</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;ntp链接超时,请重启!&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>为了更加清晰地了解网络连接的情况，您可以设置捕捉异常，并且显示一些提示语。首先获取国际标准时间，当获取异常时，显示提示语。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tim1</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1">#创建计时器</span>
+<span class="n">tim1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">get_time</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>创建一个计时器并初始化，将时间初始化为以1000毫秒为周期的计时模式，获取时间并返回计时器当前计数值（时间参数可参见 <a class="reference internal" href="../../5_api/library/micropython/machine/machine.Timer.html#machine.Timer" title="machine.Timer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">machine.Timer</span></code></a> 模块）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>获取本地时间，并将时间以8元组（包括年、月、日、时、分、秒）显示（可参见 <a class="reference internal" href="../../5_api/library/pythonStd/utime.html#module-time" title="time: 时间相关函数"><code class="xref py py-mod docutils literal notranslate"><span class="pre">time</span></code></a> 模块了解更多）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">年</span><span class="si">{}</span><span class="s2">月</span><span class="si">{}</span><span class="s2">日&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span><span class="mi">38</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1">#清屏</span>
+</pre></div>
+</div>
+<p>获取时间后，在OLED显示屏上显示出来。</p>
+<div class="admonition- admonition">
+<p class="admonition-title">注解</p>
+<p>在坐标（20,8）位置显示年、月、日：t[0]对应年、t[1]对应月，t[2]对应日；在坐标（38,25）位置显示时、分、秒：t[3]对应时，t[4]对应分，t[5]对应秒。</p>
+</div>
+<a class="reference internal image-reference" href="../../_images/digital.jpg"><img alt="../../_images/digital.jpg" class="align-center" src="../../_images/digital.jpg" style="width: 459.5px; height: 338.5px;" /></a>
+</section>
+<section id="id3">
+<h2>模拟时钟<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ntptime</span><span class="o">,</span><span class="nn">network</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpython</span><span class="w"> </span><span class="kn">import</span><span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Timer</span>
+
+<span class="n">mywifi</span><span class="o">=</span><span class="n">wifi</span><span class="p">()</span>
+<span class="n">mywifi</span><span class="o">.</span><span class="n">connectWiFi</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ntptime</span><span class="o">.</span><span class="n">settime</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="p">:</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">DispChar</span><span class="p">(</span><span class="s2">&quot;ntp链接超时,请重启!&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">clock</span><span class="o">=</span><span class="n">Clock</span><span class="p">(</span><span class="n">oled</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">Refresh</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+        <span class="n">clock</span><span class="o">.</span><span class="n">settime</span><span class="p">()</span>
+        <span class="n">clock</span><span class="o">.</span><span class="n">drawClock</span><span class="p">()</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">clock</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="n">tim1</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">tim1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">Refresh</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>构建Clock对象：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clock</span><span class="o">=</span><span class="n">UI</span><span class="o">.</span><span class="n">Clock</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>UI.Clock(x, y, radius)用于构建钟表对象，x、y为OLED显示屏上的起点坐标，radius为所画钟表的半径。</p>
+<p>获取本地时间并设置模拟钟表时间：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clock</span><span class="o">.</span><span class="n">settime</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>绘制钟表：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clock</span><span class="o">.</span><span class="n">drawClock</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>清除钟表：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clock</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>清除时钟，也就是将显示在OLED显示屏上的时间清除以显示所获取的新时间，否则会导致各个时间值重叠显示在OLED上。</p>
+<a class="reference internal image-reference" href="../../_images/analog.jpg"><img alt="../../_images/analog.jpg" class="align-center" src="../../_images/analog.jpg" style="width: 479.0px; height: 352.0px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, 深圳盛思科教文化有限公司 www.labplus.cn。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
