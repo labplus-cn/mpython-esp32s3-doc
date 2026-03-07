@@ -10,16 +10,21 @@
 示例::
 
     from machine import WDT
-    wdt = WDT()        # enable it with a wdt
+    wdt = WDT(timeout=2000)  # 启用它，超时时间为2秒
     wdt.feed()
 
+此类的可用性：pyboard、WiPy、esp8266、esp32、rp2040、mimxrt。
 
 构建对象
 ------------
 
-.. class:: WDT()
+.. class:: WDT(id=0, timeout=5000)
 
-  创建一个WDT对象并启动它。
+  创建一个WDT对象并启动它。超时时间必须以毫秒为单位给出。
+  一旦运行，超时时间就不能更改，WDT也不能停止。
+
+  注意：在esp8266上，不能指定超时时间，它由底层系统决定。
+  在rp2040设备上，最大超时时间为8388毫秒。
 
 方法
 -------

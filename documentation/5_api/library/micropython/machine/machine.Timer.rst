@@ -2,52 +2,52 @@
 .. _machine.Timer:
 
 类 Timer -- 控制硬件定时器
-======================================
+====================================
 
-硬件定时器处理周期和事件的时间。定时器可能是MCU和SoC中最灵活和异构的硬件类型，从一个模型到另一个模型的差别很大。
-MicroPython的Timer类定义了在给定时间段内（或在一段延迟后执行一次回调）执行回调的基线操作，并允许特定的板定义更多的非标准行为（因此不能移植到其他板）。
+硬件定时器处理周期和事件的计时。定时器可能是MCU和SoC中最灵活和多样化的硬件类型，具有广泛的不同功能和限制。
 
-请参阅有关Timer回调的 :ref:`重要约束 <machine_callbacks>` 。
+Timer类提供了在给定周期（或延迟后）执行回调的基线操作，并允许特定板定义更多非标准行为（因此不会移植到其他板）。
+
+有关Timer回调的重要约束，请参见 :ref:`machine_callbacks`。
 
 .. note::
 
-    内存不能在irq处理程序（中断）中分配，因此处理程序中引发的异常不会提供太多信息。
-    了解 :func:`micropython.alloc_emergency_exception_buf` 如何解决此限制。
+    无法在中断处理程序（中断）中分配内存，因此在处理程序中引发的异常不会提供太多信息。
+    请参阅 :func:`micropython.alloc_emergency_exception_buf` 如何帮助解决此限制。
 
-构建对象
+构造函数
 ------------
 
 .. class:: Timer(id, ...)
 
-构造给定id的新计时器对象。
+   构造给定id的新定时器对象。
 
-    - ``id`` - 任意正整数
-
+   - ``id`` - 任何正整数
 
 
 方法
 -------
 
-.. method:: Timer.init(\*, mode=Timer.PERIODIC, period=-1, callback=None)
+.. method:: Timer.init(*, mode=Timer.PERIODIC, period=-1, callback=None)
 
 
-    - ``mode`` - 定时器模式,可以是以下之一:
+   - ``mode`` - 定时器模式，可以是以下之一：
 
-        - ``Timer.ONE_SHOT`` - 计时器运行一次，直到配置完毕通道的期限到期。
-        - ``Timer.PERIODIC`` - 定时器以通道的配置频率定期运行。
-    - ``period`` -  定时器执行的周期，单位是ms， 隔period ms 执行一次。 period取值范围： 0 < period <= 3435973836
-    - ``callback`` -  定时器的回调函数
+       - ``Timer.ONE_SHOT`` - 定时器运行一次，直到配置的通道周期到期。
+       - ``Timer.PERIODIC`` - 定时器以配置的通道频率周期性运行。
+   - ``period`` - 定时器执行周期（毫秒），每period毫秒执行一次。周期范围：0 < period <= 3435973836
+   - ``callback`` - 定时器回调函数
 
 
-初始化计时器，示例::
+初始化定时器，示例::
 
-    tim.init(period=100)                         # periodic with 100ms period
-    tim.init(mode=Timer.ONE_SHOT, period=1000)   # one shot firing after 1000ms
+    tim.init(period=100)                         # 周期为100ms的周期性定时器
+    tim.init(mode=Timer.ONE_SHOT, period=1000)   # 1000ms后触发一次的一次性定时器
 
 
 .. method:: Timer.value()
 
-获取并返回计时器当前计数值。 
+   获取并返回当前定时器计数器值。
 
 ::
 
@@ -57,10 +57,10 @@ MicroPython的Timer类定义了在给定时间段内（或在一段延迟后执�
 .. method:: Timer.deinit()
 
 
-取消定时器的初始化。停止计时器，并禁用计时器外围设备。
+   取消初始化定时器。停止定时器并禁用定时器外设。
 
 
-常数
+常量
 ---------
 
 .. data:: Timer.ONE_SHOT

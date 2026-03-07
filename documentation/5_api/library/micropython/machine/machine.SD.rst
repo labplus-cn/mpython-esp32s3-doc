@@ -1,42 +1,41 @@
 .. currentmodule:: machine
 .. _machine.SD:
 
-class SD -- secure digital memory card
+类 SD -- 安全数字存储卡
 ======================================
 
-The SD card class allows to configure and enable the memory card
-module of the WiPy and automatically mount it as ``/sd`` as part
-of the file system. There are several pin combinations that can be
-used to wire the SD card socket to the WiPy and the pins used can
-be specified in the constructor. Please check the `pinout and alternate functions
-table. <https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_ for
-more info regarding the pins which can be remapped to be used with a SD card.
+.. warning::
 
-Example usage::
+    这是一个非标准类，仅在cc3200端口可用。
+
+SD卡类允许配置和启用WiPy的存储卡模块，并自动将其挂载为文件系统的 ``/sd`` 部分。
+有几种引脚组合可用于将SD卡插槽连接到WiPy，使用的引脚可以在构造函数中指定。
+请查看引脚分配和备用功能表，了解有关可重新映射用于SD卡的引脚的更多信息。
+
+示例用法::
 
     from machine import SD
-    import os
-    # clk cmd and dat0 pins must be passed along with
-    # their respective alternate functions
+    import vfs
+    # 必须传递clk、cmd和dat0引脚以及它们各自的备用功能
     sd = machine.SD(pins=('GP10', 'GP11', 'GP15'))
-    os.mount(sd, '/sd')
-    # do normal file operations
+    vfs.mount(sd, '/sd')
+    # 执行正常的文件操作
 
-Constructors
+构建对象
 ------------
 
-.. class:: SD(id,... )
+.. class:: SD(id, ...)
 
-   Create a SD card object. See ``init()`` for parameters if initialization. 
+   创建SD卡对象。参见init()方法获取初始化参数。
 
-Methods
+方法
 -------
 
 .. method:: SD.init(id=0, pins=('GP10', 'GP11', 'GP15'))
 
-   Enable the SD card. In order to initialize the card, give it a 3-tuple:
-   ``(clk_pin, cmd_pin, dat0_pin)``.
+   启用SD卡。为了初始化卡，请提供一个3元组：
+   ``(clk_pin, cmd_pin, dat0_pin)``。
 
 .. method:: SD.deinit()
 
-   Disable the SD card.
+   禁用SD卡。

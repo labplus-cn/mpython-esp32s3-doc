@@ -7,13 +7,12 @@ MicroPython类库
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    bluetooth.rst
    btree.rst
    cryptolib.rst
    deflate.rst
-   framebuf.rst
    machine/machine.rst
    micropython.rst
    neopixel.rst

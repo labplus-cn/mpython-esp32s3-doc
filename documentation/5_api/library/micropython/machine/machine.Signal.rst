@@ -1,123 +1,83 @@
 .. currentmodule:: machine
 .. _machine.Signal:
 
-class Signal -- control and sense external I/O devices
-======================================================
+类 Signal -- 控制和感应外部 I/O 设备
+======================================
 
-The Signal class is a simple extension of the `Pin` class. Unlike Pin, which
-can be only in "absolute" 0 and 1 states, a Signal can be in "asserted"
-(on) or "deasserted" (off) states, while being inverted (active-low) or
-not. In other words, it adds logical inversion support to Pin functionality.
-While this may seem a simple addition, it is exactly what is needed to
-support wide array of simple digital devices in a way portable across
-different boards, which is one of the major MicroPython goals. Regardless
-of whether different users have an active-high or active-low LED, a normally
-open or normally closed relay - you can develop a single, nicely looking
-application which works with each of them, and capture hardware
-configuration differences in few lines in the config file of your app.
+Signal 类是 `Pin` 类的简单扩展。与 Pin 只能处于"绝对" 0 和 1 状态不同，Signal 可以处于"断言"（开启）或"解除断言"（关闭）状态，同时可以是反相（低电平有效）或非反相的。换句话说，它为 Pin 功能添加了逻辑反相支持。
+虽然这看起来只是一个简单的添加，但它正是以一种可在不同板上移植的方式支持各种简单数字设备所需的，这是 MicroPython 的主要目标之一。无论不同用户使用的是高电平有效还是低电平有效的 LED，是常开还是常闭的继电器 - 你都可以开发一个单一的、美观的应用程序，适用于所有这些设备，并在应用程序的配置文件中用几行代码捕获硬件配置差异。
 
-Example::
+示例::
 
     from machine import Pin, Signal
 
-    # Suppose you have an active-high LED on pin 0
+    # 假设你在引脚 0 上有一个高电平有效的 LED
     led1_pin = Pin(0, Pin.OUT)
-    # ... and active-low LED on pin 1
+    # ... 在引脚 1 上有一个低电平有效的 LED
     led2_pin = Pin(1, Pin.OUT)
 
-    # Now to light up both of them using Pin class, you'll need to set
-    # them to different values
+    # 现在，使用 Pin 类点亮它们，你需要设置不同的值
     led1_pin.value(1)
     led2_pin.value(0)
 
-    # Signal class allows to abstract away active-high/active-low
-    # difference
+    # Signal 类允许抽象掉高电平有效/低电平有效的差异
     led1 = Signal(led1_pin, invert=False)
     led2 = Signal(led2_pin, invert=True)
 
-    # Now lighting up them looks the same
+    # 现在点亮它们的操作看起来是一样的
     led1.value(1)
     led2.value(1)
 
-    # Even better:
+    # 甚至更好：
     led1.on()
     led2.on()
 
-Following is the guide when Signal vs Pin should be used:
+以下是何时应使用 Signal 与 Pin 的指南：
 
-* Use Signal: If you want to control a simple on/off (including software
-  PWM!) devices like LEDs, multi-segment indicators, relays, buzzers, or
-  read simple binary sensors, like normally open or normally closed buttons,
-  pulled high or low, Reed switches, moisture/flame detectors, etc. etc.
-  Summing up, if you have a real physical device/sensor requiring GPIO
-  access, you likely should use a Signal.
+* 使用 Signal：如果你想控制简单的开/关（包括软件 PWM！）设备，如 LED、多段指示器、继电器、蜂鸣器，或读取简单的二进制传感器，如常开或常闭按钮、上拉或下拉的按钮、 reed 开关、湿度/火焰检测器等。总之，如果你有需要 GPIO 访问的真实物理设备/传感器，你可能应该使用 Signal。
 
-* Use Pin: If you implement a higher-level protocol or bus to communicate
-  with more complex devices.
+* 使用 Pin：如果你实现更高层次的协议或总线来与更复杂的设备通信。
 
-The split between Pin and Signal come from the usecases above and the
-architecture of MicroPython: Pin offers the lowest overhead, which may
-be important when bit-banging protocols. But Signal adds additional
-flexibility on top of Pin, at the cost of minor overhead (much smaller
-than if you implemented active-high vs active-low device differences in
-Python manually!). Also, Pin is a low-level object which needs to be
-implemented for each support board, while Signal is a high-level object
-which comes for free once Pin is implemented.
+Pin 和 Signal 的分离源于上述用例和 MicroPython 的架构：Pin 提供最低的开销，这在位敲击协议时可能很重要。但 Signal 在 Pin 之上添加了额外的灵活性，代价是轻微的开销（比你在 Python 中手动实现高电平有效与低电平有效设备差异要小得多！）。此外，Pin 是一个需要为每个支持的板实现的低级对象，而 Signal 是一个高级对象，一旦 Pin 实现，它就免费可用。
 
-If in doubt, give the Signal a try! Once again, it is offered to save
-developers from the need to handle unexciting differences like active-low
-vs active-high signals, and allow other users to share and enjoy your
-application, instead of being frustrated by the fact that it doesn't
-work for them simply because their LEDs or relays are wired in a slightly
-different way.
+如果有疑问，尝试使用 Signal！再次强调，它的目的是节省开发人员处理诸如低电平有效与高电平有效信号等令人兴奋的差异的需要，并允许其他用户共享和享受你的应用程序，而不是因为他们的 LED 或继电器接线方式略有不同而导致应用程序不工作而感到沮丧。
 
-Constructors
-------------
+构造函数
+--------
 
 .. class:: Signal(pin_obj, invert=False)
            Signal(pin_arguments..., \*, invert=False)
 
-   Create a Signal object. There're two ways to create it:
+   创建一个 Signal 对象。有两种创建方式：
 
-   * By wrapping existing Pin object - universal method which works for
-     any board.
-   * By passing required Pin parameters directly to Signal constructor,
-     skipping the need to create intermediate Pin object. Available on
-     many, but not all boards.
+   * 通过包装现有的 Pin 对象 - 适用于任何板的通用方法。
+   * 直接将所需的 Pin 参数传递给 Signal 构造函数，跳过创建中间 Pin 对象的需要。在许多但不是所有板上可用。
 
-   The arguments are:
+   参数如下：
 
-     - ``pin_obj`` is existing Pin object.
+     - ``pin_obj`` 是现有的 Pin 对象。
 
-     - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
+     - ``pin_arguments`` 是可以传递给 Pin 构造函数的相同参数。
 
-     - ``invert`` - if True, the signal will be inverted (active low).
+     - ``invert`` - 如果为 True，信号将被反相（低电平有效）。
 
-Methods
--------
+方法
+----
 
 .. method:: Signal.value([x])
 
-   This method allows to set and get the value of the signal, depending on whether
-   the argument ``x`` is supplied or not.
+   此方法允许设置和获取信号的值，具体取决于是否提供了参数 ``x``。
 
-   If the argument is omitted then this method gets the signal level, 1 meaning
-   signal is asserted (active) and 0 - signal inactive.
+   如果省略参数，则此方法获取信号电平，1 表示信号被断言（有效），0 表示信号无效。
 
-   If the argument is supplied then this method sets the signal level. The
-   argument ``x`` can be anything that converts to a boolean. If it converts
-   to ``True``, the signal is active, otherwise it is inactive.
+   如果提供了参数，则此方法设置信号电平。参数 ``x`` 可以是任何可以转换为布尔值的东西。如果它转换为 ``True``，信号有效，否则无效。
 
-   Correspondence between signal being active and actual logic level on the
-   underlying pin depends on whether signal is inverted (active-low) or not.
-   For non-inverted signal, active status corresponds to logical 1, inactive -
-   to logical 0. For inverted/active-low signal, active status corresponds
-   to logical 0, while inactive - to logical 1.
+   信号有效与底层引脚上的实际逻辑电平之间的对应关系取决于信号是否反相（低电平有效）。对于非反相信号，有效状态对应于逻辑 1，无效对应于逻辑 0。对于反相/低电平有效信号，有效状态对应于逻辑 0，而无效对应于逻辑 1。
 
 .. method:: Signal.on()
 
-   Activate signal.
+   激活信号。
 
 .. method:: Signal.off()
 
-   Deactivate signal.
+   停用信号。

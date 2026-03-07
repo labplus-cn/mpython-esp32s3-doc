@@ -1,57 +1,56 @@
 .. currentmodule:: machine
 .. _machine.I2C:
 
-类 I2C --  双线串行协议
-=======================================
+类 I2C -- 两线串行协议
+=====================================
 
-I2C是用于设备之间通信的双线协议。在物理层面，它由2条线组成：SCL和SDA，分别是时钟和数据线。
+I2C是一种用于设备之间通信的两线协议。在物理层面上，它由2根线组成：SCL和SDA，分别是时钟线和数据线。
 
-创建连接到特定总线的I2C对象。它们可以在创建时初始化，也可以在以后初始化。
+创建一个与特定总线关联的I2C对象。它们可以在创建时初始化，也可以稍后初始化。
 
 示例::
 
         from machine import I2C,Pin
 
-        i2c = I2C(scl=Pin(22), sda=Pin(23), freq=400000)          # create I2C peripheral at frequency of 400kHz
-                                                                                                                                                                                                                                                # depending on the port, extra parameters may be required
-                                                                                                                                                                                                                                                # to select the peripheral and/or pins to use
+        i2c = I2C(scl=Pin(22), sda=Pin(23), freq=400000)          # 创建频率为400kHz的I2C外设
+        # 根据端口不同，可能需要额外参数
+        # 以选择外设和/或使用的引脚
 
-        i2c.scan()                      # scan for slaves, returning a list of 7-bit addresses
+        i2c.scan()                      # 扫描从设备，返回7位地址的列表
 
-        i2c.writeto(42, b'123')         # write 3 bytes to slave with 7-bit address 42
-        i2c.readfrom(42, 4)             # read 4 bytes from slave with 7-bit address 42
+        i2c.writeto(42, b'123')         # 向7位地址为42的从设备写入3字节
+        i2c.readfrom(42, 4)             # 从7位地址为42的从设备读取4字节
 
-        i2c.readfrom_mem(42, 8, 3)      # read 3 bytes from memory of slave 42,
-                                                                                                                                        #   starting at memory-address 8 in the slave
-        i2c.writeto_mem(42, 2, b'\x10') # write 1 byte to memory of slave 42
-                                                                                                                                        #   starting at address 2 in the slave
-构建对象
+        i2c.readfrom_mem(42, 8, 3)      # 从从设备42的内存中读取3字节，
+                                        #   从从设备的内存地址8开始
+        i2c.writeto_mem(42, 2, b'\x10') # 向从设备42的内存写入1字节
+                                        #   从地址2开始
+
+构造函数
 ------------
 
-.. class:: I2C(id=-1, \*, scl, sda, freq=400000)
+.. class:: I2C(id=-1, *, scl, sda, freq=400000)
 
-   使用以下参数构造并返回新的I2C对象：
-        
-
+   构造并返回具有给定参数的新I2C对象：
 
         - ``id`` 标识特定的I2C外设。默认值-1选择I2C的软件实现
-        - ``scl`` 应该是一个pin对象，指定用于SCL的引脚
-        - ``sda`` 应该是一个pin对象，指定用于SDA的引脚
-        - ``freq`` 应该是一个整数，它设置SCL的最大频率。0 < freq ≤ 500000(Hz)。
+        - ``scl`` 应该是指定用于SCL的引脚对象
+        - ``sda`` 应该是指定用于SDA的引脚对象
+        - ``freq`` 应该是设置SCL最大频率的整数。0 < freq ≤ 500000(Hz)。
 
 .. Attention:: 
 
-        I2C可使用引脚有GPIO 0/2/4/5/9/16/17/18/19/21/22/23/25/26/27
+        I2C可以使用引脚：GPIO 0/2/4/5/9/16/17/18/19/21/22/23/25/26/27
 
 通用方法
 ---------------
 
-.. method:: I2C.init(scl, sda, \*, freq=400000)
+.. method:: I2C.init(scl, sda, *, freq=400000)
 
-        Initialise the I2C bus with the given arguments:
+        使用给定参数初始化I2C总线：
 
-     - ``scl`` 是SCL线的pin对象
-     - ``sda`` 是SDA线的pin对象
+     - ``scl`` 是SCL线的引脚对象
+     - ``sda`` 是SDA线的引脚对象
      - ``freq`` 是SCL时钟速率
 
 .. method:: I2C.deinit()
@@ -60,75 +59,71 @@ I2C是用于设备之间通信的双线协议。在物理层面，它由2条线�
 
 .. method:: I2C.scan()
 
- 扫描0x08和0x77之间的所有I2C地址，并返回响应的列表。如果在总线上发送其地址（包括写入位）后将器件拉低，则器件会响应。
+  扫描0x08到0x77之间的所有I2C地址并返回响应的地址列表。如果设备在总线上发送其地址（包括写位）后拉低SDA线，则设备响应。
 
-原始的I2C操作
+原始I2C操作
 ------------------------
 
-以下方法实现Primitive I2C operations主总线操作，并且可以组合以进行任何I2C事务。如果您需要更多控制总线，则提供它们，
-否则可以使用标准方法（见下文）。
+以下方法实现原始I2C主总线操作，可以执行任何I2C事务。如果您需要比下面的标准方法更多的事务控制，则提供这些方法。
 
 .. method:: I2C.start()
 
-   在总线上生成START条件（SDA在SCL为高电平时转换为低电平）。
+   在总线上生成START条件（SDA在SCL为高电平时从高电平转换为低电平）。
 
 .. method:: I2C.stop()
 
-        在总线上生成STOP条件（SDA在SCL为高电平时转换为高电平）。
+        在总线上生成STOP条件（SDA在SCL为高电平时从低电平转换为高电平）。
 
 .. method:: I2C.readinto(buf, nack=True)
 
-从总线读取字节并将它们存储到 ``buf`` 中。读取的字节数是 ``buf`` 的长度。在接收到除最后一个字节之外的所有字节之后，
-将在总线上发送 ``ACK`` 。在接收到最后一个字节之后，如果 ``nack``  为真，则将发送 ``NACK``，否则将发送  ``ACK`` （并且在这种情况下，从属设备假定在稍后的调用中将读取更多字节）。
+从总线读取字节并将它们存储到 ``buf`` 中。读取的字节数是 ``buf`` 的长度。除了可能的最后一个字节外，所有字节后都会在总线上发送 ``ACK``。收到最后一个字节后，如果 ``nack`` 为真，则发送 ``NACK``，否则发送 ``ACK``（从设备假设稍后会读取更多字节）。
 
 
 .. method:: I2C.write(buf)
 
-将 ``buf`` 中的字节写入总线。检查每个字节后是否收到 ``ACK`` ，如果收到 ``NACK`` ，则停止发送剩余的字节。该函数返回已接收的 ``ACK`` 数。
+将 ``buf`` 中的字节写入总线。检查每个字节后是否收到 ``ACK``，如果收到 ``NACK`` 则停止发送剩余字节。返回收到的 ``ACK`` 数量。
 
 
 标准总线操作
 -----------------------
 
-下面的方法实现了针对给定从设备的标准I2C主读写操作。
+以下方法实现给定从设备的标准I2C主读取和写入操作。
 
 .. method:: I2C.readfrom(addr, nbytes, stop=True)
 
-从 ``addr`` 指定的从程序中读取 ``nbytes`` 。如果  ``stop`` 为真，则在传输结束时生成一个停止条件。返回一个读取数据的 ``bytes`` 对象。
+从 ``addr`` 指定的从设备读取 ``nbytes`` 字节。如果 ``stop`` 为真，则在传输结束时生成停止条件。返回包含读取数据的 ``bytes`` 对象。
 
 .. method:: I2C.readfrom_into(addr, buf, stop=True)
 
-从 ``addr`` 指定的奴隶读入 ``buf`` 。读取的字节数将是 ``buf`` 的长度。如果 ``stop`` 为真，则在传输结束时生成一个停止条件。
+从 ``addr`` 指定的从设备读取到 ``buf`` 中。读取的字节数将是 ``buf`` 的长度。如果 ``stop`` 为真，则在传输结束时生成停止条件。
 
-该方法返回 ``None`` 。
+此方法返回 ``None``。
   
 
 .. method:: I2C.writeto(addr, buf, stop=True)
 
-将 ``buf`` 中的字节写入 ``addr`` 指定的从机。如果在从 ``buf`` 写入一个字节后收到 NACK  ，则不发送剩余的字节。
-如果 ``stop`` 为true，则即使收到NACK，也会在传输结束时生成STOP条件。该函数返回已接收的ACK数。
+将 ``buf`` 中的字节写入 ``addr`` 指定的从设备。如果从 ``buf`` 写入字节后收到NACK，则不发送剩余字节。如果 ``stop`` 为真，则在传输结束时生成STOP条件，即使收到了NACK。返回收到的ACK数量。
 
 
 寄存器操作
------------------
+------------------
 
-某些I2C器件充当可以读写的存储器器件（或寄存器集）。在这种情况下，有两个与I2C事务相关的地址：从地址和存储器地址。
-以下方法是与这些设备通信的便利功能。
+一些I2C设备充当可以读取和写入的存储设备（或寄存器组）。在这种情况下，I2C事务关联两个地址：从设备地址和内存地址。以下方法是与这些设备通信的便捷函数。
 
-.. method:: I2C.readfrom_mem(addr, memaddr, nbytes, \*, addrsize=8)
+.. method:: I2C.readfrom_mem(addr, memaddr, nbytes, *, addrsize=8)
 
-从 ``memaddr`` 指定的内存地址开始，从 ``addr`` 指定的slave中读取 ``nbytes`` 。参数 ``addrsize`` 以位为单位指定地址大小。
-返回读取数据的 ``bytes`` 对象。
+从 ``addr`` 指定的从设备读取 ``nbytes`` 字节，从 ``memaddr`` 指定的内存地址开始。参数 ``addrsize`` 指定地址大小（位）。
+返回包含读取数据的 ``bytes`` 对象。
 
-.. method:: I2C.readfrom_mem_into(addr, memaddr, buf, \*, addrsize=8)
+.. method:: I2C.readfrom_mem_into(addr, memaddr, buf, *, addrsize=8)
     
-从 ``memaddr`` 指定的内存地址开始，从 ``addr`` 指定的slave中读入 ``buf`` 。读取的字节数是 ``buf`` 的长度。
-参数 ``addrsize`` 以位为单位指定地址大小。
+从 ``addr`` 指定的从设备读取到 ``buf`` 中，从 ``memaddr`` 指定的内存地址开始。读取的字节数是 ``buf`` 的长度。
+参数 ``addrsize`` 指定地址大小（位）。
 
-该方法返回 ``None`` 。
+此方法返回 ``None``。
 
-.. method:: I2C.writeto_mem(addr, memaddr, buf, \*, addrsize=8)
+.. method:: I2C.writeto_mem(addr, memaddr, buf, *, addrsize=8)
 
-从 ``memaddr`` 指定的内存地址开始，将 ``buf`` 写入 ``addr`` 指定的从机。参数 ``addrsize`` 以位的形式指定地址大小。
+将 ``buf`` 写入 ``addr`` 指定的从设备，从 ``memaddr`` 指定的内存地址开始。参数 ``addrsize`` 指定地址大小（位）。
 
-该方法返回 ``None`` 。
+此方法返回 ``None``。

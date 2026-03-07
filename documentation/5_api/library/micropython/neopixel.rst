@@ -1,64 +1,67 @@
-.. _neopixel:
-:mod:`neopixel` --- WS2812 灯带
-=========================================
+:mod:`neopixel` --- 控制 WS2812 / NeoPixel LED
+=====================================================
 
+.. module:: neopixel
+   :synopsis: 控制 WS2812 / NeoPixel LED
 
-NeoPixels也被称为WS2812 LED彩带，是连接在一起的全彩色led灯串。你可以设置他它们的红色，绿色和蓝色值，
-在0到255之间。neopixel模块可通过精确的时间控制，生成WS2812控制信号。
+此模块提供了 WS2818 / NeoPixel LED 的驱动程序。
 
-构建对象
+.. note:: 此模块默认仅包含在 ESP8266、ESP32 和 RP2 端口上。在 STM32 / Pyboard 和其他端口上，您可以使用 :term:`mip` 安装 ``neopixel`` 包，或者直接从 :term:`micropython-lib` 下载模块并将其复制到文件系统。
+
+class NeoPixel
+--------------
+
+此类存储连接到引脚的 WS2812 LED 灯条的像素数据。应用程序应设置像素数据，然后在准备更新灯条时调用 :meth:`NeoPixel.write`。
+
+例如::
+
+    import neopixel
+
+    # 32 个 LED 灯条连接到 X8。
+    p = machine.Pin.board.X8
+    n = neopixel.NeoPixel(p, 32)
+
+    # 绘制红色渐变。
+    for i in range(32):
+        n[i] = (i * 8, 0, 0)
+
+    # 更新灯条。
+    n.write()
+
+构造函数
 ------------
 
-.. class:: NeoPixel(pin, n,bpp=3,timing=0, brightness=1.0)
+.. class:: NeoPixel(pin, n, *, bpp=3, timing=1)
 
-  - ``pin`` :输出引脚,可使用引脚见下文
-  -  ``n`` :LED灯的个数
-  - ``bpp``:
-  
-    - ``3``:默认为3元组RGB
-    - ``4``:对于具有3种以上颜色的LED，例如RGBW像素或RGBY像素,采用4元组RGBY或RGBY像素
+    构造一个 NeoPixel 对象。参数为：
 
-  - ``timing``:默认等于0,为400KHz速率；等于1，为800KHz速率
-  - ``brightness``:亮度调节,范围0~1,默认为1.0
+        - *pin* 是 machine.Pin 实例。
+        - *n* 是灯条中的 LED 数量。
+        - *bpp* 对于 RGB LED 为 3，对于 RGBW LED 为 4。
+        - *timing* 对于 400KHz 为 0，对于 800kHz LED 为 1（大多数是 800kHz）。您还可以提供 `machine.bitstream()` 接受的时序元组。
 
-.. Attention:: 
+像素访问方法
+--------------------
 
-  NeoPixel可使用的pin引脚有掌控板的P5,P6,P7(板上RGB),P8,P9,P11,P13,P14,P15,P16,P19,P20。
+.. method:: NeoPixel.fill(pixel)
 
+    将所有像素的值设置为指定的 *pixel* 值（即 RGB/RGBW 元组）。
 
-示例::
+.. method:: NeoPixel.__len__()
 
-  from machine import Pin
-  import neopixel
+    返回灯条中的 LED 数量。
 
-  pin = Pin(17, Pin.OUT)
-  np = neopixel.NeoPixel(pin, n=3,bpp=3,timing=1)   #800khz
+.. method:: NeoPixel.__setitem__(index, val)
 
+    将 *index* 处的像素设置为值，这是一个 RGB/RGBW 元组。
 
-方法
--------
+.. method:: NeoPixel.__getitem__(index)
+
+    返回 *index* 处的像素作为 RGB/RGBW 元组。
+
+输出方法
+--------------
 
 .. method:: NeoPixel.write()
 
-把数据写入LED中。 
-
-示例::
-
-  np[0] = (255, 255, 255) # 设置第一个LED像素为白色
-  np.write()
-
-.. method:: NeoPixel.fill(rgb_buf)
-
-填充所有LED像素。
-
-  - ``rgb_buf`` :rgb颜色
-
-示例::
-
-  np.fill( (255, 255, 255) )
-
-
-
-.. method:: NeoPixel.brightness(brightness)
-
-亮度调节,范围0~1.0
+    将当前像素数据写入灯条。
