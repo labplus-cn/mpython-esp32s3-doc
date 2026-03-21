@@ -1,0 +1,118 @@
+# `struct`{.interpreted-text role="mod"} \-- 打包和解压缩原始数据类型
+
+::: {.module synopsis="打包和解压缩原始数据类型"}
+struct
+:::
+
+这个模块实现了相应 `CPython`{.interpreted-text role="term"}
+模块的一个子集，如下所述。有关更多信息，请参阅原始CPython文档:
+[struct](https://docs.python.org/3.5/library/struct.html#module-struct)
+
+支持的字节顺序：
+
++-------------+--------------------------+------------+-------------+
+| > Character | > Byte order             | > Size     | > Alignment |
+|             |                          |            |             |
+| =========== | ======================== | ========== | =========== |
+|             |                          |            |             |
+| :   `@`     | :   native               | :   native | :   native  |
+|             |                          |            |             |
+|             |                          |            |             |
++-------------+--------------------------+------------+-------------+
+| `<`         | little-endian            | standard   | none        |
++-------------+--------------------------+------------+-------------+
+| `>`         | big-endian               | standard   | none        |
++-------------+--------------------------+------------+-------------+
+| `!`         | network (= big-endian)   | standard   | none        |
++-------------+--------------------------+------------+-------------+
+
+支持的数据类型：
+
+  ----------------------------------------------------------------------
+  Format   C Type                    Python type         Standard size
+  -------- ------------------------- ------------------- ---------------
+  `b`      signed char               integer             1
+
+  `B`      unsigned char             integer             1
+
+  `h`      short                     integer             2
+
+  `H`      unsigned short            integer             2
+
+  `i`      int                       integer (1)         4
+
+  `I`      unsigned int              integer (1)         4
+
+  `l`      long                      integer (1)         4
+
+  `L`      unsigned long             integer (1)         4
+
+  `q`      long long                 integer (1)         8
+
+  `Q`      unsigned long long        integer (1)         8
+
+  `e`      n/a (half-float)          float (2)           2
+
+  `f`      float                     float (2)           4
+
+  `d`      double                    float (2)           8
+
+  `s`      char\[\]                  bytes               
+
+  `P`      void \*                   integer             
+  ----------------------------------------------------------------------
+
+(1) 当使用大于30位的值时需要长整数支持。
+(2) 需要浮点支持。
+
+::: {.admonition .attention}
+Difference to CPython
+
+格式字符串中不支持空白字符。
+:::
+
+## 函数
+
+::: function
+calcsize(fmt)
+
+返回需存入给定 *fmt* 的字节数量。
+
+> \>\>\> struct.calcsize(\"i\") 4 \>\>\> struct.calcsize(\"B\") 1
+:::
+
+::: function
+pack(fmt, v1, v2, \...)
+
+根据格式字符串fmt，打包 *v1, v2, \...*
+值。返回值为一个解码该值的字节对象。
+
+> \>\>\> struct.pack(\"ii\", 3, 2) b\'x03x00x00x00x02x00x00x00\'
+:::
+
+::: function
+pack_into(fmt, buffer, offset, v1, v2, \...)
+
+根据格式字符串fmt，将 *v1, v2, \...* 值打包进从 *offset*
+开始的缓冲区。从缓冲区的末端计数， *offset* 可能为负值。
+:::
+
+::: function
+unpack(fmt, data)
+
+根据格式字符串 *fmt* 对数据进行解压。返回值为一个解压值元组。
+
+> \>\>\> buf = struct.pack(\"bb\", 1, 2) \>\>\> print(buf) b\'x01x02\'
+> \>\>\> print(struct.unpack(\"bb\", buf)) (1, 2)
+:::
+
+::: function
+unpack_from(fmt, data, offset=0, /)
+
+根据格式字符串 `fmt` 从 `offset`
+处开始的数据解包。从缓冲区的末尾开始计数的偏移量可能为负。返回值是解压缩值的元组。
+
+> \>\>\> buf = struct.pack(\"bb\", 1, 2) \>\>\>
+> print(struct.unpack(\"bb\", buf)) (1, 2) \>\>\>
+> print(struct.unpack_from(\"b\", buf, 1)) (2,)
+:::

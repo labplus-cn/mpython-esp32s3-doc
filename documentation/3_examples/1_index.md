@@ -1,0 +1,12 @@
+# 3. 示例教程
+
+::: {.toctree maxdepth="3"}
+basics/1_repl.rst basics/io/index.rst basics/11_lcd.rst
+basics/5_neopixel.rst basics/4_buzz.rst basics/2_buttons.rst
+basics/7_touchpad.rst basics/6_sound.rst basics/3_light.rst
+basics/8_accelerometer.rst basics/9_gyroscope.rst
+basics/network/index.rst basics/12_uart.rst basics/13_wifi.rst
+advance/iot/index.rst advance/random.rst advance/timer.rst
+advance/radio.rst advance/i2c.rst advance/thread.rst
+advance/filesystem.rst AudioAI/index.rst Agent/index.rst
+:::

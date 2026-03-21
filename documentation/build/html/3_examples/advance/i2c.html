@@ -109,13 +109,13 @@
 <figcaption>
 <p><span class="caption-text">SHT20温度转换公式</span><a class="headerlink" href="#id1" title="此图像的永久链接"></a></p>
 </figcaption>
-</figure>
+
 <figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="../../_images/sht20_humidi.png"><img alt="../../_images/sht20_humidi.png" src="../../_images/sht20_humidi.png" style="width: 400px;" /></a>
 <figcaption>
 <p><span class="caption-text">SHT20湿度转换公式</span><a class="headerlink" href="#id2" title="此图像的永久链接"></a></p>
 </figcaption>
-</figure>
+
 <p>湿度读取的方式也类似，首先发送“0xf5”字节，告诉SHT20我要读取湿度数据，最后按公式转换湿度单位:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sht20_humidity</span><span class="p">():</span>
     <span class="n">i2c</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xf5</span><span class="s1">&#39;</span><span class="p">)</span>
