@@ -1,34 +1,7 @@
 显示
 ======================================
 
-掌控板2.0 板载1.47英寸lcd显示屏，分辨率320x172。内置 ``LVGL`` 的 ``lv_micropython`` 库，因此可以使用lvgl的相关API来进行屏幕绘制。
-
-.. _lvgl_url: https://docs.lvgl.io/master
-.. _lv_micropython: https://github.com/lvgl/lv_micropython
-
-.. Note::
-
-	`LVGL(轻量级和通用图形库) <lvgl_url_>`_ 是一个免费和开源的图形库，它提供了创建嵌入式GUI所需的一切，具有易于使用的图形元素，美丽的视觉效果和低内存占用。
-
-
-- 内置字体: 
-
-	- font_siyuan_heiti_medium_24：思源黑体24号，支持中文（内置20000基本常用汉字）
-
-	- font_montserrat_16：支持数字、拉丁字母及常用英文符号
-
-	- font_montserrat_20：支持数字、拉丁字母及常用英文符号
-
-	- font_montserrat_24：支持数字、拉丁字母及常用英文符号
-
-.. Note::
-
-	Montserrat：是一款支持正体和斜体两种风格的无衬线字体
-
-
-.. Hint::
-
-	软件中使用的 ``GUI`` 库为根据 ``lvgl`` 自主封装的库。以下所讲解的都是通过GUI库来绘制屏幕，若想使用原生 ``lv_micropython`` 进行编程可自行前往 `LVGL官网 <lvgl_url_>`_ 或 `lv_micropython github仓库 <lv_micropython_>`_ 进行学习。
+掌控板2.0 板载1.47英寸lcd显示屏，分辨率320x172。
 
 
 文本显示
@@ -420,6 +393,3 @@ display继承framebuf,framebuf实现以下功能
 	:scale: 50 %
 	:align: center
 
-
-使用lvgl图形库
----------------------
