@@ -86,3 +86,22 @@ latex_elements = {
     \setCJKmonofont{WenQuanYi Micro Hei Mono}
     ''',
 }
+# -- EPUB ZIP timestamp compatibility ----------------------------------------
+def setup(app):
+    import os
+    from sphinx.builders.epub3 import Epub3Builder
+
+    class TimestampSafeEpubBuilder(Epub3Builder):
+        def build_epub(self):
+            # Check final assets after copying/downloading, immediately before ZIP.
+            # Use Jan 2 to remain in range even in time zones west of UTC.
+            zip_epoch = 315619200
+            for root, dirs, files in os.walk(self.outdir):
+                for filename in files:
+                    filename = os.path.join(root, filename)
+                    stat = os.stat(filename)
+                    if stat.st_mtime < zip_epoch:
+                        os.utime(filename, (stat.st_atime, zip_epoch))
+            return super().build_epub()
+
+    app.add_builder(TimestampSafeEpubBuilder, override=True)
