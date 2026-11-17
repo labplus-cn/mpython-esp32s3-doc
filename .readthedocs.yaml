@@ -12,9 +12,9 @@ build:
     python: "3.8"
   
   jobs:
-      # 在检出代码后，更新所有文件的时间戳
-      post_checkout:
-        - find . -exec touch {} +
+      # 依赖安装完成后修正旧时间戳，避免 EPUB 的 ZIP 打包失败。
+      pre_build:
+        - find . "$READTHEDOCS_VIRTUALENV_PATH" -type f ! -newermt '1980-01-02 UTC' -exec touch -t 198001020000 {} +
   
   apt_packages:
     - graphviz
