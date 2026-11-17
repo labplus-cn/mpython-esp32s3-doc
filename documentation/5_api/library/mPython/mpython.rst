@@ -1,57 +1,401 @@
 
 .. _mpython.py:
 
-.. module:: mpython
-   :synopsis: 掌控板板载相关功能函数
+.. module:: mpythons
+   :synopsis: 掌控板板载硬件相关功能函数
 
-:mod:`mpython` --- 掌控板板载相关功能函数
-------------------------------------------
+:mod:`mpython` --- 板载硬件相关函数
+=========================================================
 
 ``mpython`` 是基于掌控板封装的专有模块,内含掌控板板载资源相关功能函数。 详细代码实现可查阅 :ref:`mpython.py源码 <mpython_code>` 。
 
-延时
--------
+tft显示屏
+----------------
 
-.. method:: sleep(s)
+掌控板板载1.47寸320*172分辨率显示屏，可以用来显示彩色文字、图片、简单动画。
 
-秒级延时
+通过display对象，可以实现相关显示功能。
 
-    - ``s`` -单位秒。
+.. method:: display.DispChar(str, x, y, color=lcd.WHITE, auto_wrap = False)
 
-.. method:: sleep_ms(ms)
+内置思源中文字体显示函数，参数：
 
-毫秒级延时
+- ``str`` 待显示的字符串
 
-    - ``ms`` -单位毫秒。
+- ``x`` 显示坐标x
 
-.. method:: sleep_us(us)
+- ``y`` 显示坐标y
 
-级延时
+- ``color`` 字体颜色，默认白色
 
-    - ``us`` -单位微秒。
+- ``auto_wrap`` 是否换行，默认不换行
 
+.. method:: display.DispChar_font(font, str, x, y, color=lcd.WHITE, auto_wrap = False)
 
-映射
--------
+内置数码管及dvsm字体显示函数，这些字体由font-to-py.py制作，内置的只有英文和数字，用户可用这个工具自已制字体，参数：
 
-.. method:: numberMap(inputNum,bMin,bMax,cMin,cMax)
+- ``font`` 待显示的字体名
 
-映射函数，参数：
+- ``str`` 待显示的字符串
 
-- ``inputNum`` 为需要映射的变量
+- ``x`` 显示坐标x
 
-- ``bMin`` 为需要映射的最小值
+- ``y`` 显示坐标y
 
-- ``bMax`` 为需要映射的最大值
+- ``color`` 字体颜色，默认白色
 
-- ``cMin`` 为映射的最小值
+- ``auto_wrap`` 是否换行，默认不换行
 
-- ``cMax`` 为映射的最大值
+.. method:: display.clear(color = lcd.BLACK)
 
+清屏（背景设置）函数
 
+- ``color`` 背景颜色,默认黑色
 
-板载传感器
-------------
+.. method:: display.show():
+
+缓存内容送显示屏显示
+
+.. Attention:: display继承自micropython framebuf对象，并实例了一个framebuf缓存做显存。因此display实现了framebuf一些api,下面是相关api:
+
+.. method:: class framebuf.FrameBuffer(buffer, width, height, format, stride=width, /)
+
+构造一个 FrameBuffer 对象。
+
+- ``buffer`` 缓存区
+
+- ``width height`` 缓存区宽度、高度
+
+- ``format`` 像素点类型，掌控板V3强制为RGB565
+
+- ``stride`` 行像素点字节数
+
+.. method:: display.fill(color)
+
+显存填充函数，通常用来设置显示背景, 通常不会直接调用，使用上面的display.clear(color = lcd.BLACK)。
+
+- ``color`` 待填充颜色
+
+.. method:: display.fill_rect(x, y, w, h, color)
+
+显存局部区域填充函数, 通常用来清除局部区域内容。
+
+- ``x y`` 起点坐标
+
+- ``w h`` 区域宽度、高度
+
+- ``color`` 填充颜色
+
+.. method:: display.pixel(x, y, color)
+
+设置/获取相应坐标点颜色。
+
+- ``x y`` 显示坐标
+
+- ``color`` 填充颜色,无此参数时，为获取点颜色
+
+.. method:: display.hline(x, y, w, color)
+
+画水平线。
+
+- ``x y`` 起点坐标
+
+- ``w`` 水平线长
+
+- ``color`` 填充颜色
+
+.. method:: display.vline(x, y, h, color)
+
+画垂直线。
+
+- ``x y`` 起点坐标
+
+- ``h`` 垂直线长
+
+- ``color`` 填充颜色
+
+.. method:: display.rect(x, y, w, h, color)
+
+画矩形。
+
+- ``x y`` 起点坐标
+
+- ``w h`` 矩形宽度、高度
+
+- ``color`` 填充颜色
+
+.. method:: display.line(x1, y1, x2, y2, color)
+
+画直线。
+
+- ``x1 y1`` 起点坐标
+
+- ``x2 y2`` 终点坐标
+
+- ``color`` 填充颜色
+
+.. method:: display.circle(x, y, radio, color)
+
+画圆。
+
+-- ``x y`` 圆心坐标
+
+- ``radio`` 半径
+
+- ``color`` 圆弧颜色
+
+.. method:: display.quarter_circle(x, y, radio, cornername, color)
+
+画1/4圆。
+
+-- ``x y`` 圆心坐标
+
+- ``radio`` 半径
+
+- ``cornername`` 所在象限
+
+- ``color`` 圆弧颜色
+
+.. method:: display.fill_circle(x, y, radio, color)
+
+画实心圆。
+
+-- ``x y`` 圆心坐标
+
+- ``radio`` 半径
+
+- ``color`` 填充颜色
+
+.. method:: display.triangle(x0, y0, x1, y1, x2, y2, color)
+
+画三角形。
+
+- ``x0 y0 x1 y1 x2 y2`` 三个角点坐标
+
+- ``color`` 边颜色
+
+.. method:: display.fill_triangle(x0, y0, x1, y1, x2, y2, color)
+
+画实心三角形。
+
+- ``x0 y0 x1 y1 x2 y2`` 三个角点坐标
+
+- ``color`` 填充颜色
+
+.. method:: display.RoundRect(x, y, w, h, r, color)
+.. method:: display.round_rect(x, y, w, h, r, color)
+
+画圆角矩形。
+
+- ``x y`` 起点坐标
+
+- ``w h`` 矩形宽高
+
+- ``r`` 倒角半径
+
+- ``color`` 边颜色
+
+.. method:: display.ellipse(x, y, xr, yr, color, mask)
+
+画椭圆弧。
+
+- ``x y`` 起点坐标
+
+- ``xr yr`` x y轴半径
+
+- ``color`` 边颜色
+
+- ``mask``  0x01:画第一象限 0x02:画第二象限 0x04:画第三象限 0x08:画第四象限 0xff:画完整椭圆 0x10:填充椭圆
+
+.. method:: display.blit(fb, x, y, key=-1, palette=None)
+
+将一个缓存区，绘入显示framebuf给定位置。
+
+- ``fb`` 待绘制缓存区
+
+- ``x y`` 起点坐标
+
+- ``key`` 如果指定了键，那么它应该是一个颜色整数，相应的颜色将被视为透明：所有具有该颜色值的像素都不会被绘制
+
+- ``palette`` palette 参数支持在不同格式的帧缓冲区之间进行位块传输。典型用法是将单色或灰度的字形 / 图标渲染到彩色显示器上。该调色板是一个帧缓冲区实例，其格式与当前帧缓冲区的格式一致。调色板的高度为 1 个像素，其像素宽度等于源帧缓冲区中的颜色数量。N 位源的调色板需要 2**N 个像素；单色源的调色板有 2 个像素，分别代表背景色和前景色。应用程序为调色板中的每个像素分配一种颜色。当前像素的颜色将与调色板中某个像素的颜色一致，该像素的 x 坐标即为对应源像素的颜色。
+
+.. method:: display.text(str, x, y, color)
+
+绘制micropython内置字体，不能显示中文，掌控板上显示过小，一般不用。
+
+- ``str`` 待显示的字符串
+
+- ``x y`` 显示坐标
+
+- ``color`` 字体颜色，默认白色
+
+.. method:: display.decode_png_internal(index)
+
+解码内置png图片，返回图片宽高及framebuf对象。
+
+- ``index`` 内置图片索引
+
+.. method:: display.background_color(color)
+
+设置/获取背景颜色，有参数为设置，否帽获取
+
+- ``color`` 背景颜色
+
+GUI库
+----------------
+
+GUI库实现一些基础GUI功能：进度条、二维码、时钟、图象解码、图表、表格。
+
+.. method:: class gui.UI()
+
+构造一个UI对象。
+
+.. method:: ui.ProgressBar(x, y, width, height, progress, color= lcd.WHITE)
+
+绘制一个进度条。
+
+- ``x y`` 显示坐标
+
+- ``width height`` 矩形宽高
+
+- ``progress`` 进度值
+
+- ``color`` 颜色
+
+.. method:: ui.stripBar(self, x, y, width, height, progress, dir=1, frame_color=lcd.WHITE, color=lcd.WHITE)
+
+绘制一个进度条。
+
+- ``x y`` 显示坐标
+
+- ``width height`` 矩形宽高
+
+- ``progress`` 进度值
+
+- ``frame_color`` 边框颜色
+
+- ``color`` 颜色
+
+.. method:: ui.qr_code(str, x, y, scale = 4)
+
+绘制一个二维码。
+
+- ``str`` 二维码内容
+
+- ``x y`` 显示坐标
+
+- ``scale`` 缩放比例
+
+.. method:: class gui.Image()
+
+构造一个Image对象,用于加载Image图象，当前支持png格式。
+
+.. method:: ui.load(path, invert=0)
+
+加载并解码图片文件。
+
+- ``path`` 图片文件路径
+
+- ``invert`` 图片反转，参数暂未用
+
+.. method:: class gui.MicroExcelTable(self, display = display, x0=0, y0=0, cols=3, rows=4, cell_width=85, cell_height=30, col_header_text_color=lcd.RED, row_header_width=60, row_header_text_color=lcd.RED, data_text_color=lcd.WHITE, border_color=lcd.GREEN, show_border=True, font_size=(16, 16), cross_text="")
+
+构造一个表格对象。
+
+- ``cols rows`` 行列数
+
+- ``cell_width cell_height`` 单元格宽高
+
+- ``col_header_text_color`` 列表头文本颜色
+
+- ``row_header_width`` 行表头宽
+
+- ``row_header_text_color`` 行表头文本颜色
+
+- ``data_text_color`` 数据区文本颜色
+
+- ``border_color`` 数据区边框颜色
+
+- ``show_border`` 是否显示边框
+
+- ``font_size`` 字体宽高
+
+- ``cross_text`` 表头交叉处文本
+
+.. method:: exectable.draw_headers(col_header_data, row_header_data)
+
+绘制表头内容。
+
+- ``col_header_data`` 列表头内容，e.g. ["温度", "湿度", "气压"]
+
+- ``row_header_data`` 行表头内容，e.g. ["设备1", "设备2", "设备3"]
+
+.. method:: exectable.update_data(new_data)
+
+更新整个数据区内容。
+
+- ``new_data`` 数据区内容
+
+.. method:: exectable.update_cell(row, row, text)
+
+更新整个数据区内容。
+
+- ``row row`` 待更新表格行列值
+
+- ``text`` 待更新内容
+
+.. method:: exectable.clear_all()
+
+    清除内容。
+
+.. method:: class gui.MicroChart(display = display, x0=0, y0=0, width=200, height=100, val_min = 0, val_max = 100, bg_color=lcd.BLACK, axis_color=lcd.WHITE, data_colors=[lcd.RED, lcd.GREEN, lcd.BLUE], padding=10)
+
+构造一个图表对象
+
+- ``display`` 显示器
+
+- ``x0 y0`` 位置
+
+- ``width height`` 图表宽高
+
+- ``val_min val_max`` 数值范围
+
+- ``bg_color`` 背景颜色
+
+- ``axis_color`` 坐标轴颜色
+
+- ``data_colors`` 数据颜色列表，多条数据线时，可分别设置颜色
+
+- ``padding`` 偏移
+
+.. method:: chart.draw_axis(show_ticks=True)
+
+绘制坐标轴
+
+- ``show_ticks`` 是否显示刻度
+
+.. method:: chart.draw_grid(grid_color=None)
+
+绘制参考点
+
+- ``grid_color`` 点颜色
+
+.. method:: chart.draw_line_chart(data, show_grid=False)
+
+绘制折线图
+
+- ``data`` 待绘制数据
+
+- ``show_grid`` 是否显示参考点
+
+.. method:: chart.draw_bar_chart(data, show_grid=False)
+
+绘制柱状图
+
+- ``data`` 待绘制数据
+
+- ``show_grid`` 是否显示参考点
+
 
 声音、光线
 ----------
@@ -481,3 +825,20 @@ MPythonPin类
         - ``PinMode.OUT`` 等于2，数字输出模式
         - ``PinMode.PWM`` 等于3，模拟输出模式
         - ``PinMode.ANALOG``
+
+映射
+----------
+
+.. method:: numberMap(inputNum,bMin,bMax,cMin,cMax)
+
+映射函数，参数：
+
+- ``inputNum`` 为需要映射的变量
+
+- ``bMin`` 为需要映射的最小值
+
+- ``bMax`` 为需要映射的最大值
+
+- ``cMin`` 为映射的最小值
+
+- ``cMax`` 为映射的最大值

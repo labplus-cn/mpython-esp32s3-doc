@@ -2,7 +2,7 @@ mPython类库
 =============
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 0
     
 
     mpython.rst      
